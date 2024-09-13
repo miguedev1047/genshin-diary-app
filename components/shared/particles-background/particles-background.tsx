@@ -13,7 +13,7 @@ export function ParticlesBackground() {
   }, [theme])
 
   return (
-    <div className='absolute inset-x-0 top-0 w-full h-[calc(100dvh-4rem)] [mask-image:linear-gradient(to_b,transparent,white)]'>
+    <div className='absolute inset-x-0 top-0 w-full h-[calc(100dvh-4rem)] [mask-image:linear-gradient(to_b,transparent,white)] -z-[1]'>
       <Particles
         className='size-full'
         quantity={100}
