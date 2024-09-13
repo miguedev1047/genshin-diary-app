@@ -1,6 +1,6 @@
 import { Badge } from '@/components/ui/badge'
-import { Navbar } from '../navbar'
-import { ModeToggle } from '@/components/shared/mode-toggle'
+import { ModeToggle } from '@/shared/components/mode-toggle'
+import { Navbar } from '@/shared/layouts/index/navbar'
 import Link from 'next/link'
 
 export function Header() {
