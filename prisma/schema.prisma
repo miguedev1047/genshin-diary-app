@@ -1,0 +1,365 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum RoleEnum {
+  DPS
+  SUBDPS
+  SUPPORT
+}
+
+enum WeaponTypeEnum {
+  POLEARM
+  SWORD
+  CLAYMORE
+  BOW
+  CATALYST
+}
+
+enum ElementEnum {
+  PYRO
+  HYDRO
+  ANEMO
+  GEO
+  ELECTRO
+  DENDRO
+  CRYO
+}
+
+enum RegionEnum {
+  MONDSTADT
+  LIYUE
+  INAZUMA
+  SUMERU
+  FONTAINE
+  NATLAN
+  SNEZHNAYA
+}
+
+enum AttributeEnum {
+  DMG_CRIT
+  ELEMENTAL_MASTERY
+  ENERGY_RECHARGE
+  CRIT_RATE
+  HEAL_BONUS
+  PHYSICAL_DMG
+  ATQ
+  DEF
+  HP
+  PYRO_DMG
+  HYDRO_DMG
+  ELECTRO_DMG
+  DENDRO_DMG
+  CRYO_DMG
+  ANEMO_DMG
+  GEO_DMG
+}
+
+enum RarityEnum {
+  STAR_5
+  STAR_4
+  STAR_3
+  STAR_2
+  STAR_1
+}
+
+enum UserRoleEnum {
+  ADMIN
+  NONE
+}
+
+model User {
+  id       String       @id @default(cuid())
+  name     String
+  email    String       @unique
+  password String
+  role     UserRoleEnum @default(NONE)
+}
+
+// <----- ------>
+// <----- PERSONAJES ------>
+model Characters {
+  id          String         @id @unique @default(cuid())
+  name        String
+  description String
+  role        RoleEnum
+  element     ElementEnum
+  rarity      RarityEnum
+  region      RegionEnum
+  weapon      WeaponTypeEnum
+  attribute   AttributeEnum
+  is_public   Boolean        @default(false)
+  is_new      Boolean        @default(false)
+
+  date_created DateTime @default(now())
+  date_updated DateTime @updatedAt
+
+  images         CharacterImage?
+  video_guide    VideoGuideCharacter?
+  weapons        WeaponCharacter[]
+  artifacts      ArtifactCharacter[]
+  materials      MaterialCharacter[]
+  stats_priority StatsPriorityCharacter?
+  passives       PassivesCharacter[]
+  constellations ConstellationsCharacter[]
+  ascensions     AscensionCharacter[]
+  talents        TalentsCharacter[]
+}
+
+model CharacterImage {
+  id           String @id @unique @default(cuid())
+  character_id String @unique
+
+  profile_image_url String?
+  splash_art_url    String?
+
+  character Characters @relation(fields: [character_id], references: [id], onDelete: Cascade)
+
+  date_created DateTime @default(now())
+  date_updated DateTime @updatedAt
+}
+
+// <----- ------>
+// <----- ARMAS ------>
+model Weapons {
+  id                  String         @id @unique @default(cuid())
+  image_url           String?
+  name                String
+  type                WeaponTypeEnum
+  rarity              RarityEnum
+  base_attack         Int            @default(0)
+  main_stat           AttributeEnum
+  passive_description String
+
+  date_created DateTime @default(now())
+  date_updated DateTime @updatedAt
+
+  bests_characters WeaponBestCharacters[]
+  ascensions       WeaponAscensions[]
+}
+
+model WeaponBestCharacters {
+  id           String @id @default(cuid())
+  weapon_id    String
+  character_id String
+
+  date_created DateTime @default(now())
+  date_updated DateTime @updatedAt
+
+  weapon Weapons @relation(fields: [weapon_id], references: [id], onDelete: Cascade)
+}
+
+model WeaponAscensions {
+  id        String @id @default(cuid())
+  weapon_id String
+
+  order           Int                        @default(0)
+  level           String
+  ascension_level String
+  cost            Int                        @default(0)
+  materials       WeaponAscensionMaterials[]
+
+  date_created DateTime @default(now())
+  date_updated DateTime @updatedAt
+
+  weapon Weapons @relation(fields: [weapon_id], references: [id], onDelete: Cascade)
+}
+
+model WeaponAscensionMaterials {
+  id           String @id @default(cuid())
+  ascension_id String
+
+  material_id String
+  quantity    Int    @default(0)
+
+  date_created DateTime @default(now())
+  date_updated DateTime @updatedAt
+
+  ascension WeaponAscensions @relation(fields: [ascension_id], references: [id], onDelete: Cascade)
+}
+
+model WeaponCharacter {
+  id           String @id @unique @default(cuid())
+  character_id String
+  weapon_id    String
+
+  date_created DateTime @default(now())
+  date_updated DateTime @updatedAt
+
+  character Characters @relation(fields: [character_id], references: [id], onDelete: Cascade)
+}
+
+// <----- ------>
+// <----- ARTEFACTOS ------>
+model Artifacts {
+  id                String  @id @unique @default(cuid())
+  image_url         String?
+  name              String
+  rarity            RarityEnum
+  bonus_description String
+
+  date_created DateTime @default(now())
+  date_updated DateTime @updatedAt
+}
+
+model ArtifactCharacter {
+  id           String @id @unique @default(cuid())
+  character_id String
+  artifact_id  String
+
+  date_created DateTime @default(now())
+  date_updated DateTime @updatedAt
+
+  character Characters @relation(fields: [character_id], references: [id], onDelete: Cascade)
+}
+
+// <----- ------>
+// <----- MATERIALES ------>
+model Materials {
+  id          String     @id @unique @default(cuid())
+  image_url   String?
+  name        String
+  description String
+  type        String
+  rarity      RarityEnum
+
+  date_created DateTime @default(now())
+  date_updated DateTime @updatedAt
+}
+
+model MaterialCharacter {
+  id           String @id @unique @default(cuid())
+  character_id String
+  material_id  String
+
+  date_created DateTime @default(now())
+  date_updated DateTime @updatedAt
+
+  character Characters @relation(fields: [character_id], references: [id], onDelete: Cascade)
+}
+
+// <----- ------>
+// <----- VIDEO GUIA ------>
+model VideoGuideCharacter {
+  id           String @id @unique @default(cuid())
+  character_id String @unique
+
+  youtuber_name    String
+  youtuber_channel String
+  embed_video_url  String
+
+  date_created DateTime @default(now())
+  date_updated DateTime @updatedAt
+
+  video_guide Characters @relation(fields: [character_id], references: [id], onDelete: Cascade)
+}
+
+// <----- ------>
+// <----- TALENTOS ------>
+model TalentsCharacter {
+  id           String @id @unique @default(cuid())
+  character_id String
+
+  image_url   String?
+  name        String
+  description String
+
+  order Int @default(0)
+
+  date_created DateTime @default(now())
+  date_updated DateTime @updatedAt
+
+  talents Characters @relation(fields: [character_id], references: [id], onDelete: Cascade)
+}
+
+// <----- ------>
+// <----- PASIVAS ------>
+model PassivesCharacter {
+  id           String @id @unique @default(cuid())
+  character_id String
+
+  image_url   String?
+  name        String
+  description String
+
+  order Int @default(0)
+
+  date_created DateTime @default(now())
+  date_updated DateTime @updatedAt
+
+  passives Characters @relation(fields: [character_id], references: [id], onDelete: Cascade)
+}
+
+// <----- ------>
+// <----- CONSTELACIONES ------>
+model ConstellationsCharacter {
+  id           String @id @unique @default(uuid())
+  character_id String
+
+  image_url   String?
+  name        String
+  description String
+
+  order Int @default(0)
+
+  date_created DateTime @default(now())
+  date_updated DateTime @updatedAt
+
+  constellations Characters @relation(fields: [character_id], references: [id], onDelete: Cascade)
+}
+
+// <----- ------>
+// <----- ASCENSIONES ------>
+model AscensionCharacter {
+  id           String @id @unique @default(cuid())
+  character_id String
+
+  level     Int
+  cost      Int
+  materials MaterialAscension[]
+
+  date_created DateTime @default(now())
+  date_updated DateTime @updatedAt
+
+  ascensions Characters @relation(fields: [character_id], references: [id], onDelete: Cascade)
+}
+
+model MaterialAscension {
+  id           String @id @unique @default(uuid())
+  ascension_id String
+  material_id  String
+  character_id String
+
+  order    Int @default(0)
+  quantity Int @default(0)
+
+  date_created DateTime @default(now())
+  date_updated DateTime @updatedAt
+
+  materials AscensionCharacter @relation(fields: [ascension_id], references: [id], onDelete: Cascade)
+}
+
+// <----- ------>
+// <----- ESTADISTICAS PRIORITARIAS ------>
+model StatsPriorityCharacter {
+  id           String @id @unique @default(cuid())
+  character_id String @unique
+
+  sand_stat      String
+  globet_stat    String
+  circlet_stat   String
+  order_priority String
+
+  date_created DateTime @default(now())
+  date_updated DateTime @updatedAt
+
+  stats_priority Characters @relation(fields: [character_id], references: [id], onDelete: Cascade)
+}
