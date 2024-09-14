@@ -1,11 +1,12 @@
 import { fetcher } from '@/features/helpers/fetcher'
 import { CharacterFetchProps } from '@/types'
+import { Prisma } from '@prisma/client'
 import { useQuery } from '@tanstack/react-query'
 import { usePathname, useSearchParams } from 'next/navigation'
 import { useEffect } from 'react'
 
 const fetchFn = async (props: CharacterFetchProps) => {
-  const { element, name, stars, weapon } = props
+  const { element = null, name = null, stars = null, weapon = null } = props
 
   const SEARCH = `name=${name}&stars=${stars}&weapon=${weapon}&element=${element}`
   const API_URL = `/api/public/characters?${SEARCH}`
@@ -24,7 +25,9 @@ export function useFetchCharacters() {
     weapon: searchParams.get('weapon')!,
   }
 
-  const { data, status, error, refetch } = useQuery({
+  const { data, status, error, refetch } = useQuery<
+    Array<Prisma.CharactersGetPayload<{ include: { images: true } }>>
+  >({
     queryKey: ['characters'],
     queryFn: async () => await fetchFn(PARAMS),
   })
