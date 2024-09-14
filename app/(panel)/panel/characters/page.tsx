@@ -1,29 +1,23 @@
-import { GRID_LIST } from '@/consts/classes'
-import { ElementEnum, RarityEnum, WeaponTypeEnum } from '@prisma/client'
+import { Suspense } from 'react'
+import { ElementEnum, WeaponTypeEnum } from '@prisma/client'
 import { ContentLayout } from '@/shared/layouts/panel/content-layout'
-import { getCharacters } from '@/app/(panel)/panel/characters/_services/fetch'
-import { CharacterItem } from '@/app/(panel)/panel/characters/_components/character-item'
 import { CharacterFilter } from '@/shared/filters/character-filter'
 import { FilterContainer } from '@/shared/components/filter-container'
+import { CharacterSkeleton } from '@/app/(panel)/panel/characters/_components/character-skeleton'
+import { CharacterRoutes } from '@/app/(panel)/panel/characters/_components/character-routes'
 
 type Props = {
   searchParams: {
     name: string
     element: ElementEnum
     weapon: WeaponTypeEnum
-    stars: RarityEnum | any
+    stars: any
   }
 }
 
-export default async function PanelCharactersPage(props: Props) {
+export default function PanelCharactersPage(props: Props) {
   const { searchParams: PARAMS } = props
-  const CHARACTERS = await getCharacters(PARAMS)
-
-  const ITEMS = CHARACTERS?.map((item) => (
-    <li key={item.id}>
-      <CharacterItem {...item} />
-    </li>
-  ))
+  const KEY = PARAMS.name + PARAMS.element + PARAMS.weapon + PARAMS.stars
 
   return (
     <ContentLayout
@@ -34,7 +28,12 @@ export default async function PanelCharactersPage(props: Props) {
         <CharacterFilter />
       </FilterContainer>
 
-      <ul className={GRID_LIST}>{ITEMS}</ul>
+      <Suspense
+        key={KEY}
+        fallback={<CharacterSkeleton />}
+      >
+        <CharacterRoutes params={PARAMS} />
+      </Suspense>
     </ContentLayout>
   )
 }
