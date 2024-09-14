@@ -2,10 +2,9 @@
 
 import { InputBlock } from '@/components/ui/input'
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
-import { Suspense } from 'react'
+import { SearchBarProps } from '@/shared/components/search-bar/search-bar.type'
 import { Search } from 'lucide-react'
 import { cn } from '@/lib/utils'
-import { SearchBarProps } from './search-bar.type'
 
 export function SearchBar(props: SearchBarProps) {
   const { queryParam, placeholder, className } = props
@@ -13,6 +12,7 @@ export function SearchBar(props: SearchBarProps) {
   const { replace } = useRouter()
   const pathname = usePathname()
   const params = useSearchParams()
+  // @ts-ignore
   const searchParams = new URLSearchParams(params)
 
   const handleSearch = (value: string) => {
@@ -23,16 +23,14 @@ export function SearchBar(props: SearchBarProps) {
     }
     replace(`${pathname}?${searchParams.toString()}`, { scroll: false })
   }
-  
+
   return (
-    <Suspense>
-      <InputBlock
-        className={cn('max-w-[320px]', className)}
-        defaultValue={searchParams.get(queryParam)?.toString()}
-        onChange={(e) => handleSearch(e.target.value)}
-        placeholder={placeholder}
-        leftIcon={<Search />}
-      />
-    </Suspense>
+    <InputBlock
+      className={cn('max-w-[320px]', className)}
+      defaultValue={searchParams.get(queryParam)?.toString()}
+      onChange={(e) => handleSearch(e.target.value)}
+      placeholder={placeholder}
+      leftIcon={<Search />}
+    />
   )
 }

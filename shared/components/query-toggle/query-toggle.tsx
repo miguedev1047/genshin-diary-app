@@ -2,8 +2,7 @@
 
 import { Toggle } from '@/components/ui/toggle'
 import { useRouter, usePathname, useSearchParams } from 'next/navigation'
-import { QueryToggleProps } from './query-toggle.type'
-import { Suspense } from 'react'
+import { QueryToggleProps } from '@/shared/components/query-toggle/query-toggle.type'
 import { cn } from '@/lib/utils'
 
 export function QueryToggle(props: QueryToggleProps) {
@@ -18,6 +17,7 @@ export function QueryToggle(props: QueryToggleProps) {
   const { replace } = useRouter()
   const pathname = usePathname()
   const params = useSearchParams()
+  // @ts-ignore
   const searchParams = new URLSearchParams(params)
 
   const isPressed = searchParams.get(queryKey) === queryValue.toLowerCase()
@@ -33,16 +33,14 @@ export function QueryToggle(props: QueryToggleProps) {
   }
 
   return (
-    <Suspense>
-      <Toggle
-        className={cn('w-12 h-12 p-1.5', className)}
-        variant={variant}
-        pressed={isPressed}
-        defaultPressed={isPressed}
-        onPressedChange={handleToggle}
-      >
-        {children}
-      </Toggle>
-    </Suspense>
+    <Toggle
+      className={cn('w-12 h-12 p-1.5', className)}
+      variant={variant}
+      pressed={isPressed}
+      defaultPressed={isPressed}
+      onPressedChange={handleToggle}
+    >
+      {children}
+    </Toggle>
   )
 }
