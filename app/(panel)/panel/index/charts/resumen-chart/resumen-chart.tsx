@@ -5,8 +5,8 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from '@/components/ui/chart'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Pie, PieChart } from 'recharts'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { ResumenChartProps } from '@/app/(panel)/panel/index/charts/resumen-chart/resumen-chart.type'
 import { RESUMEN_CHART_COFNIG } from '@/app/(panel)/panel/index/charts/resumen-chart/resumen-chart.config'
 
@@ -14,7 +14,7 @@ export function ResumenChart(props: ResumenChartProps) {
   const { data: CHART_DATA } = props
 
   return (
-    <Card className='col-span-4 flex flex-col'>
+    <Card className='col-span-8 md:col-span-4 flex flex-col'>
       <CardHeader className='items-center pb-0'>
         <CardTitle>Resumen Global</CardTitle>
       </CardHeader>

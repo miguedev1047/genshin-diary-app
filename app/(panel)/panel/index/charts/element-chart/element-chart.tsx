@@ -14,7 +14,7 @@ export function ElementChart(props: ElementChartProps) {
   const { data: CHART_DATA } = props
 
   return (
-    <Card className='col-span-4 flex flex-col'>
+    <Card className='col-span-8 md:col-span-4 flex flex-col'>
       <CardHeader className='items-center pb-0'>
         <CardTitle>Elementos por personaje</CardTitle>
       </CardHeader>
