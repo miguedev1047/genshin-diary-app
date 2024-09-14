@@ -3,7 +3,10 @@
 import { Toggle } from '@/components/ui/toggle'
 import { useRouter, usePathname, useSearchParams } from 'next/navigation'
 import { QueryToggleProps } from '@/shared/components/query-toggle/query-toggle.type'
+import { useDebouncedCallback } from 'use-debounce'
 import { cn } from '@/lib/utils'
+
+const WAIT_BEFORE_DEBOUNCE = 300
 
 export function QueryToggle(props: QueryToggleProps) {
   const {
@@ -22,7 +25,7 @@ export function QueryToggle(props: QueryToggleProps) {
 
   const isPressed = searchParams.get(queryKey) === queryValue.toLowerCase()
 
-  const handleToggle = (value: boolean) => {
+  const handleToggle = useDebouncedCallback((value: boolean) => {
     if (value) {
       searchParams.set(queryKey, queryValue.toLowerCase())
     } else {
@@ -30,7 +33,7 @@ export function QueryToggle(props: QueryToggleProps) {
     }
 
     replace(`${pathname}?${searchParams.toString()}`, { scroll: false })
-  }
+  }, WAIT_BEFORE_DEBOUNCE)
 
   return (
     <Toggle
