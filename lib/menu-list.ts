@@ -73,13 +73,13 @@ export function getMenuList(pathname: string): Group[] {
           icon: Box,
           submenus: [],
         },
-        {
-          href: '/panel/teams',
-          label: 'Equipos',
-          active: pathname.includes('/teams'),
-          icon: Group,
-          submenus: [],
-        },
+        // {
+        //   href: '/panel/teams',
+        //   label: 'Equipos',
+        //   active: pathname.includes('/teams'),
+        //   icon: Group,
+        //   submenus: [],
+        // },
       ],
     },
   ]
