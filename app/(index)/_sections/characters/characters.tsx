@@ -1,4 +1,5 @@
 import { CharacterFilter } from './_components/character-filter'
+import { CharacterRoutes } from './_components/character-routes/character-routes'
 import { Card, CardContent, CardHeader } from '@/components/ui/card'
 import { FocalLight } from '@/shared/components/focal-light'
 import { BorderBeam } from '@/components/magicui/border-beam'
@@ -13,7 +14,9 @@ export async function Characters() {
           <CharacterFilter />
         </CardHeader>
 
-        <CardContent></CardContent>
+        <CardContent>
+          <CharacterRoutes />
+        </CardContent>
         <BorderBeam />
       </Card>
     </section>
