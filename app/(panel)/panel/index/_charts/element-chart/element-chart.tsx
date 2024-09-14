@@ -7,20 +7,20 @@ import {
 } from '@/components/ui/chart'
 import { Pie, PieChart } from 'recharts'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { ResumenChartProps } from '@/app/(panel)/panel/index/charts/resumen-chart/resumen-chart.type'
-import { RESUMEN_CHART_COFNIG } from '@/app/(panel)/panel/index/charts/resumen-chart/resumen-chart.config'
+import { ElementChartProps } from '@/app/(panel)/panel/index/_charts/element-chart/element-chart.type'
+import { ELEMENT_CHART_CONFIG } from '@/app/(panel)/panel/index/_charts/element-chart/element-chart.config'
 
-export function ResumenChart(props: ResumenChartProps) {
+export function ElementChart(props: ElementChartProps) {
   const { data: CHART_DATA } = props
 
   return (
     <Card className='col-span-8 md:col-span-4 flex flex-col'>
       <CardHeader className='items-center pb-0'>
-        <CardTitle>Resumen Global</CardTitle>
+        <CardTitle>Elementos por personaje</CardTitle>
       </CardHeader>
       <CardContent className='flex-1 pb-0'>
         <ChartContainer
-          config={RESUMEN_CHART_COFNIG}
+          config={ELEMENT_CHART_CONFIG}
           className='mx-auto aspect-square max-h-[300px]'
         >
           <PieChart>
@@ -31,7 +31,7 @@ export function ResumenChart(props: ResumenChartProps) {
             <Pie
               data={CHART_DATA ?? []}
               dataKey='total'
-              nameKey='label'
+              nameKey='element'
               stroke='0'
             />
           </PieChart>

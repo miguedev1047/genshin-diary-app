@@ -3,8 +3,8 @@ import {
   fetchResumenChart,
 } from '@/app/(panel)/panel/index/_services/fetch'
 import { ContentLayout } from '@/shared/layouts/panel/content-layout'
-import { ElementChart } from '@/app/(panel)/panel/index/charts/element-chart'
-import { ResumenChart } from '@/app/(panel)/panel/index/charts/resumen-chart'
+import { ElementChart } from '@/app/(panel)/panel/index/_charts/element-chart'
+import { ResumenChart } from '@/app/(panel)/panel/index/_charts/resumen-chart'
 import { Welcome } from '@/app/(panel)/panel/index/_components/welcome-card'
 import { IndexRoutes } from '@/app/(panel)/panel/index/_components/index-routes'
 
