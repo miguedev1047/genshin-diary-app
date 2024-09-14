@@ -4,7 +4,7 @@ import { ContentLayout } from '@/shared/layouts/panel/content-layout'
 import { getCharacters } from '@/app/(panel)/panel/characters/_services/fetch'
 import { CharacterItem } from '@/app/(panel)/panel/characters/_components/character-item'
 import { CharacterFilter } from '@/shared/filters/character-filter'
-import { Card } from '@/components/ui/card'
+import { FilterContainer } from '@/shared/components/filter-container'
 
 type Props = {
   searchParams: {
@@ -30,9 +30,9 @@ export default async function PanelCharactersPage(props: Props) {
       title='Personajes'
       className='space-y-6'
     >
-      <Card className='p-6 space-y-4'>
+      <FilterContainer>
         <CharacterFilter />
-      </Card>
+      </FilterContainer>
 
       <ul className={GRID_LIST}>{ITEMS}</ul>
     </ContentLayout>
