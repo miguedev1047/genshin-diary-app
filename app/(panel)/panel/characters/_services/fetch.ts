@@ -1,7 +1,15 @@
 import { currentRole } from '@/data/auth'
 import db from '@/lib/db'
+import { ElementEnum, RarityEnum, WeaponTypeEnum } from '@prisma/client'
 
-export async function getCharacters(props: any) {
+type Props = {
+  name: string
+  element: ElementEnum
+  weapon: WeaponTypeEnum
+  stars: RarityEnum | any
+}
+
+export async function getCharacters(props: Props) {
   const { name, element, weapon, stars } = props
 
   const ROLE = await currentRole()
