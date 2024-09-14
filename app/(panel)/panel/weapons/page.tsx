@@ -14,7 +14,7 @@ type Props = {
   }
 }
 
-export default async function PanelWeaponsPage(props: Props) {
+export default function PanelWeaponsPage(props: Props) {
   const { searchParams: PARAMS } = props
   const KEY = PARAMS.name + PARAMS.weapon + PARAMS.stars
 

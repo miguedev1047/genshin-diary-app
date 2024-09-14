@@ -11,7 +11,7 @@ type Props = {
   }
 }
 
-export default async function PanelMaterialsPage(props: Props) {
+export default function PanelMaterialsPage(props: Props) {
   const { searchParams: PARAMS } = props
   const KEY = PARAMS.name
 

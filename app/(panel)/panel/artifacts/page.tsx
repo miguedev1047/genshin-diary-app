@@ -11,8 +11,9 @@ type Props = {
   }
 }
 
-export default async function PanelArtifactsPage(props: Props) {
+export default function PanelArtifactsPage(props: Props) {
   const { searchParams: PARAMS } = props
+  const KEY = PARAMS.name
 
   return (
     <ContentLayout
@@ -23,7 +24,7 @@ export default async function PanelArtifactsPage(props: Props) {
         <ArtifactFilter />
       </FilterContainer>
 
-      <Suspense fallback={<ArtifactSkeleton />}>
+      <Suspense key={KEY} fallback={<ArtifactSkeleton />}>
         <ArtifactRoutes params={PARAMS} />
       </Suspense>
     </ContentLayout>
