@@ -1,4 +1,9 @@
+import { ContentLayout } from '@/shared/layouts/panel/content-layout'
+
 export default function IndexPanelPage() {
-    return <div>Panel Index</div>
-  }
-  
+  return (
+    <ContentLayout title='Panel'>
+      <div>Panel</div>
+    </ContentLayout>
+  )
+}
