@@ -5,24 +5,16 @@ import { FocalLight } from '@/shared/components/focal-light'
 import { BorderBeam } from '@/components/magicui/border-beam'
 import { AspectRatio } from '@/components/ui/aspect-ratio'
 import { Separator } from '@/components/ui/separator'
-import { CharacterProps } from '@/app/(index)/_components/characters/character.type'
+import { CharacterProps } from '@/app/(index)/_sections/characters/character.type'
 import { getBorderColorByRarity } from '@/features/utils/rarity-color'
 import { formattedUrl } from '@/features/utils/formatted-names'
 import { QueryToggle } from '@/shared/components/query-toggle'
 import { SearchBar } from '@/shared/components/search-bar'
-import { getCharacters } from '@/app/(index)/_services/fetch'
 import { cn } from '@/lib/utils'
 import Image from 'next/image'
 import Link from 'next/link'
-import { headers } from 'next/headers'
 
 export async function Characters() {
-  const header = headers()
-
-  console.log(header)
-  
-  const CHARACTERS = await getCharacters()
-
   return (
     <section className='relative mx-auto max-w-[1440px] h-[calc(100dvh-4rem)] px-4 md:px-8'>
       <FocalLight />
@@ -33,13 +25,7 @@ export async function Characters() {
         </CardHeader>
 
         <CardContent>
-          <ul className={cn(GRID_LIST, 'mt-4')}>
-            {CHARACTERS?.map((character) => (
-              <li key={character.id}>
-                <CharacterCard data={character} />
-              </li>
-            ))}
-          </ul>
+         
         </CardContent>
         <BorderBeam />
       </Card>
