@@ -1,8 +1,17 @@
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from '@/components/ui/tooltip'
 import { ITEM_FILTERS } from '@/consts/general'
 import { Card, CardTitle } from '@/components/ui/card'
 import { Separator } from '@/components/ui/separator'
 import { QueryToggle } from '@/shared/components/query-toggle'
 import { SearchBar } from '@/shared/components/search-bar'
+import { Button } from '@/components/ui/button'
+import { Plus } from 'lucide-react'
+import Link from 'next/link'
 import Image from 'next/image'
 
 export function WeaponFilter() {
@@ -11,11 +20,31 @@ export function WeaponFilter() {
       <div className='flex items-center justify-between gap-4 flex-wrap'>
         <CardTitle className='uppercase font-extrabold op'>Armas</CardTitle>
 
-        <SearchBar
-          queryParam='name'
-          placeholder='Buscar arma'
-          className='w-[350px]'
-        />
+        <div className='flex items-center gap-2'>
+          <SearchBar
+            queryParam='name'
+            placeholder='Buscar arma'
+            className='w-[350px]'
+          />
+
+          <TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Button
+                  size='icon'
+                  asChild
+                >
+                  <Link href='/creator/weapon'>
+                    <Plus />
+                  </Link>
+                </Button>
+              </TooltipTrigger>
+              <TooltipContent side='bottom'>
+                <p>Crear arma</p>
+              </TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
+        </div>
       </div>
 
       <Card className='p-4 flex justify-center items-center gap-6'>
