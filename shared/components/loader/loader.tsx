@@ -7,7 +7,7 @@ export function Loader() {
   const { theme } = useTheme()
 
   return (
-    <div className='w-full h-[calc(100dvh_-_16rem)] grid place-items-center'>
+    <div className='w-full h-[calc(100dvh_-_20rem)] grid place-items-center'>
       <Bars
         height='120'
         width='120'
