@@ -18,7 +18,6 @@ export function FormCard(props: FormCardProps) {
     formId,
     isEditing,
     disabled,
-    borderBeam = true,
     isLoading,
     children,
   } = props
@@ -42,7 +41,7 @@ export function FormCard(props: FormCardProps) {
           {isEditing ? 'Guardar' : 'Crear'}
         </Button>
       </CardFooter>
-      {borderBeam && <BorderBeam />}
+      <BorderBeam />
     </Card>
   )
 }
