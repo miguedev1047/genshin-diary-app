@@ -1,6 +1,5 @@
-import type { Config } from 'tailwindcss'
-
-const config = {
+/** @type {import('tailwindcss').Config} */
+module.exports = {
   darkMode: ['class'],
   content: [
     './pages/**/*.{ts,tsx}',
@@ -113,13 +112,13 @@ const config = {
           '0%': { backgroundPosition: 'top center' },
           '100%': { backgroundPosition: 'bottom center' },
         },
-        "shine": {
+        shine: {
           from: { backgroundPosition: '200% 0' },
           to: { backgroundPosition: '-200% 0' },
         },
       },
       animation: {
-        "shine": "shine 8s ease-in-out infinite",
+        shine: 'shine 8s ease-in-out infinite',
         'image-glow': 'image-glow 4100ms 600ms ease-out forwards',
         'fade-in': 'fade-in 1000ms var(--animation-delay, 0ms) ease forwards',
         'fade-up': 'fade-up 1000ms var(--animation-delay, 0ms) ease forwards',
@@ -133,6 +132,4 @@ const config = {
     },
   },
   plugins: [require('tailwindcss-animate')],
-} satisfies Config
-
-export default config
+}
