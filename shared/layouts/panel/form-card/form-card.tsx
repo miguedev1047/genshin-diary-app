@@ -13,7 +13,14 @@ import { FormCardProps } from '@/shared/layouts/panel/form-card/form-card.type'
 
 export function FormCard(props: FormCardProps) {
   const {
-    title, description, formId, isEditing, disabled, isLoading, children,
+    title,
+    description,
+    formId,
+    isEditing,
+    disabled,
+    borderBeam = true,
+    isLoading,
+    children,
   } = props
 
   return (
@@ -29,13 +36,13 @@ export function FormCard(props: FormCardProps) {
         <Button
           type='submit'
           form={formId}
-          disabled={isLoading}
+          disabled={isLoading || disabled}
           className='w-full'
         >
           {isEditing ? 'Guardar' : 'Crear'}
         </Button>
       </CardFooter>
-      <BorderBeam />
+      {borderBeam && <BorderBeam />}
     </Card>
   )
 }
