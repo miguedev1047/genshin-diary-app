@@ -1,9 +1,6 @@
 export type EditorCardProps = {
-    title?: string
-    description?: string
-    formId: string
-    disabled?: boolean
-    isLoading?: boolean
-    children: React.ReactNode
-  }
-  
+  title?: string
+  description?: string
+  children: React.ReactNode
+  renderForm?: React.ReactNode
+}
