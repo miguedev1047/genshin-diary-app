@@ -6,7 +6,10 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from '@/components/ui/tooltip'
-import { DeleteButtonProps, UseDeleteProps } from '@/shared/layouts/panel/delete-button/delete-button.type'
+import {
+  DeleteButtonProps,
+  UseDeleteProps,
+} from '@/shared/layouts/panel/delete-button/delete-button.type'
 import { Button } from '@/components/ui/button'
 import { useTransition } from 'react'
 import { useRouter } from 'next/navigation'
@@ -14,7 +17,7 @@ import { toast } from 'sonner'
 import { cn } from '@/lib/utils'
 
 function useDelete(props: UseDeleteProps) {
-  const { itemId, onDelete } = props
+  const { itemId, onDelete, onRefresh } = props
 
   const [isPending, startTransition] = useTransition()
   const { refresh } = useRouter()
@@ -26,8 +29,13 @@ function useDelete(props: UseDeleteProps) {
       if (status === 201) {
         toast.success(message)
         refresh()
+
+        if (onRefresh) return onRefresh()
+
         return
       }
+
+      toast.error(message)
     })
   }
 
@@ -35,11 +43,12 @@ function useDelete(props: UseDeleteProps) {
 }
 
 export function DeleteButton(props: DeleteButtonProps) {
-  const { children, className, itemId, disabled, onDelete } = props
+  const { children, className, itemId, disabled, onDelete, onRefresh } = props
 
   const { isPending, onDeleteItem } = useDelete({
     itemId,
     onDelete,
+    onRefresh,
   })
 
   return (
