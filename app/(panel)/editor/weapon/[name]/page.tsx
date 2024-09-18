@@ -6,9 +6,8 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from '@/components/ui/breadcrumb'
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { ContentLayout } from '@/shared/layouts/panel/content-layout'
-import { EditorContent } from './editor/editor'
+import { EditorContent } from './_components/editor-content/editor-content'
 import Link from 'next/link'
 
 export default function EditorWeaponPage() {
@@ -31,25 +30,7 @@ export default function EditorWeaponPage() {
         </BreadcrumbList>
       </Breadcrumb>
 
-      <Tabs
-        defaultValue='editor'
-        className='w-full'
-      >
-        <TabsList className='grid grid-cols-2'>
-          <TabsTrigger value='editor'>Editor</TabsTrigger>
-          <TabsTrigger value='preview'>Preview</TabsTrigger>
-        </TabsList>
-        <TabsContent
-          value='editor'
-          className='space-y-4'
-        >
-          <EditorContent />
-        </TabsContent>
-        <TabsContent
-          value='preview'
-          className='space-y-4'
-        ></TabsContent>
-      </Tabs>
+      <EditorContent />
     </ContentLayout>
   )
 }
