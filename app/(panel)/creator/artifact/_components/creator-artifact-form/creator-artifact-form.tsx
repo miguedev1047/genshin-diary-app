@@ -10,7 +10,10 @@ import {
 import {
   Select,
   SelectContent,
+  SelectGroup,
   SelectItem,
+  SelectLabel,
+  SelectSeparator,
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
@@ -119,22 +122,26 @@ export function CreatorArtifactForm() {
                   <FormControl>
                     <FormControl>
                       <SelectTrigger>
-                        <SelectValue placeholder='Rareza' />
+                        <SelectValue placeholder='Seleciona una rareza' />
                       </SelectTrigger>
                     </FormControl>
                   </FormControl>
                   <SelectContent>
-                    {STARS.slice(0, 2).map(({ label, value }) => (
-                      <SelectItem
-                        key={value}
-                        value={value}
-                      >
-                        <div className='flex items-center space-x-2'>
-                          <Star className='size-6 text-amber-400' />
-                          <span>{label}</span>
-                        </div>
-                      </SelectItem>
-                    ))}
+                    <SelectGroup>
+                      <SelectLabel>Rareza maxima</SelectLabel>
+                      <SelectSeparator />
+                      {STARS.slice(0, 3).map(({ label, value }) => (
+                        <SelectItem
+                          key={value}
+                          value={value}
+                        >
+                          <div className='flex items-center space-x-2'>
+                            <Star className='size-6 text-amber-400' />
+                            <span>{label}</span>
+                          </div>
+                        </SelectItem>
+                      ))}
+                    </SelectGroup>
                   </SelectContent>
                 </Select>
               </FormItem>
