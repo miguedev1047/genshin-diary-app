@@ -29,6 +29,10 @@ export async function GET(
       },
     })
 
+    if (!WEAPON) {
+      return new NextResponse('Internal Server Error', { status: 404 })
+    }
+
     return NextResponse.json(WEAPON, { status: 201 })
   } catch (error) {
     return new NextResponse('Internal Server Error', { status: 404 })
