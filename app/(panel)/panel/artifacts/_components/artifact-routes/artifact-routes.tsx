@@ -9,7 +9,7 @@ export async function ArtifactRoutes(props: ArtifactRoutesProps) {
   return (
     <ul className={GRID_LIST}>
       {ARTIFACTS?.map((item) => (
-        <li key={item.id}>
+        <li key={item.id} className='relative'>
           <ArtifactItem {...item} />
         </li>
       ))}
