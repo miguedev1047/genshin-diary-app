@@ -7,13 +7,14 @@ export async function WeaponRoutes(props: WeaponRoutesProps) {
   const { params: PARAMS } = props
   const WEAPONS = await getWeapons(PARAMS)
 
-  return (
-    <ul className={GRID_LIST}>
-      {WEAPONS?.map((item) => (
-        <li key={item.id} className='relative'>
-          <WeaponItem {...item} />
-        </li>
-      ))}
-    </ul>
-  )
+  const MAPPED_WEAPONS = WEAPONS?.map((item) => (
+    <li
+      key={item.id}
+      className='relative'
+    >
+      <WeaponItem {...item} />
+    </li>
+  ))
+  
+  return <ul className={GRID_LIST}>{MAPPED_WEAPONS}</ul>
 }

@@ -7,13 +7,14 @@ export async function MaterialRoutes(props: MaterialRoutesProps) {
   const { params: PARAMS } = props
   const MATERIALS = await getMaterials(PARAMS)
 
-  return (
-    <ul className={GRID_LIST}>
-      {MATERIALS?.map((item) => (
-        <li key={item.id} className='relative'>
-          <MaterialItem {...item} />
-        </li>
-      ))}
-    </ul>
-  )
+  const MAPPED_MATERIALS = MATERIALS?.map((item) => (
+    <li
+      key={item.id}
+      className='relative'
+    >
+      <MaterialItem {...item} />
+    </li>
+  ))
+
+  return <ul className={GRID_LIST}>{MAPPED_MATERIALS}</ul>
 }
