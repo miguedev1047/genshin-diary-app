@@ -96,7 +96,7 @@ export const WeaponBestCharactersSchema = z.object({
     .nonempty('Seleccione al menos un personaje.'),
 })
 
-export const WeaponMaterialSchema = z.object({
+export const WeaponAscensionSchema = z.object({
   ascension_level: z.string().min(1, 'La ascensión requerida.'),
   materials: z
     .array(z.string().min(1))
