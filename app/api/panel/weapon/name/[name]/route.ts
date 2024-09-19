@@ -18,7 +18,15 @@ export async function GET(
   try {
     const WEAPON = await db.weapons.findFirst({
       where: { name: { contains: WEAPON_NAME, mode: 'insensitive' } },
-      include: { ascensions: true, bests_characters: true },
+      include: {
+        ascensions: {
+          orderBy: [{ order: 'asc' }],
+          include: {
+            materials: { orderBy: { date_created: 'asc' } },
+          },
+        },
+        bests_characters: true,
+      },
     })
 
     return NextResponse.json(WEAPON, { status: 201 })

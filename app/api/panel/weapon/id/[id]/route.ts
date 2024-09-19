@@ -2,7 +2,14 @@ import { currentRole } from '@/data/auth'
 import { NextResponse } from 'next/server'
 import db from '@/lib/db'
 
-export async function GET(request: Request) {
+export const dynamic = 'force-dynamic'
+
+export async function GET(
+  request: Request,
+  { params }: { params: { id: string } }
+) {
+  const MATERIAL_ID = params.id
+
   const ROLE = await currentRole()
 
   if (ROLE !== 'ADMIN') {
@@ -10,8 +17,8 @@ export async function GET(request: Request) {
   }
 
   try {
-    const WEAPON = await db.weapons.findMany({
-      orderBy: [{ rarity: 'asc' }, { name: 'asc' }, { date_created: 'desc' }],
+    const MATERIAL = await db.weapons.findUnique({
+      where: { id: MATERIAL_ID },
       include: {
         ascensions: {
           orderBy: [{ order: 'asc' }],
@@ -23,7 +30,7 @@ export async function GET(request: Request) {
       },
     })
 
-    return NextResponse.json(WEAPON, { status: 201 })
+    return NextResponse.json(MATERIAL, { status: 201 })
   } catch (error) {
     return new NextResponse('Internal Server Error', { status: 404 })
   }
