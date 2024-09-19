@@ -10,7 +10,7 @@ export async function WeaponRoutes(props: WeaponRoutesProps) {
   return (
     <ul className={GRID_LIST}>
       {WEAPONS?.map((item) => (
-        <li key={item.id}>
+        <li key={item.id} className='relative'>
           <WeaponItem {...item} />
         </li>
       ))}

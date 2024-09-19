@@ -10,11 +10,14 @@ import { WeaponItemProps } from '@/app/(panel)/panel/weapons/_components/weapon-
 import { formattedUrl } from '@/features/utils/formatted-names'
 import { getBorderColorByRarity } from '@/features/utils/rarity-color'
 import { cn } from '@/lib/utils'
+import { DeleteButton } from '@/shared/layouts/panel/delete-button'
+import { Trash2 } from 'lucide-react'
 import Link from 'next/link'
 import Image from 'next/image'
+import { deleteWeapon } from '../../_services/delete'
 
 export function WeaponItem(props: WeaponItemProps) {
-  const { image_url, name, rarity } = props
+  const { image_url, name, rarity, id: weapon_id } = props
 
   const FORMATTED_NAME = formattedUrl(name)
   const URL = `/editor/weapon/${FORMATTED_NAME}`
@@ -55,6 +58,14 @@ export function WeaponItem(props: WeaponItemProps) {
           </TooltipContent>
         </Tooltip>
       </TooltipProvider>
+
+      <DeleteButton
+        itemId={weapon_id}
+        onDelete={deleteWeapon}
+        className='absolute z-40 bottom-3 right-3'
+      >
+        <Trash2 />
+      </DeleteButton>
     </>
   )
 }
