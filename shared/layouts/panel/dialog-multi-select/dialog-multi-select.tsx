@@ -204,7 +204,7 @@ export const DialogMultiSelect = React.forwardRef<
                     >
                       <div className='flex items-center gap-2'>
                         {option.image && (
-                          <div className='size-10 aspect-square rounded-md bg-secondary overflow-hidden'>
+                          <figure className='size-14 aspect-square p-2 rounded-md bg-secondary overflow-hidden'>
                             <Image
                               src={option.image}
                               alt={option.label}
@@ -213,7 +213,7 @@ export const DialogMultiSelect = React.forwardRef<
                               priority
                               className='size-full object-cover'
                             />
-                          </div>
+                          </figure>
                         )}
                         <span>{option.label}</span>
                       </div>
