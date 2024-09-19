@@ -6,13 +6,14 @@ export async function ArtifactRoutes(props: ArtifactRoutesProps) {
   const { params: PARAMS } = props
   const ARTIFACTS = await getArtifacts(PARAMS)
 
-  return (
-    <ul className={GRID_LIST}>
-      {ARTIFACTS?.map((item) => (
-        <li key={item.id} className='relative'>
-          <ArtifactItem {...item} />
-        </li>
-      ))}
-    </ul>
-  )
+  const MAPPED_ARTIFACTS = ARTIFACTS?.map((item) => (
+    <li
+      key={item.id}
+      className='relative'
+    >
+      <ArtifactItem {...item} />
+    </li>
+  ))
+
+  return <ul className={GRID_LIST}>{MAPPED_ARTIFACTS}</ul>
 }
