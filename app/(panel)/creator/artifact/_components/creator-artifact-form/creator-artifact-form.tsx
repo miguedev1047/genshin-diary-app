@@ -16,7 +16,7 @@ import {
 } from '@/components/ui/select'
 import { z } from 'zod'
 import { STARS } from '@/consts/general'
-import { InputBlock } from '@/components/ui/input'
+import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { ArtifactSchema } from '@/schemas'
 import { Star } from 'lucide-react'
@@ -79,7 +79,7 @@ export function CreatorArtifactForm() {
                 <FormItem>
                   <FormLabel>Nombre</FormLabel>
                   <FormControl>
-                    <InputBlock
+                    <Input
                       placeholder='Nombre del artefacto'
                       {...field}
                     />
@@ -95,7 +95,7 @@ export function CreatorArtifactForm() {
                 <FormItem>
                   <FormLabel>URL de la imagen</FormLabel>
                   <FormControl>
-                    <InputBlock
+                    <Input
                       placeholder='URL de la imagen'
                       {...field}
                     />

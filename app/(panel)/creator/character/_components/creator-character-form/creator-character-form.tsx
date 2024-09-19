@@ -32,7 +32,7 @@ import { createCharacter } from '@/app/(panel)/creator/character/_service/create
 import { useTransition } from 'react'
 import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
-import { InputBlock } from '@/components/ui/input'
+import { Input } from '@/components/ui/input'
 import { FormCard } from '@/shared/layouts/panel/form-card'
 
 export function CreatorCharacterForm() {
@@ -92,7 +92,7 @@ export function CreatorCharacterForm() {
                 <FormItem>
                   <FormLabel>Nombre</FormLabel>
                   <FormControl>
-                    <InputBlock
+                    <Input
                       disabled={isPending}
                       placeholder='Nombre'
                       {...field}
@@ -109,7 +109,7 @@ export function CreatorCharacterForm() {
                 <FormItem>
                   <FormLabel>URL de la imagen</FormLabel>
                   <FormControl>
-                    <InputBlock
+                    <Input
                       disabled={isPending}
                       placeholder='URL de la imagen'
                       {...field}

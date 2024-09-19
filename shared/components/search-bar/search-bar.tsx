@@ -1,6 +1,6 @@
 'use client'
 
-import { InputBlock } from '@/components/ui/input'
+import { Input } from '@/components/ui/input'
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 import { SearchBarProps } from '@/shared/components/search-bar/search-bar.type'
 import { useDebouncedCallback } from 'use-debounce'
@@ -28,7 +28,7 @@ export function SearchBar(props: SearchBarProps) {
   }, WAIT_BEFORE_DEBOUNCE)
 
   return (
-    <InputBlock
+    <Input
       className={cn('max-w-[320px]', className)}
       defaultValue={searchParams.get(queryParam)?.toString()}
       onChange={(e) => handleSearch(e.target.value)}

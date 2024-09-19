@@ -21,7 +21,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useRouter } from 'next/navigation'
 import { useTransition } from 'react'
 import { useForm } from 'react-hook-form'
-import { InputBlock } from '@/components/ui/input'
+import { Input } from '@/components/ui/input'
 import { Star } from 'lucide-react'
 import { MATERIAL_TYPES, STARS } from '@/consts/general'
 import { Textarea } from '@/components/ui/textarea'
@@ -79,7 +79,7 @@ export function CreatorMaterialForm() {
                 <FormItem>
                   <FormLabel>Nombre</FormLabel>
                   <FormControl>
-                    <InputBlock
+                    <Input
                       placeholder='Nombre del material'
                       {...field}
                     />
@@ -95,7 +95,7 @@ export function CreatorMaterialForm() {
                 <FormItem>
                   <FormLabel>URL de la imagen</FormLabel>
                   <FormControl>
-                    <InputBlock
+                    <Input
                       placeholder='URL de la imagen'
                       {...field}
                     />

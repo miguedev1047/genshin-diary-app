@@ -11,7 +11,7 @@ import { z } from 'zod'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useTransition } from 'react'
-import { InputBlock } from '@/components/ui/input'
+import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import { LoginSchema } from '@/schemas'
 import { login } from '@/app/(auth)/login/_services/login'
@@ -50,7 +50,7 @@ export function LoginForm() {
             <FormItem>
               <FormLabel>Correo</FormLabel>
               <FormControl>
-                <InputBlock
+                <Input
                   disabled={isPending}
                   placeholder='Ingresa tu correo'
                   {...field}
@@ -67,7 +67,7 @@ export function LoginForm() {
             <FormItem>
               <FormLabel>Contraseña</FormLabel>
               <FormControl>
-                <InputBlock
+                <Input
                   type='password'
                   disabled={isPending}
                   placeholder='*************'

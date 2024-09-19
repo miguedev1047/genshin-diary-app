@@ -18,7 +18,7 @@ import {
   SelectValue,
 } from '@/components/ui/select'
 import { z } from 'zod'
-import { InputBlock } from '@/components/ui/input'
+import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { ATTRIBUTES, STARS, WEAPON_TYPE } from '@/consts/general'
 import { WeaponSchema } from '@/schemas'
@@ -85,7 +85,7 @@ export function CreatorWeaponForm() {
                 <FormItem>
                   <FormLabel>Nombre</FormLabel>
                   <FormControl>
-                    <InputBlock
+                    <Input
                       disabled={isPending}
                       placeholder='Nombre'
                       {...field}
@@ -102,7 +102,7 @@ export function CreatorWeaponForm() {
                 <FormItem>
                   <FormLabel>URL de la imagen</FormLabel>
                   <FormControl>
-                    <InputBlock
+                    <Input
                       disabled={isPending}
                       placeholder='URL de la imagen'
                       {...field}
@@ -175,7 +175,7 @@ export function CreatorWeaponForm() {
                 <FormItem>
                   <FormLabel>Ataque base</FormLabel>
                   <FormControl>
-                    <InputBlock
+                    <Input
                       {...field}
                       disabled={isPending}
                       type='number'
