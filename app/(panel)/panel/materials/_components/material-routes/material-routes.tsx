@@ -10,7 +10,7 @@ export async function MaterialRoutes(props: MaterialRoutesProps) {
   return (
     <ul className={GRID_LIST}>
       {MATERIALS?.map((item) => (
-        <li key={item.id}>
+        <li key={item.id} className='relative'>
           <MaterialItem {...item} />
         </li>
       ))}

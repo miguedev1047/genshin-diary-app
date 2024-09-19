@@ -8,16 +8,12 @@ import { Card } from '@/components/ui/card'
 import { AspectRatio } from '@/components/ui/aspect-ratio'
 import { getBorderColorByRarity } from '@/features/utils/rarity-color'
 import { MaterialItemProps } from '@/app/(panel)/panel/materials/_components/material-item/material-item.type'
-import { formattedUrl } from '@/features/utils/formatted-names'
+import { MaterialActions } from '@/app/(panel)/panel/materials/_components/material-actions'
 import { cn } from '@/lib/utils'
-import Link from 'next/link'
 import Image from 'next/image'
 
 export function MaterialItem(props: MaterialItemProps) {
   const { name, rarity, image_url } = props
-
-  const FORMATTED_NAME = formattedUrl(name)
-  const URL = `/editor/material/${FORMATTED_NAME}`
 
   const MATERIAL_IMAGE = image_url
   const STAR_COLOR = getBorderColorByRarity(rarity)
@@ -27,18 +23,17 @@ export function MaterialItem(props: MaterialItemProps) {
       <TooltipProvider>
         <Tooltip>
           <TooltipTrigger asChild>
-            <Link
-              href={URL}
+            <div
               className={cn(
                 'group/item flex aspect-[1/1] overflow-hidden rounded-[1rem] border border-muted/30 bg-background transition relative',
                 STAR_COLOR
               )}
             >
-              <Card className='size-full transition duration-200 ease-in-out'>
+              <Card className='size-full'>
                 {MATERIAL_IMAGE && (
                   <AspectRatio
                     ratio={1 / 1}
-                    className='p-6'
+                    className='p-8'
                   >
                     <Image
                       src={MATERIAL_IMAGE!}
@@ -51,13 +46,15 @@ export function MaterialItem(props: MaterialItemProps) {
                   </AspectRatio>
                 )}
               </Card>
-            </Link>
+            </div>
           </TooltipTrigger>
           <TooltipContent side='bottom'>
             <p>{name}</p>
           </TooltipContent>
         </Tooltip>
       </TooltipProvider>
+
+      <MaterialActions {...props} />
     </>
   )
 }
