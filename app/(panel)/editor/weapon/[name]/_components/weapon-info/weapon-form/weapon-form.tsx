@@ -22,7 +22,7 @@ import { useGetWeaponByName } from '@/app/(panel)/editor/weapon/[name]/_queries/
 import { ATTRIBUTES, STARS, WEAPON_TYPE } from '@/consts/general'
 import { useForm } from 'react-hook-form'
 import { useTransition } from 'react'
-import { InputBlock } from '@/components/ui/input'
+import { Input } from '@/components/ui/input'
 import { WeaponSchema } from '@/schemas'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Pencil, Star } from 'lucide-react'
@@ -106,7 +106,7 @@ export function WeaponForm() {
                     <FormItem>
                       <FormLabel>Nombre</FormLabel>
                       <FormControl>
-                        <InputBlock
+                        <Input
                           disabled={isPending}
                           placeholder='Nombre del arma'
                           {...field}
@@ -123,7 +123,7 @@ export function WeaponForm() {
                     <FormItem>
                       <FormLabel>URL de la imagen</FormLabel>
                       <FormControl>
-                        <InputBlock
+                        <Input
                           disabled={isPending}
                           placeholder='URL de la imagen'
                           {...field}
@@ -236,7 +236,7 @@ export function WeaponForm() {
                     <FormItem>
                       <FormLabel>Ataque base</FormLabel>
                       <FormControl>
-                        <InputBlock
+                        <Input
                           {...field}
                           disabled={isPending}
                           type='number'
