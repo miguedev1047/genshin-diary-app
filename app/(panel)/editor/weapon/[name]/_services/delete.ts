@@ -20,3 +20,21 @@ export async function deleteCharacter(character_id: string) {
     return { status: 500, message: 'Ocurrio un error.' }
   }
 }
+
+export async function deleteAscension(ascension_id: string) {
+  const ROLE = await currentRole()
+
+  if (ROLE !== 'ADMIN') {
+    return { status: 403, message: 'No tienes permisos.' }
+  }
+
+  try {
+    await db.weaponAscensions.delete({
+      where: { id: ascension_id },
+    })
+
+    return { status: 201, message: 'Ascensión eliminada.' }
+  } catch (error) {
+    return { status: 500, message: 'Ocurrio un error.' }
+  }
+}
