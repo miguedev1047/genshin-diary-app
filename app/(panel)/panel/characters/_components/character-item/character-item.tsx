@@ -8,7 +8,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 export function CharacterItem(props: CharacterItemProps) {
-  const { attribute, images, name, rarity, role, is_new, is_public } = props
+  const { images, name, rarity } = props
 
   const FORMATTED_NAME = formattedUrl(name)
   const URL = `/character/${FORMATTED_NAME}`
