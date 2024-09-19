@@ -61,8 +61,8 @@ export function CreatorCharacterForm() {
       if (status === 201) {
         toast.success(message)
 
-        refresh()
         push('/panel/characters')
+        refresh()
         return
       }
 
