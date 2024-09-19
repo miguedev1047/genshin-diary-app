@@ -184,7 +184,7 @@ export function CreatorMaterialForm() {
                 <FormLabel>Descripcion</FormLabel>
                 <FormControl>
                   <Textarea
-                    placeholder='Descripción del artefacto'
+                    placeholder='Descripción del material'
                     {...field}
                   />
                 </FormControl>
