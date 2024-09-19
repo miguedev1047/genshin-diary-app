@@ -4,7 +4,7 @@ import { useGetWeaponByName } from '@/app/(panel)/editor/weapon/[name]/_queries/
 import { CharacterItem } from '@/app/(panel)/editor/weapon/[name]/_components/best-characters/character-item'
 import { CharacterSelector } from '@/app/(panel)/editor/weapon/[name]/_components/best-characters/character-selector'
 
-export function BestWeaponCharacters() {
+export function BestCharacters() {
   const { data: WEAPON } = useGetWeaponByName()
 
   return (
