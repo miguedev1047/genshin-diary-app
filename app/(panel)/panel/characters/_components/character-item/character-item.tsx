@@ -11,7 +11,7 @@ export function CharacterItem(props: CharacterItemProps) {
   const { images, name, rarity } = props
 
   const FORMATTED_NAME = formattedUrl(name)
-  const URL = `/character/${FORMATTED_NAME}`
+  const URL = `/editor/character/${FORMATTED_NAME}`
 
   const CHARACTER_SPLASH_ART = images?.splash_art_url
   const RARITY_COLOR = getBorderColorByRarity(rarity)
