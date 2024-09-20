@@ -2,13 +2,13 @@ import { currentRole } from '@/data/auth'
 import { Materials } from '@prisma/client'
 import db from '@/lib/db'
 
-type Props = { name: string }
+type Props = { name: string; type: string }
 type MaterialProps = {
   [key: string]: { category: string; materials: Array<Materials> }
 }
 
 export async function getMaterials(props: Props) {
-  const { name } = props
+  const { name, type } = props
 
   const ROLE = await currentRole()
 
@@ -20,6 +20,7 @@ export async function getMaterials(props: Props) {
     const MATERIALS = await db.materials.findMany({
       where: {
         ...(name && { name: { contains: name, mode: 'insensitive' } }),
+        ...(type && { type: type.toUpperCase() }),
       },
       orderBy: [{ rarity: 'asc' }, { name: 'asc' }, { date_created: 'desc' }],
     })

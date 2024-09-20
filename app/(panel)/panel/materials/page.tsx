@@ -8,12 +8,13 @@ import { MaterialSkeleton } from '@/app/(panel)/panel/materials/_components/mate
 type Props = {
   searchParams: {
     name: string
+    type: string
   }
 }
 
 export default function PanelMaterialsPage(props: Props) {
   const { searchParams: PARAMS } = props
-  const KEY = PARAMS.name
+  const KEY = PARAMS.name + PARAMS.type
 
   return (
     <ContentLayout
