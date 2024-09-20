@@ -6,7 +6,7 @@ import { BorderBeam } from '@/components/magicui/border-beam'
 
 export async function Characters() {
   return (
-    <section className='relative mx-auto max-w-[1440px] h-[calc(100dvh-4rem)] px-4 md:px-8'>
+    <section className='relative mx-auto max-w-[1440px] min-h-[calc(100dvh-4rem)] px-4 md:px-8'>
       <FocalLight />
 
       <Card className='relative overflow-hidden'>
