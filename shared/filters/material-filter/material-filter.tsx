@@ -4,7 +4,9 @@ import {
   Tooltip,
   TooltipContent,
 } from '@/components/ui/tooltip'
-import { CardTitle } from '@/components/ui/card'
+import { Card, CardTitle } from '@/components/ui/card'
+import { QueryToggle } from '@/shared/components/query-toggle'
+import { MATERIAL_TYPES } from '@/consts/general'
 import { SearchBar } from '@/shared/components/search-bar'
 import { Button } from '@/components/ui/button'
 import { Plus } from 'lucide-react'
@@ -42,6 +44,21 @@ export function MaterialFilter() {
           </TooltipProvider>
         </div>
       </div>
+
+      <Card className='p-4 w-full'>
+        <ul className='grid grid-cols-4 gap-4'>
+          {MATERIAL_TYPES.map((filter) => (
+            <QueryToggle
+              key={filter.value}
+              queryKey='type' 
+              queryValue={filter.value}
+              className='w-full'
+            >
+              {filter.label}
+            </QueryToggle>
+          ))}
+        </ul>
+      </Card>
     </>
   )
 }
