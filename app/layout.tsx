@@ -1,12 +1,12 @@
 import './globals.css'
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+import { Onest } from 'next/font/google'
 import { Providers } from '@/app/providers'
 import { Toaster } from '@/components/ui/sonner'
 import { cn } from '@/lib/utils'
 import { PAGE_NAME } from '@/consts/site'
 
-const inter = Inter({ subsets: ['latin'] })
+const onest = Onest({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: PAGE_NAME,
@@ -23,7 +23,7 @@ export default function RootLayout({
       <body
         className={cn(
           'relative w-full min-h-screen bg-background antialiased',
-          inter.className
+          onest.className
         )}
       >
         <Providers>
