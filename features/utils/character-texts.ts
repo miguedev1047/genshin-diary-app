@@ -1,4 +1,11 @@
-import { ATTRIBUTES, MATERIAL_TYPES, ROLE, STARS, WEAPON_TYPE } from '@/consts/general'
+import {
+  ATTRIBUTES,
+  ELEMENTS,
+  MATERIAL_TYPES,
+  ROLE,
+  STARS,
+  WEAPON_TYPE,
+} from '@/consts/general'
 
 export function getWeaponText(weapon: string | undefined) {
   const WEAPON = WEAPON_TYPE.find((item) => item.value === weapon)
@@ -37,6 +44,13 @@ export function getRarityStars(rarity: string | undefined) {
   }
 
   return []
+}
+
+export function getElementIcon(element: string | undefined) {
+  const ELEMENT = ELEMENTS.find((item) => item.value === element)
+  if (ELEMENT) return ELEMENT
+
+  return null
 }
 
 export function getMaterialTypeText(materialType: string | undefined) {
