@@ -12,6 +12,7 @@ import { ContentLayout } from '@/shared/layouts/panel/content-layout'
 import { CharacterInfo } from '@/app/(panel)/editor/character/[name]/character-info'
 import { getCharacterByName } from '@/app/(panel)/editor/character/[name]/_shared/_services/fetch'
 import { redirect } from 'next/navigation'
+import { Ascension } from './ascensions'
 
 export default async function EditorCharacterPage(props: PageProps) {
   const { params } = props
@@ -40,6 +41,7 @@ export default async function EditorCharacterPage(props: PageProps) {
 
       <section className='space-y-6'>
         <CharacterInfo data={CHARACTER} />
+        <Ascension data={CHARACTER} />
       </section>
     </ContentLayout>
   )
