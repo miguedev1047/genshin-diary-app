@@ -7,10 +7,14 @@ import {
   Hydro,
   Pyro,
 } from '@/assets/elements'
-import { ArtifactImg, CharacterImg, MaterialImg, WeaponImg } from '@/assets/images'
+import {
+  ArtifactImg,
+  CharacterImg,
+  MaterialImg,
+  WeaponImg,
+} from '@/assets/images'
 import { Star4, Star5 } from '@/assets/stars'
 import { Sword, Bow, Catalyst, Claymore, Polearm } from '@/assets/weapon-types'
-
 
 export const STARS = [
   {
@@ -80,38 +84,45 @@ export const REGIONS = [
 
 export const ELEMENTS = [
   {
-    label: 'Pyro',
-    value: 'PYRO',
-    element: 'pyro',
-  },
-  {
-    label: 'Cryo',
-    value: 'CRYO',
-    element: 'cryo',
+    label: 'Anemo',
+    value: 'ANEMO',
+    src: Anemo.src,
+    element: 'anemo',
   },
   {
     label: 'Hydro',
     value: 'HYDRO',
+    src: Hydro.src,
     element: 'hydro',
   },
   {
-    label: 'Electro',
-    value: 'ELECTRO',
-    element: 'electro',
+    label: 'Cryo',
+    value: 'CRYO',
+    src: Cryo.src,
+    element: 'cryo',
   },
   {
     label: 'Dendro',
     value: 'DENDRO',
+    src: Dendro.src,
     element: 'dendro',
   },
   {
-    label: 'Anemo',
-    value: 'ANEMO',
-    element: 'anemo',
+    label: 'Electro',
+    value: 'ELECTRO',
+    src: Electro.src,
+    element: 'electro',
+  },
+  {
+    label: 'Pyro',
+    value: 'PYRO',
+    src: Pyro.src,
+    element: 'pyro',
   },
   {
     label: 'Geo',
     value: 'GEO',
+    src: Geo.src,
     element: 'geo',
   },
 ]
@@ -136,11 +147,31 @@ export const ATTRIBUTES = [
 ]
 
 export const WEAPON_TYPE = [
-  { value: 'POLEARM', label: 'Lanza' },
-  { value: 'SWORD', label: 'Espada' },
-  { value: 'CLAYMORE', label: 'Mandoble' },
-  { value: 'BOW', label: 'Arco' },
-  { value: 'CATALYST', label: 'Catalizador' },
+  {
+    label: 'Espada',
+    value: 'SWORD',
+    src: Sword.src,
+  },
+  {
+    label: 'Lanza',
+    value: 'POLEARM',
+    src: Polearm.src,
+  },
+  {
+    label: 'Mandoble',
+    value: 'CLAYMORE',
+    src: Claymore.src,
+  },
+  {
+    label: 'Arco',
+    value: 'BOW',
+    src: Bow.src,
+  },
+  {
+    label: 'Catalizador',
+    value: 'CATALYST',
+    src: Catalyst.src,
+  },
 ]
 
 export const ROLE = [
@@ -214,24 +245,23 @@ export const PANEL_ROUTES = [
   {
     title: 'Personajes',
     href: '/panel/characters',
-    src: CharacterImg.src
+    src: CharacterImg.src,
   },
   {
     title: 'Armas',
     href: '/panel/weapons',
-    src: WeaponImg.src
+    src: WeaponImg.src,
   },
   {
     title: 'Artefactos',
     href: '/panel/artifacts',
-    src: ArtifactImg.src
+    src: ArtifactImg.src,
   },
   {
     title: 'Materiales',
     href: '/panel/materials',
-    src: MaterialImg.src
+    src: MaterialImg.src,
   },
-
 ]
 
 export const HOME_ITEMS = [
@@ -274,71 +304,8 @@ export const ITEM_FILTERS = {
       src: Star4.src,
     },
   ],
-  element_filters: [
-    {
-      label: 'Anemo',
-      value: 'ANEMO',
-      src: Anemo.src,
-    },
-    {
-      label: 'Hydro',
-      value: 'HYDRO',
-      src: Hydro.src,
-    },
-    {
-      label: 'Cryo',
-      value: 'CRYO',
-      src: Cryo.src,
-    },
-    {
-      label: 'Dendro',
-      value: 'DENDRO',
-      src: Dendro.src,
-    },
-    {
-      label: 'Electro',
-      value: 'ELECTRO',
-      src: Electro.src,
-    },
-    {
-      label: 'Pyro',
-      value: 'PYRO',
-      src: Pyro.src,
-    },
-    {
-      label: 'Geo',
-      value: 'GEO',
-      src: Geo.src,
-    },
-  ],
-  weapon_filters: [
-    {
-      label: 'Espada',
-      value: 'SWORD',
-      src: Sword.src,
-    },
-    {
-      label: 'Lanza',
-      value: 'POLEARM',
-      src: Polearm.src,
-    },
-    {
-      label: 'Mandoble',
-      value: 'CLAYMORE',
-      src: Claymore.src,
-    },
-    {
-      label: 'Arco',
-      value: 'BOW',
-      src: Bow.src,
-    },
-    {
-      label: 'Catalizador',
-      value: 'CATALYST',
-      src: Catalyst.src,
-    },
-  ],
+  element_filters: ELEMENTS,
+  weapon_filters: WEAPON_TYPE,
 }
-
 
 export const DEFAULT_IMAGE = 'https://placehold.co/600?text=Hutao+Mains'
