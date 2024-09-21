@@ -39,7 +39,7 @@ export function CreatorCharacterForm() {
   const [isPending, startTranstion] = useTransition()
   const { refresh, push } = useRouter()
 
-  const FORM = useForm<z.infer<typeof CharacterSchema>>({
+  const form = useForm<z.infer<typeof CharacterSchema>>({
     resolver: zodResolver(CharacterSchema),
     defaultValues: {
       name: '',
@@ -54,7 +54,7 @@ export function CreatorCharacterForm() {
     },
   })
 
-  const handleSubmit = FORM.handleSubmit((values) => {
+  const handleSubmit = form.handleSubmit((values) => {
     startTranstion(async () => {
       const { status, message } = await createCharacter(values)
 
@@ -77,7 +77,7 @@ export function CreatorCharacterForm() {
       isLoading={isPending}
       formId='character-create-form'
     >
-      <Form {...FORM}>
+      <Form {...form}>
         <form
           id='character-create-form'
           onSubmit={handleSubmit}
@@ -86,7 +86,7 @@ export function CreatorCharacterForm() {
           <div className='grid lg:grid-cols-2 gap-4'>
             <FormField
               disabled={isPending}
-              control={FORM.control}
+              control={form.control}
               name='name'
               render={({ field }) => (
                 <FormItem>
@@ -103,7 +103,7 @@ export function CreatorCharacterForm() {
             />
 
             <FormField
-              control={FORM.control}
+              control={form.control}
               name='image_url'
               render={({ field }) => (
                 <FormItem>
@@ -121,7 +121,7 @@ export function CreatorCharacterForm() {
           </div>
 
           <FormField
-            control={FORM.control}
+            control={form.control}
             name='description'
             render={({ field }) => (
               <FormItem>
@@ -139,7 +139,7 @@ export function CreatorCharacterForm() {
 
           <div className='grid lg:grid-cols-2 gap-4'>
             <FormField
-              control={FORM.control}
+              control={form.control}
               name='rarity'
               render={({ field }) => (
                 <FormItem>
@@ -175,7 +175,7 @@ export function CreatorCharacterForm() {
             />
 
             <FormField
-              control={FORM.control}
+              control={form.control}
               name='region'
               render={({ field }) => (
                 <FormItem>
@@ -208,7 +208,7 @@ export function CreatorCharacterForm() {
             />
 
             <FormField
-              control={FORM.control}
+              control={form.control}
               name='element'
               render={({ field }) => (
                 <FormItem>
@@ -239,7 +239,7 @@ export function CreatorCharacterForm() {
             />
 
             <FormField
-              control={FORM.control}
+              control={form.control}
               name='role'
               render={({ field }) => (
                 <FormItem>
@@ -272,7 +272,7 @@ export function CreatorCharacterForm() {
             />
 
             <FormField
-              control={FORM.control}
+              control={form.control}
               name='weapon'
               render={({ field }) => (
                 <FormItem>
@@ -305,7 +305,7 @@ export function CreatorCharacterForm() {
             />
 
             <FormField
-              control={FORM.control}
+              control={form.control}
               name='attribute'
               render={({ field }) => (
                 <FormItem>
