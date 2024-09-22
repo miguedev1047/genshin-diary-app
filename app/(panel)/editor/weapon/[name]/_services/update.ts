@@ -2,7 +2,7 @@
 
 import { z } from 'zod'
 import { currentRole } from '@/data/auth'
-import { WeaponMaterialQuantitySchema, WeaponSchema } from '@/schemas'
+import { MaterialQuantitySchema, WeaponSchema } from '@/schemas'
 import db from '@/lib/db'
 
 export async function updateWeapon(
@@ -58,7 +58,7 @@ export async function updateWeapon(
 }
 
 export async function updateMaterialQuantity(
-  data: z.infer<typeof WeaponMaterialQuantitySchema>,
+  data: z.infer<typeof MaterialQuantitySchema>,
   material_id: string | undefined
 ) {
   const ROLE = await currentRole()
@@ -67,7 +67,7 @@ export async function updateMaterialQuantity(
     return { status: 403, message: 'No tienes permisos.' }
   }
 
-  const VALIDATE_FIELDS = WeaponMaterialQuantitySchema.safeParse(data)
+  const VALIDATE_FIELDS = MaterialQuantitySchema.safeParse(data)
 
   if (!VALIDATE_FIELDS.success) {
     return { status: 400, message: 'Campos invalidos.' }
