@@ -2,12 +2,10 @@
 
 import * as React from 'react'
 import * as SheetPrimitive from '@radix-ui/react-dialog'
-import * as ScrollAreaPrimitive from '@radix-ui/react-scroll-area'
 import { cva, type VariantProps } from 'class-variance-authority'
 import { X } from 'lucide-react'
 
 import { cn } from '@/lib/utils'
-import { ScrollArea } from './scroll-area'
 
 const Sheet = SheetPrimitive.Root
 
