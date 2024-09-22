@@ -98,7 +98,7 @@ export const WeaponAscensionSchema = z.object({
     .nonempty('Seleccione al menos un material.'),
 })
 
-export const WeaponMaterialQuantitySchema = z.object({
+export const MaterialQuantitySchema = z.object({
   quantity: z.string().min(1, 'La cantidad es requerida.'),
 })
 
