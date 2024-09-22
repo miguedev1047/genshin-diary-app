@@ -200,7 +200,7 @@ model WeaponCharacter {
 // <----- ------>
 // <----- ARTEFACTOS ------>
 model Artifacts {
-  id                String  @id @unique @default(cuid())
+  id                String     @id @unique @default(cuid())
   image_url         String?
   name              String
   rarity            RarityEnum
@@ -322,9 +322,11 @@ model AscensionCharacter {
   id           String @id @unique @default(cuid())
   character_id String
 
-  level     Int
-  cost      Int
-  materials MaterialAscension[]
+  order           Int                 @default(0)
+  level           String
+  ascension_level String
+  cost            Int                 @default(0)
+  materials       MaterialAscension[]
 
   date_created DateTime @default(now())
   date_updated DateTime @updatedAt
