@@ -7,7 +7,6 @@ import {
   BreadcrumbSeparator,
 } from '@/components/ui/breadcrumb'
 import { ContentLayout } from '@/shared/layouts/panel/content-layout'
-import { EditorContent } from './_components/editor-content/editor-content'
 import Link from 'next/link'
 
 export default function EditorWeaponPage() {
@@ -30,7 +29,6 @@ export default function EditorWeaponPage() {
         </BreadcrumbList>
       </Breadcrumb>
 
-      <EditorContent />
     </ContentLayout>
   )
 }
