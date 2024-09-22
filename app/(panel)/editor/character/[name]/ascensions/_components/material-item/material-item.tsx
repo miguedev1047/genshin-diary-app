@@ -9,7 +9,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from '@/components/ui/popover'
-import { useGetMaterial } from '@/features/queries/use-materiales'
+import { useGetMaterial } from '@/app/(panel)/editor/character/[name]/_shared/queries/use-materiales'
 import { MaterialItemProps } from './material-item.type'
 import { Skeleton } from '@/components/ui/skeleton'
 import { MaterialForm } from '../material-form'
@@ -30,8 +30,8 @@ export function MaterialItem(props: MaterialItemProps) {
               <figure className='relative size-20 aspect-auto bg-secondary p-1 rounded-md !overflow-hidden cursor-pointer'>
                 <Image
                   priority
-                  src={MATERIAL?.image_url!}
-                  alt={MATERIAL?.name!}
+                  src={MATERIAL?.image_url}
+                  alt={MATERIAL?.name}
                   width={720}
                   height={720}
                   className='object-contain size-full'
