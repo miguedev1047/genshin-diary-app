@@ -30,6 +30,7 @@ export async function CharacterInfo(props: CharacterInfoProps) {
         <div className='col-span-1'>
           <figure className='aspect-square bg-secondary rounded-lg'>
             <Image
+              priority
               src={CHARACTER?.images?.splash_art_url!}
               alt={CHARACTER?.name!}
               width={1080}
