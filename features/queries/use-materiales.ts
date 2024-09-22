@@ -9,3 +9,12 @@ export function useGetMaterials() {
 
   return { data, status, error, refetch }
 }
+
+export function useGetMaterial(id: string) {
+  const { data, status, error, refetch } = useQuery({
+    queryKey: ['material', id],
+    queryFn: async () => await fetcher(`/api/panel/material/id/${id}`),
+  })
+
+  return { data, status, error, refetch }
+}
