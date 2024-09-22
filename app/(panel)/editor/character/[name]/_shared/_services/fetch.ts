@@ -14,7 +14,7 @@ export async function getCharacterByName(character_name: string) {
       },
       include: {
         artifacts: true,
-        ascensions: true,
+        ascensions: { orderBy: { level: 'asc' }, include: { materials: true } },
         constellations: true,
         images: true,
         materials: true,
