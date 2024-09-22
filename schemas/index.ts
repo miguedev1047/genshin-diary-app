@@ -75,18 +75,12 @@ export const WeaponSchema = z.object({
       message: 'El atributo principal es requerido.',
     }
   ),
-  type: z.enum(
-    ['SWORD', 'CLAYMORE', 'POLEARM', 'BOW', 'CATALYST'],
-    {
-      message: 'El tipo del arma es requerida.',
-    }
-  ),
-  rarity: z.enum(
-    ['STAR_5', 'STAR_4', 'STAR_3', 'STAR_2', 'STAR_1'],
-    {
-      message: 'La rareza es requerida.',
-    }
-  ),
+  type: z.enum(['SWORD', 'CLAYMORE', 'POLEARM', 'BOW', 'CATALYST'], {
+    message: 'El tipo del arma es requerida.',
+  }),
+  rarity: z.enum(['STAR_5', 'STAR_4', 'STAR_3', 'STAR_2', 'STAR_1'], {
+    message: 'La rareza es requerida.',
+  }),
 })
 
 export const WeaponBestCharactersSchema = z.object({
@@ -151,4 +145,12 @@ export const ArtifactSchema = z.object({
   bonus_description: z.string().min(3, {
     message: 'La descripción del artefacto es requerida.',
   }),
+})
+
+export const AscensionSchema = z.object({
+  ascension_level: z.string().min(1, 'La ascensión requerida.'),
+  materials: z
+    .array(z.string().min(1))
+    .min(1)
+    .nonempty('Seleccione al menos un material.'),
 })
