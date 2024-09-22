@@ -44,6 +44,17 @@ enum RegionEnum {
   SNEZHNAYA
 }
 
+enum MaterialsEnum {
+  MATERIAL_UPGRADE
+  MATERIAL_LOCAL
+  MATERIAL_COMMON
+  MATERIAL_BOSS
+  MATERIAL_WEEKLY_BOSS
+  MATERIAL_TALENT
+  MATERIAL_UPGRADE_WEAPON
+  MATERIAL_UPGRADE_CHARACTER
+}
+
 enum AttributeEnum {
   DMG_CRIT
   ELEMENTAL_MASTERY
@@ -228,7 +239,7 @@ model Materials {
   image_url   String?
   name        String
   description String
-  type        String
+  type        MaterialsEnum
   rarity      RarityEnum
 
   date_created DateTime @default(now())
