@@ -7,7 +7,7 @@ import {
 } from '@/components/ui/form'
 import { z } from 'zod'
 import { Input } from '@/components/ui/input'
-import { WeaponMaterialQuantitySchema } from '@/schemas'
+import { MaterialQuantitySchema } from '@/schemas'
 import { MaterialFormProps } from '@/app/(panel)/editor/weapon/[name]/_components/weapon-ascension/material-form/material-form.type'
 import { updateMaterialQuantity } from '@/app/(panel)/editor/weapon/[name]/_services/update'
 import { useGetWeaponByName } from '@/app/(panel)/editor/weapon/[name]/_queries/use-weapon'
@@ -24,8 +24,8 @@ export function MaterialForm(props: MaterialFormProps) {
   const { refetch } = useGetWeaponByName()
   const [isPending, startTranstion] = useTransition()
 
-  const form = useForm<z.infer<typeof WeaponMaterialQuantitySchema>>({
-    resolver: zodResolver(WeaponMaterialQuantitySchema),
+  const form = useForm<z.infer<typeof MaterialQuantitySchema>>({
+    resolver: zodResolver(MaterialQuantitySchema),
     defaultValues: {
       quantity: quantity.toString(),
     },
