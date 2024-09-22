@@ -11,6 +11,7 @@ import { EditorCharacterForm } from './_components/editor_character-form'
 import { Badge } from '@/components/ui/badge'
 import { Star } from 'lucide-react'
 import Image from 'next/image'
+import { DEFAULT_IMAGE } from '@/consts/general'
 
 export async function CharacterInfo(props: CharacterInfoProps) {
   const { data: CHARACTER } = props
@@ -31,8 +32,8 @@ export async function CharacterInfo(props: CharacterInfoProps) {
           <figure className='aspect-square bg-secondary rounded-lg'>
             <Image
               priority
-              src={CHARACTER?.images?.splash_art_url!}
-              alt={CHARACTER?.name!}
+              src={CHARACTER?.images?.splash_art_url ?? DEFAULT_IMAGE}
+              alt={CHARACTER?.name ?? 'Personaje'}
               width={1080}
               height={1080}
               className='object-cover size-full'
@@ -60,8 +61,8 @@ export async function CharacterInfo(props: CharacterInfoProps) {
 
               <div className='size-12'>
                 <Image
-                  src={ELEMENT?.src!}
-                  alt={ELEMENT?.label!}
+                  src={ELEMENT?.src ?? DEFAULT_IMAGE}
+                  alt={ELEMENT?.label ?? 'Elemento'}
                   width={128}
                   height={128}
                   className='object-cover size-full'
