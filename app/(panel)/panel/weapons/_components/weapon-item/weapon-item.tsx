@@ -9,12 +9,12 @@ import { AspectRatio } from '@/components/ui/aspect-ratio'
 import { WeaponItemProps } from '@/app/(panel)/panel/weapons/_components/weapon-item/weapon-item.type'
 import { formattedUrl } from '@/features/utils/formatted-names'
 import { getBorderColorByRarity } from '@/features/utils/rarity-color'
-import { cn } from '@/lib/utils'
+import { deleteWeapon } from '@/app/(panel)/panel/weapons/_services/delete'
 import { DeleteButton } from '@/shared/layouts/panel/delete-button'
 import { Trash2 } from 'lucide-react'
+import { cn } from '@/lib/utils'
 import Link from 'next/link'
 import Image from 'next/image'
-import { deleteWeapon } from '../../_services/delete'
 
 export function WeaponItem(props: WeaponItemProps) {
   const { image_url, name, rarity, id: weapon_id } = props
