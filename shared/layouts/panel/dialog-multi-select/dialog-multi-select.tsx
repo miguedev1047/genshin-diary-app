@@ -41,8 +41,6 @@ export const DialogMultiSelect = React.forwardRef<
       placeholder = 'Select options',
       animation = 0,
       maxCount = 3,
-      modalDialog = false,
-      asChild = false,
       className,
       ...props
     },
