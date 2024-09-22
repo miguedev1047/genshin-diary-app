@@ -32,8 +32,8 @@ export function AscensionTable<TData, TValue>({
   })
 
   return (
-    <div className='rounded-md border'>
-      <Table>
+    <div className='rounded-md border select-none'>
+      <Table> 
         <TableHeader>
           {table.getHeaderGroups().map((headerGroup) => (
             <TableRow key={headerGroup.id}>
