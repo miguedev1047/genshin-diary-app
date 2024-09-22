@@ -6,13 +6,13 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from '@/components/ui/breadcrumb'
+import { redirect } from 'next/navigation'
 import { PageProps } from '@/app/(panel)/editor/character/[name]/_shared/types'
 import { formattedName } from '@/features/utils/formatted-names'
 import { ContentLayout } from '@/shared/layouts/panel/content-layout'
-import { CharacterInfo } from '@/app/(panel)/editor/character/[name]/character-info'
 import { getCharacterByName } from '@/app/(panel)/editor/character/[name]/_shared/_services/fetch'
-import { redirect } from 'next/navigation'
-import { Ascension } from './ascensions'
+import { CharacterInfo } from '@/app/(panel)/editor/character/[name]/character-info'
+import { Ascension } from '@/app/(panel)/editor/character/[name]/ascensions'
 
 export default async function EditorCharacterPage(props: PageProps) {
   const { params } = props
