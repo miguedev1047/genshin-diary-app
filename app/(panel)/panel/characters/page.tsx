@@ -1,5 +1,5 @@
 import { Suspense } from 'react'
-import { ElementEnum, WeaponTypeEnum } from '@prisma/client'
+import { ElementEnum, RarityEnum, WeaponTypeEnum } from '@prisma/client'
 import { ContentLayout } from '@/shared/layouts/panel/content-layout'
 import { CharacterFilter } from '@/shared/filters/character-filter'
 import { FilterContainer } from '@/shared/components/filter-container'
@@ -11,7 +11,7 @@ type Props = {
     name: string
     element: ElementEnum
     weapon: WeaponTypeEnum
-    stars: any
+    stars: RarityEnum
   }
 }
 

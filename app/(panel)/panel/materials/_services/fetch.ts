@@ -20,7 +20,7 @@ export async function getMaterials(props: Props) {
     const MATERIALS = await db.materials.findMany({
       where: {
         ...(name && { name: { contains: name, mode: 'insensitive' } }),
-        ...(type && { type: type.toUpperCase() }),
+        ...(type && { type: type.toUpperCase() as Materials['type'] }),
       },
       orderBy: [{ rarity: 'asc' }, { name: 'asc' }, { date_created: 'desc' }],
     })

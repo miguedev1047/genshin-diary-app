@@ -66,7 +66,7 @@ export function MaterialActions(props: MaterialActionsProps) {
       name: name,
       image_url: image_url ?? DEFAULT_IMAGE,
       description: description,
-      type: type as any,
+      type: type,
       rarity: rarity,
     },
   })

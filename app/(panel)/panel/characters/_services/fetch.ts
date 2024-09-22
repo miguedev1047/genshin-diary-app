@@ -1,12 +1,12 @@
 import { currentRole } from '@/data/auth'
-import db from '@/lib/db'
 import { ElementEnum, RarityEnum, WeaponTypeEnum } from '@prisma/client'
+import db from '@/lib/db'
 
 type Props = {
   name: string
   element: ElementEnum
   weapon: WeaponTypeEnum
-  stars: RarityEnum | any
+  stars: RarityEnum
 }
 
 export async function getCharacters(props: Props) {
@@ -23,9 +23,9 @@ export async function getCharacters(props: Props) {
       const CHARACTERS = await db.characters.findMany({
         where: {
           ...(name && { name: { contains: name, mode: 'insensitive' } }),
-          ...(element && { element: element.toUpperCase() }),
-          ...(weapon && { weapon: weapon.toUpperCase() }),
-          ...(stars && { rarity: `STAR_${stars}` }),
+          ...(element && { element: element.toUpperCase() as ElementEnum }),
+          ...(weapon && { weapon: weapon.toUpperCase() as WeaponTypeEnum }),
+          ...(stars && { rarity: `STAR_${stars}` as RarityEnum }),
         },
         orderBy: [{ rarity: 'asc' }, { name: 'asc' }, { date_created: 'desc' }],
         include: { images: true },

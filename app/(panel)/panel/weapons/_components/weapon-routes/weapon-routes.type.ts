@@ -1,9 +1,9 @@
-import { WeaponTypeEnum } from "@prisma/client"
+import { RarityEnum, WeaponTypeEnum } from "@prisma/client"
 
 export type WeaponRoutesProps = {
     params: {
       name: string
       weapon: WeaponTypeEnum
-      stars: any
+      stars: RarityEnum
     }
   }

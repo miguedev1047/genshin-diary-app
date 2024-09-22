@@ -4,7 +4,7 @@ import db from '@/lib/db'
 type Props = {
   name: string
   weapon: WeaponTypeEnum
-  stars: RarityEnum | any
+  stars: RarityEnum
 }
 
 export async function getWeapons(props: Props) {
@@ -15,8 +15,8 @@ export async function getWeapons(props: Props) {
       const WEAPONS = await db.weapons.findMany({
         where: {
           ...(name && { name: { contains: name, mode: 'insensitive' } }),
-          ...(weapon && { type: weapon.toUpperCase() }),
-          ...(stars && { rarity: `STAR_${stars}` }),
+          ...(weapon && { type: weapon.toUpperCase() as WeaponTypeEnum }),
+          ...(stars && { rarity: `STAR_${stars}` as RarityEnum }),
         },
       })
 
