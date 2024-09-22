@@ -4,7 +4,6 @@ import { Input } from '@/components/ui/input'
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 import { SearchBarProps } from '@/shared/components/search-bar/search-bar.type'
 import { useDebouncedCallback } from 'use-debounce'
-import { Search } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
 const WAIT_BEFORE_DEBOUNCE = 500
@@ -15,7 +14,7 @@ export function SearchBar(props: SearchBarProps) {
   const { replace } = useRouter()
   const pathname = usePathname()
   const params = useSearchParams()
-  // @ts-ignore
+
   const searchParams = new URLSearchParams(params)
 
   const handleSearch = useDebouncedCallback((value: string) => {
@@ -33,7 +32,6 @@ export function SearchBar(props: SearchBarProps) {
       defaultValue={searchParams.get(queryParam)?.toString()}
       onChange={(e) => handleSearch(e.target.value)}
       placeholder={placeholder}
-      leftIcon={<Search />}
     />
   )
 }

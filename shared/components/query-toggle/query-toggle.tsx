@@ -20,7 +20,6 @@ export function QueryToggle(props: QueryToggleProps) {
   const { replace } = useRouter()
   const pathname = usePathname()
   const params = useSearchParams()
-  // @ts-ignore
   const searchParams = new URLSearchParams(params)
 
   const isPressed = searchParams.get(queryKey) === queryValue.toLowerCase()
