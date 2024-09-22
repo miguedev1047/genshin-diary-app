@@ -7,7 +7,7 @@ import bcrypt from 'bcryptjs'
 export default {
   providers: [
     Credentials({
-      async authorize(credentials): Promise<any> {
+      async authorize(credentials): Promise<{ id: string } | null> {
         const validateFields = LoginSchema.safeParse(credentials)
 
         if (validateFields.success) {
