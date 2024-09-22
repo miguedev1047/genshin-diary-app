@@ -49,7 +49,7 @@ export function CreatorMaterialForm() {
 
       if (status === 201) {
         toast.success(message)
-        
+
         push('/panel/materials')
         refresh()
         return
@@ -154,11 +154,9 @@ export function CreatorMaterialForm() {
                     onValueChange={field.onChange}
                   >
                     <FormControl>
-                      <FormControl>
-                        <SelectTrigger>
-                          <SelectValue placeholder='Tipo de material' />
-                        </SelectTrigger>
-                      </FormControl>
+                      <SelectTrigger>
+                        <SelectValue placeholder='Tipo de material' />
+                      </SelectTrigger>
                     </FormControl>
                     <SelectContent>
                       {MATERIAL_TYPES.map(({ label, value }) => (
@@ -181,7 +179,7 @@ export function CreatorMaterialForm() {
             control={form.control}
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Descripcion</FormLabel>
+                <FormLabel>Descripción</FormLabel>
                 <FormControl>
                   <Textarea
                     placeholder='Descripción del material'
