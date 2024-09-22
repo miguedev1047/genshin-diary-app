@@ -1,4 +1,4 @@
-import { CharacterItemProps } from './character-item.type'
+import { CharacterItemProps } from '@/app/(panel)/panel/characters/_components/character-item/character-item.type'
 import { Card } from '@/components/ui/card'
 import { AspectRatio } from '@/components/ui/aspect-ratio'
 import { getBorderColorByRarity } from '@/features/utils/rarity-color'
