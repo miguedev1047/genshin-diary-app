@@ -189,6 +189,15 @@ export const ASCENSION_LEVEL = [
   { value: 'ASCENSION_6', label: 'Ascensión 6', name: 'ascension_6' },
 ]
 
+export const ASCENSION_CHARACTER = [
+  { ascension: 'ASCENSION_1', cost: 20000, level: '20/40', order: 1 },
+  { ascension: 'ASCENSION_2', cost: 40000, level: '40/50', order: 2 },
+  { ascension: 'ASCENSION_3', cost: 60000, level: '50/60', order: 3 },
+  { ascension: 'ASCENSION_4', cost: 80000, level: '60/70', order: 4 },
+  { ascension: 'ASCENSION_5', cost: 100000, level: '70/80', order: 5 },
+  { ascension: 'ASCENSION_6', cost: 120000, level: '80/90', order: 6 },
+]
+
 export const ASCENSION_WEAPON = [
   { ascension_level: 'ASCENSION_1', cost: 20000, level: '20/40', order: 1 },
   { ascension_level: 'ASCENSION_2', cost: 40000, level: '40/50', order: 2 },
