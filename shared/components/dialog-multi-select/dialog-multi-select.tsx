@@ -1,24 +1,21 @@
 import {
-    CheckIcon,
-    ChevronDown,
-    WandSparkles,
-    XCircle,
-    XIcon,
+  CheckIcon,
+  ChevronDown,
+  WandSparkles,
+  XCircle,
+  XIcon,
 } from 'lucide-react'
 import {
-    Command,
-    CommandDialog,
-    CommandEmpty,
-    CommandGroup,
-    CommandInput,
-    CommandItem,
-    CommandList,
-    CommandSeparator,
-    CommandShortcut,
+  Command,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+  CommandList,
 } from '@/components/ui/command'
 import {
-    DialogMultiSelectProps,
-    dialogMultiSelectVariants,
+  DialogMultiSelectProps,
+  dialogMultiSelectVariants,
 } from './dialog-multi-select.type'
 import { Button } from '@/components/ui/button'
 import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog'
