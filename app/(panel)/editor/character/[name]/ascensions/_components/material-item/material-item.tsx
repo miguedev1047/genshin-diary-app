@@ -9,10 +9,10 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from '@/components/ui/popover'
-import { useGetMaterial } from '@/app/(panel)/editor/character/[name]/_shared/queries/use-materiales'
-import { MaterialItemProps } from './material-item.type'
+import { MaterialItemProps } from '@/app/(panel)/editor/character/[name]/ascensions/_components/material-item/material-item.type'
+import { useGetMaterial } from '@/features/queries/use-materiales'
+import { MaterialForm } from '@/app/(panel)/editor/character/[name]/ascensions/_components/material-form'
 import { Skeleton } from '@/components/ui/skeleton'
-import { MaterialForm } from '../material-form'
 import Image from 'next/image'
 
 export function MaterialItem(props: MaterialItemProps) {
