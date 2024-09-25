@@ -3,4 +3,5 @@ export type EditorCardProps = {
   description?: string
   children: React.ReactNode
   renderForm?: React.ReactNode
+  className?: string
 }

@@ -7,9 +7,10 @@ import {
 } from '@/components/ui/card'
 import { Separator } from '@/components/ui/separator'
 import { EditorCardProps } from '@/shared/layouts/panel/editor-card/editor-card.type'
+import { cn } from '@/lib/utils'
 
 export function EditorCard(props: EditorCardProps) {
-  const { title, description, renderForm, children } = props
+  const { title, description, renderForm, children, className } = props
 
   return (
     <Card className='relative overflow-clip'>
@@ -21,7 +22,7 @@ export function EditorCard(props: EditorCardProps) {
         <CardDescription>{description}</CardDescription>
       </CardHeader>
       <Separator />
-      <CardContent className='p-6'>{children}</CardContent>
+      <CardContent className={cn('p-6', className)}>{children}</CardContent>
       <Separator />
     </Card>
   )
