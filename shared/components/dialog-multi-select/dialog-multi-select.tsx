@@ -23,6 +23,7 @@ import { Grid } from 'react-loader-spinner'
 import { Separator } from '@/components/ui/separator'
 import { Badge } from '@/components/ui/badge'
 import { cn } from '@/lib/utils'
+import { DEFAULT_IMAGE } from '@/consts/general'
 import React, { useEffect, useState } from 'react'
 import Image from 'next/image'
 
@@ -44,7 +45,7 @@ export function DialogMultiSelect(props: DialogMultiSelectProps) {
     return {
       label: item.name,
       value: item.id,
-      src: item.image_url,
+      src: item.image_url || item.images?.splash_art_url || DEFAULT_IMAGE,
     }
   })
 

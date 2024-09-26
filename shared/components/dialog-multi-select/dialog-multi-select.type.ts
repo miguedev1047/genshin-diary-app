@@ -41,6 +41,10 @@ export interface DialogMultiSelectProps
         id: string
         /** Optional image URL for the option. */
         image_url?: string | null | undefined
+        /** Optional image URL for the option. */
+        images?: {
+          splash_art_url: string
+        }
       }[]
     | undefined
 
