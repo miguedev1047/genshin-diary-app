@@ -1,19 +1,21 @@
+'use client'
+
 import {
   getAttributesText,
   getRarityStars,
   getWeaponText,
 } from '@/features/utils/character-texts'
 import { EditorCard } from '@/shared/layouts/panel/editor-card'
-import { WeaponInfoProps } from '@/app/(panel)/editor/weapon/[name]/weapon-info/weapon-info.type'
 import { EditorWeaponForm } from '@/app/(panel)/editor/weapon/[name]/weapon-info/_components/editor-weapon-form'
 import { SquareBox } from '@/shared/components/square-box'
 import { Badge } from '@/components/ui/badge'
 import { Star } from 'lucide-react'
 import { NONE } from '@/consts/general'
+import { useGetWeapon } from '@/app/(panel)/editor/weapon/[name]/provider'
 import Image from 'next/image'
 
-export function WeaponInfo(props: WeaponInfoProps) {
-  const { data: WEAPON } = props
+export function WeaponInfo() {
+  const { data: WEAPON } = useGetWeapon()
 
   const STARS = getRarityStars(WEAPON?.rarity)
   const MAIN_STAT = getAttributesText(WEAPON?.main_stat)
@@ -23,7 +25,7 @@ export function WeaponInfo(props: WeaponInfoProps) {
     <EditorCard
       title='Información del arma'
       className='grid grid-cols-5 gap-4'
-      renderForm={<EditorWeaponForm data={WEAPON} />}
+      renderForm={<EditorWeaponForm />}
     >
       <div className='col-span-1'>
         <SquareBox>
