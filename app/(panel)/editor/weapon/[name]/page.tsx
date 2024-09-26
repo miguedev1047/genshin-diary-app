@@ -10,15 +10,16 @@ import { formattedName } from '@/features/utils/formatted-names'
 import { ContentLayout } from '@/shared/layouts/panel/content-layout'
 import { PageProps } from './_shared/types'
 import { fetchWeapon } from './_shared/_services/fetch'
+import { WeaponInfo } from './weapon-info'
 import Link from 'next/link'
 
 export default async function EditorWeaponPage({ params }: PageProps) {
-  const CHARACTER_NAME = formattedName(params.name)
-  const CHARACTER = await fetchWeapon(CHARACTER_NAME)
+  const WEAPON_NAME = formattedName(params.name)
+  const WEAPON = await fetchWeapon(WEAPON_NAME)
 
   return (
     <ContentLayout
-      title={`Editar arma`}
+      title='Editar arma'
       className='space-y-6'
     >
       <Breadcrumb>
@@ -35,7 +36,9 @@ export default async function EditorWeaponPage({ params }: PageProps) {
         </BreadcrumbList>
       </Breadcrumb>
 
-      <section className='space-y-6'></section>
+      <section className='space-y-6'>
+        <WeaponInfo data={WEAPON} />
+      </section>
     </ContentLayout>
   )
 }
