@@ -1,6 +1,5 @@
 'use client'
 
-import { EditorWeaponFormProps } from '@/app/(panel)/editor/weapon/[name]/weapon-info/_components/editor-weapon-form/editor-weapon-form.type'
 import {
   Form,
   FormControl,
@@ -20,10 +19,12 @@ import {
 } from '@/components/ui/select'
 import {
   Sheet,
+  SheetClose,
   SheetContent,
   SheetDescription,
   SheetFooter,
   SheetHeader,
+  SheetTitle,
   SheetTrigger,
 } from '@/components/ui/sheet'
 import { z } from 'zod'
@@ -39,12 +40,13 @@ import { Pencil, Star } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import { formattedUrl } from '@/features/utils/formatted-names'
-import { updateWeapon } from '@/app/(panel)/editor/weapon/[name]/weapon-info/_services/update'
+import { updateWeapon } from '@/editor/weapon/[name]/weapon-info/_services/update'
 import { useRouter } from 'next/navigation'
+import { useGetWeapon } from '@/editor/weapon/[name]/provider'
 import { toast } from 'sonner'
 
-export function EditorWeaponForm(props: EditorWeaponFormProps) {
-  const { data: WEAPON } = props
+export function EditorWeaponForm() {
+  const { data: WEAPON } = useGetWeapon()
 
   const [isPending, startTransition] = useTransition()
   const { refresh, replace } = useRouter()
@@ -87,11 +89,14 @@ export function EditorWeaponForm(props: EditorWeaponFormProps) {
         </Button>
       </SheetTrigger>
       <SheetContent className='sm:max-w-[640px]'>
-        <SheetHeader>Editar arma</SheetHeader>
-        <SheetDescription>
-          Ingresa los detalles de la arma. Haga clic en editar cuando haya
-          terminado.
-        </SheetDescription>
+        <SheetHeader>
+          <SheetTitle>Editar arma</SheetTitle>
+          <SheetDescription>
+            Ingresa los detalles de la arma. Haga clic en editar cuando haya
+            terminado.
+          </SheetDescription>
+        </SheetHeader>
+
         <ScrollArea className='w-full h-[800px]'>
           <Form {...form}>
             <form
@@ -283,19 +288,26 @@ export function EditorWeaponForm(props: EditorWeaponFormProps) {
                   </FormItem>
                 )}
               />
+
+              <SheetFooter>
+                <SheetClose asChild>
+                  <Button
+                    type='button'
+                    variant='secondary'
+                  >
+                    Cancelar
+                  </Button>
+                </SheetClose>
+                <Button
+                  type='submit'
+                  disabled={isPending}
+                >
+                  Guardar
+                </Button>
+              </SheetFooter>
             </form>
           </Form>
         </ScrollArea>
-
-        <SheetFooter>
-          <Button
-            type='submit'
-            disabled={isPending}
-            form='editor-weapon-form'
-          >
-            Guardar
-          </Button>
-        </SheetFooter>
       </SheetContent>
     </Sheet>
   )
