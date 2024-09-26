@@ -71,7 +71,7 @@ export function EditorCharacterForm(props: EditorCharacterFormProps) {
   })
 
   const handleSubmit = form.handleSubmit((values) => {
-    const CHARACTER_NAME = formattedUrl(values.name)
+    const FORMAT_NAME = formattedUrl(values.name)
 
     startTranstion(async () => {
       const { status, message } = await updateCharacter(values, CHARACTER?.id)
@@ -79,7 +79,7 @@ export function EditorCharacterForm(props: EditorCharacterFormProps) {
       if (status === 201) {
         toast.success(message)
 
-        replace(`/editor/character/${CHARACTER_NAME}`)
+        replace(`/editor/character/${FORMAT_NAME}`)
         refresh()
         return
       }
