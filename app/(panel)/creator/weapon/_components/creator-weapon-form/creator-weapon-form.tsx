@@ -35,7 +35,7 @@ export function CreatorWeaponForm() {
   const [isPending, startTranstion] = useTransition()
   const { refresh, push } = useRouter()
 
-  const FORM = useForm<z.infer<typeof WeaponSchema>>({
+  const form = useForm<z.infer<typeof WeaponSchema>>({
     resolver: zodResolver(WeaponSchema),
     defaultValues: {
       name: '',
@@ -48,7 +48,7 @@ export function CreatorWeaponForm() {
     },
   })
 
-  const handleSubmit = FORM.handleSubmit((values) => {
+  const handleSubmit = form.handleSubmit((values) => {
     startTranstion(async () => {
       const { status, message } = await createWeapon(values)
 
@@ -71,7 +71,7 @@ export function CreatorWeaponForm() {
       isLoading={isPending}
       formId='character-create-form'
     >
-      <Form {...FORM}>
+      <Form {...form}>
         <form
           id='character-create-form'
           onSubmit={handleSubmit}
@@ -79,7 +79,7 @@ export function CreatorWeaponForm() {
         >
           <div className='grid lg:grid-cols-2 gap-4'>
             <FormField
-              control={FORM.control}
+              control={form.control}
               name='name'
               render={({ field }) => (
                 <FormItem>
@@ -96,7 +96,7 @@ export function CreatorWeaponForm() {
             />
 
             <FormField
-              control={FORM.control}
+              control={form.control}
               name='image_url'
               render={({ field }) => (
                 <FormItem>
@@ -114,7 +114,7 @@ export function CreatorWeaponForm() {
           </div>
 
           <FormField
-            control={FORM.control}
+            control={form.control}
             name='passive_description'
             render={({ field }) => (
               <FormItem>
@@ -132,7 +132,7 @@ export function CreatorWeaponForm() {
 
           <div className='grid lg:grid-cols-2 gap-4'>
             <FormField
-              control={FORM.control}
+              control={form.control}
               name='main_stat'
               render={({ field }) => (
                 <FormItem>
@@ -169,7 +169,7 @@ export function CreatorWeaponForm() {
             />
 
             <FormField
-              control={FORM.control}
+              control={form.control}
               name='base_attack'
               render={({ field }) => (
                 <FormItem>
@@ -187,7 +187,7 @@ export function CreatorWeaponForm() {
             />
 
             <FormField
-              control={FORM.control}
+              control={form.control}
               name='rarity'
               render={({ field }) => (
                 <FormItem>
@@ -229,7 +229,7 @@ export function CreatorWeaponForm() {
             />
 
             <FormField
-              control={FORM.control}
+              control={form.control}
               name='type'
               render={({ field }) => (
                 <FormItem>
