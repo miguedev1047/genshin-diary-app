@@ -8,9 +8,11 @@ import {
 } from '@/components/ui/breadcrumb'
 import { formattedName } from '@/features/utils/formatted-names'
 import { ContentLayout } from '@/shared/layouts/panel/content-layout'
-import { PageProps } from './_shared/types'
-import { fetchWeapon } from './_shared/_services/fetch'
-import { WeaponInfo } from './weapon-info'
+import { PageProps } from '@/editor/weapon/[name]/_shared/types'
+import { fetchWeapon } from '@/editor/weapon/[name]/_shared/_services/fetch'
+import { WeaponInfo } from '@/editor/weapon/[name]/weapon-info'
+import { BestCharacters } from '@/editor/weapon/[name]/best-characters'
+import { WeaponProvider } from '@/editor/weapon/[name]/provider'
 import Link from 'next/link'
 
 export default async function EditorWeaponPage({ params }: PageProps) {
@@ -36,9 +38,12 @@ export default async function EditorWeaponPage({ params }: PageProps) {
         </BreadcrumbList>
       </Breadcrumb>
 
-      <section className='space-y-6'>
-        <WeaponInfo data={WEAPON} />
-      </section>
+      <WeaponProvider data={WEAPON}>
+        <section className='space-y-6'>
+          <WeaponInfo />
+          <BestCharacters />
+        </section>
+      </WeaponProvider>
     </ContentLayout>
   )
 }
