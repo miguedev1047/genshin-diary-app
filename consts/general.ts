@@ -16,6 +16,8 @@ import {
 import { Star4, Star5 } from '@/assets/stars'
 import { Sword, Bow, Catalyst, Claymore, Polearm } from '@/assets/weapon-types'
 
+export const NONE = ''
+
 export const STARS = [
   {
     label: '5 Estrellas',
