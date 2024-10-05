@@ -1,5 +1,5 @@
 import { CharacterItemProps } from '@/app/(panel)/editor/weapon/[name]/best-characters/_components/character-item/character-item.type'
-import { useGetCharacter } from '@/features/queries/use-characters'
+import { useGetCharacter } from '@/features/queries/panel/use-characters'
 import { Skeleton } from '@/components/ui/skeleton'
 import { formattedUrl } from '@/features/utils/formatted-names'
 import { Card } from '@/components/ui/card'

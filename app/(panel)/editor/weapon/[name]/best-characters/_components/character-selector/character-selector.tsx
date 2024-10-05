@@ -1,4 +1,4 @@
-import { useGetCharacters } from '@/features/queries/use-characters'
+import { useGetCharacters } from '@/features/queries/panel/use-characters'
 import { DialogMultiSelect } from '@/shared/components/dialog-multi-select'
 import { CharacterSelectorProps } from '@/app/(panel)/editor/weapon/[name]/best-characters/_components/character-selector/character-selector.type'
 import { useGetWeapon } from '@/app/(panel)/editor/weapon/[name]/provider'
