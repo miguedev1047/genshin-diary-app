@@ -14,7 +14,6 @@ const config: Config = {
   prefix: '',
   theme: {
     container: {
-      center: true,
       padding: '2rem',
       screens: {
         '2xl': '1400px',
@@ -81,12 +80,20 @@ const config: Config = {
           },
         },
         'accordion-down': {
-          from: { height: '0' },
-          to: { height: 'var(--radix-accordion-content-height)' },
+          from: {
+            height: '0',
+          },
+          to: {
+            height: 'var(--radix-accordion-content-height)',
+          },
         },
         'accordion-up': {
-          from: { height: 'var(--radix-accordion-content-height)' },
-          to: { height: '0' },
+          from: {
+            height: 'var(--radix-accordion-content-height)',
+          },
+          to: {
+            height: '0',
+          },
         },
         'border-beam': {
           '100%': {
@@ -94,12 +101,24 @@ const config: Config = {
           },
         },
         'fade-in': {
-          from: { opacity: '0', transform: 'translateY(-10px)' },
-          to: { opacity: '1', transform: 'none' },
+          from: {
+            opacity: '0',
+            transform: 'translateY(-10px)',
+          },
+          to: {
+            opacity: '1',
+            transform: 'none',
+          },
         },
         'fade-up': {
-          from: { opacity: '0', transform: 'translateY(20px)' },
-          to: { opacity: '1', transform: 'none' },
+          from: {
+            opacity: '0',
+            transform: 'translateY(20px)',
+          },
+          to: {
+            opacity: '1',
+            transform: 'none',
+          },
         },
         shimmer: {
           '0%, 90%, 100%': {
@@ -110,12 +129,28 @@ const config: Config = {
           },
         },
         'background-position-spin': {
-          '0%': { backgroundPosition: 'top center' },
-          '100%': { backgroundPosition: 'bottom center' },
+          '0%': {
+            backgroundPosition: 'top center',
+          },
+          '100%': {
+            backgroundPosition: 'bottom center',
+          },
         },
         shine: {
-          from: { backgroundPosition: '200% 0' },
-          to: { backgroundPosition: '-200% 0' },
+          from: {
+            backgroundPosition: '200% 0',
+          },
+          to: {
+            backgroundPosition: '-200% 0',
+          },
+        },
+        'shiny-text': {
+          '0%, 90%, 100%': {
+            'background-position': 'calc(-100% - var(--shiny-width)) 0',
+          },
+          '30%, 60%': {
+            'background-position': 'calc(100% + var(--shiny-width)) 0',
+          },
         },
       },
       animation: {
@@ -129,6 +164,7 @@ const config: Config = {
         'border-beam': 'border-beam calc(var(--duration)*1s) infinite linear',
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
+        'shiny-text': 'shiny-text 8s infinite',
       },
     },
   },
