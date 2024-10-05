@@ -1,17 +1,11 @@
 'use client'
 
-import { Prisma } from '@prisma/client'
 import { createContext, use } from 'react'
+import { WeaponProps } from '@/editor/weapon/[name]/_shared/types'
 
 type WeaponProviderProps = {
-  data: Prisma.WeaponsGetPayload<{
-    include: { bests_characters: true; ascensions: true }
-  }> | null
+  data: WeaponProps | null
 }
-
-type WeaponProps = Prisma.WeaponsGetPayload<{
-  include: { bests_characters: true; ascensions: true }
-}> | null
 
 const WeaponContext = createContext<WeaponProviderProps | null>(null)
 
@@ -26,7 +20,7 @@ export function WeaponProvider({
   children,
   data,
 }: {
-  data: WeaponProps
+  data: WeaponProps | null
   children: React.ReactNode
 }) {
   return (
