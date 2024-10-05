@@ -7,12 +7,13 @@ import {
   BreadcrumbSeparator,
 } from '@/components/ui/breadcrumb'
 import { redirect } from 'next/navigation'
-import { PageProps } from '@/app/(panel)/editor/character/[name]/_shared/types'
+import { PageProps } from '@/editor/character/[name]/_shared/types'
 import { formattedName } from '@/features/utils/formatted-names'
 import { ContentLayout } from '@/shared/layouts/panel/content-layout'
-import { getCharacterByName } from '@/app/(panel)/editor/character/[name]/_shared/_services/fetch'
-import { CharacterInfo } from '@/app/(panel)/editor/character/[name]/character-info'
-import { Ascension } from '@/app/(panel)/editor/character/[name]/ascensions'
+import { getCharacterByName } from '@/editor/character/[name]/_shared/_services/fetch'
+import { CharacterInfo } from '@/editor/character/[name]/character-info'
+import { Ascension } from '@/editor/character/[name]/ascensions'
+import { CharacterProvider } from '@/editor/character/[name]/provider'
 
 export default async function EditorCharacterPage(props: PageProps) {
   const { params } = props
@@ -39,10 +40,12 @@ export default async function EditorCharacterPage(props: PageProps) {
         </BreadcrumbList>
       </Breadcrumb>
 
-      <section className='space-y-6'>
-        <CharacterInfo data={CHARACTER} />
-        <Ascension data={CHARACTER} />
-      </section>
+      <CharacterProvider data={CHARACTER}>
+        <section className='space-y-6'>
+          <CharacterInfo />
+          <Ascension />
+        </section>
+      </CharacterProvider>
     </ContentLayout>
   )
 }
