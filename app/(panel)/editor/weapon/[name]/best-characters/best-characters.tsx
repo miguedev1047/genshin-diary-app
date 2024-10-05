@@ -4,7 +4,7 @@ import { EditorCard } from '@/shared/layouts/panel/editor-card'
 import { GRID_LIST } from '@/consts/classes'
 import { BestCharactersForm } from '@/editor/weapon/[name]/best-characters/_components/best-characters-form'
 import { useGetWeapon } from '@/editor/weapon/[name]/provider'
-import { CharacterItem } from '@/editor/weapon/[name]/best-characters/_components/character-item'
+import { CharacterItem } from '@/editor/weapon/[name]/best-characters/_components/character-item/character-item'
 
 const MIN_ITEMS = 0
 
