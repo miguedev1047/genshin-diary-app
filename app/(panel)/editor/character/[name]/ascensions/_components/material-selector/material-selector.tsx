@@ -1,6 +1,6 @@
-import { useGetMaterials } from '@/features/queries/use-materiales'
+import { useGetMaterials } from '@/features/queries/panel/use-materiales'
 import { DialogMultiSelect } from '@/shared/components/dialog-multi-select'
-import { MaterialSelectorProps } from '@/app/(panel)/editor/character/[name]/ascensions/_components/material-selector/material-selector.type'
+import { MaterialSelectorProps } from '@/editor/character/[name]/ascensions/_components/material-selector/material-selector.type'
 
 export function MaterialSelector(props: MaterialSelectorProps) {
   const { value, onChange } = props
