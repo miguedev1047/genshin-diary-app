@@ -10,7 +10,7 @@ import {
   PopoverTrigger,
 } from '@/components/ui/popover'
 import { MaterialItemProps } from '@/app/(panel)/editor/character/[name]/ascensions/_components/material-item/material-item.type'
-import { useGetMaterial } from '@/features/queries/use-materiales'
+import { useGetMaterial } from '@/features/queries/panel/use-materiales'
 import { MaterialForm } from '@/app/(panel)/editor/character/[name]/ascensions/_components/material-form'
 import { Skeleton } from '@/components/ui/skeleton'
 import Image from 'next/image'
