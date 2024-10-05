@@ -13,6 +13,7 @@ import { fetchWeapon } from '@/editor/weapon/[name]/_shared/_services/fetch'
 import { WeaponInfo } from '@/editor/weapon/[name]/weapon-info'
 import { BestCharacters } from '@/editor/weapon/[name]/best-characters'
 import { WeaponProvider } from '@/editor/weapon/[name]/provider'
+import { Ascensions } from '@/editor/weapon/[name]/ascensions'
 import Link from 'next/link'
 
 export default async function EditorWeaponPage({ params }: PageProps) {
@@ -42,6 +43,7 @@ export default async function EditorWeaponPage({ params }: PageProps) {
         <section className='space-y-6'>
           <WeaponInfo />
           <BestCharacters />
+          <Ascensions />
         </section>
       </WeaponProvider>
     </ContentLayout>
