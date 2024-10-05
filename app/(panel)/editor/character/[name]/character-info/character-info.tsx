@@ -1,3 +1,5 @@
+'use client'
+
 import {
   getAttributesText,
   getElementIcon,
@@ -6,15 +8,15 @@ import {
   getWeaponText,
 } from '@/features/utils/character-texts'
 import { EditorCard } from '@/shared/layouts/panel/editor-card'
-import { CharacterInfoProps } from '@/app/(panel)/editor/character/[name]/character-info/character-info.type'
 import { EditorCharacterForm } from './_components/editor_character-form'
 import { Badge } from '@/components/ui/badge'
 import { Star } from 'lucide-react'
-import Image from 'next/image'
 import { DEFAULT_IMAGE } from '@/consts/general'
+import { useGetCharacter } from '@/editor/character/[name]/provider'
+import Image from 'next/image'
 
-export async function CharacterInfo(props: CharacterInfoProps) {
-  const { data: CHARACTER } = props
+export async function CharacterInfo() {
+  const { data: CHARACTER } = useGetCharacter()
 
   const STARS = getRarityStars(CHARACTER?.rarity)
   const ATTRIBUTE = getAttributesText(CHARACTER?.attribute)
