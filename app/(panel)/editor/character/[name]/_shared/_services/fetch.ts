@@ -13,7 +13,7 @@ export async function getCharacterByName(character_name: string) {
         name: { contains: CHARACTER_NAME, mode: 'insensitive' },
       },
       include: {
-        artifacts: true,
+        artifacts: { orderBy: { order: 'asc' } },
         ascensions: { orderBy: { level: 'asc' }, include: { materials: true } },
         constellations: true,
         images: true,
@@ -22,9 +22,7 @@ export async function getCharacterByName(character_name: string) {
         stats_priority: true,
         talents: true,
         video_guide: true,
-        weapons: {
-          orderBy: { order: 'asc' },
-        },
+        weapons: { orderBy: { order: 'asc' } },
       },
     })
 
