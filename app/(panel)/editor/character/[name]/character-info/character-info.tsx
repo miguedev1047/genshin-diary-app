@@ -8,14 +8,14 @@ import {
   getWeaponText,
 } from '@/features/utils/character-texts'
 import { EditorCard } from '@/shared/layouts/panel/editor-card'
-import { EditorCharacterForm } from './_components/editor_character-form'
+import { EditorCharacterForm } from '@/editor/character/[name]/character-info/_components/editor_character-form'
 import { Badge } from '@/components/ui/badge'
 import { Star } from 'lucide-react'
 import { DEFAULT_IMAGE } from '@/consts/general'
 import { useGetCharacter } from '@/editor/character/[name]/provider'
 import Image from 'next/image'
 
-export async function CharacterInfo() {
+export function CharacterInfo() {
   const { data: CHARACTER } = useGetCharacter()
 
   const STARS = getRarityStars(CHARACTER?.rarity)

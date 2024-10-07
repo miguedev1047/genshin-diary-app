@@ -22,7 +22,9 @@ export async function getCharacterByName(character_name: string) {
         stats_priority: true,
         talents: true,
         video_guide: true,
-        weapons: true,
+        weapons: {
+          orderBy: { order: 'asc' },
+        },
       },
     })
 
