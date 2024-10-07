@@ -19,11 +19,10 @@ export function EditorCard(props: EditorCardProps) {
           <CardTitle>{title}</CardTitle>
           {renderForm}
         </div>
-        <CardDescription>{description}</CardDescription>
+        {description && <CardDescription>{description}</CardDescription>}
       </CardHeader>
       <Separator />
       <CardContent className={cn('p-6', className)}>{children}</CardContent>
-      <Separator />
     </Card>
   )
 }
