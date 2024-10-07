@@ -16,6 +16,7 @@ import { CharacterInfo } from '@/editor/character/[name]/character-info'
 import { Ascension } from '@/editor/character/[name]/ascensions'
 import { Weapons } from '@/editor/character/[name]/weapons'
 import { Artifacts } from '@/editor/character/[name]/artifacts'
+import { StatsPriority } from '@/app/(panel)/editor/character/[name]/stats-priority'
 
 export default async function EditorCharacterPage(props: PageProps) {
   const { params } = props
@@ -50,6 +51,7 @@ export default async function EditorCharacterPage(props: PageProps) {
             <Weapons />
             <Artifacts />
           </div>
+          <StatsPriority />
         </section>
       </CharacterProvider>
     </ContentLayout>
