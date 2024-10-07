@@ -14,6 +14,7 @@ import { getCharacterByName } from '@/editor/character/[name]/_shared/_services/
 import { CharacterInfo } from '@/editor/character/[name]/character-info'
 import { Ascension } from '@/editor/character/[name]/ascensions'
 import { CharacterProvider } from '@/editor/character/[name]/provider'
+import { Weapons } from './weapons'
 
 export default async function EditorCharacterPage(props: PageProps) {
   const { params } = props
@@ -44,6 +45,9 @@ export default async function EditorCharacterPage(props: PageProps) {
         <section className='space-y-6'>
           <CharacterInfo />
           <Ascension />
+          <div className='grid lg:grid-cols-2 gap-6'>
+            <Weapons />
+          </div>
         </section>
       </CharacterProvider>
     </ContentLayout>
