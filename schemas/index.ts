@@ -168,3 +168,11 @@ export const AscensionSchema = z.object({
     .min(1)
     .nonempty('Seleccione al menos un material.'),
 })
+
+export const StatsPrioritySchema = z.object({
+  sand_stat: z.string().min(1, 'La estadistica es requerida.'),
+  globet_stat: z.string().min(1, 'La estadistica es requerida.'),
+  circlet_stat: z.string().min(1, 'La estadistica es requerida.'),
+  order_priority: z.string().min(1, 'La prioridad es requerida.'),
+  character_id: z.string()
+})
