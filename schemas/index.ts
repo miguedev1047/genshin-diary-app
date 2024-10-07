@@ -174,5 +174,12 @@ export const StatsPrioritySchema = z.object({
   globet_stat: z.string().min(1, 'La estadistica es requerida.'),
   circlet_stat: z.string().min(1, 'La estadistica es requerida.'),
   order_priority: z.string().min(1, 'La prioridad es requerida.'),
-  character_id: z.string()
+  character_id: z.string(),
+})
+
+export const VideoGuideSchema = z.object({
+  youtuber_name: z.string().min(1, 'El nombre es requerido.'),
+  youtuber_channel: z.string().min(1, 'El canal es requerido.'),
+  embed_video_url: z.string().min(1, 'La url es requerida.'),
+  character_id: z.string(),
 })
