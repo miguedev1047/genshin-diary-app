@@ -35,10 +35,10 @@ import {
 } from '@/consts/general'
 import { z } from 'zod'
 import { Button } from '@/components/ui/button'
-import { EditorCharacterFormProps } from './editor-character-form.type'
 import { useRouter } from 'next/navigation'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import { Pencil, Star } from 'lucide-react'
+import { useGetCharacter } from '@/editor/character/[name]/provider'
 import { useForm } from 'react-hook-form'
 import { CharacterSchema } from '@/schemas'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -49,8 +49,8 @@ import { updateCharacter } from '@/app/(panel)/editor/character/[name]/character
 import { toast } from 'sonner'
 import { formattedUrl } from '@/features/utils/formatted-names'
 
-export function EditorCharacterForm(props: EditorCharacterFormProps) {
-  const { data: CHARACTER } = props
+export function EditorCharacterForm() {
+  const { data: CHARACTER } = useGetCharacter()
 
   const [isPending, startTranstion] = useTransition()
   const { refresh, replace } = useRouter()
@@ -87,6 +87,8 @@ export function EditorCharacterForm(props: EditorCharacterFormProps) {
       toast.success(message)
     })
   })
+
+  const handleReset = () => form.reset()
 
   return (
     <Sheet>
@@ -364,21 +366,27 @@ export function EditorCharacterForm(props: EditorCharacterFormProps) {
                   </FormItem>
                 )}
               />
+
+              <SheetFooter>
+                <SheetClose asChild>
+                  <Button
+                    variant='secondary'
+                    type='button'
+                    onClick={handleReset}
+                  >
+                    Cancelar
+                  </Button>
+                </SheetClose>
+                <Button
+                  disabled={isPending}
+                  type='submit'
+                >
+                  Guardar
+                </Button>
+              </SheetFooter>
             </form>
           </Form>
         </ScrollArea>
-
-        <SheetFooter>
-          <SheetClose asChild>
-            <Button
-              type='submit'
-              form='editor-character-form'
-              disabled={isPending}
-            >
-              Guardar
-            </Button>
-          </SheetClose>
-        </SheetFooter>
       </SheetContent>
     </Sheet>
   )

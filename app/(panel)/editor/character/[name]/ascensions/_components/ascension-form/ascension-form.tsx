@@ -2,6 +2,7 @@
 
 import {
   Sheet,
+  SheetClose,
   SheetContent,
   SheetDescription,
   SheetFooter,
@@ -91,6 +92,8 @@ export function AscensionForm(props: AscensionsFormProps) {
     })
   })
 
+  const handleReset = () => form.reset()
+
   return (
     <Sheet>
       <SheetTrigger asChild>
@@ -147,7 +150,7 @@ export function AscensionForm(props: AscensionsFormProps) {
                   </FormItem>
                 )}
               />
-              
+
               <FormField
                 name='materials'
                 control={form.control}
@@ -160,19 +163,27 @@ export function AscensionForm(props: AscensionsFormProps) {
                   </FormItem>
                 )}
               />
+
+              <SheetFooter>
+                <SheetClose asChild>
+                  <Button
+                    variant='secondary'
+                    type='button'
+                    onClick={handleReset}
+                  >
+                    Cancelar
+                  </Button>
+                </SheetClose>
+                <Button
+                  disabled={isPending}
+                  type='submit'
+                >
+                  Guardar
+                </Button>
+              </SheetFooter>
             </form>
           </Form>
         </ScrollArea>
-
-        <SheetFooter>
-          <Button
-            form='ascension-form'
-            type='submit'
-            disabled={isPending}
-          >
-            Guardar
-          </Button>
-        </SheetFooter>
       </SheetContent>
     </Sheet>
   )

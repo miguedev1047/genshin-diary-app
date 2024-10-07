@@ -27,7 +27,7 @@ export function CharacterInfo() {
   return (
     <EditorCard
       title='Informacion del personaje'
-      renderForm={<EditorCharacterForm data={CHARACTER} />}
+      renderForm={<EditorCharacterForm />}
     >
       <div className='grid grid-cols-5 gap-4'>
         <div className='col-span-1'>
