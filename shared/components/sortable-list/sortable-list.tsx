@@ -63,7 +63,7 @@ export function SortableList<T extends BaseItem>(props: Props<T>) {
           ))}
 
           {items.length === NO_ITEMS && (
-            <h2 className='text-center font-bold uppercase opacity-70'>
+            <h2 className='text-2xl text-center font-bold uppercase opacity-70 py-20'>
               No hay elementos para mostrar
             </h2>
           )}
