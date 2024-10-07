@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import React, { createContext, useContext, useMemo } from 'react'
 import type { CSSProperties, PropsWithChildren } from 'react'
 import type {
@@ -60,7 +62,7 @@ export function SortableItem({ children, id }: PropsWithChildren<Props>) {
       </li>
     </SortableItemContext.Provider>
   )
-}
+} 
 
 export function DragHandle() {
   const { attributes, listeners, ref } = useContext(SortableItemContext)
