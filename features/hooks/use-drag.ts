@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import { DragEndEvent } from '@dnd-kit/core'
 import { arrayMove } from '@dnd-kit/sortable'
 import { useRouter } from 'next/navigation'
@@ -11,18 +13,17 @@ interface UseDragProps {
 
 export function useDrag(props: UseDragProps) {
   const { items, updateFn } = props
+
   const [orderedItems, setOrderedItems] = useState(items)
   const { refresh } = useRouter()
 
-  useEffect(() => {
-    setOrderedItems(orderedItems)
-  }, [orderedItems])
+  useEffect(() => setOrderedItems(items), [items])
 
   const handleDragEnd = async (event: DragEndEvent) => {
     const { active, over } = event
 
-    const oldIndex = items.findIndex((item) => item.id === active.id)
-    const newIndex = items.findIndex((item) => item.id === over?.id)
+    const oldIndex = orderedItems.findIndex((i) => i.id === active.id)
+    const newIndex = orderedItems.findIndex((i) => i.id === over?.id)
 
     if (oldIndex === newIndex) return
 
