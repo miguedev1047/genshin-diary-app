@@ -154,6 +154,13 @@ export const ArtifactSchema = z.object({
   }),
 })
 
+export const ArtifactCharacterSchema = z.object({
+  artifacts: z
+    .array(z.string().min(1))
+    .min(1)
+    .nonempty('Seleccione al menos un artefacto.'),
+})
+
 export const AscensionSchema = z.object({
   ascension_level: z.string().min(1, 'La ascensión requerida.'),
   materials: z
