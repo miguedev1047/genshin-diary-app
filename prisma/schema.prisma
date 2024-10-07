@@ -201,6 +201,7 @@ model WeaponCharacter {
   id           String @id @unique @default(cuid())
   character_id String
   weapon_id    String
+  order        Int    @default(0)
 
   date_created DateTime @default(now())
   date_updated DateTime @updatedAt
@@ -225,6 +226,7 @@ model ArtifactCharacter {
   id           String @id @unique @default(cuid())
   character_id String
   artifact_id  String
+  order        Int    @default(0)
 
   date_created DateTime @default(now())
   date_updated DateTime @updatedAt
@@ -235,7 +237,7 @@ model ArtifactCharacter {
 // <----- ------>
 // <----- MATERIALES ------>
 model Materials {
-  id          String     @id @unique @default(cuid())
+  id          String        @id @unique @default(cuid())
   image_url   String?
   name        String
   description String
