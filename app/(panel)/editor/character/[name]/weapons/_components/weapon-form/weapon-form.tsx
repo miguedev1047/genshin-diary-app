@@ -103,6 +103,7 @@ export function WeaponForm() {
                   <Button
                     variant='secondary'
                     onClick={handleReset}
+                    type='button'
                   >
                     Cancelar
                   </Button>
