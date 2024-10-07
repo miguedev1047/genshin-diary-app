@@ -32,7 +32,7 @@ export function VideoGuide() {
             {CHARACTER.name} Video Guia por{' '}
             <Link
               href={YOUTUBE_URL}
-              className='text-sky-300 underline'
+              className='text-sky-600 dark:text-sky-300 underline'
               target='_blank'
               rel='noreferrer'
             >
