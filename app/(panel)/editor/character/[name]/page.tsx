@@ -7,14 +7,15 @@ import {
   BreadcrumbSeparator,
 } from '@/components/ui/breadcrumb'
 import { redirect } from 'next/navigation'
+import { CharacterProvider } from '@/editor/character/[name]/provider'
 import { PageProps } from '@/editor/character/[name]/_shared/types'
 import { formattedName } from '@/features/utils/formatted-names'
 import { ContentLayout } from '@/shared/layouts/panel/content-layout'
 import { getCharacterByName } from '@/editor/character/[name]/_shared/_services/fetch'
 import { CharacterInfo } from '@/editor/character/[name]/character-info'
 import { Ascension } from '@/editor/character/[name]/ascensions'
-import { CharacterProvider } from '@/editor/character/[name]/provider'
-import { Weapons } from './weapons'
+import { Weapons } from '@/editor/character/[name]/weapons'
+import { Artifacts } from '@/editor/character/[name]/artifacts'
 
 export default async function EditorCharacterPage(props: PageProps) {
   const { params } = props
@@ -47,6 +48,7 @@ export default async function EditorCharacterPage(props: PageProps) {
           <Ascension />
           <div className='grid lg:grid-cols-2 gap-6'>
             <Weapons />
+            <Artifacts />
           </div>
         </section>
       </CharacterProvider>
