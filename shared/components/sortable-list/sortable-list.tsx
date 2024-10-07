@@ -24,6 +24,8 @@ interface Props<T extends BaseItem> {
   renderItem(item: T): ReactNode
 }
 
+const NO_ITEMS = 0
+
 export function SortableList<T extends BaseItem>(props: Props<T>) {
   const { items, onDragEnd, renderItem } = props
 
@@ -59,6 +61,12 @@ export function SortableList<T extends BaseItem>(props: Props<T>) {
           {items.map((item) => (
             <React.Fragment key={item.id}>{renderItem(item)}</React.Fragment>
           ))}
+
+          {items.length === NO_ITEMS && (
+            <h2 className='text-center font-bold uppercase opacity-70'>
+              No hay elementos para mostrar
+            </h2>
+          )}
         </ul>
       </SortableContext>
       <SortableOverlay>
