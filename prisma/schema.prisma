@@ -123,6 +123,7 @@ model Characters {
   constellations ConstellationsCharacter[]
   ascensions     AscensionCharacter[]
   talents        TalentsAscensionCharacter[]
+  teams          TeamsCharacter[]
 }
 
 model CharacterImage {
@@ -390,4 +391,33 @@ model StatsPriorityCharacter {
   date_updated DateTime @updatedAt
 
   stats_priority Characters @relation(fields: [character_id], references: [id], onDelete: Cascade)
+}
+
+// <----- ------>
+// <----- EQUIPOS ------>
+model TeamsCharacter {
+  id           String @id @unique @default(cuid())
+  character_id String
+
+  name       String
+  order      Int               @default(0)
+  characters TeamsCharacters[]
+
+  date_created DateTime @default(now())
+  date_updated DateTime @updatedAt
+
+  character Characters @relation(fields: [character_id], references: [id], onDelete: Cascade)
+}
+
+model TeamsCharacters {
+  id      String @id @unique @default(cuid())
+  team_id String
+
+  character_id String
+  order        Int    @default(0)
+
+  date_created DateTime @default(now())
+  date_updated DateTime @updatedAt
+
+  TeamsCharacter TeamsCharacter @relation(fields: [team_id], references: [id], onDelete: Cascade)
 }
