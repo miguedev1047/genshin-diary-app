@@ -122,7 +122,7 @@ model Characters {
   passives       PassivesCharacter[]
   constellations ConstellationsCharacter[]
   ascensions     AscensionCharacter[]
-  talents        TalentsCharacter[]
+  talents        TalentsAscensionCharacter[]
 }
 
 model CharacterImage {
@@ -277,20 +277,33 @@ model VideoGuideCharacter {
 
 // <----- ------>
 // <----- TALENTOS ------>
-model TalentsCharacter {
+model TalentsAscensionCharacter {
   id           String @id @unique @default(cuid())
   character_id String
 
-  image_url   String?
-  name        String
-  description String
-
-  order Int @default(0)
+  order           Int                                 @default(0)
+  level           String
+  ascension_level String
+  cost            Int                                 @default(0)
+  materials       TalentsAscensionCharacterMaterial[]
 
   date_created DateTime @default(now())
   date_updated DateTime @updatedAt
 
-  talents Characters @relation(fields: [character_id], references: [id], onDelete: Cascade)
+  talent Characters @relation(fields: [character_id], references: [id], onDelete: Cascade)
+}
+
+model TalentsAscensionCharacterMaterial {
+  id           String @id @unique @default(cuid())
+  ascension_id String
+
+  material_id String
+  quantity    Int    @default(0)
+
+  date_created DateTime @default(now())
+  date_updated DateTime @updatedAt
+
+  talents TalentsAscensionCharacter @relation(fields: [ascension_id], references: [id], onDelete: Cascade)
 }
 
 // <----- ------>
