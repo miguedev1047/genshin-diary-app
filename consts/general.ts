@@ -189,6 +189,9 @@ export const ASCENSION_LEVEL = [
   { value: 'ASCENSION_4', label: 'Ascensión 4', name: 'ascension_4' },
   { value: 'ASCENSION_5', label: 'Ascensión 5', name: 'ascension_5' },
   { value: 'ASCENSION_6', label: 'Ascensión 6', name: 'ascension_6' },
+  { value: 'ASCENSION_7', label: 'Ascensión 7', name: 'ascension_7' },
+  { value: 'ASCENSION_8', label: 'Ascensión 8', name: 'ascension_8' },
+  { value: 'ASCENSION_9', label: 'Ascensión 9', name: 'ascension_9' },
 ]
 
 export const ASCENSION_CHARACTER = [
@@ -198,6 +201,18 @@ export const ASCENSION_CHARACTER = [
   { ascension: 'ASCENSION_4', cost: 80000, level: '60/70', order: 4 },
   { ascension: 'ASCENSION_5', cost: 100000, level: '70/80', order: 5 },
   { ascension: 'ASCENSION_6', cost: 120000, level: '80/90', order: 6 },
+]
+
+export const ASCENSION_TALENT = [
+  { ascension: 'ASCENSION_1', cost: 12500, level: '1/2', order: 1 },
+  { ascension: 'ASCENSION_2', cost: 17500, level: '2/3', order: 2 },
+  { ascension: 'ASCENSION_3', cost: 25000, level: '3/4', order: 3 },
+  { ascension: 'ASCENSION_4', cost: 30000, level: '4/5', order: 4 },
+  { ascension: 'ASCENSION_5', cost: 37500, level: '5/6', order: 5 },
+  { ascension: 'ASCENSION_6', cost: 120000, level: '6/7', order: 6 },
+  { ascension: 'ASCENSION_7', cost: 260000, level: '7/8', order: 7 },
+  { ascension: 'ASCENSION_8', cost: 450000, level: '8/9', order: 8 },
+  { ascension: 'ASCENSION_9', cost: 700000, level: '9/10', order: 9 },
 ]
 
 export const ASCENSION_WEAPON = [
