@@ -20,7 +20,10 @@ export async function getCharacterByName(character_name: string) {
         materials: true,
         passives: true,
         stats_priority: true,
-        talents: true,
+        talents: {
+          orderBy: { level: 'asc' },
+          include: { materials: { orderBy: [{ date_created: 'asc' }] } },
+        },
         video_guide: true,
         weapons: { orderBy: { order: 'asc' } },
       },
