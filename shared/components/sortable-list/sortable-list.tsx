@@ -13,6 +13,7 @@ import { SortableContext, sortableKeyboardCoordinates } from '@dnd-kit/sortable'
 import { SortableOverlay } from '@/shared/components/sortable-list/components/sortable-overlay'
 import { SortableItem } from '@/shared/components/sortable-list/components/sortable-item'
 import { DragHandle } from '@/shared/components/sortable-list/components/sortable-item/sortable-item'
+import { cn } from '@/lib/utils'
 
 interface BaseItem {
   id: UniqueIdentifier
@@ -22,12 +23,13 @@ interface Props<T extends BaseItem> {
   items: T[]
   onDragEnd(event: DragEndEvent): Promise<void>
   renderItem(item: T): ReactNode
+  className?: string
 }
 
 const NO_ITEMS = 0
 
 export function SortableList<T extends BaseItem>(props: Props<T>) {
-  const { items, onDragEnd, renderItem } = props
+  const { items, className = '', onDragEnd, renderItem } = props
 
   const [active, setActive] = useState<Active | null>(null)
   const activeItem = useMemo(
@@ -55,7 +57,7 @@ export function SortableList<T extends BaseItem>(props: Props<T>) {
     >
       <SortableContext items={items}>
         <ul
-          className='flex flex-col gap-5'
+          className={cn('grid gap-5', className)}
           role='application'
         >
           {items.map((item) => (
