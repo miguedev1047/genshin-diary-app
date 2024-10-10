@@ -32,12 +32,15 @@ import { useGetCharacter } from '@/editor/character/[name]/provider'
 import { useRouter } from 'next/navigation'
 import { toast } from 'sonner'
 
+const MAX_WEAPONS = 5
+
 export function WeaponForm() {
   const { data: CHARACTER } = useGetCharacter()
 
   const [isPending, startTransition] = useTransition()
   const { refresh } = useRouter()
 
+  const WEAPONS = CHARACTER?.weapons ?? []
   const form = useForm<z.infer<typeof WeaponCharacterSchema>>({
     resolver: zodResolver(WeaponCharacterSchema),
     defaultValues: {
@@ -46,6 +49,12 @@ export function WeaponForm() {
   })
 
   const handleSubmit = form.handleSubmit((values) => {
+    const MAX_ITEMS = [...WEAPONS, ...values.weapons].length > MAX_WEAPONS
+
+    if (MAX_ITEMS) {
+      return toast.error(`No puedes añadir más de ${MAX_WEAPONS} armas`)
+    }
+
     startTransition(async () => {
       const { status, message } = await createWeapons(values, CHARACTER?.id)
 
