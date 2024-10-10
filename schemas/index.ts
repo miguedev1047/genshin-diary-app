@@ -169,6 +169,14 @@ export const AscensionSchema = z.object({
     .nonempty('Seleccione al menos un material.'),
 })
 
+export const TalentSchema = z.object({
+  talent_level: z.string().min(1, 'El nivel es requerido.'),
+  materials: z
+    .array(z.string().min(1))
+    .min(1)
+    .nonempty('Seleccione al menos un material.'),
+})
+
 export const StatsPrioritySchema = z.object({
   sand_stat: z.string().min(1, 'La estadistica es requerida.'),
   globet_stat: z.string().min(1, 'La estadistica es requerida.'),
