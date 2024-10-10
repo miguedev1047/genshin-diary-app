@@ -46,7 +46,7 @@ export interface DialogMultiSelectProps
           splash_art_url: string
         }
       }[]
-    | undefined
+    | undefined | unknown
 
   /**
    * Callback function triggered when the selected values change.
