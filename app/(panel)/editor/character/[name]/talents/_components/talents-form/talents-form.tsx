@@ -118,15 +118,13 @@ export function TalentsForm() {
                       <SelectContent>
                         <SelectGroup>
                           <SelectLabel>Nivel</SelectLabel>
-                          {ASCENSION_LEVEL.map((talent) => (
+                          {ASCENSION_LEVEL.map(({ label, value }) => (
                             <SelectItem
-                              key={talent.value}
-                              value={talent.value}
-                              disabled={DISABLED_ASCENSIONS?.includes(
-                                talent.value
-                              )}
+                              key={value}
+                              value={value}
+                              disabled={DISABLED_ASCENSIONS?.includes(value)}
                             >
-                              {talent.label}
+                              {label}
                             </SelectItem>
                           ))}
                         </SelectGroup>
