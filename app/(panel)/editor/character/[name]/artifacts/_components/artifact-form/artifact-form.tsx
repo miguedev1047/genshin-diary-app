@@ -11,12 +11,12 @@ import {
   SheetTrigger,
 } from '@/components/ui/sheet'
 import {
-    Form,
-    FormControl,
-    FormField,
-    FormItem,
-    FormLabel,
-    FormMessage,
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
 } from '@/components/ui/form'
 import { z } from 'zod'
 import { Button } from '@/components/ui/button'
@@ -32,10 +32,15 @@ import { useGetCharacter } from '@/editor/character/[name]/provider'
 import { useRouter } from 'next/navigation'
 import { toast } from 'sonner'
 
+const MAX_ARTIFACTS = 5
+
 export function ArtifactForm() {
   const { data: CHARACTER } = useGetCharacter()
+  
   const [isPending, startTransition] = useTransition()
   const { refresh } = useRouter()
+
+  const ARTIFACTS = CHARACTER?.artifacts ?? []
 
   const form = useForm<z.infer<typeof ArtifactCharacterSchema>>({
     resolver: zodResolver(ArtifactCharacterSchema),
@@ -45,6 +50,12 @@ export function ArtifactForm() {
   })
 
   const handleSubmit = form.handleSubmit((values) => {
+    const MAX_ITEMS = [...ARTIFACTS, ...values.artifacts].length > MAX_ARTIFACTS
+
+    if (MAX_ITEMS) {
+      return toast.error(`No puedes añadir más de ${MAX_ARTIFACTS} artefactos`)
+    }
+
     startTransition(async () => {
       const { status, message } = await createArtifacts(values, CHARACTER?.id)
 
@@ -73,7 +84,7 @@ export function ArtifactForm() {
         <SheetHeader>
           <SheetTitle>Nuevo artefacto</SheetTitle>
           <SheetDescription>
-            Añade un nuevo artefacto para el personaje
+            Añade un nuevo artefacto para el personaje.
           </SheetDescription>
         </SheetHeader>
 
