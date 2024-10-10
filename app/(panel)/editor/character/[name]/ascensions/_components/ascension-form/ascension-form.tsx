@@ -41,17 +41,15 @@ import { useRouter } from 'next/navigation'
 import { useTransition } from 'react'
 import { toast } from 'sonner'
 
-const MAX_MATERIAL_ITEMS = 4
-const MAX_ASCENSIONS_ITEMS = 6
-
-const MIN_ITEMS = 0
-
 export function AscensionForm(props: AscensionsFormProps) {
   const { data: CHARACTER } = props
-  const ASCENSIONS = CHARACTER?.ascensions
 
   const [isPending, startTranstion] = useTransition()
   const { refresh } = useRouter()
+
+  const DISABLED_ASCENSIONS = CHARACTER?.ascensions
+    .filter((c) => c.character_id === CHARACTER?.id)
+    .map((c) => c.ascension_level)
 
   const form = useForm<z.infer<typeof AscensionSchema>>({
     resolver: zodResolver(AscensionSchema),
@@ -62,21 +60,6 @@ export function AscensionForm(props: AscensionsFormProps) {
   })
 
   const handleSubmit = form.handleSubmit((values) => {
-    const MAX_MATERIALS = values.materials.length > MAX_MATERIAL_ITEMS
-    if (MAX_MATERIALS) {
-      return toast.error(
-        `No puedes agregar mas de ${MAX_MATERIAL_ITEMS} materiales.`
-      )
-    }
-
-    const MAX_ASCENSIONS =
-      (ASCENSIONS?.length ?? MIN_ITEMS) >= MAX_ASCENSIONS_ITEMS
-    if (MAX_ASCENSIONS) {
-      return toast.error(
-        `No puedes agregar mas de ${MAX_ASCENSIONS_ITEMS} ascensiones.`
-      )
-    }
-
     startTranstion(async () => {
       const { message, status } = await createAscension(values, CHARACTER?.id)
 
@@ -136,10 +119,11 @@ export function AscensionForm(props: AscensionsFormProps) {
                       <SelectContent>
                         <SelectGroup>
                           <SelectLabel>Ascensiones</SelectLabel>
-                          {ASCENSION_LEVEL.map(({ label, value }) => (
+                          {ASCENSION_LEVEL.slice(0, 6).map(({ label, value }) => (
                             <SelectItem
                               key={value}
                               value={value}
+                              disabled={DISABLED_ASCENSIONS?.includes(value)}
                             >
                               {label}
                             </SelectItem>
