@@ -191,3 +191,19 @@ export const VideoGuideSchema = z.object({
   embed_video_url: z.string().min(1, 'La url es requerida.'),
   character_id: z.string(),
 })
+
+export const TeamsCharacterSchema = z.object({
+  name: z.string().min(3, {
+    message: 'El nombre del equipo es requerido.',
+  }),
+  characters: z
+    .array(z.string().min(1))
+    .min(1)
+    .nonempty('Seleccione al menos un personaje.'),
+})
+
+export const TeamNameSchema = z.object({
+  name: z.string().min(3, {
+    message: 'El nombre del equipo es requerido.',
+  }),
+})
