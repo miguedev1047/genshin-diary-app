@@ -198,8 +198,8 @@ export const TeamsCharacterSchema = z.object({
   }),
   characters: z
     .array(z.string().min(1))
-    .min(1)
-    .nonempty('Seleccione al menos un personaje.'),
+    .min(4)
+    .nonempty('Seleccione al menos 4 personajes.'),
 })
 
 export const TeamNameSchema = z.object({
