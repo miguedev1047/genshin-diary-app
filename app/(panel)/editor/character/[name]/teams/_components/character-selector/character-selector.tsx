@@ -10,7 +10,7 @@ export function CharacterSelector(props: CharacterSelectorProps) {
 
   return (
     <DialogMultiSelect
-      items={ITEMS}
+      items={ITEMS as never}
       placeholder='Buscar personaje'
       isLoading={isLoading}
       maxCount={4}
