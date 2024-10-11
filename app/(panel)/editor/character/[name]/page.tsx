@@ -18,7 +18,8 @@ import { Weapons } from '@/editor/character/[name]/weapons'
 import { Artifacts } from '@/editor/character/[name]/artifacts'
 import { StatsPriority } from '@/editor/character/[name]/stats-priority'
 import { VideoGuide } from '@/editor/character/[name]/video-guide'
-import { Talents } from '@/editor/character/[name]/talents/talents'
+import { Talents } from '@/editor/character/[name]/talents'
+import { Teams } from '@/editor/character/[name]/teams'
 
 export default async function EditorCharacterPage(props: PageProps) {
   const { params } = props
@@ -56,6 +57,7 @@ export default async function EditorCharacterPage(props: PageProps) {
           </div>
           <StatsPriority />
           <VideoGuide />
+          <Teams />
         </section>
       </CharacterProvider>
     </ContentLayout>
