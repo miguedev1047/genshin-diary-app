@@ -9,6 +9,7 @@ export type CharacterProps = Prisma.CharactersGetPayload<{
     artifacts: true
     ascensions: true
     constellations: true
+    teams: true
     images: true
     materials: true
     passives: true
