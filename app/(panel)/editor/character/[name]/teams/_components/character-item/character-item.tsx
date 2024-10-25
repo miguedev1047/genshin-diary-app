@@ -3,11 +3,11 @@ import { CharacterItemProps } from '@/editor/character/[name]/teams/_components/
 import { useGetCharacter } from '@/features/queries/panel/use-characters'
 import { Skeleton } from '@/components/ui/skeleton'
 import { SortableList } from '@/shared/components/sortable-list'
-import { DEFAULT_IMAGE } from '@/consts/general'
-import Image from 'next/image'
+import { ConstellationForm } from '@/editor/character/[name]/teams/_components/constellation-form'
+import { Badge } from '@/components/ui/badge'
 
 export function CharacterItem(props: CharacterItemProps) {
-  const { character_id, id } = props
+  const { character_id, id, constellation } = props
   const { data: CHARACTER, status } = useGetCharacter(character_id)
 
   if (status !== 'success') return <ItemLoader />
@@ -16,16 +16,16 @@ export function CharacterItem(props: CharacterItemProps) {
     <Card className='select-none'>
       <CardContent className='p-5 flex items-center justify-between gap-4'>
         <div className='flex items-center gap-4'>
-          <figure className='aspect-square bg-secondary rounded-lg size-16'>
-            <Image
-              src={CHARACTER?.images?.splash_art_url ?? DEFAULT_IMAGE}
-              alt={CHARACTER?.name ?? 'Character Image'}
-              width={1080}
-              height={1080}
-              className='object-cover size-full'
+          <Badge>C{constellation}</Badge>
+
+          <div className='flex items-center gap-4'>
+            <ConstellationForm
+              data={CHARACTER}
+              itemId={id}
+              constellation={constellation}
             />
-          </figure>
-          <p className='text-sm text-center'>{CHARACTER?.name}</p>
+            <p className='text-sm text-center'>{CHARACTER?.name}</p>
+          </div>
         </div>
 
         <SortableList.DragHandle />
