@@ -11,18 +11,17 @@ import { FormSheetProps } from '@/shared/layouts/panel/form-sheet/form-sheet.typ
 import { Button } from '@/components/ui/button'
 import { Pencil, Plus } from 'lucide-react'
 import { ScrollArea } from '@/components/ui/scroll-area'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 
 export function FormSheet(props: FormSheetProps) {
   const { title, formId, isEditing, disabled, isLoading, children } = props
-
   const [isOpen, setIsOpen] = useState(false)
 
-  useEffect(() => {
-    if (!isLoading) {
-      setIsOpen(false)
-    }
-  }, [isLoading])
+  // useEffect(() => {
+  //   if (!isLoading) {
+  //     setIsOpen(false)
+  //   }
+  // }, [isLoading])
 
   return (
     <Sheet
@@ -42,7 +41,7 @@ export function FormSheet(props: FormSheetProps) {
         <ScrollArea className='w-full h-[800px]'>
           <div className='px-1 space-y-4'>
             {children}
-            
+
             <SheetFooter>
               <SheetClose asChild>
                 <Button
