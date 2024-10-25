@@ -18,7 +18,13 @@ import {
   dialogMultiSelectVariants,
 } from './dialog-multi-select.type'
 import { Button } from '@/components/ui/button'
-import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog'
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from '@/components/ui/dialog'
 import { Grid } from 'react-loader-spinner'
 import { Separator } from '@/components/ui/separator'
 import { Badge } from '@/components/ui/badge'
@@ -175,7 +181,10 @@ export function DialogMultiSelect(props: DialogMultiSelectProps) {
           )}
         </Button>
       </DialogTrigger>
-      <DialogContent>
+      <DialogContent aria-describedby={undefined}>
+        <DialogHeader>
+          <DialogTitle>Buscador</DialogTitle>
+        </DialogHeader>
         <Command>
           <CommandInput
             placeholder={placeholder}
