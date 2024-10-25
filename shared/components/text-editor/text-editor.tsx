@@ -26,7 +26,7 @@ import { Card } from '@/components/ui/card'
 import { cn } from '@/lib/utils'
 
 export function TextEditor(props: TextEditorProps) {
-  const { initialValue, onChange, isLoading } = props
+  const { initialValue, onChange, isLoading, disabled } = props
 
   const [openNode, setOpenNode] = useState(false)
   const [openColor, setOpenColor] = useState(false)
@@ -34,7 +34,13 @@ export function TextEditor(props: TextEditorProps) {
   const extensions = [...defaultExtensions, slashCommand]
 
   return (
-    <Card className={cn('p-4', isLoading && 'opacity-50 cursor-not-allowed')}>
+    <Card
+      className={cn(
+        'p-4',
+        isLoading && 'opacity-50 cursor-not-allowed',
+        disabled && 'opacity-50 cursor-not-allowed'
+      )}
+    >
       <EditorRoot>
         <EditorContent
           extensions={extensions}
