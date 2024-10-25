@@ -13,12 +13,6 @@ import {
   MaterialImg,
   WeaponImg,
 } from '@/assets/images'
-import {
-  Heading1Icon,
-  Heading2Icon,
-  Heading3Icon,
-  TextIcon,
-} from 'lucide-react'
 import { Star4, Star5 } from '@/assets/stars'
 import { Sword, Bow, Catalyst, Claymore, Polearm } from '@/assets/weapon-types'
 
@@ -201,33 +195,33 @@ export const ASCENSION_LEVEL = [
 ]
 
 export const ASCENSION_CHARACTER = [
-  { ascension: 'ASCENSION_1', cost: 20000, level: '20/40', order: 1 },
-  { ascension: 'ASCENSION_2', cost: 40000, level: '40/50', order: 2 },
-  { ascension: 'ASCENSION_3', cost: 60000, level: '50/60', order: 3 },
-  { ascension: 'ASCENSION_4', cost: 80000, level: '60/70', order: 4 },
-  { ascension: 'ASCENSION_5', cost: 100000, level: '70/80', order: 5 },
-  { ascension: 'ASCENSION_6', cost: 120000, level: '80/90', order: 6 },
+  { ascension: 'ASCENSION_1', cost: 20000, level: '20-40', order: 1 },
+  { ascension: 'ASCENSION_2', cost: 40000, level: '40-50', order: 2 },
+  { ascension: 'ASCENSION_3', cost: 60000, level: '50-60', order: 3 },
+  { ascension: 'ASCENSION_4', cost: 80000, level: '60-70', order: 4 },
+  { ascension: 'ASCENSION_5', cost: 100000, level: '70-80', order: 5 },
+  { ascension: 'ASCENSION_6', cost: 120000, level: '80-90', order: 6 },
 ]
 
 export const ASCENSION_TALENT = [
-  { ascension: 'ASCENSION_1', cost: 12500, level: '1/2', order: 1 },
-  { ascension: 'ASCENSION_2', cost: 17500, level: '2/3', order: 2 },
-  { ascension: 'ASCENSION_3', cost: 25000, level: '3/4', order: 3 },
-  { ascension: 'ASCENSION_4', cost: 30000, level: '4/5', order: 4 },
-  { ascension: 'ASCENSION_5', cost: 37500, level: '5/6', order: 5 },
-  { ascension: 'ASCENSION_6', cost: 120000, level: '6/7', order: 6 },
-  { ascension: 'ASCENSION_7', cost: 260000, level: '7/8', order: 7 },
-  { ascension: 'ASCENSION_8', cost: 450000, level: '8/9', order: 8 },
-  { ascension: 'ASCENSION_9', cost: 700000, level: '9/10', order: 9 },
+  { ascension: 'ASCENSION_1', cost: 12500, level: '1-2', order: 1 },
+  { ascension: 'ASCENSION_2', cost: 17500, level: '2-3', order: 2 },
+  { ascension: 'ASCENSION_3', cost: 25000, level: '3-4', order: 3 },
+  { ascension: 'ASCENSION_4', cost: 30000, level: '4-5', order: 4 },
+  { ascension: 'ASCENSION_5', cost: 37500, level: '5-6', order: 5 },
+  { ascension: 'ASCENSION_6', cost: 120000, level: '6-7', order: 6 },
+  { ascension: 'ASCENSION_7', cost: 260000, level: '7-8', order: 7 },
+  { ascension: 'ASCENSION_8', cost: 450000, level: '8-9', order: 8 },
+  { ascension: 'ASCENSION_9', cost: 700000, level: '9-10', order: 9 },
 ]
 
 export const ASCENSION_WEAPON = [
-  { ascension_level: 'ASCENSION_1', cost: 20000, level: '20/40', order: 1 },
-  { ascension_level: 'ASCENSION_2', cost: 40000, level: '40/50', order: 2 },
-  { ascension_level: 'ASCENSION_3', cost: 60000, level: '50/60', order: 3 },
-  { ascension_level: 'ASCENSION_4', cost: 80000, level: '60/70', order: 4 },
-  { ascension_level: 'ASCENSION_5', cost: 100000, level: '70/80', order: 5 },
-  { ascension_level: 'ASCENSION_6', cost: 120000, level: '80/90', order: 6 },
+  { ascension_level: 'ASCENSION_1', cost: 20000, level: '20-40', order: 1 },
+  { ascension_level: 'ASCENSION_2', cost: 40000, level: '40-50', order: 2 },
+  { ascension_level: 'ASCENSION_3', cost: 60000, level: '50-60', order: 3 },
+  { ascension_level: 'ASCENSION_4', cost: 80000, level: '60-70', order: 4 },
+  { ascension_level: 'ASCENSION_5', cost: 100000, level: '70-80', order: 5 },
+  { ascension_level: 'ASCENSION_6', cost: 120000, level: '80-90', order: 6 },
 ]
 
 export const MATERIAL_TYPES = [
@@ -344,6 +338,16 @@ export const SKILL_TYPE = [
   { value: 'TALENT', label: 'Talento', skill: 'talent' },
   { value: 'PASSIVE', label: 'Pasiva', skill: 'passive' },
   { value: 'CONSTELLATION', label: 'Constelacion', skill: 'constellation' },
+]
+
+export const CONSTELLATION_TYPE = [
+  { value: '0', label: 'Por defecto' },
+  { value: '1', label: 'Constelación 1' },
+  { value: '2', label: 'Constelación 2' },
+  { value: '3', label: 'Constelación 3' },
+  { value: '4', label: 'Constelación 4' },
+  { value: '5', label: 'Constelación 5' },
+  { value: '6', label: 'Constelación 6' },
 ]
 
 export const DEFAULT_IMAGE = 'https://placehold.co/600?text=Hutao+Mains'
