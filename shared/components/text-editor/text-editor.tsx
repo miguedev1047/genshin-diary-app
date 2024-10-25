@@ -1,12 +1,6 @@
 'use client'
 
 import './text-editor.style.css'
-import { useState } from 'react'
-import { TextEditorProps } from '@/shared/components/text-editor/text-editor.type'
-import {
-  slashCommand,
-  suggestionItems,
-} from '@/shared/components/text-editor/selectors/slash-command/slash-command'
 import {
   EditorBubble,
   EditorCommand,
@@ -16,6 +10,12 @@ import {
   EditorContent,
   EditorRoot,
 } from 'novel'
+import {
+  slashCommand,
+  suggestionItems,
+} from '@/shared/components/text-editor/selectors/slash-command/slash-command'
+import { TextEditorProps } from '@/shared/components/text-editor/text-editor.type'
+import { useState } from 'react'
 import { defaultExtensions } from '@/shared/components/text-editor/extensions'
 import { handleCommandNavigation } from 'novel/extensions'
 import { ColorSelector } from '@/shared/components/text-editor/selectors/color-selector'
@@ -43,6 +43,7 @@ export function TextEditor(props: TextEditorProps) {
     >
       <EditorRoot>
         <EditorContent
+          immediatelyRender={true}
           extensions={extensions}
           {...(initialValue && {
             initialContent: initialValue,
@@ -68,7 +69,7 @@ export function TextEditor(props: TextEditorProps) {
                 <EditorCommandItem
                   value={item.title}
                   onCommand={(val) => item.command && item.command(val)}
-                  className={`flex w-full items-center space-x-2 rounded-md px-2 py-1 text-left text-sm hover:bg-accent aria-selected:bg-accent `}
+                  className='flex w-full items-center space-x-2 rounded-md px-2 py-1 text-left text-sm hover:bg-accent aria-selected:bg-accent'
                   key={item.title}
                 >
                   <div className='flex h-10 w-10 items-center justify-center rounded-md border border-muted bg-background'>
