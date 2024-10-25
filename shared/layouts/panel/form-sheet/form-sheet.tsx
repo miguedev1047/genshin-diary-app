@@ -31,7 +31,10 @@ export function FormSheet(props: FormSheetProps) {
       <SheetTrigger asChild>
         <Button size='icon'>{isEditing ? <Pencil /> : <Plus />}</Button>
       </SheetTrigger>
-      <SheetContent className='sm:max-w-[640px]'>
+      <SheetContent
+        aria-describedby={undefined}
+        className='sm:max-w-[640px]'
+      >
         <SheetHeader>
           <SheetTitle>
             {isEditing ? 'Editar' : 'Agregar'} {title}
