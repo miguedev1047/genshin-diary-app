@@ -93,3 +93,25 @@ export async function updateTeamName(
     return { status: 500, message: 'Ocurrio un error.' }
   }
 }
+
+export async function updateCharacterConstellation(
+  constellation: number,
+  id: string | undefined
+) {
+  const ROLE = await currentRole()
+
+  if (ROLE === 'USER') {
+    return { status: 403, message: 'No tienes permisos.' }
+  }
+
+  try {
+    await db.teamsCharacters.update({
+      where: { id },
+      data: { constellation },
+    })
+
+    return { status: 201, message: 'Cambios guardados.' }
+  } catch (error) {
+    return { status: 500, message: 'Ocurrio un error.' }
+  }
+}
