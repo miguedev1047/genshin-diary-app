@@ -8,14 +8,15 @@ export type CharacterProps = Prisma.CharactersGetPayload<{
   include: {
     artifacts: true
     ascensions: true
-    constellations: true
     teams: true
     images: true
     materials: true
-    passives: true
     stats_priority: true
-    talents: true
+    talents_ascension: true
     video_guide: true
     weapons: true
+    talents: true
+    passives: true
+    constellations: true
   }
 }>
