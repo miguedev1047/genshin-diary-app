@@ -1,16 +1,6 @@
 'use client'
 
 import {
-  Sheet,
-  SheetClose,
-  SheetContent,
-  SheetDescription,
-  SheetFooter,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from '@/components/ui/sheet'
-import {
   Form,
   FormControl,
   FormField,
@@ -19,9 +9,6 @@ import {
   FormMessage,
 } from '@/components/ui/form'
 import { z } from 'zod'
-import { Plus } from 'lucide-react'
-import { Button } from '@/components/ui/button'
-import { ScrollArea } from '@/components/ui/scroll-area'
 import { useForm } from 'react-hook-form'
 import { useTransition } from 'react'
 import { TeamsCharacterSchema } from '@/schemas'
@@ -30,6 +17,7 @@ import { Input } from '@/components/ui/input'
 import { CharacterSelector } from '@/editor/character/[name]/teams/_components/character-selector'
 import { createTeams } from '@/editor/character/[name]/teams/_services/create'
 import { useGetCharacter } from '@/editor/character/[name]/provider'
+import { FormSheet } from '@/shared/layouts/panel/form-sheet'
 import { useRouter } from 'next/navigation'
 import { toast } from 'sonner'
 
@@ -82,83 +70,54 @@ export function TeamForm() {
     })
   })
 
-  const handleReset = () => form.reset()
-
   return (
-    <Sheet>
-      <SheetTrigger asChild>
-        <Button size='icon'>
-          <Plus />
-        </Button>
-      </SheetTrigger>
-      <SheetContent className='sm:max-w-[640px]'>
-        <SheetHeader>
-          <SheetTitle>Nuevo equipo</SheetTitle>
-          <SheetDescription>Añade un equipo al personaje.</SheetDescription>
-        </SheetHeader>
+    <FormSheet
+      title='Equipo'
+      isLoading={isPending}
+      formId='team-form'
+    >
+      <Form {...form}>
+        <form
+          id='team-form'
+          onSubmit={handleSubmit}
+          className='grid gap-4'
+        >
+          <FormField
+            control={form.control}
+            name='name'
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Nombre del equipo</FormLabel>
+                <FormControl>
+                  <Input
+                    disabled={isPending}
+                    placeholder='Baaltional Team'
+                    {...field}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
 
-        <ScrollArea className='w-full h-[800px]'>
-          <Form {...form}>
-            <form
-              onSubmit={handleSubmit}
-              className='grid gap-4 px-1 py-4'
-            >
-              <FormField
-                control={form.control}
-                name='name'
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Nombre del equipo</FormLabel>
-                    <FormControl>
-                      <Input
-                        disabled={isPending}
-                        placeholder='Baaltional Team'
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-
-              <FormField
-                control={form.control}
-                name='characters'
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Personajes</FormLabel>
-                    <FormControl>
-                      <CharacterSelector
-                        disabled={isPending}
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-
-              <SheetFooter>
-                <SheetClose asChild>
-                  <Button
-                    variant='secondary'
-                    type='button'
-                    onClick={handleReset}
-                  >
-                    Cancelar
-                  </Button>
-                </SheetClose>
-                <Button
-                  type='submit'
-                  disabled={isPending}
-                >
-                  Guardar
-                </Button>
-              </SheetFooter>
-            </form>
-          </Form>
-        </ScrollArea>
-      </SheetContent>
-    </Sheet>
+          <FormField
+            control={form.control}
+            name='characters'
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Personajes</FormLabel>
+                <FormControl>
+                  <CharacterSelector
+                    disabled={isPending}
+                    {...field}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        </form>
+      </Form>
+    </FormSheet>
   )
 }
