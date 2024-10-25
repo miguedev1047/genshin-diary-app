@@ -7,8 +7,8 @@ import {
   BreadcrumbSeparator,
 } from '@/components/ui/breadcrumb'
 import { ContentLayout } from '@/shared/layouts/panel/content-layout'
+import { WeaponForm } from '@/creator/weapon/_components/weapon-form'
 import Link from 'next/link'
-import { CreatorWeaponForm } from '@/app/(panel)/creator/weapon/_components/creator-weapon-form'
 
 export default function EditWeaponPage() {
   return (
@@ -30,7 +30,7 @@ export default function EditWeaponPage() {
         </BreadcrumbList>
       </Breadcrumb>
 
-      <CreatorWeaponForm />
+      <WeaponForm />
     </ContentLayout>
   )
 }

@@ -7,7 +7,7 @@ import {
   BreadcrumbSeparator,
 } from '@/components/ui/breadcrumb'
 import { ContentLayout } from '@/shared/layouts/panel/content-layout'
-import { CreatorCharacterForm } from '@/app/(panel)/creator/character/_components/creator-character-form/creator-character-form'
+import { CharacterForm } from '@/creator/character/_components/character-form'
 import Link from 'next/link'
 
 export default function CreatorCharacterPage() {
@@ -30,7 +30,7 @@ export default function CreatorCharacterPage() {
         </BreadcrumbList>
       </Breadcrumb>
 
-      <CreatorCharacterForm />
+      <CharacterForm />
     </ContentLayout>
   )
 }

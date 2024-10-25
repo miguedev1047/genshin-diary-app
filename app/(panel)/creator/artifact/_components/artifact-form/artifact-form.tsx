@@ -20,7 +20,6 @@ import {
 import { z } from 'zod'
 import { STARS } from '@/consts/general'
 import { Input } from '@/components/ui/input'
-import { Textarea } from '@/components/ui/textarea'
 import { ArtifactSchema } from '@/schemas'
 import { Star } from 'lucide-react'
 import { FormCard } from '@/shared/layouts/panel/form-card'
@@ -28,10 +27,11 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useRouter } from 'next/navigation'
 import { useTransition } from 'react'
 import { useForm } from 'react-hook-form'
-import { createArtifact } from '@/app/(panel)/creator/artifact/_service/create'
+import { createArtifact } from '@/creator/artifact/_service/create'
 import { toast } from 'sonner'
+import { TextEditor } from '@/shared/components/text-editor'
 
-export function CreatorArtifactForm() {
+export function ArtifactForm() {
   const [isPending, startTranstion] = useTransition()
   const { refresh, push } = useRouter()
 
@@ -153,11 +153,12 @@ export function CreatorArtifactForm() {
             control={form.control}
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Descripcion</FormLabel>
+                <FormLabel>Descripción</FormLabel>
                 <FormControl>
-                  <Textarea
-                    placeholder='Descripción del artefacto'
-                    {...field}
+                  <TextEditor
+                    initialValue={field.value}
+                    onChange={field.onChange}
+                    isLoading={isPending}
                   />
                 </FormControl>
               </FormItem>

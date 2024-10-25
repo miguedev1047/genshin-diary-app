@@ -19,19 +19,19 @@ import {
 } from '@/components/ui/select'
 import { z } from 'zod'
 import { Input } from '@/components/ui/input'
-import { Textarea } from '@/components/ui/textarea'
 import { ATTRIBUTES, STARS, WEAPON_TYPE } from '@/consts/general'
 import { WeaponSchema } from '@/schemas'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Star } from 'lucide-react'
-import { createWeapon } from '@/app/(panel)/creator/weapon/_service/create'
+import { createWeapon } from '@/creator/weapon/_service/create'
 import { FormCard } from '@/shared/layouts/panel/form-card'
 import { useTransition } from 'react'
 import { useForm } from 'react-hook-form'
 import { useRouter } from 'next/navigation'
 import { toast } from 'sonner'
+import { TextEditor } from '@/shared/components/text-editor'
 
-export function CreatorWeaponForm() {
+export function WeaponForm() {
   const [isPending, startTranstion] = useTransition()
   const { refresh, push } = useRouter()
 
@@ -112,23 +112,6 @@ export function CreatorWeaponForm() {
               )}
             />
           </div>
-
-          <FormField
-            control={form.control}
-            name='passive_description'
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Pasiva</FormLabel>
-                <FormControl>
-                  <Textarea
-                    disabled={isPending}
-                    placeholder='Descripción de la pasiva'
-                    {...field}
-                  />
-                </FormControl>
-              </FormItem>
-            )}
-          />
 
           <div className='grid lg:grid-cols-2 gap-4'>
             <FormField
@@ -265,6 +248,23 @@ export function CreatorWeaponForm() {
               )}
             />
           </div>
+
+          <FormField
+            control={form.control}
+            name='passive_description'
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Descripción de la pasiva</FormLabel>
+                <FormControl>
+                  <TextEditor
+                    initialValue={field.value}
+                    onChange={field.onChange}
+                    isLoading={isPending}
+                  />
+                </FormControl>
+              </FormItem>
+            )}
+          />
         </form>
       </Form>
     </FormCard>

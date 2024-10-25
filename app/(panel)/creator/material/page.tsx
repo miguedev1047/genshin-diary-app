@@ -6,7 +6,7 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from '@/components/ui/breadcrumb'
-import { CreatorMaterialForm } from '@/app/(panel)/creator/material/_components/creator-material-form'
+import { MaterialForm } from '@/creator/material/_components/material-form'
 import { ContentLayout } from '@/shared/layouts/panel/content-layout'
 import Link from 'next/link'
 
@@ -30,7 +30,7 @@ export default function CreatorMaterialPage() {
         </BreadcrumbList>
       </Breadcrumb>
 
-      <CreatorMaterialForm />
+      <MaterialForm />
     </ContentLayout>
   )
 }

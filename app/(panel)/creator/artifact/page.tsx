@@ -7,7 +7,7 @@ import {
   BreadcrumbSeparator,
 } from '@/components/ui/breadcrumb'
 import { ContentLayout } from '@/shared/layouts/panel/content-layout'
-import { CreatorArtifactForm } from '@/app/(panel)/creator/artifact/_components/creator-artifact-form'
+import { ArtifactForm } from '@/creator/artifact/_components/artifact-form'
 import Link from 'next/link'
 
 export default function CreatorArtifactPage() {
@@ -30,7 +30,7 @@ export default function CreatorArtifactPage() {
         </BreadcrumbList>
       </Breadcrumb>
 
-      <CreatorArtifactForm />
+      <ArtifactForm />
     </ContentLayout>
   )
 }

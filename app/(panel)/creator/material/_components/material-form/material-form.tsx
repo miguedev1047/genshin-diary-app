@@ -24,11 +24,11 @@ import { useForm } from 'react-hook-form'
 import { Input } from '@/components/ui/input'
 import { Star } from 'lucide-react'
 import { MATERIAL_TYPES, STARS } from '@/consts/general'
-import { Textarea } from '@/components/ui/textarea'
-import { createMaterial } from '@/app/(panel)/creator/material/_service/create'
+import { createMaterial } from '@/creator/material/_service/create'
 import { toast } from 'sonner'
+import { TextEditor } from '@/shared/components/text-editor'
 
-export function CreatorMaterialForm() {
+export function MaterialForm() {
   const [isPending, startTranstion] = useTransition()
   const { refresh, push } = useRouter()
 
@@ -181,9 +181,10 @@ export function CreatorMaterialForm() {
               <FormItem>
                 <FormLabel>Descripción</FormLabel>
                 <FormControl>
-                  <Textarea
-                    placeholder='Descripción del material'
-                    {...field}
+                  <TextEditor
+                    initialValue={field.value}
+                    onChange={field.onChange}
+                    isLoading={isPending}
                   />
                 </FormControl>
               </FormItem>
