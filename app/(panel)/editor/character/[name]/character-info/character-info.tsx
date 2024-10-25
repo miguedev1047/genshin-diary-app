@@ -8,11 +8,12 @@ import {
   getWeaponText,
 } from '@/features/utils/character-texts'
 import { EditorCard } from '@/shared/layouts/panel/editor-card'
-import { EditorCharacterForm } from '@/editor/character/[name]/character-info/_components/editor_character-form'
 import { Badge } from '@/components/ui/badge'
 import { Star } from 'lucide-react'
 import { DEFAULT_IMAGE } from '@/consts/general'
 import { useGetCharacter } from '@/editor/character/[name]/provider'
+import { CharacterInfoForm } from '@/editor/character/[name]/character-info/_components/character-info-form'
+import parse from 'html-react-parser'
 import Image from 'next/image'
 
 export function CharacterInfo() {
@@ -27,7 +28,7 @@ export function CharacterInfo() {
   return (
     <EditorCard
       title='Informacion del personaje'
-      renderForm={<EditorCharacterForm />}
+      renderForm={<CharacterInfoForm />}
     >
       <div className='grid grid-cols-5 gap-4'>
         <div className='col-span-1'>
@@ -74,15 +75,15 @@ export function CharacterInfo() {
           </div>
 
           <div className='space-y-2'>
-            <ul className='flex items-center gap-2'>
+            <ul className='flex items-center gap-2 mb-4'>
               <Badge>{ROLE}</Badge>
               <Badge>{ATTRIBUTE}</Badge>
               <Badge>{WEAPON}</Badge>
             </ul>
 
-            <p className='text-pretty text-sm opacity-70'>
-              {CHARACTER?.description}
-            </p>
+            <span className='[&>p]:text-pretty text-sm opacity-70 my-20 tiptap'>
+              {parse(CHARACTER?.description ?? '')}
+            </span>
           </div>
         </div>
       </div>
