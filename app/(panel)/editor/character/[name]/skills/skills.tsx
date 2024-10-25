@@ -1,7 +1,8 @@
 import { Tabs, TabsContent, TabsTrigger, TabsList } from '@/components/ui/tabs'
 import { EditorCard } from '@/shared/layouts/panel/editor-card'
-import { Talents } from './talents'
-import { Passives } from './passives'
+import { Talents } from '@/editor/character/[name]/skills/talents'
+import { Passives } from '@/editor/character/[name]/skills/passives'
+import { Constellations } from '@/editor/character/[name]/skills/constellations'
 
 export function Skills() {
   return (
@@ -13,7 +14,7 @@ export function Skills() {
         <TabsList>
           <TabsTrigger value='talents'>Talentos</TabsTrigger>
           <TabsTrigger value='passives'>Pasivas</TabsTrigger>
-          <TabsTrigger value='constellations'>Talentos</TabsTrigger>
+          <TabsTrigger value='constellations'>Constelaciones</TabsTrigger>
         </TabsList>
         <TabsContent value='talents'>
           <Talents />
@@ -21,7 +22,9 @@ export function Skills() {
         <TabsContent value='passives'>
           <Passives />
         </TabsContent>
-        <TabsContent value='constellations'>Constelaciones</TabsContent>
+        <TabsContent value='constellations'>
+          <Constellations />
+        </TabsContent>
       </Tabs>
     </EditorCard>
   )
