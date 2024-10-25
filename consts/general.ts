@@ -13,6 +13,12 @@ import {
   MaterialImg,
   WeaponImg,
 } from '@/assets/images'
+import {
+  Heading1Icon,
+  Heading2Icon,
+  Heading3Icon,
+  TextIcon,
+} from 'lucide-react'
 import { Star4, Star5 } from '@/assets/stars'
 import { Sword, Bow, Catalyst, Claymore, Polearm } from '@/assets/weapon-types'
 
@@ -333,5 +339,11 @@ export const ITEM_FILTERS = {
   element_filters: ELEMENTS,
   weapon_filters: WEAPON_TYPE,
 }
+
+export const SKILL_TYPE = [
+  { value: 'TALENT', label: 'Talento', skill: 'talent' },
+  { value: 'PASSIVE', label: 'Pasiva', skill: 'passive' },
+  { value: 'CONSTELLATION', label: 'Constelacion', skill: 'constellation' },
+]
 
 export const DEFAULT_IMAGE = 'https://placehold.co/600?text=Hutao+Mains'
