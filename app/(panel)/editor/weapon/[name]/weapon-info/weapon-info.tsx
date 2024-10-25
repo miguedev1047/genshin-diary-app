@@ -6,13 +6,14 @@ import {
   getWeaponText,
 } from '@/features/utils/character-texts'
 import { EditorCard } from '@/shared/layouts/panel/editor-card'
-import { EditorWeaponForm } from '@/app/(panel)/editor/weapon/[name]/weapon-info/_components/editor-weapon-form'
+import { WeaponInfoForm } from '@/app/(panel)/editor/weapon/[name]/weapon-info/_components/weapon-info-form'
 import { SquareBox } from '@/shared/components/square-box'
 import { Badge } from '@/components/ui/badge'
 import { Star } from 'lucide-react'
 import { NONE } from '@/consts/general'
 import { useGetWeapon } from '@/app/(panel)/editor/weapon/[name]/provider'
 import Image from 'next/image'
+import parse from 'html-react-parser'
 
 export function WeaponInfo() {
   const { data: WEAPON } = useGetWeapon()
@@ -25,7 +26,7 @@ export function WeaponInfo() {
     <EditorCard
       title='Información del arma'
       className='grid grid-cols-5 gap-4'
-      renderForm={<EditorWeaponForm />}
+      renderForm={<WeaponInfoForm />}
     >
       <div className='col-span-1'>
         <SquareBox>
@@ -64,13 +65,13 @@ export function WeaponInfo() {
         </div>
 
         <div className='space-y-2'>
-          <ul className='flex items-center gap-2'>
+          <ul className='flex items-center gap-2 mb-4'>
             <Badge>{MAIN_STAT}</Badge>
             <Badge>{WEAPON_TYPE}</Badge>
           </ul>
 
-          <p className='text-pretty text-sm opacity-70'>
-            {WEAPON?.passive_description}
+          <p className='[&>p]:text-pretty text-sm opacity-70 my-20 tiptap'>
+            {parse(WEAPON?.passive_description ?? '')}
           </p>
         </div>
       </div>
