@@ -7,6 +7,17 @@ import {
   TooltipTrigger,
 } from '@/components/ui/tooltip'
 import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from '@/components/ui/alert-dialog'
+import {
   DeleteButtonProps,
   UseDeleteProps,
 } from '@/shared/layouts/panel/delete-button/delete-button.type'
@@ -17,7 +28,7 @@ import { toast } from 'sonner'
 import { cn } from '@/lib/utils'
 
 function useDelete(props: UseDeleteProps) {
-  const { itemId, onDelete, onRefresh } = props
+  const { itemId, onDelete } = props
 
   const [isPending, startTransition] = useTransition()
   const { refresh } = useRouter()
@@ -30,8 +41,6 @@ function useDelete(props: UseDeleteProps) {
         toast.success(message)
         refresh()
 
-        if (onRefresh) return onRefresh()
-
         return
       }
 
@@ -43,28 +52,50 @@ function useDelete(props: UseDeleteProps) {
 }
 
 export function DeleteButton(props: DeleteButtonProps) {
-  const { children, className, itemId, disabled, onDelete, onRefresh } = props
+  const { children, className, itemId, disabled, onDelete } = props
 
   const { isPending, onDeleteItem } = useDelete({
     itemId,
     onDelete,
-    onRefresh,
   })
 
   return (
     <TooltipProvider>
       <Tooltip>
-        <TooltipTrigger asChild>
-          <Button
-            disabled={isPending || disabled}
-            variant='destructive'
-            size='icon'
-            className={cn(className, 'p-1 z-50')}
-            onClick={onDeleteItem}
-          >
-            {children}
-          </Button>
-        </TooltipTrigger>
+        <AlertDialog>
+          <AlertDialogTrigger asChild>
+            <TooltipTrigger asChild>
+              <Button
+                disabled={isPending || disabled}
+                variant='destructive'
+                size='icon'
+                className={cn(className, 'p-1 z-50')}
+              >
+                {children}
+              </Button>
+            </TooltipTrigger>
+          </AlertDialogTrigger>
+          <AlertDialogContent>
+            <AlertDialogHeader>
+              <AlertDialogTitle>¿Estás seguro?</AlertDialogTitle>
+              <AlertDialogDescription>
+                Esta acción no se puede deshacer. Si estas seguro, presiona el
+                botón de eliminar.
+              </AlertDialogDescription>
+            </AlertDialogHeader>
+            <AlertDialogFooter>
+              <AlertDialogCancel disabled={isPending || disabled}>
+                Cancelar
+              </AlertDialogCancel>
+              <AlertDialogAction
+                onClick={onDeleteItem}
+                disabled={isPending || disabled}
+              >
+                Eliminar
+              </AlertDialogAction>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialog>
         <TooltipContent side='bottom'>
           <p>Eliminar</p>
         </TooltipContent>
