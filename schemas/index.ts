@@ -207,3 +207,17 @@ export const TeamNameSchema = z.object({
     message: 'El nombre del equipo es requerido.',
   }),
 })
+
+export const TalentCharacterSchema = z.object({
+  title: z.string().min(3, { message: 'El nombre del talento es requerido.' }),
+  description: z
+    .string()
+    .min(3, { message: 'La descripción del talento es requerida.' }),
+  image_url: z
+    .string()
+    .min(1, { message: 'La url de la imagen es requerida.' }),
+  type: z.enum(['TALENT', 'PASSIVE', 'CONSTELLATION'], {
+    message: 'El tipo de talento es requerido.',
+  }),
+  character_id: z.string(),
+})
