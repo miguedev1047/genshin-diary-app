@@ -12,10 +12,8 @@ export function Hero() {
           </span>
         </AnimatedShinyText>
 
-        <p className='animate-fade-in mb-12 -translate-y-4 text-balance text-lg tracking-tight text-gray-400 opacity-0 [--animation-delay:400ms] md:text-xl'>
-          Este sitio web es una plataforma dedicada a ofrecer guías sencillas y
-          accesibles
-          <br className='hidden md:block' /> para los personajes de Genshin
+        <p className='animate-fade-in mb-8 -translate-y-4 text-balance text-lg tracking-tight text-gray-400 opacity-0 [--animation-delay:400ms] md:text-xl'>
+          Esta plataforma ofrece guías simples y accesibles sobre los personajes de Genshin
           Impact.
         </p>
 
