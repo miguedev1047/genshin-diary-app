@@ -87,6 +87,12 @@ enum UserRoleEnum {
   NONE
 }
 
+enum SkillTypeEnum {
+  TALENT
+  PASSIVE
+  CONSTELLATION
+}
+
 model User {
   id       String       @id @default(cuid())
   name     String
@@ -113,17 +119,18 @@ model Characters {
   date_created DateTime @default(now())
   date_updated DateTime @updatedAt
 
-  images         CharacterImage?
-  video_guide    VideoGuideCharacter?
-  weapons        WeaponCharacter[]
-  artifacts      ArtifactCharacter[]
-  materials      MaterialCharacter[]
-  stats_priority StatsPriorityCharacter?
-  passives       PassivesCharacter[]
-  constellations ConstellationsCharacter[]
-  ascensions     AscensionCharacter[]
-  talents        TalentsAscensionCharacter[]
-  teams          TeamsCharacter[]
+  images            CharacterImage?
+  video_guide       VideoGuideCharacter?
+  weapons           WeaponCharacter[]
+  artifacts         ArtifactCharacter[]
+  materials         MaterialCharacter[]
+  stats_priority    StatsPriorityCharacter?
+  ascensions        AscensionCharacter[]
+  talents_ascension TalentsAscensionCharacter[]
+  teams             TeamsCharacter[]
+  talents           TalentsCharacter[]
+  passives          PassivesCharacter[]
+  constellations    ConstellationsCharacter[]
 }
 
 model CharacterImage {
@@ -308,42 +315,6 @@ model TalentsAscensionCharacterMaterial {
 }
 
 // <----- ------>
-// <----- PASIVAS ------>
-model PassivesCharacter {
-  id           String @id @unique @default(cuid())
-  character_id String
-
-  image_url   String?
-  name        String
-  description String
-
-  order Int @default(0)
-
-  date_created DateTime @default(now())
-  date_updated DateTime @updatedAt
-
-  passives Characters @relation(fields: [character_id], references: [id], onDelete: Cascade)
-}
-
-// <----- ------>
-// <----- CONSTELACIONES ------>
-model ConstellationsCharacter {
-  id           String @id @unique @default(uuid())
-  character_id String
-
-  image_url   String?
-  name        String
-  description String
-
-  order Int @default(0)
-
-  date_created DateTime @default(now())
-  date_updated DateTime @updatedAt
-
-  constellations Characters @relation(fields: [character_id], references: [id], onDelete: Cascade)
-}
-
-// <----- ------>
 // <----- ASCENSIONES ------>
 model AscensionCharacter {
   id           String @id @unique @default(cuid())
@@ -413,11 +384,66 @@ model TeamsCharacters {
   id      String @id @unique @default(cuid())
   team_id String
 
-  character_id String
-  order        Int    @default(0)
+  character_id  String
+  order         Int    @default(0)
+  constellation Int    @default(0)
 
   date_created DateTime @default(now())
   date_updated DateTime @updatedAt
 
-  TeamsCharacter TeamsCharacter @relation(fields: [team_id], references: [id], onDelete: Cascade)
+  teams TeamsCharacter @relation(fields: [team_id], references: [id], onDelete: Cascade)
+}
+
+// <----- ------>
+// <----- TALENTOS ------>
+model TalentsCharacter {
+  id           String @id @unique @default(cuid())
+  character_id String
+
+  title       String
+  image_url   String?
+  description String
+  type        SkillTypeEnum
+  order       Int           @default(0)
+
+  date_created DateTime @default(now())
+  date_updated DateTime @updatedAt
+
+  skills Characters @relation(fields: [character_id], references: [id], onDelete: Cascade)
+}
+
+// <----- ------>
+// <----- PASIVAS ------>
+model PassivesCharacter {
+  id           String @id @unique @default(cuid())
+  character_id String
+
+  title       String
+  image_url   String?
+  description String
+  type        SkillTypeEnum
+  order       Int           @default(0)
+
+  date_created DateTime @default(now())
+  date_updated DateTime @updatedAt
+
+  passives Characters @relation(fields: [character_id], references: [id], onDelete: Cascade)
+}
+
+// <----- ------>
+// <----- CONSTELACIONES ------>
+model ConstellationsCharacter {
+  id           String @id @unique @default(cuid())
+  character_id String
+
+  title       String
+  image_url   String?
+  description String
+  type        SkillTypeEnum
+  order       Int           @default(0)
+
+  date_created DateTime @default(now())
+  date_updated DateTime @updatedAt
+
+  constellations Characters @relation(fields: [character_id], references: [id], onDelete: Cascade)
 }
