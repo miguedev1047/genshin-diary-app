@@ -18,8 +18,9 @@ import { Weapons } from '@/editor/character/[name]/weapons'
 import { Artifacts } from '@/editor/character/[name]/artifacts'
 import { StatsPriority } from '@/editor/character/[name]/stats-priority'
 import { VideoGuide } from '@/editor/character/[name]/video-guide'
-import { Talents } from '@/editor/character/[name]/talents'
+import { TalentAscension } from '@/editor/character/[name]/talents-ascension/talent-ascension'
 import { Teams } from '@/editor/character/[name]/teams'
+import { Skills } from '@/editor/character/[name]/skills'
 
 export default async function EditorCharacterPage(props: PageProps) {
   const { params } = props
@@ -50,7 +51,7 @@ export default async function EditorCharacterPage(props: PageProps) {
         <section className='space-y-6'>
           <CharacterInfo />
           <Ascension />
-          <Talents />
+          <TalentAscension />
           <div className='grid lg:grid-cols-2 gap-6'>
             <Weapons />
             <Artifacts />
@@ -58,6 +59,7 @@ export default async function EditorCharacterPage(props: PageProps) {
           <StatsPriority />
           <VideoGuide />
           <Teams />
+          <Skills />
         </section>
       </CharacterProvider>
     </ContentLayout>
