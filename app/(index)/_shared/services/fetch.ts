@@ -1,4 +1,3 @@
-import { currentRole } from '@/data/auth'
 import { ElementEnum, RarityEnum, WeaponTypeEnum } from '@prisma/client'
 import db from '@/lib/db'
 
@@ -11,12 +10,6 @@ type Props = {
 
 export async function getCharacters(props: Props) {
   const { name, element, weapon, stars } = props
-
-  const ROLE = await currentRole()
-
-  if (ROLE !== 'ADMIN') {
-    return null
-  }
 
   try {
     if (name || element || weapon || stars) {
