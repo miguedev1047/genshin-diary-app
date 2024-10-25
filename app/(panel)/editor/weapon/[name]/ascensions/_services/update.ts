@@ -5,7 +5,7 @@ import { currentRole } from '@/data/auth'
 import { MaterialQuantitySchema } from '@/schemas'
 import db from '@/lib/db'
 
-export async function updateMaterialQuantity(
+export async function updateWeaponAscensionMaterialQuantity(
   data: z.infer<typeof MaterialQuantitySchema>,
   material_id: string | undefined
 ) {

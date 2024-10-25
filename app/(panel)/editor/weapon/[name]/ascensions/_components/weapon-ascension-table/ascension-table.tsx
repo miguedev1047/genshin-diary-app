@@ -21,7 +21,7 @@ interface DataTableProps<TData, TValue> {
   data: TData[]
 }
 
-export function AscensionTable<TData, TValue>({
+export function WeaponAscensionTable<TData, TValue>({
   columns,
   data,
 }: DataTableProps<TData, TValue>) {
@@ -33,7 +33,7 @@ export function AscensionTable<TData, TValue>({
 
   return (
     <div className='rounded-md border select-none'>
-      <Table> 
+      <Table>
         <TableHeader>
           {table.getHeaderGroups().map((headerGroup) => (
             <TableRow key={headerGroup.id}>

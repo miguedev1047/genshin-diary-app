@@ -3,7 +3,7 @@
 import { currentRole } from '@/data/auth'
 import db from '@/lib/db'
 
-export async function deleteAscension(id: string) {
+export async function deleteWeaponAscension(id: string) {
   if (!id) return { status: 403, message: 'Esta ascensión no existe.' }
 
   const ROLE = await currentRole()

@@ -6,7 +6,7 @@ import { currentRole } from '@/data/auth'
 import { WeaponAscensionSchema } from '@/schemas'
 import db from '@/lib/db'
 
-export async function createAscension(
+export async function createWeaponAscension(
   data: z.infer<typeof WeaponAscensionSchema>,
   weapon_id: string | undefined
 ) {

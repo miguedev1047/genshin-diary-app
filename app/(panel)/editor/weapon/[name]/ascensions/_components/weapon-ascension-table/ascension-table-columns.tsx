@@ -5,7 +5,7 @@ import { Prisma } from '@prisma/client'
 import { ColumnDef } from '@tanstack/react-table'
 import { DeleteButton } from '@/shared/layouts/panel/delete-button'
 import { Trash2 } from 'lucide-react'
-import { deleteAscension } from '@/editor/weapon/[name]/ascensions/_services/delete'
+import { deleteWeaponAscension } from '@/editor/weapon/[name]/ascensions/_services/delete'
 import { MaterialItem } from '@/editor/weapon/[name]/ascensions/_components/material-item'
 import Image from 'next/image'
 
@@ -13,7 +13,7 @@ type Ascension = Prisma.WeaponAscensionsGetPayload<{
   include: { materials: true }
 }>
 
-export const ASCENSION_TABLE_COLUMNS: ColumnDef<Ascension>[] = [
+export const columns: ColumnDef<Ascension>[] = [
   {
     accessorKey: 'ascension',
     header: 'Ascensión',
@@ -89,7 +89,7 @@ export const ASCENSION_TABLE_COLUMNS: ColumnDef<Ascension>[] = [
       return (
         <DeleteButton
           itemId={id}
-          onDelete={deleteAscension}
+          onDelete={deleteWeaponAscension}
         >
           <Trash2 />
         </DeleteButton>

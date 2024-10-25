@@ -1,13 +1,13 @@
-import { MaterialFormProps } from '@/editor/weapon/[name]/ascensions/_components/material-form/material-form.type'
 import {
-    Form,
-    FormControl,
-    FormField,
-    FormItem,
-    FormLabel,
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
 } from '@/components/ui/form'
 import { z } from 'zod'
-import { updateMaterialQuantity } from '@/editor/weapon/[name]/ascensions/_services/update'
+import { MaterialFormProps } from '@/editor/weapon/[name]/ascensions/_components/material-form/material-form.type'
+import { updateWeaponAscensionMaterialQuantity } from '@/editor/weapon/[name]/ascensions/_services/update'
 import { useRouter } from 'next/navigation'
 import { MaterialQuantitySchema } from '@/schemas'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -15,7 +15,6 @@ import { useTransition } from 'react'
 import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 import { Input } from '@/components/ui/input'
-
 
 export function MaterialForm(props: MaterialFormProps) {
   const { id: material_id, quantity } = props
@@ -32,7 +31,7 @@ export function MaterialForm(props: MaterialFormProps) {
 
   const handleSubmit = form.handleSubmit((values) => {
     startTranstion(async () => {
-      const { status, message } = await updateMaterialQuantity(
+      const { status, message } = await updateWeaponAscensionMaterialQuantity(
         values,
         material_id
       )
