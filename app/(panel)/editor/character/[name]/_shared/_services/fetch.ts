@@ -17,19 +17,20 @@ export async function getCharacterByName(character_name: string) {
         ascensions: { orderBy: { level: 'asc' }, include: { materials: true } },
         images: true,
         materials: true,
-        passives: true,
         stats_priority: true,
-        constellations: true,
         video_guide: true,
         weapons: { orderBy: { order: 'asc' } },
         teams: {
           orderBy: { order: 'asc' },
           include: { characters: { orderBy: { order: 'asc' } } },
         },
-        talents: {
+        talents_ascension: {
           orderBy: { level: 'asc' },
           include: { materials: { orderBy: [{ date_created: 'asc' }] } },
         },
+        talents: { orderBy: [{ order: 'asc' }, { date_created: 'asc' }] },
+        passives: { orderBy: { order: 'asc' } },
+        constellations: { orderBy: { order: 'asc' } },
       },
     })
 
