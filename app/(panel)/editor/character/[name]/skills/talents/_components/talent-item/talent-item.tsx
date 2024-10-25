@@ -1,12 +1,6 @@
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { TalentItemProps } from '@/editor/character/[name]/skills/talents/_components/talent-item/talent-item.type'
-import { TalentForm as EditButton } from '@/editor/character/[name]/skills/talents/_components/talent-form'
+import { TalentForm as EditTalent } from '@/editor/character/[name]/skills/talents/_components/talent-form'
 import { TalentDelete as DeleteTalent } from '@/editor/character/[name]/skills/talents/_components/talent-delete'
 import { Separator } from '@/components/ui/separator'
 import { SortableList } from '@/shared/components/sortable-list'
@@ -41,7 +35,7 @@ export function TalentItem(props: TalentItemProps) {
               <CardTitle>{title}</CardTitle>
 
               <div className='flex items-center gap-2'>
-                <EditButton id={id} />
+                <EditTalent id={id} />
                 <DeleteTalent id={id} />
               </div>
             </article>
