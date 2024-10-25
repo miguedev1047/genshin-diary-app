@@ -1,21 +1,12 @@
 'use client'
 
 import {
-  Sheet,
-  SheetClose,
-  SheetContent,
-  SheetDescription,
-  SheetFooter,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from '@/components/ui/sheet'
-import {
   Form,
   FormControl,
   FormField,
   FormItem,
   FormLabel,
+  FormMessage,
 } from '@/components/ui/form'
 import {
   Select,
@@ -29,17 +20,15 @@ import {
 import { z } from 'zod'
 import { ASCENSION_LEVEL } from '@/consts/general'
 import { AscensionsFormProps } from '@/app/(panel)/editor/character/[name]/ascensions/_components/ascension-form/ascension-form.type'
-import { Plus } from 'lucide-react'
 import { MaterialSelector } from '@/app/(panel)/editor/character/[name]/ascensions/_components/material-selector'
 import { useForm } from 'react-hook-form'
-import { Button } from '@/components/ui/button'
-import { ScrollArea } from '@/components/ui/scroll-area'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { AscensionSchema } from '@/schemas'
 import { createAscension } from '@/app/(panel)/editor/character/[name]/ascensions/_services/create'
 import { useRouter } from 'next/navigation'
 import { useTransition } from 'react'
 import { toast } from 'sonner'
+import { FormSheet } from '@/shared/layouts/panel/form-sheet'
 
 export function AscensionForm(props: AscensionsFormProps) {
   const { data: CHARACTER } = props
@@ -75,100 +64,69 @@ export function AscensionForm(props: AscensionsFormProps) {
     })
   })
 
-  const handleReset = () => form.reset()
-
   return (
-    <Sheet>
-      <SheetTrigger asChild>
-        <Button size='icon'>
-          <Plus />
-        </Button>
-      </SheetTrigger>
-      <SheetContent className='sm:max-w-[640px]'>
-        <SheetHeader>
-          <SheetTitle>Agregar ascension</SheetTitle>
-          <SheetDescription>
-            Añade una ascension al personaje. Una vez termines guarda los
-            cambios.
-          </SheetDescription>
-        </SheetHeader>
-
-        <ScrollArea className='w-full h-[800px]'>
-          <Form {...form}>
-            <form
-              id='ascension-form'
-              onSubmit={handleSubmit}
-              className='grid gap-4 px-1'
-            >
-              <FormField
-                name='ascension_level'
-                control={form.control}
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Nivel de ascension</FormLabel>
-                    <Select
-                      disabled={isPending}
-                      value={field.value}
-                      onValueChange={field.onChange}
-                    >
-                      <FormControl>
-                        <SelectTrigger>
-                          <SelectValue placeholder='Selecciona una ascension' />
-                        </SelectTrigger>
-                      </FormControl>
-                      <SelectContent>
-                        <SelectGroup>
-                          <SelectLabel>Ascensiones</SelectLabel>
-                          {ASCENSION_LEVEL.slice(0, 6).map(({ label, value }) => (
-                            <SelectItem
-                              key={value}
-                              value={value}
-                              disabled={DISABLED_ASCENSIONS?.includes(value)}
-                            >
-                              {label}
-                            </SelectItem>
-                          ))}
-                        </SelectGroup>
-                      </SelectContent>
-                    </Select>
-                  </FormItem>
-                )}
-              />
-
-              <FormField
-                name='materials'
-                control={form.control}
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Seleccionar materiales</FormLabel>
-                    <FormControl>
-                      <MaterialSelector {...field} />
-                    </FormControl>
-                  </FormItem>
-                )}
-              />
-
-              <SheetFooter>
-                <SheetClose asChild>
-                  <Button
-                    variant='secondary'
-                    type='button'
-                    onClick={handleReset}
-                  >
-                    Cancelar
-                  </Button>
-                </SheetClose>
-                <Button
+    <FormSheet
+      title='Ascension'
+      isLoading={isPending}
+      formId='ascension-form'
+    >
+      <Form {...form}>
+        <form
+          id='ascension-form'
+          onSubmit={handleSubmit}
+          className='grid gap-4'
+        >
+          <FormField
+            name='ascension_level'
+            control={form.control}
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Nivel de ascension</FormLabel>
+                <Select
                   disabled={isPending}
-                  type='submit'
+                  value={field.value}
+                  onValueChange={field.onChange}
                 >
-                  Guardar
-                </Button>
-              </SheetFooter>
-            </form>
-          </Form>
-        </ScrollArea>
-      </SheetContent>
-    </Sheet>
+                  <FormControl>
+                    <SelectTrigger>
+                      <SelectValue placeholder='Selecciona una ascension' />
+                    </SelectTrigger>
+                  </FormControl>
+                  <SelectContent>
+                    <SelectGroup>
+                      <SelectLabel>Ascensiones</SelectLabel>
+                      {ASCENSION_LEVEL.slice(0, 6).map(({ label, value }) => (
+                        <SelectItem
+                          key={value}
+                          value={value}
+                          disabled={DISABLED_ASCENSIONS?.includes(value)}
+                        >
+                          {label}
+                        </SelectItem>
+                      ))}
+                    </SelectGroup>
+                  </SelectContent>
+                </Select>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            name='materials'
+            control={form.control}
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Seleccionar materiales</FormLabel>
+                <FormControl>
+                  <MaterialSelector {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        </form>
+      </Form>
+    </FormSheet>
   )
 }
