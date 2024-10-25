@@ -44,7 +44,7 @@ export function PassiveForm(props: PassiveFormProps) {
   const [isPending, startTransition] = useTransition()
   const { refresh } = useRouter()
 
-  const MAX_TALENTS = (CHARACTER?.passives.length ?? 0) >= MAX_ITEMS
+  const MAX_PASSIVES = (CHARACTER?.passives.length ?? 0) >= MAX_ITEMS
   const IS_EDITING = !!id
 
   const form = useForm<z.infer<typeof SkillCharacterSchema>>({
@@ -88,7 +88,7 @@ export function PassiveForm(props: PassiveFormProps) {
         return
       }
 
-      if (MAX_TALENTS) {
+      if (MAX_PASSIVES) {
         toast.error(`No puedes añadir más de ${MAX_ITEMS} pasivas.`)
         return
       }

@@ -9,10 +9,10 @@ import { PassiveItem } from '@/editor/character/[name]/skills/passives/_componen
 
 export function PassiveList() {
   const { data: CHARACTER } = useGetCharacter()
-  const TALENTS = CHARACTER?.passives as Array<PassivesCharacter>
+  const PASSIVES = CHARACTER?.passives as Array<PassivesCharacter>
 
   const { orderedItems, handleDragEnd } = useDrag({
-    items: TALENTS,
+    items: PASSIVES,
     updateFn: updatePassiveOrder,
   })
 
