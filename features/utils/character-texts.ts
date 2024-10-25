@@ -3,6 +3,7 @@ import {
   ELEMENTS,
   MATERIAL_TYPES,
   ROLE,
+  SKILL_TYPE,
   STARS,
   WEAPON_TYPE,
 } from '@/consts/general'
@@ -51,6 +52,13 @@ export function getElementIcon(element: string | undefined) {
   if (ELEMENT) return ELEMENT
 
   return null
+}
+
+export function getSkillTypeText(skillType: string | undefined) {
+  const SKILL = SKILL_TYPE.find((item) => item.value === skillType)
+  if (SKILL) return SKILL.label
+
+  return 'Indefinido'
 }
 
 export function getMaterialTypeText(materialType: string | undefined) {
