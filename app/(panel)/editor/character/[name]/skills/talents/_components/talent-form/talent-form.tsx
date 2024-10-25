@@ -21,7 +21,7 @@ import {
 import { z } from 'zod'
 import { useForm } from 'react-hook-form'
 import { useEffect, useTransition } from 'react'
-import { TalentCharacterSchema } from '@/schemas'
+import { SkillCharacterSchema } from '@/schemas'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { DEFAULT_IMAGE, SKILL_TYPE } from '@/consts/general'
 import { Input } from '@/components/ui/input'
@@ -47,8 +47,8 @@ export function TalentForm(props: TalentFormProps) {
   const MAX_TALENTS = (CHARACTER?.talents.length ?? 0) >= MAX_ITEMS
   const IS_EDITING = !!id
 
-  const form = useForm<z.infer<typeof TalentCharacterSchema>>({
-    resolver: zodResolver(TalentCharacterSchema),
+  const form = useForm<z.infer<typeof SkillCharacterSchema>>({
+    resolver: zodResolver(SkillCharacterSchema),
     defaultValues: {
       character_id: CHARACTER?.id,
       title: '',

@@ -208,7 +208,7 @@ export const TeamNameSchema = z.object({
   }),
 })
 
-export const TalentCharacterSchema = z.object({
+export const SkillCharacterSchema = z.object({
   title: z.string().min(3, { message: 'El nombre del talento es requerido.' }),
   description: z
     .string()

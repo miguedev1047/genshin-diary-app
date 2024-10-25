@@ -2,12 +2,12 @@
 
 import { z } from 'zod'
 import { currentRole } from '@/data/auth'
-import { TalentCharacterSchema } from '@/schemas'
+import { SkillCharacterSchema } from '@/schemas'
 import { TalentsCharacter } from '@prisma/client'
 import db from '@/lib/db'
 
 export async function updateTalent(
-  data: z.infer<typeof TalentCharacterSchema>,
+  data: z.infer<typeof SkillCharacterSchema>,
   talent_id: string
 ) {
   const ROLE = await currentRole()
@@ -16,7 +16,7 @@ export async function updateTalent(
     return { status: 403, message: 'No tienes permisos.' }
   }
 
-  const VALIDATE_FIELDS = TalentCharacterSchema.safeParse(data)
+  const VALIDATE_FIELDS = SkillCharacterSchema.safeParse(data)
   if (!VALIDATE_FIELDS.success) {
     return { status: 403, message: 'Campos invalidos.' }
   }
