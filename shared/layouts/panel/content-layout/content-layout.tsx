@@ -31,7 +31,7 @@ export function ContentLayout(props: ContentLayoutProps) {
         isMobile && 'ml-0'
       )}
     >
-      <header className='flex flex-1 items-center sticky top-0 z-50 border-b py-5 px-5 bg-background/70 backdrop-blur-2xl'>
+      <header className='flex flex-1 z-[70] items-center sticky top-0 border-b py-5 px-5 bg-background/70 backdrop-blur-2xl'>
         <SidebarTrigger />
         <Separator
           orientation='vertical'
