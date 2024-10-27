@@ -30,7 +30,7 @@ export function TeamItem(props: TeamItemProps) {
             >
               <Trash2 />
             </DeleteButton>
-            <CardTitle>
+            <CardTitle className='text-lg'>
               <TeamNameForm {...props} />
             </CardTitle>
           </div>
