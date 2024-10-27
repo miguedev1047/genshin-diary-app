@@ -16,15 +16,15 @@ export default function PanelArtifactsPage(props: Props) {
   const KEY = PARAMS.name
 
   return (
-    <ContentLayout
-      title='Artefactos'
-      className='space-y-6'
-    >
+    <ContentLayout title='Artefactos'>
       <FilterContainer>
         <ArtifactFilter />
       </FilterContainer>
 
-      <Suspense key={KEY} fallback={<ArtifactSkeleton />}>
+      <Suspense
+        key={KEY}
+        fallback={<ArtifactSkeleton />}
+      >
         <ArtifactRoutes params={PARAMS} />
       </Suspense>
     </ContentLayout>

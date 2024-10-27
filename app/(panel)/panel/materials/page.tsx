@@ -17,10 +17,7 @@ export default function PanelMaterialsPage(props: Props) {
   const KEY = PARAMS.name + PARAMS.type
 
   return (
-    <ContentLayout
-      title='Materiales'
-      className='space-y-6'
-    >
+    <ContentLayout title='Materiales'>
       <FilterContainer>
         <MaterialFilter />
       </FilterContainer>

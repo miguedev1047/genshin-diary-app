@@ -12,10 +12,7 @@ import Link from 'next/link'
 
 export default function CreatorCharacterPage() {
   return (
-    <ContentLayout
-      title='Crear personaje'
-      className='space-y-6'
-    >
+    <ContentLayout title='Crear personaje'>
       <Breadcrumb>
         <BreadcrumbList>
           <BreadcrumbItem>

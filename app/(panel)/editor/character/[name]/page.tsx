@@ -21,6 +21,7 @@ import { VideoGuide } from '@/editor/character/[name]/video-guide'
 import { TalentAscension } from '@/editor/character/[name]/talents-ascension/talent-ascension'
 import { Teams } from '@/editor/character/[name]/teams'
 import { Skills } from '@/editor/character/[name]/skills'
+import Link from 'next/link'
 
 export default async function EditorCharacterPage(props: PageProps) {
   const { params } = props
@@ -31,18 +32,17 @@ export default async function EditorCharacterPage(props: PageProps) {
   if (!CHARACTER) return redirect('/panel/characters')
 
   return (
-    <ContentLayout
-      title={`Editar personaje: ${CHARACTER_NAME}`}
-      className='space-y-6'
-    >
+    <ContentLayout title={CHARACTER_NAME}>
       <Breadcrumb>
         <BreadcrumbList>
           <BreadcrumbItem>
-            <BreadcrumbLink href='/panel/characters'>Personajes</BreadcrumbLink>
+            <BreadcrumbLink asChild>
+              <Link href='/panel/characters'>Personajes</Link>
+            </BreadcrumbLink>
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbItem>
-            <BreadcrumbPage>{CHARACTER_NAME}</BreadcrumbPage>
+            <BreadcrumbPage>Editar personaje</BreadcrumbPage>
           </BreadcrumbItem>
         </BreadcrumbList>
       </Breadcrumb>

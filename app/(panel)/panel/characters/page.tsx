@@ -20,10 +20,7 @@ export default function PanelCharactersPage(props: Props) {
   const KEY = PARAMS.name + PARAMS.element + PARAMS.weapon + PARAMS.stars
 
   return (
-    <ContentLayout
-      title='Personajes'
-      className='space-y-6'
-    >
+    <ContentLayout title='Personajes'>
       <FilterContainer>
         <CharacterFilter />
       </FilterContainer>

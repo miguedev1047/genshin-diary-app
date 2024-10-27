@@ -12,10 +12,7 @@ import Link from 'next/link'
 
 export default function EditWeaponPage() {
   return (
-    <ContentLayout
-      title='Crear Arma'
-      className='space-y-6'
-    >
+    <ContentLayout title='Crear Arma'>
       <Breadcrumb>
         <BreadcrumbList>
           <BreadcrumbItem>

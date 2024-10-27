@@ -21,10 +21,7 @@ export default async function EditorWeaponPage({ params }: PageProps) {
   const WEAPON = await fetchWeapon(WEAPON_NAME)
 
   return (
-    <ContentLayout
-      title='Editar arma'
-      className='space-y-6'
-    >
+    <ContentLayout title='Editar arma'>
       <Breadcrumb>
         <BreadcrumbList>
           <BreadcrumbItem>

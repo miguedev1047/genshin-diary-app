@@ -19,10 +19,7 @@ export default function PanelWeaponsPage(props: Props) {
   const KEY = PARAMS.name + PARAMS.weapon + PARAMS.stars
 
   return (
-    <ContentLayout
-      title='Armas'
-      className='space-y-6'
-    >
+    <ContentLayout title='Armas'>
       <FilterContainer>
         <WeaponFilter />
       </FilterContainer>

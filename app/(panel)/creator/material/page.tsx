@@ -12,10 +12,7 @@ import Link from 'next/link'
 
 export default function CreatorMaterialPage() {
   return (
-    <ContentLayout
-      title='Crear material'
-      className='space-y-6'
-    >
+    <ContentLayout title='Crear material'>
       <Breadcrumb>
         <BreadcrumbList>
           <BreadcrumbItem>

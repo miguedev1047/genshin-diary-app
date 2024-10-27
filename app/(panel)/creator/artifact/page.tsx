@@ -12,10 +12,7 @@ import Link from 'next/link'
 
 export default function CreatorArtifactPage() {
   return (
-    <ContentLayout
-      title='Crear artefacto'
-      className='space-y-6'
-    >
+    <ContentLayout title='Crear artefacto'>
       <Breadcrumb>
         <BreadcrumbList>
           <BreadcrumbItem>
