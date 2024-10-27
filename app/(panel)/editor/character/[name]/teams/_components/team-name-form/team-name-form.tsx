@@ -9,6 +9,7 @@ import { Input } from '@/components/ui/input'
 import { updateTeamName } from '@/editor/character/[name]/teams/_services/update'
 import { toast } from 'sonner'
 import React, { useState, useTransition } from 'react'
+import { Pencil } from 'lucide-react'
 
 export function TeamNameForm(props: TeamNameFormProps) {
   const { name, id } = props
@@ -37,7 +38,7 @@ export function TeamNameForm(props: TeamNameFormProps) {
         toast.success(message)
         setIsEditing(false)
         refresh()
-        
+
         return
       }
 
@@ -45,7 +46,13 @@ export function TeamNameForm(props: TeamNameFormProps) {
     })
   })
 
-  if (!isEditing) return <span onClick={() => setIsEditing(true)}>{name}</span>
+  if (!isEditing)
+    return (
+      <div className='flex items-center gap-8 group/hover hover:bg-accent h-10 px-3 py-2 rounded-md cursor-pointer'>
+        <span onClick={() => setIsEditing(true)}>{name}</span>
+        <Pencil className='size-4 hidden group-hover/hover:block' />
+      </div>
+    )
 
   return (
     <Form {...form}>
