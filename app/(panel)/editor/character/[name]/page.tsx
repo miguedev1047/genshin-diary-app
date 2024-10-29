@@ -12,6 +12,7 @@ import { PageProps } from '@/editor/character/[name]/_shared/types'
 import { formattedName } from '@/features/utils/formatted-names'
 import { ContentLayout } from '@/shared/layouts/panel/content-layout'
 import { getCharacterByName } from '@/editor/character/[name]/_shared/_services/fetch'
+import { AlertStatus } from '@/editor/character/[name]/alert-status'
 import { CharacterInfo } from '@/editor/character/[name]/character-info'
 import { Ascension } from '@/editor/character/[name]/ascensions'
 import { Weapons } from '@/editor/character/[name]/weapons'
@@ -49,13 +50,12 @@ export default async function EditorCharacterPage(props: PageProps) {
 
       <CharacterProvider data={CHARACTER}>
         <section className='space-y-6'>
+          <AlertStatus />
           <CharacterInfo />
           <Ascension />
           <TalentAscension />
-          <div className='grid lg:grid-cols-2 gap-6'>
-            <Weapons />
-            <Artifacts />
-          </div>
+          <Weapons />
+          <Artifacts />
           <StatsPriority />
           <VideoGuide />
           <Teams />
