@@ -2,12 +2,12 @@
 
 import { z } from 'zod'
 import {
-    AttributeEnum,
-    ElementEnum,
-    RarityEnum,
-    RegionEnum,
-    RoleEnum,
-    WeaponTypeEnum,
+  AttributeEnum,
+  ElementEnum,
+  RarityEnum,
+  RegionEnum,
+  RoleEnum,
+  WeaponTypeEnum,
 } from '@prisma/client'
 import { currentRole } from '@/data/auth'
 import { CharacterSchema } from '@/schemas'
@@ -38,6 +38,8 @@ export async function updateCharacter(
     rarity,
     region,
     role,
+    is_new,
+    is_public,
     weapon,
   } = VALIDATE_FIELDS.data
 
@@ -53,6 +55,8 @@ export async function updateCharacter(
         region: region as RegionEnum,
         role: role as RoleEnum,
         weapon: weapon as WeaponTypeEnum,
+        is_new,
+        is_public,
       },
     })
 
