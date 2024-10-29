@@ -48,8 +48,11 @@ export function TeamNameForm(props: TeamNameFormProps) {
 
   if (!isEditing)
     return (
-      <div className='flex items-center gap-8 group/hover hover:bg-accent h-10 px-3 py-2 rounded-md cursor-pointer'>
-        <span onClick={() => setIsEditing(true)}>{name}</span>
+      <div
+        className='flex items-center gap-8 group/hover hover:bg-accent h-10 px-3 py-2 rounded-md cursor-pointer'
+        onClick={() => setIsEditing(true)}
+      >
+        <span>{name}</span>
         <Pencil className='size-4 hidden group-hover/hover:block' />
       </div>
     )
