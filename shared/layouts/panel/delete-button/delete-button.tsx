@@ -69,7 +69,7 @@ export function DeleteButton(props: DeleteButtonProps) {
                 disabled={isPending || disabled}
                 variant='destructive'
                 size='icon'
-                className={cn(className, 'p-1 z-50')}
+                className={cn(className, 'p-1 z-40')}
               >
                 {children}
               </Button>
