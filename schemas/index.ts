@@ -37,6 +37,8 @@ export const CharacterSchema = z.object({
   attribute: z.string().min(1, {
     message: 'El atributo es requerido.',
   }),
+  is_public: z.boolean().optional(),
+  is_new: z.boolean().optional(),
 })
 
 export const WeaponSchema = z.object({
