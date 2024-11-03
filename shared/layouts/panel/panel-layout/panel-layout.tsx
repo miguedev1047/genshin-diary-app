@@ -1,7 +1,7 @@
 'use client'
 
 import { SidebarProvider } from '@/components/ui/sidebar'
-import { PanelSidebar } from '../panel-sidebar'
+import { PanelSidebar } from '@/shared/layouts/panel/panel-sidebar'
 import { GridBackground } from '@/shared/components/grid-background'
 import { useSidebarToggle } from '@/features/store/use-sidebar-toggle'
 import { useStore } from '@/features/store/use-store'
