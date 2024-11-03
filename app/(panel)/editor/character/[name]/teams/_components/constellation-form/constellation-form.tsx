@@ -18,6 +18,7 @@ import { CONSTELLATION_TYPE, DEFAULT_IMAGE } from '@/consts/general'
 import { useState, useTransition } from 'react'
 import { updateCharacterConstellation } from '@/editor/character/[name]/teams/_services/update'
 import { useRouter } from 'next/navigation'
+import { SquareBox } from '@/shared/components/square-box'
 import { toast } from 'sonner'
 import Image from 'next/image'
 
@@ -35,7 +36,7 @@ export function ConstellationForm(props: ConstellationFormProps) {
         Number(value),
         itemId
       )
-      
+
       if (status === 201) {
         toast.success(message)
         setIsOpen(false)
@@ -54,7 +55,10 @@ export function ConstellationForm(props: ConstellationFormProps) {
       onOpenChange={setIsOpen}
     >
       <PopoverTrigger asChild>
-        <figure className='aspect-square bg-secondary rounded-lg size-16 hover:scale-110 transition-transform ease-in-out duration-200 cursor-pointer overflow-hidden'>
+        <SquareBox
+          size='sm'
+          className='hover:scale-110 transition-transform ease-in-out duration-200 cursor-pointer'
+        >
           <Image
             src={CHARACTER?.images?.splash_art_url ?? DEFAULT_IMAGE}
             alt={CHARACTER?.name ?? 'Character Image'}
@@ -62,7 +66,7 @@ export function ConstellationForm(props: ConstellationFormProps) {
             height={1080}
             className='object-cover size-full'
           />
-        </figure>
+        </SquareBox>
       </PopoverTrigger>
       <PopoverContent className='w-80'>
         <div className='grid gap-4'>

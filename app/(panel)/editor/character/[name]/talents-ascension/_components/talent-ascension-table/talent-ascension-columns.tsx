@@ -7,6 +7,7 @@ import { Trash2 } from 'lucide-react'
 import { TalentAscensionProps } from '@/app/(panel)/editor/character/[name]/talents-ascension/talent-ascension.type'
 import { MaterialItem } from '@/editor/character/[name]/talents-ascension/_components/material-item'
 import { deleteTalentAscension } from '@/editor/character/[name]/talents-ascension/_services/delete'
+import { SquareBox } from '@/shared/components/square-box'
 import Image from 'next/image'
 
 export const columns: ColumnDef<TalentAscensionProps>[] = [
@@ -40,7 +41,7 @@ export const columns: ColumnDef<TalentAscensionProps>[] = [
 
       return (
         <article className='flex items-center gap-2'>
-          <figure className='relative size-20 aspect-auto bg-secondary p-1 rounded-md !overflow-hidden'>
+          <SquareBox>
             <Image
               priority
               src={MoraImg.src}
@@ -52,7 +53,7 @@ export const columns: ColumnDef<TalentAscensionProps>[] = [
             <div className='absolute inset-x-0 bottom-0 g-black/70b supports-[backdrop-filter]:bg-background/60 py-1 flex items-center justify-center z-20'>
               <p>{FORMATTED_COST}</p>
             </div>
-          </figure>
+          </SquareBox>
           <p>Moras</p>
         </article>
       )

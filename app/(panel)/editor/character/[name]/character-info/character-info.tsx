@@ -13,6 +13,7 @@ import { Star } from 'lucide-react'
 import { DEFAULT_IMAGE } from '@/consts/general'
 import { useGetCharacter } from '@/editor/character/[name]/provider'
 import { CharacterInfoForm } from '@/editor/character/[name]/character-info/_components/character-info-form'
+import { SquareBox } from '@/shared/components/square-box'
 import parse from 'html-react-parser'
 import Image from 'next/image'
 
@@ -32,7 +33,10 @@ export function CharacterInfo() {
     >
       <div className='grid grid-cols-5 gap-4'>
         <div className='col-span-1'>
-          <figure className='aspect-square bg-secondary rounded-lg'>
+          <SquareBox
+            size='full'
+            className='aspect-square bg-secondary'
+          >
             <Image
               priority
               src={CHARACTER?.images?.splash_art_url ?? DEFAULT_IMAGE}
@@ -41,7 +45,7 @@ export function CharacterInfo() {
               height={1080}
               className='object-cover size-full'
             />
-          </figure>
+          </SquareBox>
         </div>
 
         <div className='col-span-4 space-y-5'>

@@ -7,6 +7,7 @@ import { DeleteButton } from '@/shared/layouts/panel/delete-button'
 import { deleteArtifact } from '@/editor/character/[name]/artifacts/_services/delete'
 import { useGetArtifact } from '@/features/queries/panel/use-artifacts'
 import { Trash2 } from 'lucide-react'
+import { SquareBox } from '@/shared/components/square-box'
 import Image from 'next/image'
 
 export function ArtifactItem(props: ArtifactItemProps) {
@@ -25,7 +26,7 @@ export function ArtifactItem(props: ArtifactItemProps) {
           >
             <Trash2 />
           </DeleteButton>
-          <figure className='aspect-square bg-secondary rounded-lg size-16'>
+          <SquareBox size='sm'>
             <Image
               src={ARTIFACT?.image_url ?? DEFAULT_IMAGE}
               alt={ARTIFACT?.name ?? 'Artifact Image'}
@@ -33,7 +34,7 @@ export function ArtifactItem(props: ArtifactItemProps) {
               height={1080}
               className='object-cover size-full'
             />
-          </figure>
+          </SquareBox>
           <p className='text-sm text-center'>{ARTIFACT?.name}</p>
         </div>
 

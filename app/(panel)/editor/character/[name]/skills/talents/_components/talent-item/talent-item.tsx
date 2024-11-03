@@ -5,6 +5,7 @@ import { TalentDelete as DeleteTalent } from '@/editor/character/[name]/skills/t
 import { Separator } from '@/components/ui/separator'
 import { SortableList } from '@/shared/components/sortable-list'
 import { getSkillTypeText } from '@/features/utils/character-texts'
+import { SquareBox } from '@/shared/components/square-box'
 import { Badge } from '@/components/ui/badge'
 import Image from 'next/image'
 import parse from 'html-react-parser'
@@ -19,7 +20,7 @@ export function TalentItem(props: TalentItemProps) {
         <div className='flex items-center gap-4'>
           <div className='flex items-center gap-2'>
             <SortableList.DragHandle />
-            <figure className='size-20 bg-main-muted rounded-lg p-3'>
+            <SquareBox className='bg-main-muted dark:bg-accent p-3'>
               <Image
                 src={image_url!}
                 alt={title}
@@ -27,7 +28,7 @@ export function TalentItem(props: TalentItemProps) {
                 height={200}
                 className='size-full object-cover'
               />
-            </figure>
+            </SquareBox>
           </div>
 
           <div className='w-full'>

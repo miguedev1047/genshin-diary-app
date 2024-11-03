@@ -7,6 +7,7 @@ import { SortableList } from '@/shared/components/sortable-list'
 import { DeleteButton } from '@/shared/layouts/panel/delete-button'
 import { deleteWeapon } from '@/editor/character/[name]/weapons/_services/delete'
 import { Trash2 } from 'lucide-react'
+import { SquareBox } from '@/shared/components/square-box'
 import Image from 'next/image'
 
 export function WeaponItem(props: WeaponItemProps) {
@@ -25,7 +26,7 @@ export function WeaponItem(props: WeaponItemProps) {
           >
             <Trash2 />
           </DeleteButton>
-          <figure className='aspect-square bg-secondary rounded-lg size-16'>
+          <SquareBox size='sm'>
             <Image
               src={WEAPON?.image_url ?? DEFAULT_IMAGE}
               alt={WEAPON?.name ?? 'Weapon Image'}
@@ -33,7 +34,7 @@ export function WeaponItem(props: WeaponItemProps) {
               height={1080}
               className='object-cover size-full'
             />
-          </figure>
+          </SquareBox>
           <p className='text-sm text-center'>{WEAPON?.name}</p>
         </div>
 

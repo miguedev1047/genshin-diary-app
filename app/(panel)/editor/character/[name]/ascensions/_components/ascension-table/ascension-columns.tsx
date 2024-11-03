@@ -5,6 +5,7 @@ import { ColumnDef } from '@tanstack/react-table'
 import { MaterialItem } from '@/app/(panel)/editor/character/[name]/ascensions/_components/material-item'
 import { Ascension } from '@/app/(panel)/editor/character/[name]/ascensions'
 import { Actions } from '@/app/(panel)/editor/character/[name]/ascensions/_components/actions'
+import { SquareBox } from '@/shared/components/square-box'
 import Image from 'next/image'
 
 export const columns: ColumnDef<Ascension>[] = [
@@ -24,7 +25,7 @@ export const columns: ColumnDef<Ascension>[] = [
     cell: ({ row }) => {
       const { level } = row.original
       return <p>{level}</p>
-    },  
+    },
   },
   {
     accessorKey: 'cost',
@@ -38,7 +39,7 @@ export const columns: ColumnDef<Ascension>[] = [
 
       return (
         <article className='flex items-center gap-2'>
-          <figure className='relative size-20 aspect-auto bg-secondary p-1 rounded-md !overflow-hidden'>
+          <SquareBox>
             <Image
               priority
               src={MoraImg.src}
@@ -50,7 +51,7 @@ export const columns: ColumnDef<Ascension>[] = [
             <div className='absolute inset-x-0 bottom-0 g-black/70b supports-[backdrop-filter]:bg-background/60 py-1 flex items-center justify-center z-20'>
               <p>{FORMATTED_COST}</p>
             </div>
-          </figure>
+          </SquareBox>
           <p>Moras</p>
         </article>
       )

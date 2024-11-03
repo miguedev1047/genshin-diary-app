@@ -13,6 +13,7 @@ import { MaterialItemProps } from '@/app/(panel)/editor/character/[name]/ascensi
 import { useGetMaterial } from '@/features/queries/panel/use-materiales'
 import { MaterialForm } from '@/app/(panel)/editor/character/[name]/ascensions/_components/material-form'
 import { Skeleton } from '@/components/ui/skeleton'
+import { SquareBox } from '@/shared/components/square-box'
 import Image from 'next/image'
 
 export function MaterialItem(props: MaterialItemProps) {
@@ -27,7 +28,7 @@ export function MaterialItem(props: MaterialItemProps) {
         <Tooltip>
           <PopoverTrigger asChild>
             <TooltipTrigger asChild>
-              <figure className='relative size-20 aspect-auto bg-secondary p-1 rounded-md !overflow-hidden cursor-pointer'>
+              <SquareBox className='cursor-pointer'>
                 <Image
                   priority
                   src={MATERIAL?.image_url}
@@ -39,7 +40,7 @@ export function MaterialItem(props: MaterialItemProps) {
                 <div className='absolute inset-x-0 bottom-0 g-black/70b supports-[backdrop-filter]:bg-background/60 py-1 flex items-center justify-center z-20'>
                   <p>{quantity}</p>
                 </div>
-              </figure>
+              </SquareBox>
             </TooltipTrigger>
           </PopoverTrigger>
           <TooltipContent side='bottom'>

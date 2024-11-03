@@ -6,6 +6,7 @@ import { ConstellationForm as EditConstellation } from '@/editor/character/[name
 import { ConstellationDelete as DeleteConstellation } from '@/editor/character/[name]/skills/constellations/_components/constellation-delete'
 import { ConstellationItemProps } from '@/editor/character/[name]/skills/constellations/_components/constellation-item/constellation-item.type'
 import { getSkillTypeText } from '@/features/utils/character-texts'
+import { SquareBox } from '@/shared/components/square-box'
 import Image from 'next/image'
 import parse from 'html-react-parser'
 
@@ -19,7 +20,7 @@ export function ConstellationItem(props: ConstellationItemProps) {
         <div className='flex items-center gap-4'>
           <div className='flex items-center gap-2'>
             <SortableList.DragHandle />
-            <figure className='size-20 bg-main-muted rounded-lg p-3'>
+            <SquareBox className='bg-main-muted dark:bg-accent p-3'>
               <Image
                 src={image_url!}
                 alt={title}
@@ -27,7 +28,7 @@ export function ConstellationItem(props: ConstellationItemProps) {
                 height={200}
                 className='size-full object-cover'
               />
-            </figure>
+            </SquareBox>
           </div>
 
           <div className='w-full'>

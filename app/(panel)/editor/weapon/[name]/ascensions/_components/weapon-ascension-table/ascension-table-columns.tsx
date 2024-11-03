@@ -7,6 +7,7 @@ import { DeleteButton } from '@/shared/layouts/panel/delete-button'
 import { Trash2 } from 'lucide-react'
 import { deleteWeaponAscension } from '@/editor/weapon/[name]/ascensions/_services/delete'
 import { MaterialItem } from '@/editor/weapon/[name]/ascensions/_components/material-item'
+import { SquareBox } from '@/shared/components/square-box'
 import Image from 'next/image'
 
 type Ascension = Prisma.WeaponAscensionsGetPayload<{
@@ -36,7 +37,7 @@ export const columns: ColumnDef<Ascension>[] = [
 
       return (
         <article className='flex items-center gap-2'>
-          <figure className='relative size-20 aspect-auto bg-secondary p-1 rounded-md !overflow-hidden'>
+          <SquareBox>
             <Image
               priority
               src={MoraImg.src}
@@ -48,7 +49,7 @@ export const columns: ColumnDef<Ascension>[] = [
             <div className='absolute inset-x-0 bottom-0 g-black/70b supports-[backdrop-filter]:bg-background/60 py-1 flex items-center justify-center z-20'>
               <p>{FORMATTED_COST}</p>
             </div>
-          </figure>
+          </SquareBox>
           <p>Moras</p>
         </article>
       )

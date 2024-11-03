@@ -7,11 +7,11 @@ import {
 } from '@/features/utils/character-texts'
 import { EditorCard } from '@/shared/layouts/panel/editor-card'
 import { WeaponInfoForm } from '@/app/(panel)/editor/weapon/[name]/weapon-info/_components/weapon-info-form'
-import { SquareBox } from '@/shared/components/square-box'
 import { Badge } from '@/components/ui/badge'
 import { Star } from 'lucide-react'
 import { NONE } from '@/consts/general'
 import { useGetWeapon } from '@/app/(panel)/editor/weapon/[name]/provider'
+import { SquareBox } from '@/shared/components/square-box'
 import Image from 'next/image'
 import parse from 'html-react-parser'
 
@@ -29,7 +29,10 @@ export function WeaponInfo() {
       renderForm={<WeaponInfoForm />}
     >
       <div className='col-span-1'>
-        <SquareBox>
+        <SquareBox
+          size='full'
+          className='aspect-square bg-secondary'
+        >
           <Image
             priority
             src={WEAPON?.image_url ?? NONE}
