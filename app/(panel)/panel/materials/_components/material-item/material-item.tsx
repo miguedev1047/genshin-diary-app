@@ -8,12 +8,15 @@ import { Card } from '@/components/ui/card'
 import { AspectRatio } from '@/components/ui/aspect-ratio'
 import { getBorderColorByRarity } from '@/features/utils/rarity-color'
 import { MaterialItemProps } from '@/app/(panel)/panel/materials/_components/material-item/material-item.type'
-import { MaterialActions } from '@/app/(panel)/panel/materials/_components/material-actions'
+import { DeleteButton } from '@/shared/layouts/panel/delete-button'
+import { deleteMaterial } from '@/panel/materials/_services/delete'
+import { Trash2 } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import Image from 'next/image'
+import Link from 'next/link'
 
 export function MaterialItem(props: MaterialItemProps) {
-  const { name, rarity, image_url } = props
+  const { name, rarity, image_url, id } = props
 
   const MATERIAL_IMAGE = image_url
   const STAR_COLOR = getBorderColorByRarity(rarity)
@@ -23,7 +26,8 @@ export function MaterialItem(props: MaterialItemProps) {
       <TooltipProvider>
         <Tooltip>
           <TooltipTrigger asChild>
-            <div
+            <Link
+              href={`/editor/material/${id}`}
               className={cn(
                 'group/item flex aspect-[1/1] overflow-hidden rounded-[1rem] border border-muted/30 bg-background transition relative',
                 STAR_COLOR
@@ -46,7 +50,7 @@ export function MaterialItem(props: MaterialItemProps) {
                   </AspectRatio>
                 )}
               </Card>
-            </div>
+            </Link>
           </TooltipTrigger>
           <TooltipContent side='bottom'>
             <p>{name}</p>
@@ -54,7 +58,13 @@ export function MaterialItem(props: MaterialItemProps) {
         </Tooltip>
       </TooltipProvider>
 
-      <MaterialActions {...props} />
+      <DeleteButton
+        itemId={id}
+        onDelete={deleteMaterial}
+        className='absolute z-40 bottom-3 right-3'
+      >
+        <Trash2 />
+      </DeleteButton>
     </>
   )
 }

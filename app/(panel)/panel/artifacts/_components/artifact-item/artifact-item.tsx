@@ -8,12 +8,15 @@ import { Card } from '@/components/ui/card'
 import { AspectRatio } from '@/components/ui/aspect-ratio'
 import { ArtifactItemProps } from '@/app/(panel)/panel/artifacts/_components/artifact-item/artifact-item.type'
 import { getBorderColorByRarity } from '@/features/utils/rarity-color'
-import { ArtifactActions } from '@/app/(panel)/panel/artifacts/_components/artifact-actions'
+import { DeleteButton } from '@/shared/layouts/panel/delete-button'
+import { deleteArtifact } from '@/panel/artifacts/_services/delete'
+import { Trash2 } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import Image from 'next/image'
+import Link from 'next/link'
 
 export function ArtifactItem(props: ArtifactItemProps) {
-  const { name, rarity, image_url } = props
+  const { name, rarity, image_url, id } = props
 
   const ARTIFACT_IMAGE = image_url
   const STAR_COLOR = getBorderColorByRarity(rarity)
@@ -23,7 +26,8 @@ export function ArtifactItem(props: ArtifactItemProps) {
       <TooltipProvider>
         <Tooltip>
           <TooltipTrigger asChild>
-            <div
+            <Link
+              href={`/editor/artifact/${id}`}
               className={cn(
                 'group/item flex aspect-[1/1] overflow-hidden rounded-[1rem] border border-muted/30 bg-background transition relative',
                 STAR_COLOR
@@ -46,7 +50,7 @@ export function ArtifactItem(props: ArtifactItemProps) {
                   </AspectRatio>
                 )}
               </Card>
-            </div>
+            </Link>
           </TooltipTrigger>
           <TooltipContent side='bottom'>
             <p>{name}</p>
@@ -54,7 +58,13 @@ export function ArtifactItem(props: ArtifactItemProps) {
         </Tooltip>
       </TooltipProvider>
 
-      <ArtifactActions {...props} />
+      <DeleteButton
+        itemId={id}
+        onDelete={deleteArtifact}
+        className='absolute z-40 bottom-3 right-3'
+      >
+        <Trash2 />
+      </DeleteButton>
     </>
   )
 }
