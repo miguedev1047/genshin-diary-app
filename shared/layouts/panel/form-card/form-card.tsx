@@ -8,7 +8,6 @@ import {
 } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
-import { BorderBeam } from '@/components/magicui/border-beam'
 import { FormCardProps } from '@/shared/layouts/panel/form-card/form-card.type'
 
 export function FormCard(props: FormCardProps) {
@@ -23,7 +22,7 @@ export function FormCard(props: FormCardProps) {
   } = props
 
   return (
-    <Card className='relative overflow-clip'>
+    <Card className='relative'>
       <CardHeader>
         <CardTitle>{title}</CardTitle>
         <CardDescription>{description}</CardDescription>
@@ -41,7 +40,6 @@ export function FormCard(props: FormCardProps) {
           {isEditing ? 'Guardar' : 'Crear'}
         </Button>
       </CardFooter>
-      <BorderBeam />
     </Card>
   )
 }
