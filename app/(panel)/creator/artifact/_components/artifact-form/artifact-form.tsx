@@ -24,16 +24,25 @@ import { ArtifactSchema } from '@/schemas'
 import { Star } from 'lucide-react'
 import { FormCard } from '@/shared/layouts/panel/form-card'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useRouter } from 'next/navigation'
-import { useTransition } from 'react'
+import { useParams, useRouter } from 'next/navigation'
+import { useEffect, useState, useTransition } from 'react'
 import { useForm } from 'react-hook-form'
 import { createArtifact } from '@/creator/artifact/_service/create'
-import { toast } from 'sonner'
 import { TextEditor } from '@/shared/components/text-editor'
+import { updateArtifact } from '@/creator/artifact/_service/update'
+import { useGetArtifact } from '@/features/queries/panel/use-artifacts'
+import { toast } from 'sonner'
 
 export function ArtifactForm() {
+  const [key, setKey] = useState(+new Date())
   const [isPending, startTranstion] = useTransition()
   const { refresh, push } = useRouter()
+
+  const params = useParams<{ id: string }>()
+  const ITEM_ID = params?.id
+  const IS_EDITING = !!ITEM_ID
+
+  const { data: ARTIFACT } = useGetArtifact(ITEM_ID)
 
   const form = useForm<z.infer<typeof ArtifactSchema>>({
     resolver: zodResolver(ArtifactSchema),
@@ -45,8 +54,36 @@ export function ArtifactForm() {
     },
   })
 
+  useEffect(() => {
+    if (ARTIFACT) {
+      startTranstion(() => {
+        setKey(+new Date())
+
+        form.setValue('name', ARTIFACT.name)
+        form.setValue('bonus_description', ARTIFACT.bonus_description)
+        form.setValue('image_url', ARTIFACT.image_url ?? '')
+        form.setValue('rarity', ARTIFACT.rarity)
+      })
+    }
+  }, [ARTIFACT, form])
+
   const handledSubmit = form.handleSubmit((values) => {
     startTranstion(async () => {
+      if (IS_EDITING) {
+        const { status, message } = await updateArtifact(values, ITEM_ID)
+
+        if (status === 201) {
+          toast.success(message)
+
+          push('/panel/artifacts')
+          refresh()
+          return
+        }
+
+        toast.error(message)
+        return
+      }
+
       const { status, message } = await createArtifact(values)
 
       if (status === 201) {
@@ -63,9 +100,18 @@ export function ArtifactForm() {
 
   return (
     <FormCard
-      title='¿Deseas crear un nuevo artefacto?'
-      description='Ingresa los detalles del nuevo artefacto. Haga clic en crear cuando haya terminado.'
+      title={`${
+        IS_EDITING
+          ? 'Edita los campos del artefacto'
+          : '¿Deseas crear un nuevo artefacto?'
+      }`}
+      description={`${
+        IS_EDITING
+          ? 'Ingresa los detalles del artefacto.'
+          : 'Ingresa los detalles del nuevo artefacto. Haga clic en crear cuando haya terminado.'
+      }`}
       formId='creator-artifact'
+      isEditing={IS_EDITING}
       isLoading={isPending}
     >
       <Form {...form}>
@@ -156,6 +202,7 @@ export function ArtifactForm() {
                 <FormLabel>Descripción</FormLabel>
                 <FormControl>
                   <TextEditor
+                    key={key}
                     initialValue={field.value}
                     onChange={field.onChange}
                     isLoading={isPending}

@@ -18,8 +18,8 @@ import { z } from 'zod'
 import { MaterialSchema } from '@/schemas'
 import { FormCard } from '@/shared/layouts/panel/form-card'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useRouter } from 'next/navigation'
-import { useTransition } from 'react'
+import { useParams, useRouter } from 'next/navigation'
+import { useEffect, useState, useTransition } from 'react'
 import { useForm } from 'react-hook-form'
 import { Input } from '@/components/ui/input'
 import { Star } from 'lucide-react'
@@ -27,10 +27,19 @@ import { MATERIAL_TYPES, STARS } from '@/consts/general'
 import { createMaterial } from '@/creator/material/_service/create'
 import { toast } from 'sonner'
 import { TextEditor } from '@/shared/components/text-editor'
+import { useGetMaterial } from '@/features/queries/panel/use-materiales'
+import { updateMaterial } from '@/creator/material/_service/update'
 
 export function MaterialForm() {
+  const [key, setKey] = useState(+new Date())
   const [isPending, startTranstion] = useTransition()
   const { refresh, push } = useRouter()
+
+  const params = useParams<{ id: string }>()
+  const ITEM_ID = params?.id
+  const IS_EDITING = !!ITEM_ID
+
+  const { data: MATERIAL } = useGetMaterial(ITEM_ID)
 
   const form = useForm<z.infer<typeof MaterialSchema>>({
     resolver: zodResolver(MaterialSchema),
@@ -43,8 +52,37 @@ export function MaterialForm() {
     },
   })
 
+  useEffect(() => {
+    if (MATERIAL) {
+      startTranstion(() => {
+        setKey(+new Date())
+
+        form.setValue('name', MATERIAL.name)
+        form.setValue('description', MATERIAL.description)
+        form.setValue('image_url', MATERIAL.image_url ?? '')
+        form.setValue('rarity', MATERIAL.rarity)
+        form.setValue('type', MATERIAL.type)
+      })
+    }
+  }, [MATERIAL, form])
+
   const handleSubmit = form.handleSubmit((values) => {
     startTranstion(async () => {
+      if (IS_EDITING) {
+        const { status, message } = await updateMaterial(values, ITEM_ID)
+
+        if (status === 201) {
+          toast.success(message)
+
+          push('/panel/materials')
+          refresh()
+          return
+        }
+
+        toast.error(message)
+        return
+      }
+
       const { status, message } = await createMaterial(values)
 
       if (status === 201) {
@@ -61,9 +99,19 @@ export function MaterialForm() {
 
   return (
     <FormCard
-      title='¿Deseas crear un nuevo material?'
-      description='Ingresa los detalles del nuevo material. Haga clic en crear cuando haya terminado.'
+      title={`${
+        IS_EDITING
+          ? 'Edita los campos del material'
+          : '¿Deseas crear un nuevo material?'
+      }`}
+      description={`${
+        IS_EDITING
+          ? 'Ingresa los detalles del material.'
+          : 'Ingresa los detalles del nuevo material. Haga clic en crear cuando haya terminado.'
+      }`}
       formId='creator-material'
+      isEditing={IS_EDITING}
+      isLoading={isPending}
     >
       <Form {...form}>
         <form
@@ -182,6 +230,7 @@ export function MaterialForm() {
                 <FormLabel>Descripción</FormLabel>
                 <FormControl>
                   <TextEditor
+                    key={key}
                     initialValue={field.value}
                     onChange={field.onChange}
                     isLoading={isPending}
