@@ -5,6 +5,7 @@ import { Toaster } from '@/components/ui/sonner'
 import { cn } from '@/lib/utils'
 import { PAGE_NAME } from '@/consts/site'
 import '@/styles/styles.css'
+import NextTopLoader from 'nextjs-toploader'
 
 const onest = Onest({ subsets: ['latin'] })
 
@@ -27,6 +28,10 @@ export default function RootLayout({
         )}
       >
         <Providers>
+          <NextTopLoader
+            color='#FABC3F'
+            showSpinner={false}
+          />
           <Toaster />
           {children}
         </Providers>
