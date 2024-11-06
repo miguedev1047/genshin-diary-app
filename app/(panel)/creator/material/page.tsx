@@ -6,13 +6,19 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from '@/components/ui/breadcrumb'
-import { MaterialForm } from '@/creator/material/_components/material-form'
 import { ContentLayout } from '@/shared/layouts/panel/content-layout'
+import { MaterialForm } from '@/creator/material/_components/material-form'
 import Link from 'next/link'
 
-export default function CreatorMaterialPage() {
+export default function CreatorMaterialPage({
+  params,
+}: {
+  params: { id: string }
+}) {
+  const IS_EDITING = !!params?.id
+
   return (
-    <ContentLayout title='Crear material'>
+    <ContentLayout title={` ${IS_EDITING ? 'Editar' : 'Crear'} material`}>
       <Breadcrumb>
         <BreadcrumbList>
           <BreadcrumbItem>
@@ -22,7 +28,9 @@ export default function CreatorMaterialPage() {
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbItem>
-            <BreadcrumbPage>Crear material</BreadcrumbPage>
+            <BreadcrumbPage>
+              {IS_EDITING ? 'Editar' : 'Crear'} material
+            </BreadcrumbPage>
           </BreadcrumbItem>
         </BreadcrumbList>
       </Breadcrumb>

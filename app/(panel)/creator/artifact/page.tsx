@@ -10,9 +10,15 @@ import { ContentLayout } from '@/shared/layouts/panel/content-layout'
 import { ArtifactForm } from '@/creator/artifact/_components/artifact-form'
 import Link from 'next/link'
 
-export default function CreatorArtifactPage() {
+export default function CreatorArtifactPage({
+  params,
+}: {
+  params: { id: string }
+}) {
+  const IS_EDITING = !!params?.id
+
   return (
-    <ContentLayout title='Crear artefacto'>
+    <ContentLayout title={` ${IS_EDITING ? 'Editar' : 'Crear'} artefacto`}>
       <Breadcrumb>
         <BreadcrumbList>
           <BreadcrumbItem>
@@ -22,7 +28,9 @@ export default function CreatorArtifactPage() {
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbItem>
-            <BreadcrumbPage>Crear artefacto</BreadcrumbPage>
+            <BreadcrumbPage>
+              {IS_EDITING ? 'Editar' : 'Crear'} artefacto
+            </BreadcrumbPage>
           </BreadcrumbItem>
         </BreadcrumbList>
       </Breadcrumb>
