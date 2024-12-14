@@ -13,7 +13,7 @@ import {
   BreadcrumbSeparator,
 } from '@/components/ui/breadcrumb'
 import { Separator } from '@/components/ui/separator'
-import { ContentLayoutProps } from '@/shared/(panel)/_components/content-layout/content-layout.type'
+import { ContentLayoutProps } from '@/app/(panel)/_components/content-layout/content-layout.type'
 import { PAGE_NAME } from '@/consts/site'
 import { cn } from '@/lib/utils'
 

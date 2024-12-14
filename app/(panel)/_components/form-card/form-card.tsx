@@ -8,7 +8,7 @@ import {
 } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
-import { FormCardProps } from '@/shared/(panel)/_components/form-card/form-card.type'
+import { FormCardProps } from '@/app/(panel)/_components/form-card/form-card.type'
 
 export function FormCard(props: FormCardProps) {
   const {

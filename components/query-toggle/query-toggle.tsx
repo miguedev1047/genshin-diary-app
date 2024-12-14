@@ -2,7 +2,7 @@
 
 import { Toggle } from '@/components/ui/toggle'
 import { useRouter, usePathname, useSearchParams } from 'next/navigation'
-import { QueryToggleProps } from '@/shared/components/query-toggle/query-toggle.type'
+import { QueryToggleProps } from '@/components/query-toggle/query-toggle.type'
 import { useDebouncedCallback } from 'use-debounce'
 import { cn } from '@/lib/utils'
 

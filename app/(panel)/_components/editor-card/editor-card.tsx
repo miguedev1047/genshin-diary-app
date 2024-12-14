@@ -6,7 +6,7 @@ import {
   CardTitle,
 } from '@/components/ui/card'
 import { Separator } from '@/components/ui/separator'
-import { EditorCardProps } from '@/shared/(panel)/_components/editor-card/editor-card.type'
+import { EditorCardProps } from '@/app/(panel)/_components/editor-card/editor-card.type'
 import { cn } from '@/lib/utils'
 
 export function EditorCard(props: EditorCardProps) {

@@ -2,7 +2,7 @@
 
 import { Input } from '@/components/ui/input'
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
-import { SearchBarProps } from '@/shared/components/search-bar/search-bar.type'
+import { SearchBarProps } from '@/components/search-bar/search-bar.type'
 import { useDebouncedCallback } from 'use-debounce'
 import { Search } from 'lucide-react'
 import { cn } from '@/lib/utils'

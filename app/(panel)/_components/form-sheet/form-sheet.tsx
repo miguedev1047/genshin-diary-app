@@ -7,7 +7,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from '@/components/ui/sheet'
-import { FormSheetProps } from '@/shared/(panel)/_components/form-sheet/form-sheet.type'
+import { FormSheetProps } from '@/app/(panel)/_components/form-sheet/form-sheet.type'
 import { Button } from '@/components/ui/button'
 import { Pencil, Plus } from 'lucide-react'
 import { ScrollArea } from '@/components/ui/scroll-area'

@@ -8,7 +8,7 @@ import {
 import { Check, ChevronDown } from 'lucide-react'
 import { EditorBubbleItem, useEditor } from 'novel'
 import { Button } from '@/components/ui/button'
-import { BubbleColorMenuItem, ColorSelectorProps } from '@/shared/components/text-editor/selectors/color-selector/color-selector.type'
+import { BubbleColorMenuItem, ColorSelectorProps } from '@/app/(panel)/_components/text-editor/selectors/color-selector/color-selector.type'
 
 const TEXT_COLORS: BubbleColorMenuItem[] = [
   {

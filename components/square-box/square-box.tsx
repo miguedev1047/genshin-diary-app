@@ -1,4 +1,4 @@
-import { SquareBoxProps } from '@/shared/components/square-box/square-box.type'
+import { SquareBoxProps } from '@/components/square-box/square-box.type'
 import { cva, type VariantProps } from 'class-variance-authority'
 import { cn } from '@/lib/utils'
 import React from 'react'

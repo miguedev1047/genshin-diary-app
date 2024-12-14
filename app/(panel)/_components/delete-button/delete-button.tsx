@@ -20,7 +20,7 @@ import {
 import {
   DeleteButtonProps,
   UseDeleteProps,
-} from '@/shared/(panel)/_components/delete-button/delete-button.type'
+} from '@/app/(panel)/_components/delete-button/delete-button.type'
 import { Button } from '@/components/ui/button'
 import { useTransition } from 'react'
 import { useRouter } from 'next/navigation'
