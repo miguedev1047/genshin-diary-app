@@ -16,7 +16,7 @@ import {
 import { Star4, Star5 } from '@/assets/stars'
 import { Sword, Bow, Catalyst, Claymore, Polearm } from '@/assets/weapon-types'
 
-export const DEV_MODE = process.env.NODE_ENV !== 'development'
+export const DEV_MODE = process.env.NODE_ENV === 'development'
 
 export const NONE = ''
 
