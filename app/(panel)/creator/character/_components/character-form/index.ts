@@ -1,1 +1,1 @@
-export { CharacterForm } from './character-form'
+export * from './character-form'

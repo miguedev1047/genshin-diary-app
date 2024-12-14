@@ -1,20 +1,12 @@
 import { Suspense } from 'react'
-import { FilterContainer } from '@/shared/components/filter-container'
-import { WeaponFilter } from '@/shared/filters/weapon-filter'
-import { ContentLayout } from '@/shared/layouts/panel/content-layout'
-import { RarityEnum, WeaponTypeEnum } from '@prisma/client'
 import { WeaponRoutes } from '@/app/(panel)/panel/weapons/_components/weapon-routes'
 import { WeaponSkeleton } from '@/app/(panel)/panel/weapons/_components/weapon-skeleton'
+import { ContentLayout } from '@/app/(panel)/_components/content-layout'
+import { FilterContainer } from '@/components/filter-container'
+import { WeaponFilter } from '@/app/(panel)/_components/filters/weapon-filter'
+import { PageProps } from '@/app/(panel)/panel/weapons/_types'
 
-type Props = {
-  searchParams: {
-    name: string
-    weapon: WeaponTypeEnum
-    stars: RarityEnum
-  }
-}
-
-export default function PanelWeaponsPage(props: Props) {
+export default function PanelWeaponsPage(props: PageProps) {
   const { searchParams: PARAMS } = props
   const KEY = PARAMS.name + PARAMS.weapon + PARAMS.stars
 

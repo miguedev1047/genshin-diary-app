@@ -7,14 +7,14 @@ import {
 } from '@/components/ui/form'
 import { z } from 'zod'
 import { useRouter } from 'next/navigation'
-import { updateMaterialQuantity } from '@/app/(panel)/editor/character/[name]/ascensions/_services/update'
+import { updateMaterialQuantity } from '@/editor/character/[name]/ascensions/_services/update'
 import { MaterialQuantitySchema } from '@/schemas'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useTransition } from 'react'
 import { useForm } from 'react-hook-form'
+import { MaterialFormProps } from '@/editor/character/[name]/ascensions/_components/material-form/material-form.type'
 import { toast } from 'sonner'
 import { Input } from '@/components/ui/input'
-import { MaterialFormProps } from '@/app/(panel)/editor/character/[name]/ascensions/_components/material-form/material-form.type'
 
 export function MaterialForm(props: MaterialFormProps) {
   const { id: material_id, quantity } = props

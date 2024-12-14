@@ -3,11 +3,11 @@
 import { MoraImg } from '@/assets/game'
 import { Prisma } from '@prisma/client'
 import { ColumnDef } from '@tanstack/react-table'
-import { DeleteButton } from '@/shared/layouts/panel/delete-button'
+import { DeleteButton } from '@/app/(panel)/_components/delete-button'
 import { Trash2 } from 'lucide-react'
 import { deleteWeaponAscension } from '@/editor/weapon/[name]/ascensions/_services/delete'
 import { MaterialItem } from '@/editor/weapon/[name]/ascensions/_components/material-item'
-import { SquareBox } from '@/shared/components/square-box'
+import { SquareBox } from '@/components/square-box'
 import Image from 'next/image'
 
 type Ascension = Prisma.WeaponAscensionsGetPayload<{

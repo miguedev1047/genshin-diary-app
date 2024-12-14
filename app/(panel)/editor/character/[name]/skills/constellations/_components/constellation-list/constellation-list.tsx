@@ -5,7 +5,7 @@ import { useGetCharacter } from '@/editor/character/[name]/provider'
 import { useDrag } from '@/features/hooks/use-drag'
 import { updateConstellationOrder } from '@/editor/character/[name]/skills/constellations/_services/update'
 import { ConstellationItem } from '@/editor/character/[name]/skills/constellations/_components/constellation-item'
-import { SortableList } from '@/shared/components/sortable-list'
+import { SortableList } from '@/app/(panel)/_components/sortable-list'
 
 export function ConstellationList() {
   const { data: CHARACTER } = useGetCharacter()

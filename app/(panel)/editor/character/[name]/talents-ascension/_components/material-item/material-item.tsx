@@ -13,7 +13,7 @@ import { MaterialItemProps } from '@/app/(panel)/editor/character/[name]/ascensi
 import { useGetMaterial } from '@/features/queries/panel/use-materiales'
 import { Skeleton } from '@/components/ui/skeleton'
 import { MaterialForm } from '@/editor/character/[name]/talents-ascension/_components/material-form'
-import { SquareBox } from '@/shared/components/square-box'
+import { SquareBox } from '@/components/square-box'
 import Image from 'next/image'
 
 export function MaterialItem(props: MaterialItemProps) {

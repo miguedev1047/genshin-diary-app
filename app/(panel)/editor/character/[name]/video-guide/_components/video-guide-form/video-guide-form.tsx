@@ -17,7 +17,7 @@ import { VideoGuideSchema } from '@/schemas'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { updateVideoGuide } from '@/editor/character/[name]/video-guide/_services/update'
 import { createVideoGuide } from '@/editor/character/[name]/video-guide/_services/create'
-import { FormSheet } from '@/shared/layouts/panel/form-sheet'
+import { FormSheet } from '@/app/(panel)/_components/form-sheet'
 import { useRouter } from 'next/navigation'
 import { toast } from 'sonner'
 

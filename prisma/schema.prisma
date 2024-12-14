@@ -447,3 +447,30 @@ model ConstellationsCharacter {
 
   constellations Characters @relation(fields: [character_id], references: [id], onDelete: Cascade)
 }
+
+// <----- ------>
+// <----- TEAMS ------>
+model Team {
+  id String @id @unique @default(cuid())
+
+  name       String
+  order      Int              @default(0)
+  characters TeamCharacters[]
+
+  date_created DateTime @default(now())
+  date_updated DateTime @updatedAt
+}
+
+model TeamCharacters {
+  id      String @id @unique @default(cuid())
+  team_id String
+
+  character_id  String
+  order         Int    @default(0)
+  constellation Int    @default(0)
+
+  date_created DateTime @default(now())
+  date_updated DateTime @updatedAt
+
+  teams Team @relation(fields: [team_id], references: [id], onDelete: Cascade)
+}

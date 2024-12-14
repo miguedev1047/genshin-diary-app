@@ -31,8 +31,8 @@ import { updateWeapon } from '@/editor/weapon/[name]/weapon-info/_services/updat
 import { useRouter } from 'next/navigation'
 import { useGetWeapon } from '@/editor/weapon/[name]/provider'
 import { toast } from 'sonner'
-import { FormSheet } from '@/shared/layouts/panel/form-sheet'
-import { TextEditor } from '@/shared/components/text-editor'
+import { FormSheet } from '@/app/(panel)/_components/form-sheet'
+import { TextEditor } from '@/app/(panel)/_components/text-editor'
 import { Star } from 'lucide-react'
 
 export function WeaponInfoForm() {

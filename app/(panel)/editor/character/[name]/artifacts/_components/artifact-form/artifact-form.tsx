@@ -10,15 +10,16 @@ import {
 } from '@/components/ui/form'
 import { z } from 'zod'
 import { useForm } from 'react-hook-form'
-import { useTransition } from 'react'
+import { Suspense, useTransition } from 'react'
 import { ArtifactCharacterSchema } from '@/schemas'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { ArtifactSelector } from '@/editor/character/[name]/artifacts/_components/artifact-selector'
 import { createArtifacts } from '@/editor/character/[name]/artifacts/_services/create'
 import { useGetCharacter } from '@/editor/character/[name]/provider'
 import { useRouter } from 'next/navigation'
-import { FormSheet } from '@/shared/layouts/panel/form-sheet'
+import { FormSheet } from '@/app/(panel)/_components/form-sheet'
 import { toast } from 'sonner'
+import { SpinLoaderInput } from '@/components/spin-loaders'
 
 const MAX_ARTIFACTS = 5
 
@@ -78,7 +79,9 @@ export function ArtifactForm() {
               <FormItem>
                 <FormLabel>Artefactos</FormLabel>
                 <FormControl>
-                  <ArtifactSelector {...field} />
+                  <Suspense fallback={<SpinLoaderInput />}>
+                    <ArtifactSelector {...field} />
+                  </Suspense>
                 </FormControl>
                 <FormMessage />
               </FormItem>

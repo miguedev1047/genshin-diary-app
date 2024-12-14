@@ -1,5 +1,5 @@
 'use client'    
-import { SortableList } from '@/shared/components/sortable-list'
+import { SortableList } from '@/app/(panel)/_components/sortable-list'
 import { useDrag } from '@/features/hooks/use-drag'
 import { TalentItem } from '@/editor/character/[name]/skills/talents/_components/talent-item'
 import { updateTalentOrder } from '@/editor/character/[name]/skills/talents/_services/update'

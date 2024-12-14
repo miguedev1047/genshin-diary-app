@@ -6,11 +6,12 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from '@/components/ui/breadcrumb'
-import { ContentLayout } from '@/shared/layouts/panel/content-layout'
+import { ContentLayout } from '@/app/(panel)/_components/content-layout'
 import { WeaponForm } from '@/creator/weapon/_components/weapon-form'
 import Link from 'next/link'
 
 export default function EditWeaponPage() {
+  
   return (
     <ContentLayout title='Crear Arma'>
       <Breadcrumb>

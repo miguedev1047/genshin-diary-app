@@ -16,7 +16,7 @@ import {
 } from '@/components/ui/select'
 import { z } from 'zod'
 import { MaterialSchema } from '@/schemas'
-import { FormCard } from '@/shared/layouts/panel/form-card'
+import { FormCard } from '@/app/(panel)/_components/form-card'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useParams, useRouter } from 'next/navigation'
 import { useEffect, useState, useTransition } from 'react'
@@ -24,11 +24,11 @@ import { useForm } from 'react-hook-form'
 import { Input } from '@/components/ui/input'
 import { Star } from 'lucide-react'
 import { MATERIAL_TYPES, STARS } from '@/consts/general'
-import { createMaterial } from '@/creator/material/_service/create'
+import { createMaterial } from '@/app/(panel)/creator/material/_services/create'
 import { toast } from 'sonner'
-import { TextEditor } from '@/shared/components/text-editor'
+import { TextEditor } from '@/app/(panel)/_components/text-editor'
 import { useGetMaterial } from '@/features/queries/panel/use-materiales'
-import { updateMaterial } from '@/creator/material/_service/update'
+import { updateMaterial } from '@/app/(panel)/creator/material/_services/update'
 
 export function MaterialForm() {
   const [key, setKey] = useState(+new Date())

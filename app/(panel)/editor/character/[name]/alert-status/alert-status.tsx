@@ -1,8 +1,7 @@
 'use client'
 
+import { Eclipse } from 'lucide-react'
 import { useGetCharacter } from '@/app/(panel)/editor/character/[name]/provider'
-import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
-import { AlertOctagon, CheckCircle } from 'lucide-react'
 
 export function AlertStatus() {
   const { data: CHARACTER } = useGetCharacter()
@@ -10,25 +9,47 @@ export function AlertStatus() {
 
   if (!CHARACTER_STATUS)
     return (
-      <Alert variant='warning'>
-        <AlertOctagon className='size-4' />
-        <AlertTitle>Advertencia</AlertTitle>
-        <AlertDescription>
-          Actualmente, este personaje no es visible para todos los usuarios.
-          Puedes cambiar esta configuración en la sección de información del
-          personaje.
-        </AlertDescription>
-      </Alert>
+      <div className='dark bg-muted px-4 py-3 text-foreground rounded-[1rem]'>
+        <div className='flex flex-col justify-between gap-2 md:flex-row'>
+          <div className='flex grow gap-3'>
+            <Eclipse
+              className='mt-0.5 shrink-0 opacity-60'
+              size={16}
+              strokeWidth={2}
+              aria-hidden='true'
+            />
+            <div className='flex grow flex-col justify-between gap-2 md:flex-row md:items-center'>
+              <p className='text-sm'>
+                Actualmente, este personaje no es visible para todos los
+                usuarios. Puedes cambiar esta configuración en la sección de
+                información del personaje.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
     )
 
   return (
-    <Alert variant='success'>
-      <CheckCircle className='size-4' />
-      <AlertTitle>Información</AlertTitle>
-      <AlertDescription>
-        El personaje ahora es visible para todos los usuarios. Puedes modificar
-        esta configuración en su información.
-      </AlertDescription>
-    </Alert>
+    <div className='dark bg-muted px-4 py-3 text-foreground rounded-[1rem]'>
+      <div className='flex flex-col justify-between gap-2 md:flex-row'>
+        <div className='flex grow gap-3'>
+          <Eclipse
+            className='mt-0.5 shrink-0 opacity-60'
+            size={16}
+            strokeWidth={2}
+            aria-hidden='true'
+          />
+          <div className='flex grow flex-col justify-between gap-2 md:flex-row md:items-center'>
+            <p className='text-sm'>
+              El personaje ahora es visible para todos los usuarios. Puedes
+              modificar esta configuración en su información.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
   )
 }
+
+// Dependencies: pnpm install lucide-react

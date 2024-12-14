@@ -3,7 +3,7 @@
 import { useGetCharacter } from '@/editor/character/[name]/provider'
 import { WeaponItem } from '@/editor/character/[name]/weapons/_components/weapon-item'
 import { updateWeapons } from '@/editor/character/[name]/weapons/_services/update'
-import { SortableList } from '@/shared/components/sortable-list'
+import { SortableList } from '@/app/(panel)/_components/sortable-list'
 import { useDrag } from '@/features/hooks/use-drag'
 
 export function WeaponList() {

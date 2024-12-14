@@ -4,8 +4,10 @@ import { MoraImg } from '@/assets/game'
 import { ColumnDef } from '@tanstack/react-table'
 import { MaterialItem } from '@/app/(panel)/editor/character/[name]/ascensions/_components/material-item'
 import { Ascension } from '@/app/(panel)/editor/character/[name]/ascensions'
-import { Actions } from '@/app/(panel)/editor/character/[name]/ascensions/_components/actions'
-import { SquareBox } from '@/shared/components/square-box'
+import { SquareBox } from '@/components/square-box'
+import { DeleteButton } from '@/app/(panel)/_components/delete-button'
+import { deleteAscension } from '@/app/(panel)/editor/character/[name]/ascensions/_services/delete'
+import { Trash2 } from 'lucide-react'
 import Image from 'next/image'
 
 export const columns: ColumnDef<Ascension>[] = [
@@ -79,7 +81,15 @@ export const columns: ColumnDef<Ascension>[] = [
     header: 'Acciones',
     cell: ({ row }) => {
       const { id } = row.original
-      return <Actions id={id} />
+      
+      return (
+        <DeleteButton
+          itemId={id}
+          onDelete={deleteAscension}
+        >
+          <Trash2 />
+        </DeleteButton>
+      )
     },
   },
 ]

@@ -6,16 +6,16 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from '@/components/ui/breadcrumb'
-import { ContentLayout } from '@/shared/layouts/panel/content-layout'
+import { ContentLayout } from '@/app/(panel)/_components/content-layout'
 import { MaterialForm } from '@/creator/material/_components/material-form'
+import { PageProps } from '@/app/(panel)/creator/material/_types'
 import Link from 'next/link'
 
-export default function CreatorMaterialPage({
-  params,
-}: {
-  params: { id: string }
-}) {
-  const IS_EDITING = !!params?.id
+export default function CreatorMaterialPage(props: PageProps) {
+  const { params } = props
+
+  const ITEM_ID = params?.id
+  const IS_EDITING = !!ITEM_ID
 
   return (
     <ContentLayout title={` ${IS_EDITING ? 'Editar' : 'Crear'} material`}>

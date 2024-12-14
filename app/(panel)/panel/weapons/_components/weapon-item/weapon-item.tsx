@@ -10,7 +10,7 @@ import { WeaponItemProps } from '@/app/(panel)/panel/weapons/_components/weapon-
 import { formattedUrl } from '@/features/utils/formatted-names'
 import { getBorderColorByRarity } from '@/features/utils/rarity-color'
 import { deleteWeapon } from '@/app/(panel)/panel/weapons/_services/delete'
-import { DeleteButton } from '@/shared/layouts/panel/delete-button'
+import { DeleteButton } from '@/app/(panel)/_components/delete-button'
 import { Trash2 } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import Link from 'next/link'

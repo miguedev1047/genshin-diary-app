@@ -1,6 +1,6 @@
 'use client'
 
-import { EditorCard } from '@/shared/layouts/panel/editor-card'
+import { EditorCard } from '@/app/(panel)/_components/editor-card'
 import { useGetCharacter } from '@/editor/character/[name]/provider'
 import { VideoGuideForm } from '@/editor/character/[name]/video-guide/_components/video-guide-form'
 import { NONE } from '@/consts/general'

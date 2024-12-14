@@ -19,7 +19,7 @@ import {
 } from '@/components/ui/form'
 import { z } from 'zod'
 import { ASCENSION_LEVEL } from '@/consts/general'
-import { useTransition } from 'react'
+import { Suspense, useTransition } from 'react'
 import { useForm } from 'react-hook-form'
 import { TalentSchema } from '@/schemas'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -27,8 +27,9 @@ import { useGetCharacter } from '@/editor/character/[name]/provider'
 import { useRouter } from 'next/navigation'
 import { createTalentAscension } from '@/editor/character/[name]/talents-ascension/_services/create'
 import { MaterialSelector } from '@/editor/character/[name]/talents-ascension/_components/material-selector'
-import { FormSheet } from '@/shared/layouts/panel/form-sheet'
+import { FormSheet } from '@/app/(panel)/_components/form-sheet'
 import { toast } from 'sonner'
+import { SpinLoaderInput } from '@/components/spin-loaders'
 
 export function TalentAscensionForm() {
   const { data: CHARACTER } = useGetCharacter()
@@ -122,7 +123,9 @@ export function TalentAscensionForm() {
               <FormItem>
                 <FormLabel>Materiales</FormLabel>
                 <FormControl>
-                  <MaterialSelector {...field} />
+                  <Suspense fallback={<SpinLoaderInput />}>
+                    <MaterialSelector {...field} />
+                  </Suspense>
                 </FormControl>
                 <FormMessage />
               </FormItem>

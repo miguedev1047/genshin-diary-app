@@ -8,8 +8,8 @@ import { TeamNameSchema } from '@/schemas'
 import { Input } from '@/components/ui/input'
 import { updateTeamName } from '@/editor/character/[name]/teams/_services/update'
 import { toast } from 'sonner'
-import React, { useState, useTransition } from 'react'
 import { Pencil } from 'lucide-react'
+import React, { useState, useTransition } from 'react'
 
 export function TeamNameForm(props: TeamNameFormProps) {
   const { name, id } = props

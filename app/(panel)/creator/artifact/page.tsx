@@ -6,16 +6,16 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from '@/components/ui/breadcrumb'
-import { ContentLayout } from '@/shared/layouts/panel/content-layout'
+import { ContentLayout } from '@/app/(panel)/_components/content-layout'
 import { ArtifactForm } from '@/creator/artifact/_components/artifact-form'
+import { PageProps } from '@/app/(panel)/creator/artifact/_types'
 import Link from 'next/link'
 
-export default function CreatorArtifactPage({
-  params,
-}: {
-  params: { id: string }
-}) {
-  const IS_EDITING = !!params?.id
+export default function CreatorArtifactPage(props: PageProps) {
+  const { params } = props
+
+  const ITEM_ID = params?.id
+  const IS_EDITING = !!ITEM_ID
 
   return (
     <ContentLayout title={` ${IS_EDITING ? 'Editar' : 'Crear'} artefacto`}>

@@ -1,17 +1,12 @@
 import { Suspense } from 'react'
-import { FilterContainer } from '@/shared/components/filter-container'
-import { ArtifactFilter } from '@/shared/filters/artifact-filter'
-import { ContentLayout } from '@/shared/layouts/panel/content-layout'
+import { FilterContainer } from '@/components/filter-container'
+import { ArtifactFilter } from '@/app/(panel)/_components/filters/artifact-filter'
+import { ContentLayout } from '@/app/(panel)/_components/content-layout'
 import { ArtifactRoutes } from '@/app/(panel)/panel/artifacts/_components/artifact-routes'
 import { ArtifactSkeleton } from '@/app/(panel)/panel/artifacts/_components/artifact-skeleton'
+import { PageProps } from '@/app/(panel)/panel/artifacts/_types'
 
-type Props = {
-  searchParams: {
-    name: string
-  }
-}
-
-export default function PanelArtifactsPage(props: Props) {
+export default function PanelArtifactsPage(props: PageProps) {
   const { searchParams: PARAMS } = props
   const KEY = PARAMS.name
 

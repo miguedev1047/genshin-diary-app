@@ -19,7 +19,7 @@ import {
   SelectValue,
 } from '@/components/ui/select'
 import { z } from 'zod'
-import { FormSheet } from '@/shared/layouts/panel/form-sheet'
+import { FormSheet } from '@/app/(panel)/_components/form-sheet'
 import { useEffect, useTransition } from 'react'
 import { useForm } from 'react-hook-form'
 import { useGetCharacter } from '@/editor/character/[name]/provider'
@@ -31,7 +31,7 @@ import { createConstellation } from '@/editor/character/[name]/skills/constellat
 import { updateConstellation } from '@/editor/character/[name]/skills/constellations/_services/update'
 import { ConstellationFormProps } from '@/editor/character/[name]/skills/constellations/_components/constellation-form/constellation-form.type'
 import { DEFAULT_IMAGE, SKILL_TYPE } from '@/consts/general'
-import { TextEditor } from '@/shared/components/text-editor'
+import { TextEditor } from '@/app/(panel)/_components/text-editor'
 import { Input } from '@/components/ui/input'
 import { toast } from 'sonner'
 

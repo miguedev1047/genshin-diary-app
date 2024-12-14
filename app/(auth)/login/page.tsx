@@ -1,5 +1,5 @@
-import { Back } from './_components/back'
-import { LoginForm } from './_components/login-form'
+import { Back } from '@/app/(auth)/login/_components/back'
+import { LoginForm } from '@/app/(auth)/login/_components/login-form'
 
 export default function PageLogin() {
   return (

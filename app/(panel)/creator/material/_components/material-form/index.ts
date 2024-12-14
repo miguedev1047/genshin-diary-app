@@ -1,1 +1,1 @@
-export { MaterialForm } from './material-form'
+export * from './material-form'

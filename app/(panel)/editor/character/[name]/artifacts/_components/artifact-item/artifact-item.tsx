@@ -2,12 +2,12 @@ import { ArtifactItemProps } from '@/editor/character/[name]/artifacts/_componen
 import { Card, CardContent } from '@/components/ui/card'
 import { Skeleton } from '@/components/ui/skeleton'
 import { DEFAULT_IMAGE } from '@/consts/general'
-import { SortableList } from '@/shared/components/sortable-list'
-import { DeleteButton } from '@/shared/layouts/panel/delete-button'
+import { SortableList } from '@/app/(panel)/_components/sortable-list'
+import { DeleteButton } from '@/app/(panel)/_components/delete-button'
 import { deleteArtifact } from '@/editor/character/[name]/artifacts/_services/delete'
 import { useGetArtifact } from '@/features/queries/panel/use-artifacts'
 import { Trash2 } from 'lucide-react'
-import { SquareBox } from '@/shared/components/square-box'
+import { SquareBox } from '@/components/square-box'
 import Image from 'next/image'
 
 export function ArtifactItem(props: ArtifactItemProps) {

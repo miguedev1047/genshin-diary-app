@@ -2,12 +2,12 @@
 
 import { MoraImg } from '@/assets/game'
 import { ColumnDef } from '@tanstack/react-table'
-import { DeleteButton } from '@/shared/layouts/panel/delete-button'
+import { DeleteButton } from '@/app/(panel)/_components/delete-button'
 import { Trash2 } from 'lucide-react'
 import { TalentAscensionProps } from '@/app/(panel)/editor/character/[name]/talents-ascension/talent-ascension.type'
 import { MaterialItem } from '@/editor/character/[name]/talents-ascension/_components/material-item'
 import { deleteTalentAscension } from '@/editor/character/[name]/talents-ascension/_services/delete'
-import { SquareBox } from '@/shared/components/square-box'
+import { SquareBox } from '@/components/square-box'
 import Image from 'next/image'
 
 export const columns: ColumnDef<TalentAscensionProps>[] = [

@@ -7,13 +7,13 @@ import {
   getRoleText,
   getWeaponText,
 } from '@/features/utils/character-texts'
-import { EditorCard } from '@/shared/layouts/panel/editor-card'
+import { EditorCard } from '@/app/(panel)/_components/editor-card'
 import { Badge } from '@/components/ui/badge'
 import { Star } from 'lucide-react'
 import { DEFAULT_IMAGE } from '@/consts/general'
 import { useGetCharacter } from '@/editor/character/[name]/provider'
 import { CharacterInfoForm } from '@/editor/character/[name]/character-info/_components/character-info-form'
-import { SquareBox } from '@/shared/components/square-box'
+import { SquareBox } from '@/components/square-box'
 import parse from 'html-react-parser'
 import Image from 'next/image'
 

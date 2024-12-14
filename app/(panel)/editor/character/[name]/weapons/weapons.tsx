@@ -1,6 +1,6 @@
 'use client'
 
-import { EditorCard } from '@/shared/layouts/panel/editor-card'
+import { EditorCard } from '@/app/(panel)/_components/editor-card'
 import { WeaponForm } from '@/editor/character/[name]/weapons/_components/weapon-form'
 import { WeaponList } from '@/editor/character/[name]/weapons/_components/weapon-list'
 

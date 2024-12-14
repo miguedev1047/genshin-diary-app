@@ -1,5 +1,5 @@
 import { Tabs, TabsContent, TabsTrigger, TabsList } from '@/components/ui/tabs'
-import { EditorCard } from '@/shared/layouts/panel/editor-card'
+import { EditorCard } from '@/app/(panel)/_components/editor-card'
 import { Talents } from '@/editor/character/[name]/skills/talents'
 import { Passives } from '@/editor/character/[name]/skills/passives'
 import { Constellations } from '@/editor/character/[name]/skills/constellations'

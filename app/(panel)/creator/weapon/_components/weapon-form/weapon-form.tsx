@@ -23,13 +23,13 @@ import { ATTRIBUTES, STARS, WEAPON_TYPE } from '@/consts/general'
 import { WeaponSchema } from '@/schemas'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Star } from 'lucide-react'
-import { createWeapon } from '@/creator/weapon/_service/create'
-import { FormCard } from '@/shared/layouts/panel/form-card'
+import { createWeapon } from '@/app/(panel)/creator/weapon/_services/create'
+import { FormCard } from '@/app/(panel)/_components/form-card'
+import { TextEditor } from '@/app/(panel)/_components/text-editor'
 import { useTransition } from 'react'
 import { useForm } from 'react-hook-form'
 import { useRouter } from 'next/navigation'
 import { toast } from 'sonner'
-import { TextEditor } from '@/shared/components/text-editor'
 
 export function WeaponForm() {
   const [isPending, startTranstion] = useTransition()

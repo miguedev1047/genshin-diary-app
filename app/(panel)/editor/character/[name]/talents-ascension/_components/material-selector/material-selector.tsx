@@ -1,5 +1,5 @@
 import { useGetMaterials } from '@/features/queries/panel/use-materiales'
-import { DialogMultiSelect } from '@/shared/components/dialog-multi-select'
+import { DialogMultiSelect } from '@/app/(panel)/_components/dialog-multi-select'
 import { MaterialSelectorProps } from '@/editor/character/[name]/ascensions/_components/material-selector/material-selector.type'
 import { useGetCharacter } from '@/editor/character/[name]/provider'
 

@@ -13,12 +13,13 @@ import { useForm } from 'react-hook-form'
 import { WeaponSelector } from '@/editor/character/[name]/weapons/_components/weapon-selector'
 import { WeaponCharacterSchema } from '@/schemas'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useTransition } from 'react'
+import { Suspense, useTransition } from 'react'
 import { createWeapons } from '@/editor/character/[name]/weapons/_services/create'
 import { useGetCharacter } from '@/editor/character/[name]/provider'
 import { useRouter } from 'next/navigation'
-import { FormSheet } from '@/shared/layouts/panel/form-sheet'
+import { FormSheet } from '@/app/(panel)/_components/form-sheet'
 import { toast } from 'sonner'
+import { SpinLoaderInput } from '@/components/spin-loaders'
 
 const MAX_WEAPONS = 5
 
@@ -58,8 +59,6 @@ export function WeaponForm() {
     })
   })
 
-  const handleReset = () => form.reset()
-
   return (
     <FormSheet
       title='Armas'
@@ -79,7 +78,9 @@ export function WeaponForm() {
               <FormItem>
                 <FormLabel>Armas</FormLabel>
                 <FormControl>
-                  <WeaponSelector {...field} />
+                  <Suspense fallback={<SpinLoaderInput />}>
+                    <WeaponSelector {...field} />
+                  </Suspense>
                 </FormControl>
                 <FormMessage />
               </FormItem>

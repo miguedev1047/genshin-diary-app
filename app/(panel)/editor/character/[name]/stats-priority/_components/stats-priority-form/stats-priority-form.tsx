@@ -17,7 +17,7 @@ import { StatsPrioritySchema } from '@/schemas'
 import { createStats } from '@/editor/character/[name]/stats-priority/_services/create'
 import { updateStats } from '@/editor/character/[name]/stats-priority/_services/update'
 import { Input } from '@/components/ui/input'
-import { FormSheet } from '@/shared/layouts/panel/form-sheet'
+import { FormSheet } from '@/app/(panel)/_components/form-sheet'
 import { useRouter } from 'next/navigation'
 import { toast } from 'sonner'
 

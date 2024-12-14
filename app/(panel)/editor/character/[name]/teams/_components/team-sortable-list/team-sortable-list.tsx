@@ -1,6 +1,6 @@
 'use client'
 
-import { SortableList } from '@/shared/components/sortable-list'
+import { SortableList } from '@/app/(panel)/_components/sortable-list'
 import { useGetCharacter } from '@/editor/character/[name]/provider'
 import { updateTeams } from '@/editor/character/[name]/teams/_services/update'
 import { TeamItem } from '@/editor/character/[name]/teams/_components/team-item'

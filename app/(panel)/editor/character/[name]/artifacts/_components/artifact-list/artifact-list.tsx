@@ -1,6 +1,6 @@
 'use client'
 
-import { SortableList } from '@/shared/components/sortable-list'
+import { SortableList } from '@/app/(panel)/_components/sortable-list'
 import { ArtifactItem } from '@/editor/character/[name]/artifacts/_components/artifact-item'
 import { useGetCharacter } from '@/editor/character/[name]/provider'
 import { updateArtifacts } from '@/editor/character/[name]/artifacts/_services/update'

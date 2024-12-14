@@ -27,13 +27,13 @@ import { CharacterSchema } from '@/schemas'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Star } from 'lucide-react'
 import { useRouter } from 'next/navigation'
-import { createCharacter } from '@/creator/character/_service/create'
+import { createCharacter } from '@/app/(panel)/creator/character/_services/create'
 import { useTransition } from 'react'
 import { useForm } from 'react-hook-form'
 import { Input } from '@/components/ui/input'
-import { FormCard } from '@/shared/layouts/panel/form-card'
+import { FormCard } from '@/app/(panel)/_components/form-card'
+import { TextEditor } from '@/app/(panel)/_components/text-editor'
 import { toast } from 'sonner'
-import { TextEditor } from '@/shared/components/text-editor'
 
 export function CharacterForm() {
   const [isPending, startTranstion] = useTransition()

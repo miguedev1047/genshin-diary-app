@@ -5,13 +5,13 @@ import {
   getRarityStars,
   getWeaponText,
 } from '@/features/utils/character-texts'
-import { EditorCard } from '@/shared/layouts/panel/editor-card'
+import { EditorCard } from '@/app/(panel)/_components/editor-card'
 import { WeaponInfoForm } from '@/app/(panel)/editor/weapon/[name]/weapon-info/_components/weapon-info-form'
 import { Badge } from '@/components/ui/badge'
 import { Star } from 'lucide-react'
 import { NONE } from '@/consts/general'
 import { useGetWeapon } from '@/app/(panel)/editor/weapon/[name]/provider'
-import { SquareBox } from '@/shared/components/square-box'
+import { SquareBox } from '@/components/square-box'
 import Image from 'next/image'
 import parse from 'html-react-parser'
 

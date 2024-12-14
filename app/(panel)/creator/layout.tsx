@@ -1,4 +1,4 @@
-import { PanelLayout } from '@/shared/layouts/panel/panel-layout'
+import { PanelLayout } from '@/app/(panel)/_components/panel-layout'
 
 export default function CreatorLayout({
   children,

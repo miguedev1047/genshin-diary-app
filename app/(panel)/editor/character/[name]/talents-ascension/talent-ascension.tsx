@@ -1,6 +1,6 @@
 'use client'
 
-import { EditorCard } from '@/shared/layouts/panel/editor-card'
+import { EditorCard } from '@/app/(panel)/_components/editor-card'
 import { useGetCharacter } from '@/editor/character/[name]/provider'
 import { TalentAscensionProps } from '@/app/(panel)/editor/character/[name]/talents-ascension/talent-ascension.type'
 import { TalentAscensionForm } from '@/editor/character/[name]/talents-ascension/_components/talent-ascension-form'

@@ -1,6 +1,6 @@
 'use client'
 
-import { EditorCard } from '@/shared/layouts/panel/editor-card'
+import { EditorCard } from '@/app/(panel)/_components/editor-card'
 import { useGetCharacter } from '@/editor/character/[name]/provider'
 import { StatsPriorityForm } from '@/editor/character/[name]/stats-priority/_components/stats-priority-form'
 import { Card, CardContent } from '@/components/ui/card'

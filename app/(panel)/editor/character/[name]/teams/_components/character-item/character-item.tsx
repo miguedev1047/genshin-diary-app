@@ -2,7 +2,7 @@ import { Card, CardContent } from '@/components/ui/card'
 import { CharacterItemProps } from '@/editor/character/[name]/teams/_components/character-item/character-item.type'
 import { useGetCharacter } from '@/features/queries/panel/use-characters'
 import { Skeleton } from '@/components/ui/skeleton'
-import { SortableList } from '@/shared/components/sortable-list'
+import { SortableList } from '@/app/(panel)/_components/sortable-list'
 import { ConstellationForm } from '@/editor/character/[name]/teams/_components/constellation-form'
 import { Badge } from '@/components/ui/badge'
 

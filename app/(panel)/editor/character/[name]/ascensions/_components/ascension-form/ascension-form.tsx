@@ -24,11 +24,12 @@ import { MaterialSelector } from '@/app/(panel)/editor/character/[name]/ascensio
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { AscensionSchema } from '@/schemas'
+import { FormSheet } from '@/app/(panel)/_components/form-sheet'
 import { createAscension } from '@/app/(panel)/editor/character/[name]/ascensions/_services/create'
 import { useRouter } from 'next/navigation'
-import { useTransition } from 'react'
+import { Suspense, useTransition } from 'react'
 import { toast } from 'sonner'
-import { FormSheet } from '@/shared/layouts/panel/form-sheet'
+import { SpinLoaderInput } from '@/components/spin-loaders'
 
 export function AscensionForm(props: AscensionsFormProps) {
   const { data: CHARACTER } = props
@@ -119,7 +120,9 @@ export function AscensionForm(props: AscensionsFormProps) {
               <FormItem>
                 <FormLabel>Seleccionar materiales</FormLabel>
                 <FormControl>
-                  <MaterialSelector {...field} />
+                  <Suspense fallback={<SpinLoaderInput />}>
+                    <MaterialSelector {...field} />
+                  </Suspense>
                 </FormControl>
                 <FormMessage />
               </FormItem>

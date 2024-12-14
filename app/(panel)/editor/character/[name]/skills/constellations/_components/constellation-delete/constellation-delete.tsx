@@ -1,4 +1,4 @@
-import { DeleteButton } from '@/shared/layouts/panel/delete-button'
+import { DeleteButton } from '@/app/(panel)/_components/delete-button'
 import { ConstellationDeleteProps } from '@/editor/character/[name]/skills/constellations/_components/constellation-delete/constellation-delete.type'
 import { deleteConstellation } from '@/editor/character/[name]/skills/constellations/_services/delete'
 import { Trash2 } from 'lucide-react'

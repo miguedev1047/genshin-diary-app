@@ -7,7 +7,7 @@ import {
   BreadcrumbSeparator,
 } from '@/components/ui/breadcrumb'
 import { formattedName } from '@/features/utils/formatted-names'
-import { ContentLayout } from '@/shared/layouts/panel/content-layout'
+import { ContentLayout } from '@/app/(panel)/_components/content-layout'
 import { PageProps } from '@/editor/weapon/[name]/_shared/types'
 import { fetchWeapon } from '@/editor/weapon/[name]/_shared/_services/fetch'
 import { WeaponInfo } from '@/editor/weapon/[name]/weapon-info'

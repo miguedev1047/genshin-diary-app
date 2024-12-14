@@ -1,7 +1,7 @@
 'use client'
 
 import { useGetWeapon } from '@/editor/weapon/[name]/provider'
-import { EditorCard } from '@/shared/layouts/panel/editor-card'
+import { EditorCard } from '@/app/(panel)/_components/editor-card'
 import { columns } from '@/app/(panel)/editor/weapon/[name]/ascensions/_components/weapon-ascension-table/ascension-table-columns'
 import { WeaponAscensionTable } from '@/app/(panel)/editor/weapon/[name]/ascensions/_components/weapon-ascension-table'
 import { WeaponAscensionsProps } from '@/editor/weapon/[name]/ascensions/ascensions.type'

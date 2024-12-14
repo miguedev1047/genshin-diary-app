@@ -1,1 +1,1 @@
-export { ArtifactForm } from './artifact-form'
+export * from './artifact-form'

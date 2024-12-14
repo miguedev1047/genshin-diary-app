@@ -1,4 +1,4 @@
-import { Users2, Sword, Box, Hourglass } from 'lucide-react'
+import { Users2, Sword, Box, Hourglass, Group } from 'lucide-react'
 
 export const SIDEBAR_DATA = {
   sidebar_items: [
@@ -21,6 +21,11 @@ export const SIDEBAR_DATA = {
       title: 'Materiales',
       url: '/panel/materials',
       icon: Box,
+    },
+    {
+      title: 'Equipos',
+      url: '/panel/teams',
+      icon: Group,
     },
   ],
 }

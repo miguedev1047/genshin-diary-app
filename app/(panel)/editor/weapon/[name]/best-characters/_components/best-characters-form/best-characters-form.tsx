@@ -11,14 +11,15 @@ import {
 import { z } from 'zod'
 import { WeaponBestCharactersSchema } from '@/schemas'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useTransition } from 'react'
+import { Suspense, useTransition } from 'react'
 import { useForm } from 'react-hook-form'
 import { CharacterSelector } from '@/editor/weapon/[name]/best-characters/_components/character-selector'
 import { useGetWeapon } from '@/editor/weapon/[name]/provider'
 import { createBestCharacters } from '@/editor/weapon/[name]/best-characters/_services/create'
-import { toast } from 'sonner'
+import { FormSheet } from '@/app/(panel)/_components/form-sheet'
 import { useRouter } from 'next/navigation'
-import { FormSheet } from '@/shared/layouts/panel/form-sheet'
+import { toast } from 'sonner'
+import { SpinLoaderInput } from '@/components/spin-loaders'
 
 const MAX_CHARACTERS = 6
 
@@ -79,7 +80,9 @@ export function BestCharactersForm() {
               <FormItem>
                 <FormLabel>Seleccionar personajes</FormLabel>
                 <FormControl>
-                  <CharacterSelector {...field} />
+                  <Suspense fallback={<SpinLoaderInput />}>
+                    <CharacterSelector {...field} />
+                  </Suspense>
                 </FormControl>
                 <FormMessage />
               </FormItem>

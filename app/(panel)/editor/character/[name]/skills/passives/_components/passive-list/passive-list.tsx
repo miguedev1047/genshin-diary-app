@@ -4,7 +4,7 @@ import { PassivesCharacter } from '@prisma/client'
 import { useGetCharacter } from '@/editor/character/[name]/provider'
 import { useDrag } from '@/features/hooks/use-drag'
 import { updatePassiveOrder } from '@/editor/character/[name]/skills/passives/_services/update'
-import { SortableList } from '@/shared/components/sortable-list'
+import { SortableList } from '@/app/(panel)/_components/sortable-list'
 import { PassiveItem } from '@/editor/character/[name]/skills/passives/_components/passive-item'
 
 export function PassiveList() {

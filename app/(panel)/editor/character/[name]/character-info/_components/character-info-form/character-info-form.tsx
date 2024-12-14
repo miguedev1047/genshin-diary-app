@@ -37,8 +37,8 @@ import { Input } from '@/components/ui/input'
 import { updateCharacter } from '@/app/(panel)/editor/character/[name]/character-info/_services/update'
 import { toast } from 'sonner'
 import { formattedUrl } from '@/features/utils/formatted-names'
-import { FormSheet } from '@/shared/layouts/panel/form-sheet'
-import { TextEditor } from '@/shared/components/text-editor'
+import { FormSheet } from '@/app/(panel)/_components/form-sheet'
+import { TextEditor } from '@/app/(panel)/_components/text-editor'
 import { Switch } from '@/components/ui/switch'
 
 export function CharacterInfoForm() {

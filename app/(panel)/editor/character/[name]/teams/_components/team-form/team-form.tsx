@@ -10,16 +10,17 @@ import {
 } from '@/components/ui/form'
 import { z } from 'zod'
 import { useForm } from 'react-hook-form'
-import { useTransition } from 'react'
+import { Suspense, useTransition } from 'react'
 import { TeamsCharacterSchema } from '@/schemas'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Input } from '@/components/ui/input'
 import { CharacterSelector } from '@/editor/character/[name]/teams/_components/character-selector'
 import { createTeams } from '@/editor/character/[name]/teams/_services/create'
 import { useGetCharacter } from '@/editor/character/[name]/provider'
-import { FormSheet } from '@/shared/layouts/panel/form-sheet'
+import { FormSheet } from '@/app/(panel)/_components/form-sheet'
 import { useRouter } from 'next/navigation'
 import { toast } from 'sonner'
+import { SpinLoaderInput } from '@/components/spin-loaders'
 
 const MAX_TEAMS = 4
 const MAX_CHARACTERS = 4
@@ -107,10 +108,12 @@ export function TeamForm() {
               <FormItem>
                 <FormLabel>Personajes</FormLabel>
                 <FormControl>
-                  <CharacterSelector
-                    disabled={isPending}
-                    {...field}
-                  />
+                  <Suspense fallback={<SpinLoaderInput />}>
+                    <CharacterSelector
+                      disabled={isPending}
+                      {...field}
+                    />
+                  </Suspense>
                 </FormControl>
                 <FormMessage />
               </FormItem>

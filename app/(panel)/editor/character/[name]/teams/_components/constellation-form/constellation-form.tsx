@@ -18,7 +18,7 @@ import { CONSTELLATION_TYPE, DEFAULT_IMAGE } from '@/consts/general'
 import { useState, useTransition } from 'react'
 import { updateCharacterConstellation } from '@/editor/character/[name]/teams/_services/update'
 import { useRouter } from 'next/navigation'
-import { SquareBox } from '@/shared/components/square-box'
+import { SquareBox } from '@/components/square-box'
 import { toast } from 'sonner'
 import Image from 'next/image'
 

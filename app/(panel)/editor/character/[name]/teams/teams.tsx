@@ -1,4 +1,4 @@
-import { EditorCard } from '@/shared/layouts/panel/editor-card'
+import { EditorCard } from '@/app/(panel)/_components/editor-card'
 import { TeamSortableList } from '@/editor/character/[name]/teams/_components/team-sortable-list'
 import { TeamForm } from '@/editor/character/[name]/teams/_components/team-form'
 

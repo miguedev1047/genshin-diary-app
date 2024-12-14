@@ -1,6 +1,6 @@
 'use client'
 
-import { EditorCard } from '@/shared/layouts/panel/editor-card'
+import { EditorCard } from '@/app/(panel)/_components/editor-card'
 import { AscensionTable } from '@/app/(panel)/editor/character/[name]/ascensions/_components/ascension-table'
 import { AscensionForm } from '@/app/(panel)/editor/character/[name]/ascensions/_components/ascension-form'
 import { columns } from '@/app/(panel)/editor/character/[name]/ascensions/_components/ascension-table/ascension-columns'

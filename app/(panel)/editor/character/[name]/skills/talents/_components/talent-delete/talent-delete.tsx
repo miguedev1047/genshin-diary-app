@@ -1,5 +1,5 @@
 import { TalentDeleteProps } from '@/editor/character/[name]/skills/talents/_components/talent-delete/talent-delete.type'
-import { DeleteButton } from '@/shared/layouts/panel/delete-button'
+import { DeleteButton } from '@/app/(panel)/_components/delete-button'
 import { deleteTalent } from '@/editor/character/[name]/skills/talents/_services/delete'
 import { Trash2 } from 'lucide-react'
 
