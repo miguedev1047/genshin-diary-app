@@ -1,16 +1,15 @@
 import { currentRole } from '@/data/auth'
-import db from '@/lib/db'
+import { db } from '@/lib/db'
 
 export async function fetchWeapon(name: string) {
-  const ROLE = await currentRole()
+  const WEAPON_NAME = name.toLowerCase()
 
-  if (ROLE !== 'ADMIN') {
-    return null
-  }
+  const ROLE = await currentRole()
+  if (ROLE === 'USER') return null
 
   try {
     const CHARACTER = await db.weapons.findFirst({
-      where: { name: { contains: name, mode: 'insensitive' } },
+      where: { name: { contains: WEAPON_NAME } },
       include: {
         ascensions: {
           orderBy: [{ order: 'asc' }],

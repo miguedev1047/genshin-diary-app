@@ -1,12 +1,5 @@
 import { currentRole } from '@/data/auth'
-import { Prisma } from '@prisma/client'
-import db from '@/lib/db'
-
-type Teams = Array<
-  Prisma.TeamGetPayload<{
-    include: { characters: true }
-  }>
->
+import { db } from '@/lib/db'
 
 type GetTeamProps = {
   name: string
@@ -16,18 +9,27 @@ export async function getTeams(props: GetTeamProps) {
   const { name } = props
 
   const ROLE = await currentRole()
-
-  if (ROLE !== 'ADMIN') {
-    return { status: 401, message: 'No tienes permisos.' }
-  }
+  if (ROLE === 'USER') return null
 
   try {
-    const TEAMS = await db.team.findMany({
-      where: {
-        name: {
-          contains: name,
+    if (name) {
+      const TEAMS = await db.team.findMany({
+        include: {
+          characters: {
+            orderBy: [{ order: 'asc' }, { date_created: 'desc' }],
+          },
         },
-      },
+        orderBy: [{ order: 'asc' }, { date_created: 'desc' }],
+      })
+
+      const FILTERED_TEAMS = TEAMS.filter((t) =>
+        t.name.toLowerCase().includes(name.toLowerCase())
+      )
+
+      return FILTERED_TEAMS
+    }
+
+    const TEAMS = await db.team.findMany({
       include: {
         characters: {
           orderBy: [{ order: 'asc' }, { date_created: 'desc' }],
@@ -36,7 +38,7 @@ export async function getTeams(props: GetTeamProps) {
       orderBy: [{ order: 'asc' }, { date_created: 'desc' }],
     })
 
-    return TEAMS as Teams
+    return TEAMS
   } catch (error) {
     return null
   }

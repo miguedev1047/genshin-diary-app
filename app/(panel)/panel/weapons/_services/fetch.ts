@@ -1,26 +1,32 @@
-import { RarityEnum, WeaponTypeEnum } from '@prisma/client'
-import db from '@/lib/db'
+import { currentRole } from '@/data/auth'
+import { db } from '@/lib/db'
 
 type Props = {
   name: string
-  weapon: WeaponTypeEnum
-  stars: RarityEnum
+  weapon: string
+  stars: string
 }
 
 export async function getWeapons(props: Props) {
   const { name, weapon, stars } = props
 
+  const ROLE = await currentRole()
+  if (ROLE === 'USER') return null
+
   try {
     if (name || weapon || stars) {
       const WEAPONS = await db.weapons.findMany({
-        where: {
-          ...(name && { name: { contains: name, mode: 'insensitive' } }),
-          ...(weapon && { type: weapon.toUpperCase() as WeaponTypeEnum }),
-          ...(stars && { rarity: `STAR_${stars}` as RarityEnum }),
-        },
+        orderBy: [{ rarity: 'asc' }, { name: 'asc' }, { date_created: 'desc' }],
       })
 
-      return WEAPONS
+      const FILTERED_WEAPONS = WEAPONS.filter(
+        (w) =>
+          w.name.toLowerCase().includes(name.toLowerCase()) ||
+          w.type.toLowerCase().includes(weapon.toLowerCase()) ||
+          w.rarity.toLowerCase().includes(stars.toLowerCase())
+      )
+
+      return FILTERED_WEAPONS
     }
 
     const WEAPONS = await db.weapons.findMany({

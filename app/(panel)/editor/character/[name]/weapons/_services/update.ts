@@ -1,6 +1,6 @@
 'use server'
 
-import db from '@/lib/db'
+import { db } from '@/lib/db'
 import { currentRole } from '@/data/auth'
 import { WeaponCharacter } from '@prisma/client'
 

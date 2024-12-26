@@ -1,16 +1,16 @@
 import { currentRole } from '@/data/auth'
-import db from '@/lib/db'
+import { db } from '@/lib/db'
 
-export async function getCharacterByName(character_name: string) {
-  const CHARACTER_NAME = character_name.toLowerCase()
+export async function getCharacterByName(name: string) {
+  const CHARACTER_NAME = name.toLowerCase()
 
   const ROLE = await currentRole()
-  if (ROLE !== 'ADMIN') return null
+  if (ROLE === 'USER') return null
 
   try {
     const CHARACTER = await db.characters.findFirst({
       where: {
-        name: { contains: CHARACTER_NAME, mode: 'insensitive' },
+        name: { contains: CHARACTER_NAME },
       },
       include: {
         artifacts: { orderBy: { order: 'asc' } },

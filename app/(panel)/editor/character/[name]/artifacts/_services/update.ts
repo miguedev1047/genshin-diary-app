@@ -1,6 +1,6 @@
 'use server'
 
-import db from '@/lib/db'
+import { db } from '@/lib/db'
 import { currentRole } from '@/data/auth'
 import { ArtifactCharacter } from '@prisma/client'
 

@@ -4,7 +4,7 @@ import { z } from 'zod'
 import { currentRole } from '@/data/auth'
 import { SkillCharacterSchema } from '@/schemas'
 import { ConstellationsCharacter } from '@prisma/client'
-import db from '@/lib/db'
+import { db } from '@/lib/db'
 
 export async function updateConstellation(
   data: z.infer<typeof SkillCharacterSchema>,
@@ -12,7 +12,7 @@ export async function updateConstellation(
 ) {
   const ROLE = await currentRole()
 
-  if (ROLE !== 'ADMIN') {
+  if (ROLE === 'USER') {
     return { status: 403, message: 'No tienes permisos.' }
   }
 
@@ -45,7 +45,7 @@ export async function updateConstellationOrder(
 ) {
   const ROLE = await currentRole()
 
-  if (ROLE !== 'ADMIN') {
+  if (ROLE === 'USER') {
     return { status: 403, message: 'No tienes permisos.' }
   }
 

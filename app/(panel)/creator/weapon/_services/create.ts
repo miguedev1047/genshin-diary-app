@@ -3,13 +3,12 @@
 import { z } from 'zod'
 import { currentRole } from '@/data/auth'
 import { WeaponSchema } from '@/schemas'
-import { AttributeEnum, RarityEnum, WeaponTypeEnum } from '@prisma/client'
-import db from '@/lib/db'
+import { db } from '@/lib/db'
 
 export async function createWeapon(data: z.infer<typeof WeaponSchema>) {
   const ROLE = await currentRole()
 
-  if (ROLE !== 'ADMIN') {
+  if (ROLE === 'USER') {
     return { status: 403, message: 'No tienes permisos.' }
   }
 
@@ -32,12 +31,12 @@ export async function createWeapon(data: z.infer<typeof WeaponSchema>) {
   try {
     await db.weapons.create({
       data: {
-        main_stat: main_stat as AttributeEnum,
+        main_stat,
         name,
         image_url,
         passive_description,
-        rarity: rarity as RarityEnum,
-        type: type as WeaponTypeEnum,
+        rarity,
+        type,
         base_attack: Number(base_attack),
       },
     })

@@ -3,7 +3,7 @@
 import { z } from 'zod'
 import { currentRole } from '@/data/auth'
 import { MaterialQuantitySchema } from '@/schemas'
-import db from '@/lib/db'
+import { db } from '@/lib/db'
 
 export async function updateTalentAscensionMaterialQuantity(
   data: z.infer<typeof MaterialQuantitySchema>,
@@ -11,7 +11,7 @@ export async function updateTalentAscensionMaterialQuantity(
 ) {
   const ROLE = await currentRole()
 
-  if (ROLE !== 'ADMIN') {
+  if (ROLE === 'USER') {
     return { status: 403, message: 'No tienes permisos.' }
   }
 

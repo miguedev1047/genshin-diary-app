@@ -54,33 +54,13 @@ export const WeaponSchema = z.object({
   base_attack: z.string().min(2, {
     message: 'El ataque base es requerido.',
   }),
-  main_stat: z.enum(
-    [
-      'DMG_CRIT',
-      'ELEMENTAL_MASTERY',
-      'ENERGY_RECHARGE',
-      'CRIT_RATE',
-      'HEAL_BONUS',
-      'PHYSICAL_DMG',
-      'ATQ',
-      'DEF',
-      'HP',
-      'PYRO_DMG',
-      'HYDRO_DMG',
-      'ELECTRO_DMG',
-      'DENDRO_DMG',
-      'CRYO_DMG',
-      'ANEMO_DMG',
-      'GEO_DMG',
-    ],
-    {
-      message: 'El atributo principal es requerido.',
-    }
-  ),
-  type: z.enum(['SWORD', 'CLAYMORE', 'POLEARM', 'BOW', 'CATALYST'], {
+  main_stat: z.string().min(1, {
+    message: 'El atributo principal es requerido.',
+  }),
+  type: z.string().min(1, {
     message: 'El tipo del arma es requerida.',
   }),
-  rarity: z.enum(['STAR_5', 'STAR_4', 'STAR_3', 'STAR_2', 'STAR_1'], {
+  rarity: z.string().min(1, {
     message: 'La rareza es requerida.',
   }),
 })
@@ -121,22 +101,10 @@ export const MaterialSchema = z.object({
   description: z.string().min(3, {
     message: 'La descripción del material es requerida.',
   }),
-  type: z.enum(
-    [
-      'MATERIAL_UPGRADE',
-      'MATERIAL_LOCAL',
-      'MATERIAL_COMMON',
-      'MATERIAL_BOSS',
-      'MATERIAL_WEEKLY_BOSS',
-      'MATERIAL_TALENT',
-      'MATERIAL_UPGRADE_WEAPON',
-      'MATERIAL_UPGRADE_CHARACTER',
-    ],
-    {
-      message: 'El tipo de material es requerido.',
-    }
-  ),
-  rarity: z.enum(['STAR_5', 'STAR_4', 'STAR_3', 'STAR_2', 'STAR_1'], {
+  type: z.string().min(1, {
+    message: 'El tipo de material es requerido.',
+  }),
+  rarity: z.string().min(1, {
     message: 'La rareza es requerida.',
   }),
 })
@@ -148,7 +116,7 @@ export const ArtifactSchema = z.object({
   image_url: z.string().min(1, {
     message: 'La url de la imagen es requerida.',
   }),
-  rarity: z.enum(['STAR_5', 'STAR_4', 'STAR_3', 'STAR_2', 'STAR_1'], {
+  rarity: z.string().min(1, {
     message: 'La rareza es requerida.',
   }),
   bonus_description: z.string().min(3, {
@@ -218,7 +186,7 @@ export const SkillCharacterSchema = z.object({
   image_url: z
     .string()
     .min(1, { message: 'La url de la imagen es requerida.' }),
-  type: z.enum(['TALENT', 'PASSIVE', 'CONSTELLATION'], {
+  type: z.string().min(1, {
     message: 'El tipo de talento es requerido.',
   }),
   character_id: z.string(),

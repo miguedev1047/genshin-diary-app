@@ -4,12 +4,12 @@ import { z } from 'zod'
 import { currentRole } from '@/data/auth'
 import { TeamCharacters, TeamsCharacters } from '@prisma/client'
 import { TeamNameSchema } from '@/schemas'
-import db from '@/lib/db'
+import { db } from '@/lib/db'
 
 export async function updateOrderTeams(data: Array<TeamsCharacters>) {
   const ROLE = await currentRole()
 
-  if (ROLE !== 'ADMIN') {
+  if (ROLE === 'USER') {
     return { status: 403, message: 'No tienes permisos.' }
   }
 
@@ -39,7 +39,7 @@ export async function updateOrderTeams(data: Array<TeamsCharacters>) {
 export async function updateOrderCharacters(data: Array<TeamCharacters>) {
   const ROLE = await currentRole()
 
-  if (ROLE !== 'ADMIN') {
+  if (ROLE === 'USER') {
     return { status: 403, message: 'No tienes permisos.' }
   }
 
@@ -73,7 +73,7 @@ export async function updateTeamName(
   if (!id) return { status: 403, message: 'Este equipo no existe.' }
   const ROLE = await currentRole()
 
-  if (ROLE !== 'ADMIN') {
+  if (ROLE === 'USER') {
     return { status: 403, message: 'No tienes permisos.' }
   }
 
@@ -101,7 +101,7 @@ export async function updateCharacterConstellation(
 ) {
   const ROLE = await currentRole()
 
-  if (ROLE !== 'ADMIN') {
+  if (ROLE === 'USER') {
     return { status: 403, message: 'No tienes permisos.' }
   }
 

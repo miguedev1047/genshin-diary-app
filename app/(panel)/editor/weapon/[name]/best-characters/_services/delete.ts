@@ -1,7 +1,7 @@
 'use server'
 
 import { currentRole } from '@/data/auth'
-import db from '@/lib/db'
+import { db } from '@/lib/db'
 
 export async function deleteCharacter(id: string) {
   if (!id) return { status: 403, message: 'Este personaje no existe.' }

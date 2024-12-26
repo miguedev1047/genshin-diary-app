@@ -3,7 +3,7 @@
 import { z } from 'zod'
 import { currentRole } from '@/data/auth'
 import { VideoGuideSchema } from '@/schemas'
-import db from '@/lib/db'
+import { db } from '@/lib/db'
 
 export async function updateVideoGuide(
   data: z.infer<typeof VideoGuideSchema>,

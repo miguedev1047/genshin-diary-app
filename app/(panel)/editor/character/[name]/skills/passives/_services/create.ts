@@ -3,14 +3,14 @@
 import { z } from 'zod'
 import { currentRole } from '@/data/auth'
 import { SkillCharacterSchema } from '@/schemas'
-import db from '@/lib/db'
+import { db } from '@/lib/db'
 
 export async function createPassive(
   data: z.infer<typeof SkillCharacterSchema>
 ) {
   const ROLE = await currentRole()
 
-  if (ROLE !== 'ADMIN') {
+  if (ROLE === 'USER') {
     return { status: 403, message: 'No tienes permisos.' }
   }
 

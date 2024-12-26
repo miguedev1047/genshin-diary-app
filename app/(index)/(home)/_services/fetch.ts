@@ -1,11 +1,10 @@
-import { ElementEnum, RarityEnum, WeaponTypeEnum } from '@prisma/client'
-import db from '@/lib/db'
+import { db } from '@/lib/db'
 
 type Props = {
   name: string
-  element: ElementEnum
-  weapon: WeaponTypeEnum
-  stars: RarityEnum
+  element: string
+  weapon: string
+  stars: string
 }
 
 export async function getCharacters(props: Props) {
@@ -14,17 +13,19 @@ export async function getCharacters(props: Props) {
   try {
     if (name || element || weapon || stars) {
       const CHARACTERS = await db.characters.findMany({
-        where: {
-          ...(name && { name: { contains: name, mode: 'insensitive' } }),
-          ...(element && { element: element.toUpperCase() as ElementEnum }),
-          ...(weapon && { weapon: weapon.toUpperCase() as WeaponTypeEnum }),
-          ...(stars && { rarity: `STAR_${stars}` as RarityEnum }),
-        },
         orderBy: [{ rarity: 'asc' }, { name: 'asc' }, { date_created: 'desc' }],
         include: { images: true },
       })
 
-      return CHARACTERS
+      const FILTERED_CHARACTERS = CHARACTERS.filter(
+        (c) =>
+          c.name.toLowerCase().includes(name.toLowerCase()) ||
+          c.element.toLowerCase().includes(element.toLowerCase()) ||
+          c.weapon.toLowerCase().includes(weapon.toLowerCase()) ||
+          c.rarity.toLowerCase().includes(stars.toLowerCase())
+      )
+
+      return FILTERED_CHARACTERS
     }
 
     const CHARACTERS = await db.characters.findMany({

@@ -4,7 +4,7 @@ import { z } from 'zod'
 import { currentRole } from '@/data/auth'
 import { SkillCharacterSchema } from '@/schemas'
 import { PassivesCharacter } from '@prisma/client'
-import db from '@/lib/db'
+import { db } from '@/lib/db'
 
 export async function updatePassive(
   data: z.infer<typeof SkillCharacterSchema>,
@@ -12,7 +12,7 @@ export async function updatePassive(
 ) {
   const ROLE = await currentRole()
 
-  if (ROLE !== 'ADMIN') {
+  if (ROLE === 'USER') {
     return { status: 403, message: 'No tienes permisos.' }
   }
 
@@ -43,7 +43,7 @@ export async function updatePassive(
 export async function updatePassiveOrder(data: Array<PassivesCharacter>) {
   const ROLE = await currentRole()
 
-  if (ROLE !== 'ADMIN') {
+  if (ROLE === 'USER') {
     return { status: 403, message: 'No tienes permisos.' }
   }
 

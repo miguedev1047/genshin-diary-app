@@ -3,7 +3,7 @@
 import { z } from 'zod'
 import { currentRole } from '@/data/auth'
 import { WeaponSchema } from '@/schemas'
-import db from '@/lib/db'
+import { db } from '@/lib/db'
 
 export async function updateWeapon(
   data: z.infer<typeof WeaponSchema>,
@@ -11,7 +11,7 @@ export async function updateWeapon(
 ) {
   const ROLE = await currentRole()
 
-  if (ROLE !== 'ADMIN') {
+  if (ROLE === 'USER') {
     return { status: 403, message: 'No tienes permisos.' }
   }
 

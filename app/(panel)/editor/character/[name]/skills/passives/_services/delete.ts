@@ -1,10 +1,10 @@
 import { currentRole } from '@/data/auth'
-import db from '@/lib/db'
+import { db } from '@/lib/db'
 
 export async function deletePassive(id: string) {
   const ROLE = await currentRole()
 
-  if (ROLE !== 'ADMIN') {
+  if (ROLE === 'USER') {
     return { status: 403, message: 'No tienes permisos.' }
   }
 

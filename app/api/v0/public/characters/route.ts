@@ -1,7 +1,6 @@
 import { NextResponse } from 'next/server'
-import { ElementEnum, RarityEnum, WeaponTypeEnum } from '@prisma/client'
 import { cleanParam } from '@/features/helpers/clean-param'
-import db from '@/lib/db'
+import { db } from '@/lib/db'
 
 export const dynamic = 'force-dynamic'
 
@@ -18,21 +17,6 @@ export async function GET(request: Request) {
   try {
     if (PARAMS.name || PARAMS.element || PARAMS.weapon || PARAMS.star) {
       const CHARACTERS = await db.characters.findMany({
-        where: {
-          ...(PARAMS.name && {
-            name: { contains: PARAMS.name, mode: 'insensitive' },
-          }),
-          ...(PARAMS.element && {
-            element: PARAMS.element as ElementEnum,
-          }),
-          ...(PARAMS.weapon && {
-            weapon: PARAMS.weapon as WeaponTypeEnum,
-          }),
-          ...(PARAMS.star && {
-            rarity: `STAR_${PARAMS.star}` as RarityEnum,
-          }),
-          is_public: false, // INFO: Mostramos el personaje si es publico
-        },
         orderBy: [
           {
             rarity: 'asc',
@@ -49,7 +33,15 @@ export async function GET(request: Request) {
         },
       })
 
-      return NextResponse.json(CHARACTERS, { status: 201 })
+      const FILTERED_CHARACTERS = CHARACTERS.filter(
+        (c) =>
+          c.name.toLowerCase().includes(PARAMS.name?.toLowerCase() ?? '') ||
+          c.element.toLowerCase().includes(PARAMS.element?.toLowerCase() ?? '') ||
+          c.weapon.toLowerCase().includes(PARAMS.weapon?.toLowerCase() ?? '') ||
+          c.rarity.toLowerCase().includes(PARAMS.star?.toLowerCase() ?? '')
+      )
+
+      return NextResponse.json(FILTERED_CHARACTERS, { status: 201 })
     }
 
     const CHARACTERS = await db.characters.findMany({

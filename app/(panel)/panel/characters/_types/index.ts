@@ -1,10 +1,8 @@
-import { ElementEnum, RarityEnum, WeaponTypeEnum } from '@prisma/client'
-
-type PageProps = {
+export type PageProps = {
   searchParams: {
     name: string
-    element: ElementEnum
-    weapon: WeaponTypeEnum
-    stars: RarityEnum
+    element: string
+    weapon: string
+    stars: string
   }
 }

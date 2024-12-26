@@ -3,7 +3,7 @@
 import { z } from 'zod'
 import { currentRole } from '@/data/auth'
 import { WeaponBestCharactersSchema } from '@/schemas'
-import db from '@/lib/db'
+import { db } from '@/lib/db'
 
 export async function createBestCharacters(
   data: z.infer<typeof WeaponBestCharactersSchema>,
@@ -24,12 +24,12 @@ export async function createBestCharacters(
   const BEST_CHARACTERS = characters.map((character) => ({
     weapon_id,
     character_id: character,
+    id: crypto.randomUUID()
   }))
 
   try {
     await db.weaponBestCharacters.createMany({
       data: BEST_CHARACTERS,
-      skipDuplicates: true,
     })
 
     return { status: 201, message: 'Personaje agregado.' }

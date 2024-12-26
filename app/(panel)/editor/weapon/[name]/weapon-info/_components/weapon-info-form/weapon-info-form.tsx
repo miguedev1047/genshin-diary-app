@@ -24,7 +24,6 @@ import { useTransition } from 'react'
 import { useForm } from 'react-hook-form'
 import { WeaponSchema } from '@/schemas'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { AttributeEnum, WeaponTypeEnum } from '@prisma/client'
 import { Input } from '@/components/ui/input'
 import { formattedUrl } from '@/features/utils/formatted-names'
 import { updateWeapon } from '@/editor/weapon/[name]/weapon-info/_services/update'
@@ -47,9 +46,9 @@ export function WeaponInfoForm() {
     resolver: zodResolver(WeaponSchema),
     defaultValues: {
       name: WEAPON?.name,
-      main_stat: WEAPON?.main_stat as AttributeEnum,
+      main_stat: WEAPON?.main_stat,
       image_url: WEAPON?.image_url ?? DEFAULT_IMAGE,
-      type: WEAPON?.type as WeaponTypeEnum,
+      type: WEAPON?.type,
       rarity: WEAPON?.rarity,
       base_attack: WEAPON?.base_attack.toString(),
       passive_description: WEAPON?.passive_description,

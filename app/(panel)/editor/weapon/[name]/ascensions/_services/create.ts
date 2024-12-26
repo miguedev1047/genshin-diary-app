@@ -4,7 +4,7 @@ import { z } from 'zod'
 import { ASCENSION_WEAPON } from '@/consts/general'
 import { currentRole } from '@/data/auth'
 import { WeaponAscensionSchema } from '@/schemas'
-import db from '@/lib/db'
+import { db } from '@/lib/db'
 
 export async function createWeaponAscension(
   data: z.infer<typeof WeaponAscensionSchema>,
@@ -13,7 +13,7 @@ export async function createWeaponAscension(
   if (!weapon_id) return { status: 400, message: 'Esta arma no existe.' }
 
   const ROLE = await currentRole()
-  if (ROLE !== 'ADMIN') {
+  if (ROLE === 'USER') {
     return { status: 403, message: 'No tienes permisos.' }
   }
 
@@ -45,11 +45,11 @@ export async function createWeaponAscension(
     const MATERIALS = materials.map((material) => ({
       ascension_id: CREATE_ASCENSION.id,
       material_id: material,
+      id: crypto.randomUUID()
     }))
 
     await db.weaponAscensionMaterials.createMany({
       data: MATERIALS,
-      skipDuplicates: true,
     })
 
     return { status: 201, message: 'Ascensión creada.' }

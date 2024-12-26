@@ -4,7 +4,7 @@ import { CharacterRoutes } from '@/app/(panel)/panel/characters/_components/char
 import { ContentLayout } from '@/app/(panel)/_components/content-layout'
 import { FilterContainer } from '@/components/filter-container'
 import { CharacterFilter } from '@/app/(panel)/_components/filters/character-filter'
-import { PageProps } from '@/app/(index)/(home)/_types'
+import { PageProps } from '@/app/(panel)/panel/characters/_types'
 
 export default function PanelCharactersPage(props: PageProps) {
   const { searchParams: PARAMS } = props

@@ -3,7 +3,7 @@
 import { z } from 'zod'
 import { currentRole } from '@/data/auth'
 import { WeaponCharacterSchema } from '@/schemas'
-import db from '@/lib/db'
+import { db } from '@/lib/db'
 
 export async function createWeapons(
   data: z.infer<typeof WeaponCharacterSchema>,
@@ -31,12 +31,12 @@ export async function createWeapons(
     weapon_id: weapon,
     character_id,
     order: index++ + 1,
+    id: crypto.randomUUID()
   }))
 
   try {
     await db.weaponCharacter.createMany({
       data: ITEMS,
-      skipDuplicates: true,
     })
 
     return { status: 201, message: 'Armas agregadas.' }

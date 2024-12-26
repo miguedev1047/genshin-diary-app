@@ -4,7 +4,7 @@ import { z } from 'zod'
 import { ASCENSION_TALENT } from '@/consts/general'
 import { currentRole } from '@/data/auth'
 import { TalentSchema } from '@/schemas'
-import db from '@/lib/db'
+import { db } from '@/lib/db'
 
 export async function createTalentAscension(
   data: z.infer<typeof TalentSchema>,
@@ -13,7 +13,7 @@ export async function createTalentAscension(
   if (!character_id) return { status: 403, message: 'El personaje no existe.' }
 
   const ROLE = await currentRole()
-  if (ROLE !== 'ADMIN') {
+  if (ROLE === 'USER') {
     return { status: 403, message: 'No tienes permisos.' }
   }
 
@@ -42,11 +42,11 @@ export async function createTalentAscension(
     const MATERIALS = materials.map((material) => ({
       material_id: material,
       ascension_id: LEVEL.id,
+      id: crypto.randomUUID()
     }))
 
     await db.talentsAscensionCharacterMaterial.createMany({
       data: MATERIALS,
-      skipDuplicates: true,
     })
 
     return { status: 201, message: 'Talento añadido.' }

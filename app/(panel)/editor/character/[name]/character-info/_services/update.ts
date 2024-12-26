@@ -1,17 +1,9 @@
 'use server'
 
 import { z } from 'zod'
-import {
-  AttributeEnum,
-  ElementEnum,
-  RarityEnum,
-  RegionEnum,
-  RoleEnum,
-  WeaponTypeEnum,
-} from '@prisma/client'
 import { currentRole } from '@/data/auth'
 import { CharacterSchema } from '@/schemas'
-import db from '@/lib/db'
+import { db } from '@/lib/db'
 
 export async function updateCharacter(
   data: z.infer<typeof CharacterSchema>,
@@ -19,7 +11,7 @@ export async function updateCharacter(
 ) {
   const ROLE = await currentRole()
 
-  if (ROLE !== 'ADMIN') {
+  if (ROLE === 'USER') {
     return { status: 403, message: 'No tienes permisos.' }
   }
 
@@ -49,12 +41,12 @@ export async function updateCharacter(
       data: {
         name,
         description,
-        attribute: attribute as AttributeEnum,
-        element: element as ElementEnum,
-        rarity: rarity as RarityEnum,
-        region: region as RegionEnum,
-        role: role as RoleEnum,
-        weapon: weapon as WeaponTypeEnum,
+        attribute,
+        element,
+        rarity,
+        region,
+        role,
+        weapon,
         is_new,
         is_public,
       },

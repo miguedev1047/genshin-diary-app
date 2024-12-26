@@ -4,7 +4,7 @@ import { z } from 'zod'
 import { currentRole } from '@/data/auth'
 import { TeamsCharacter } from '@prisma/client'
 import { TeamNameSchema } from '@/schemas'
-import db from '@/lib/db'
+import { db } from '@/lib/db'
 
 export async function updateTeams(data: Array<TeamsCharacter>) {
   const ROLE = await currentRole()

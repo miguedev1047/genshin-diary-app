@@ -3,7 +3,7 @@
 import { z } from 'zod'
 import { currentRole } from '@/data/auth'
 import { ArtifactCharacterSchema } from '@/schemas'
-import db from '@/lib/db'
+import { db } from '@/lib/db'
 
 export async function createArtifacts(
   data: z.infer<typeof ArtifactCharacterSchema>,
@@ -31,12 +31,12 @@ export async function createArtifacts(
     artifact_id: item,
     character_id,
     order: index++ + 1,
+    id: crypto.randomUUID()
   }))
 
   try {
     await db.artifactCharacter.createMany({
       data: ITEMS,
-      skipDuplicates: true,
     })
 
     return { status: 201, message: 'Artefactos agregados.' }

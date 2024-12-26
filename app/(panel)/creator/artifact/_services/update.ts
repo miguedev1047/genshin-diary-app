@@ -3,8 +3,7 @@
 import { z } from 'zod'
 import { ArtifactSchema } from '@/schemas'
 import { currentRole } from '@/data/auth'
-import { RarityEnum } from '@prisma/client'
-import db from '@/lib/db'
+import { db } from '@/lib/db'
 
 export async function updateArtifact(
   data: z.infer<typeof ArtifactSchema>,
@@ -12,7 +11,7 @@ export async function updateArtifact(
 ) {
   const ROLE = await currentRole()
 
-  if (ROLE !== 'ADMIN') {
+  if (ROLE === 'USER') {
     return { status: 403, message: 'No tienes permisos.' }
   }
 
@@ -31,7 +30,7 @@ export async function updateArtifact(
         name,
         image_url,
         bonus_description,
-        rarity: rarity as RarityEnum,
+        rarity,
       },
     })
 

@@ -1,7 +1,7 @@
 import { currentRole } from '@/data/auth'
 import { formattedName } from '@/features/utils/formatted-names'
 import { NextResponse } from 'next/server'
-import db from '@/lib/db'
+import { db } from '@/lib/db'
 
 export async function GET(
   request: Request,
@@ -11,13 +11,13 @@ export async function GET(
 
   const ROLE = await currentRole()
 
-  if (ROLE !== 'ADMIN') {
+  if (ROLE === 'USER') {
     return NextResponse.json({ error: 'No autorizado' }, { status: 401 })
   }
 
   try {
     const WEAPON = await db.weapons.findFirst({
-      where: { name: { contains: WEAPON_NAME, mode: 'insensitive' } },
+      where: { name: { contains: WEAPON_NAME } },
       include: {
         ascensions: {
           orderBy: [{ order: 'asc' }],

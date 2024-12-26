@@ -4,7 +4,7 @@ import { z } from 'zod'
 import { ASCENSION_CHARACTER } from '@/consts/general'
 import { currentRole } from '@/data/auth'
 import { AscensionSchema } from '@/schemas'
-import db from '@/lib/db'
+import { db } from '@/lib/db'
 
 export async function createAscension(
   data: z.infer<typeof AscensionSchema>,
@@ -13,7 +13,7 @@ export async function createAscension(
   if (!character_id) return { status: 403, message: 'El personaje no existe.' }
 
   const ROLE = await currentRole()
-  if (ROLE !== 'ADMIN') {
+  if (ROLE === 'USER') {
     return { status: 403, message: 'No tienes permisos.' }
   }
 
@@ -43,11 +43,11 @@ export async function createAscension(
       character_id,
       material_id: material,
       ascension_id: ASCENSION.id,
+      id: crypto.randomUUID()
     }))
 
     await db.materialAscension.createMany({
       data: MATERIALS,
-      skipDuplicates: true,
     })
 
     return { status: 201, message: 'Ascension añadida.' }

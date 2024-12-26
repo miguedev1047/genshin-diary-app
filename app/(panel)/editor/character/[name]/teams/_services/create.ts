@@ -3,7 +3,7 @@
 import { z } from 'zod'
 import { currentRole } from '@/data/auth'
 import { TeamsCharacterSchema } from '@/schemas'
-import db from '@/lib/db'
+import { db } from '@/lib/db'
 
 export async function createTeams(
   data: z.infer<typeof TeamsCharacterSchema>,
@@ -15,7 +15,7 @@ export async function createTeams(
 
   const ROLE = await currentRole()
 
-  if (ROLE !== 'ADMIN') {
+  if (ROLE === 'USER') {
     return { status: 403, message: 'No tienes permisos.' }
   }
 
@@ -36,11 +36,11 @@ export async function createTeams(
       character_id: character,
       team_id: TEAMS.id,
       order: index++ + 1,
+      id: crypto.randomUUID()
     }))
 
     await db.teamsCharacters.createMany({
       data: CHARACTERS,
-      skipDuplicates: true,
     })
 
     return { status: 201, message: 'Equipo creado.' }
