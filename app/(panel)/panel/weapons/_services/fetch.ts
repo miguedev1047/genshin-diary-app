@@ -1,5 +1,6 @@
 import { currentRole } from '@/data/auth'
 import { db } from '@/lib/db'
+import { Weapons } from '@prisma/client'
 
 type Props = {
   name: string
@@ -7,33 +8,32 @@ type Props = {
   stars: string
 }
 
-export async function getWeapons(props: Props) {
-  const { name, weapon, stars } = props
+function filterWeapons(weapons: Array<Weapons>, filters: Props) {
+  const { name, stars, weapon } = filters
 
+  return weapons.filter((w) => {
+    const matches = [
+      name ? w.name.toLowerCase().includes(name.toLowerCase()) : true,
+      weapon ? w.type.toLowerCase().includes(weapon.toLowerCase()) : true,
+      stars ? w.rarity.endsWith(stars) : true,
+    ]
+
+    return matches.every(Boolean)
+  })
+}
+
+export async function getWeapons(props: Props) {
   const ROLE = await currentRole()
   if (ROLE === 'USER') return null
 
   try {
-    if (name || weapon || stars) {
-      const WEAPONS = await db.weapons.findMany({
-        orderBy: [{ rarity: 'asc' }, { name: 'asc' }, { date_created: 'desc' }],
-      })
-
-      const FILTERED_WEAPONS = WEAPONS.filter(
-        (w) =>
-          w.name.toLowerCase().includes(name.toLowerCase()) ||
-          w.type.toLowerCase().includes(weapon.toLowerCase()) ||
-          w.rarity.toLowerCase().includes(stars.toLowerCase())
-      )
-
-      return FILTERED_WEAPONS
-    }
-
     const WEAPONS = await db.weapons.findMany({
       orderBy: [{ rarity: 'asc' }, { name: 'asc' }, { date_created: 'desc' }],
     })
 
-    return WEAPONS
+    const FILTERED_WEAPONS = filterWeapons(WEAPONS, { ...props })
+    return FILTERED_WEAPONS
+
   } catch (error) {
     return null
   }

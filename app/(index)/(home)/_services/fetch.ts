@@ -1,3 +1,4 @@
+import { Prisma } from '@prisma/client'
 import { db } from '@/lib/db'
 
 type Props = {
@@ -7,33 +8,33 @@ type Props = {
   stars: string
 }
 
+type CharacterProps = Prisma.CharactersGetPayload<{ include: { images: true } }>
+
+function filterCharacters(characters: Array<CharacterProps>, filters: Props) {
+  const { element, name, weapon, stars } = filters
+
+  return characters.filter((c) => {
+    const matches = [
+      element ? c.element.toLowerCase().includes(element.toLowerCase()) : true,
+      name ? c.name.toLowerCase().includes(name.toLowerCase()) : true,
+      weapon ? c.weapon.toLowerCase().includes(weapon.toLowerCase()) : true,
+      stars ? c.rarity.endsWith(stars) : true,
+    ]
+
+    return matches.every(Boolean)
+  })
+}
+
 export async function getCharacters(props: Props) {
-  const { name, element, weapon, stars } = props
-
   try {
-    if (name || element || weapon || stars) {
-      const CHARACTERS = await db.characters.findMany({
-        orderBy: [{ rarity: 'asc' }, { name: 'asc' }, { date_created: 'desc' }],
-        include: { images: true },
-      })
-
-      const FILTERED_CHARACTERS = CHARACTERS.filter(
-        (c) =>
-          c.name.toLowerCase().includes(name.toLowerCase()) ||
-          c.element.toLowerCase().includes(element.toLowerCase()) ||
-          c.weapon.toLowerCase().includes(weapon.toLowerCase()) ||
-          c.rarity.toLowerCase().includes(stars.toLowerCase())
-      )
-
-      return FILTERED_CHARACTERS
-    }
-
     const CHARACTERS = await db.characters.findMany({
       orderBy: [{ rarity: 'asc' }, { name: 'asc' }, { date_created: 'desc' }],
       include: { images: true },
     })
 
-    return CHARACTERS
+    const FILTERED_CHARACTERS = filterCharacters(CHARACTERS, { ...props })
+
+    return FILTERED_CHARACTERS
   } catch (error) {
     return null
   }

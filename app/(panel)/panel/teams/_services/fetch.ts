@@ -1,34 +1,28 @@
 import { currentRole } from '@/data/auth'
 import { db } from '@/lib/db'
+import { Team } from '@prisma/client'
 
-type GetTeamProps = {
+type Props = {
   name: string
 }
 
-export async function getTeams(props: GetTeamProps) {
-  const { name } = props
+function filterTeams(teams: Array<Team>, filters: Props) {
+  const { name } = filters
 
+  return teams.filter((t) => {
+    const matches = [
+      name ? t.name.toLowerCase().includes(name.toLowerCase()) : true,
+    ]
+
+    return matches.every(Boolean)
+  })
+}
+
+export async function getTeams(props: Props) {
   const ROLE = await currentRole()
   if (ROLE === 'USER') return null
 
   try {
-    if (name) {
-      const TEAMS = await db.team.findMany({
-        include: {
-          characters: {
-            orderBy: [{ order: 'asc' }, { date_created: 'desc' }],
-          },
-        },
-        orderBy: [{ order: 'asc' }, { date_created: 'desc' }],
-      })
-
-      const FILTERED_TEAMS = TEAMS.filter((t) =>
-        t.name.toLowerCase().includes(name.toLowerCase())
-      )
-
-      return FILTERED_TEAMS
-    }
-
     const TEAMS = await db.team.findMany({
       include: {
         characters: {
@@ -38,7 +32,9 @@ export async function getTeams(props: GetTeamProps) {
       orderBy: [{ order: 'asc' }, { date_created: 'desc' }],
     })
 
-    return TEAMS
+    const FILTERED_TEAMS = filterTeams(TEAMS, { ...props })
+    return FILTERED_TEAMS
+
   } catch (error) {
     return null
   }
