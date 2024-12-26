@@ -18,7 +18,11 @@ import { Sword, Bow, Catalyst, Claymore, Polearm } from '@/assets/weapon-types'
 
 export const DEV_MODE = process.env.NODE_ENV === 'development'
 
+export const API_PANEL_PREFIX = '/api/v0/panel'
+
 export const NONE = ''
+
+export const DEFAULT_IMAGE = 'https://placehold.co/600?text=Hutao+Mains'
 
 export const STARS = [
   {
@@ -352,4 +356,3 @@ export const CONSTELLATION_TYPE = [
   { value: '6', label: 'Constelación 6' },
 ]
 
-export const DEFAULT_IMAGE = 'https://placehold.co/600?text=Hutao+Mains'

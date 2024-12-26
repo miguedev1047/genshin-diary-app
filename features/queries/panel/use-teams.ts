@@ -1,10 +1,11 @@
 import { useSuspenseQuery } from '@tanstack/react-query'
 import { fetcher } from '@/features/helpers/fetcher'
+import { API_PANEL_PREFIX } from '@/consts/general'
 
 export function useGetTeams() {
   const { data, status, error, refetch } = useSuspenseQuery({
     queryKey: ['teams'],
-    queryFn: async () => await fetcher('/api/v0/panel/team'),
+    queryFn: async () => await fetcher(`${API_PANEL_PREFIX}/team`),
   })
 
   return { data, status, error, refetch }
@@ -13,7 +14,7 @@ export function useGetTeams() {
 export function useGetTeam(id: string) {
   const { data, status, error, refetch } = useSuspenseQuery({
     queryKey: ['team', id],
-    queryFn: async () => await fetcher(`/api/v0/panel/team/id/${id}`),
+    queryFn: async () => await fetcher(`${API_PANEL_PREFIX}/team/id/${id}`),
   })
 
   return { data, status, error, refetch }
