@@ -18,14 +18,18 @@ import { login } from '@/app/(auth)/login/_services/login'
 import { toast } from 'sonner'
 
 export function LoginForm() {
-  const [isPending, startTranstion] = useTransition()
+  const [isPending, startTransition] = useTransition()
 
   const form = useForm<z.infer<typeof LoginSchema>>({
     resolver: zodResolver(LoginSchema),
+    defaultValues: {
+      email: '',
+      password: '',
+    },
   })
 
   const handleSubmit = form.handleSubmit((values) => {
-    startTranstion(async () => {
+    startTransition(async () => {
       const { status, message } = await login(values)
 
       if (status === 201) {

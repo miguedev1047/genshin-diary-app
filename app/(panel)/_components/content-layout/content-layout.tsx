@@ -14,7 +14,7 @@ import {
 } from '@/components/ui/breadcrumb'
 import { Separator } from '@/components/ui/separator'
 import { ContentLayoutProps } from '@/app/(panel)/_components/content-layout/content-layout.type'
-import { PAGE_NAME } from '@/consts/site'
+import { PAGE_NAME } from '@/consts/misc'
 import { cn } from '@/lib/utils'
 
 export function ContentLayout(props: ContentLayoutProps) {
