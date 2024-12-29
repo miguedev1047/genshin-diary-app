@@ -9,6 +9,21 @@ export const LoginSchema = z.object({
   }),
 })
 
+export const AccountSchema = z.object({
+  name: z.string().min(1, {
+    message: 'El nombre es requerido',
+  }),
+  email: z.string().email({
+    message: 'El correo electrónico no es válido',
+  }),
+  password: z.string().min(6, {
+    message: 'La contraseña debe tener al menos 6 caracteres',
+  }),
+  role: z.string().min(1, {
+    message: 'El rol es requerido',
+  }),
+})
+
 export const CharacterSchema = z.object({
   name: z.string().min(3, {
     message: 'El nombre del personaje es requerido.',
