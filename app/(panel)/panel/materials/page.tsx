@@ -1,10 +1,10 @@
 import { Suspense } from 'react'
 import { ContentLayout } from '@/app/(panel)/_components/content-layout'
-import { FilterContainer } from '@/components/filter-container'
-import { MaterialFilter } from '@/app/(panel)/_components/filters/material-filter'
 import { MaterialRoutes } from '@/app/(panel)/panel/materials/_components/material-routes'
 import { MaterialSkeleton } from '@/app/(panel)/panel/materials/_components/material-skeleton'
 import { PageProps } from '@/app/(panel)/panel/materials/_types'
+import { HeaderWrapper } from '@/components/header-wrapper'
+import { MaterialHeader } from '@/app/(panel)/_components/headers/material-header'
 
 export default function PanelMaterialsPage(props: PageProps) {
   const { searchParams: PARAMS } = props
@@ -12,9 +12,9 @@ export default function PanelMaterialsPage(props: PageProps) {
 
   return (
     <ContentLayout title='Materiales'>
-      <FilterContainer>
-        <MaterialFilter />
-      </FilterContainer>
+      <HeaderWrapper>
+        <MaterialHeader />
+      </HeaderWrapper>
 
       <Suspense
         key={KEY}

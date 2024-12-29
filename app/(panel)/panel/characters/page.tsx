@@ -2,9 +2,9 @@ import { Suspense } from 'react'
 import { CharacterSkeleton } from '@/app/(panel)/panel/characters/_components/character-skeleton'
 import { CharacterRoutes } from '@/app/(panel)/panel/characters/_components/character-routes'
 import { ContentLayout } from '@/app/(panel)/_components/content-layout'
-import { FilterContainer } from '@/components/filter-container'
-import { CharacterFilter } from '@/app/(panel)/_components/filters/character-filter'
 import { PageProps } from '@/app/(panel)/panel/characters/_types'
+import { HeaderWrapper } from '@/components/header-wrapper'
+import { CharacterHeader } from '@/app/(panel)/_components/headers/character-header'
 
 export default function PanelCharactersPage(props: PageProps) {
   const { searchParams: PARAMS } = props
@@ -12,9 +12,9 @@ export default function PanelCharactersPage(props: PageProps) {
 
   return (
     <ContentLayout title='Personajes'>
-      <FilterContainer>
-        <CharacterFilter />
-      </FilterContainer>
+      <HeaderWrapper>
+        <CharacterHeader />
+      </HeaderWrapper>
 
       <Suspense
         key={KEY}

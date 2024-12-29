@@ -1,10 +1,10 @@
 import { Suspense } from 'react'
-import { FilterContainer } from '@/components/filter-container'
-import { ArtifactFilter } from '@/app/(panel)/_components/filters/artifact-filter'
 import { ContentLayout } from '@/app/(panel)/_components/content-layout'
 import { ArtifactRoutes } from '@/app/(panel)/panel/artifacts/_components/artifact-routes'
 import { ArtifactSkeleton } from '@/app/(panel)/panel/artifacts/_components/artifact-skeleton'
 import { PageProps } from '@/app/(panel)/panel/artifacts/_types'
+import { HeaderWrapper } from '@/components/header-wrapper'
+import { ArtifactHeader } from '@/app/(panel)/_components/headers/artifact-header'
 
 export default function PanelArtifactsPage(props: PageProps) {
   const { searchParams: PARAMS } = props
@@ -12,9 +12,9 @@ export default function PanelArtifactsPage(props: PageProps) {
 
   return (
     <ContentLayout title='Artefactos'>
-      <FilterContainer>
-        <ArtifactFilter />
-      </FilterContainer>
+      <HeaderWrapper>
+        <ArtifactHeader />
+      </HeaderWrapper>
 
       <Suspense
         key={KEY}
