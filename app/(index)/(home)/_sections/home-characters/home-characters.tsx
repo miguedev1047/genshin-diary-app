@@ -5,8 +5,8 @@ import { BorderBeam } from '@/components/magicui/border-beam'
 import { FocalLight } from '@/components/focal-light'
 import { HomeCharactersProps } from '@/app/(index)/(home)/_sections/home-characters/home-characters.type'
 import { CharacterRoutes } from '@/app/(index)/(home)/_components/character-routes'
-import { FilterContainer } from '@/components/filter-container'
 import { CharacterFilter } from '@/app/(index)/_components/filters/character-filter'
+import { HeaderWrapper } from '@/components/header-wrapper'
 
 export function HomeCharacters(props: HomeCharactersProps) {
   const { data: CHARACTERS } = props
@@ -17,9 +17,9 @@ export function HomeCharacters(props: HomeCharactersProps) {
 
       <Card className='relative overflow-hidden'>
         <CardHeader className='space-y-4'>
-          <FilterContainer>
+          <HeaderWrapper>
             <CharacterFilter />
-          </FilterContainer>
+          </HeaderWrapper>
         </CardHeader>
 
         <CardContent>
