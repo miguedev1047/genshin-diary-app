@@ -19,7 +19,8 @@ import {
   SelectValue,
 } from '@/components/ui/select'
 import { z } from 'zod'
-import { ATTRIBUTES, DEFAULT_IMAGE, STARS, WEAPON_TYPE } from '@/consts/general'
+import { ATTRIBUTES,  STARS, WEAPON_TYPE } from '@/consts/general'
+import { DEFAULT_IMAGE } from '@/consts/misc'
 import { useState, useTransition } from 'react'
 import { useForm } from 'react-hook-form'
 import { WeaponSchema } from '@/schemas'

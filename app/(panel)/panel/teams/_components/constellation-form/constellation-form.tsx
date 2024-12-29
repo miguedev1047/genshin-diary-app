@@ -14,7 +14,8 @@ import {
   SelectValue,
 } from '@/components/ui/select'
 import { ConstellationFormProps } from '@/app/(panel)/panel/teams/_components/constellation-form/constellation-form.type'
-import { CONSTELLATION_TYPE, DEFAULT_IMAGE } from '@/consts/general'
+import { CONSTELLATION_TYPE } from '@/consts/general'
+import { DEFAULT_IMAGE } from '@/consts/misc'
 import { useState, useTransition } from 'react'
 import { SquareBox } from '@/components/square-box'
 import { updateCharacterConstellation } from '@/app/(panel)/panel/teams/_services/update'

@@ -3,7 +3,7 @@
 import { EditorCard } from '@/app/(panel)/_components/editor-card'
 import { useGetCharacter } from '@/app/(panel)/editor/character/[id]/provider'
 import { VideoGuideForm } from '@/app/(panel)/editor/character/[id]/video-guide/_components/video-guide-form'
-import { NONE } from '@/consts/general'
+import { NONE } from '@/consts/misc'
 import LiteYouTubeEmbed from 'react-lite-youtube-embed'
 import 'react-lite-youtube-embed/dist/LiteYouTubeEmbed.css'
 import Link from 'next/link'

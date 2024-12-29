@@ -18,7 +18,6 @@ import {
 } from '@/components/ui/select'
 import {
   ATTRIBUTES,
-  DEFAULT_IMAGE,
   ELEMENTS,
   REGIONS,
   ROLE,
@@ -39,6 +38,7 @@ import { toast } from 'sonner'
 import { FormSheet } from '@/app/(panel)/_components/form-sheet'
 import { TextEditor } from '@/app/(panel)/_components/text-editor'
 import { Switch } from '@/components/ui/switch'
+import { DEFAULT_IMAGE } from '@/consts/misc'
 
 export function CharacterInfoForm() {
   const { data: CHARACTER } = useGetCharacter()

@@ -1,6 +1,6 @@
 import { ArtifactItemProps } from '@/app/(panel)/editor/character/[id]/artifacts/_components/artifact-item/artifact-item.type'
 import { Card, CardContent } from '@/components/ui/card'
-import { DEFAULT_IMAGE } from '@/consts/general'
+import { DEFAULT_IMAGE } from '@/consts/misc'
 import { SortableList } from '@/app/(panel)/_components/sortable-list'
 import { DeleteButton } from '@/app/(panel)/_components/delete-button'
 import { deleteArtifact } from '@/app/(panel)/editor/character/[id]/artifacts/_services/delete'

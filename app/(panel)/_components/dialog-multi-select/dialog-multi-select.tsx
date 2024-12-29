@@ -31,7 +31,7 @@ import { Grid } from 'react-loader-spinner'
 import { Separator } from '@/components/ui/separator'
 import { Badge } from '@/components/ui/badge'
 import { cn } from '@/lib/utils'
-import { DEFAULT_IMAGE } from '@/consts/general'
+import { DEFAULT_IMAGE } from '@/consts/misc'
 import React, { useEffect, useState } from 'react'
 import Image from 'next/image'
 

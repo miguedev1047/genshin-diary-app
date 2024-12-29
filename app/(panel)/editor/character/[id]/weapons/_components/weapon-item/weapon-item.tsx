@@ -1,7 +1,7 @@
 import { Card, CardContent } from '@/components/ui/card'
 import { WeaponItemProps } from './weapon-item.type'
 import { useGetWeapon } from '@/features/queries/panel/use-weapons'
-import { DEFAULT_IMAGE } from '@/consts/general'
+import { DEFAULT_IMAGE } from '@/consts/misc'
 import { SortableList } from '@/app/(panel)/_components/sortable-list'
 import { DeleteButton } from '@/app/(panel)/_components/delete-button'
 import { deleteWeapon } from '@/app/(panel)/editor/character/[id]/weapons/_services/delete'

@@ -4,9 +4,9 @@ import { Providers } from '@/app/providers'
 import { Toaster } from '@/components/ui/sonner'
 import { cn } from '@/lib/utils'
 import { PAGE_NAME } from '@/consts/misc'
-import '@/styles/styles.css'
-import { DEV_MODE } from '@/consts/general'
+import { DEV_MODE } from '@/consts/misc'
 import NextTopLoader from 'nextjs-toploader'
+import '@/styles/styles.css'
 
 const onest = Onest({ subsets: ['latin'] })
 
