@@ -4,8 +4,7 @@ import { ConstellationList } from '@/app/(panel)/editor/character/[id]/skills/co
 export function Constellations() {
   return (
     <div className='space-y-4'>
-      <div className='flex justify-between items-center gap-4'>
-        <h2 className='text-3xl font-bold'>Lista de constelaciones</h2>
+      <div className='absolute top-0 right-0 m-6'>
         <ConstellationForm />
       </div>
       <ConstellationList />

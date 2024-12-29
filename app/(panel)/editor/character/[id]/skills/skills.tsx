@@ -11,7 +11,7 @@ export function Skills() {
         defaultValue='talents'
         className='space-y-4'
       >
-        <TabsList>
+        <TabsList >
           <TabsTrigger value='talents'>Talentos</TabsTrigger>
           <TabsTrigger value='passives'>Pasivas</TabsTrigger>
           <TabsTrigger value='constellations'>Constelaciones</TabsTrigger>

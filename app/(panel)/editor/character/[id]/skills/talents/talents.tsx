@@ -4,8 +4,7 @@ import { TalentList } from '@/app/(panel)/editor/character/[id]/skills/talents/_
 export function Talents() {
   return (
     <div className='space-y-4'>
-      <div className='flex justify-between items-center gap-4'>
-        <h2 className='text-3xl font-bold'>Lista de talentos</h2>
+      <div className='absolute top-0 right-0 m-6'>
         <TalentForm />
       </div>
       <TalentList />
