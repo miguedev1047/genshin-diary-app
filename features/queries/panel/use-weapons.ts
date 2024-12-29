@@ -1,7 +1,7 @@
 import { useSuspenseQuery } from '@tanstack/react-query'
 import { fetcher } from '@/features/helpers/fetcher'
 import { Weapons } from '@prisma/client'
-import { API_PANEL_PREFIX } from '@/consts/general'
+import { API_PANEL_PREFIX } from '@/consts/misc'
 
 export function useGetWeapons() {
   const { data, status, error, refetch } = useSuspenseQuery<Array<Weapons>>({

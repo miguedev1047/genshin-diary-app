@@ -1,6 +1,6 @@
 import { useSuspenseQuery } from '@tanstack/react-query'
 import { fetcher } from '@/features/helpers/fetcher'
-import { API_PANEL_PREFIX } from '@/consts/general'
+import { API_PANEL_PREFIX } from '@/consts/misc'
 
 export function useGetTeams() {
   const { data, status, error, refetch } = useSuspenseQuery({
