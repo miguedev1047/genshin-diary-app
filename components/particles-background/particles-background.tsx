@@ -1,24 +1,19 @@
 'use client'
 
-import { useEffect, useState } from 'react'
 import { useTheme } from 'next-themes'
 import Particles from '@/components/magicui/particles'
 
 export function ParticlesBackground() {
   const { theme } = useTheme()
-  const [color, setColor] = useState('#ffffff')
-
-  useEffect(() => {
-    setColor(theme === 'dark' ? '#ffffff' : '#000000')
-  }, [theme])
+  if (theme === 'light') return null
 
   return (
-    <div className='-z-[1] absolute w-full h-dvh -top-0'>
+    <div className='absolute w-full h-dvh -top-0 z-10'>
       <Particles
         className='size-full'
         quantity={150}
         ease={80}
-        color={color}
+        color={'#ffffff'}
         refresh
       />
     </div>
