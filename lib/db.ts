@@ -4,7 +4,7 @@ import { createClient } from '@libsql/client'
 
 const libsql = createClient({
   url: `libsql://hutao-mains-miguedev1047.turso.io`,
-  authToken: `${process.env.NEXT_PUBLIC_TURSO_AUTH_TOKEN}`,
+  authToken: `${process.env.TURSO_AUTH_TOKEN}`,
 })
 
 const adapter = new PrismaLibSQL(libsql)
