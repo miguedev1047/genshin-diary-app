@@ -13,6 +13,22 @@ export function SpinLoaderCard() {
   )
 }
 
+export function SpinLoaderSquareCard() {
+  return (
+    <Card className='size-20 aspect-square grid place-items-center'>
+      <Loader className='animate-spin' />
+    </Card>
+  )
+}
+
+export function SpinAspectRatio() {
+  return (
+    <Card className='size-full aspect-[2/3] grid place-items-center'>
+      <Loader className='animate-spin' />
+    </Card>
+  )
+}
+
 export function SpinLoaderInput() {
   return (
     <Card className='h-10 px-4 py-2'>
