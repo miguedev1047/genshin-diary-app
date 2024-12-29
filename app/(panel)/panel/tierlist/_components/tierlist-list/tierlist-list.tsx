@@ -18,7 +18,7 @@ export function TierList(props: TierlistListProps) {
 
   useEffect(() => {
     setTierTab(DEFAULT_TAB)
-  }, [TIERLISTS, DEFAULT_TAB])
+  }, [DEFAULT_TAB, TIERLISTS])
 
   if (!TIERLISTS.length) {
     return null

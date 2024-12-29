@@ -14,9 +14,7 @@ export default async function PanelTierlistPage() {
         <TierlistHeader />
       </HeaderWrapper>
 
-      <section className='space-y-4'>
-        <TierList data={TIERLISTS} />
-      </section>
+      <TierList data={TIERLISTS} />
     </ContentLayout>
   )
 }

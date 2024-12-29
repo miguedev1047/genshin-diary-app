@@ -1,5 +1,5 @@
 import { ContentLayout } from '@/app/(panel)/_components/content-layout'
-import { Card, CardContent } from '@/components/ui/card'
+import { Card } from '@/components/ui/card'
 import { TeamList } from '@/app/(panel)/panel/teams/_components/team-list'
 import { getTeams } from '@/app/(panel)/panel/teams/_services/fetch'
 import { PageProps, Teams } from '@/app/(panel)/panel/teams/_types'
@@ -15,11 +15,9 @@ export default async function PanelTeamsPage(props: PageProps) {
       <HeaderWrapper>
         <TeamHeader />
       </HeaderWrapper>
-      
-      <Card>
-        <CardContent className='p-6'>
-          <TeamList data={TEAMS} />
-        </CardContent>
+
+      <Card className='p-6'>
+        <TeamList data={TEAMS} />
       </Card>
     </ContentLayout>
   )

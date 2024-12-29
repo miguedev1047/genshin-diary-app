@@ -7,7 +7,10 @@ export function TierCharacterList(props: TierCharacterListProps) {
   const { characters } = props
 
   const MAPPED_CHARACTERS = characters.map((character) => (
-    <li key={character.id} className='relative'>
+    <li
+      key={character.id}
+      className='relative'
+    >
       <Suspense fallback={<SpinAspectRatio />}>
         <TierCharacterItem {...character} />
       </Suspense>
