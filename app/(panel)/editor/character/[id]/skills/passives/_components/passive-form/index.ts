@@ -1,0 +1,1 @@
+export { PassiveForm } from './passive-form'
