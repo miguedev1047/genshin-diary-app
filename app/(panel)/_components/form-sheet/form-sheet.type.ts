@@ -5,4 +5,6 @@ export type FormSheetProps = {
   disabled?: boolean
   isLoading?: boolean
   children: React.ReactNode
+  isOpen: boolean
+  onOpenChange: (value: boolean) => void
 }

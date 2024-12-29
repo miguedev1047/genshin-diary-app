@@ -11,30 +11,28 @@ import { FormSheetProps } from '@/app/(panel)/_components/form-sheet/form-sheet.
 import { Button } from '@/components/ui/button'
 import { Pencil, Plus } from 'lucide-react'
 import { ScrollArea } from '@/components/ui/scroll-area'
-import { useState } from 'react'
 
 export function FormSheet(props: FormSheetProps) {
-  const { title, formId, isEditing, disabled, isLoading, children } = props
-  const [isOpen, setIsOpen] = useState(false)
-
-  // useEffect(() => {
-  //   if (!isLoading) {
-  //     setIsOpen(false)
-  //   }
-  // }, [isLoading])
+  const {
+    title,
+    formId,
+    isEditing,
+    disabled,
+    isLoading,
+    children,
+    isOpen,
+    onOpenChange,
+  } = props
 
   return (
     <Sheet
       open={isOpen}
-      onOpenChange={setIsOpen}
+      onOpenChange={onOpenChange}
     >
       <SheetTrigger asChild>
         <Button size='icon'>{isEditing ? <Pencil /> : <Plus />}</Button>
       </SheetTrigger>
-      <SheetContent
-        aria-describedby={undefined}
-        className='sm:max-w-[640px]'
-      >
+      <SheetContent className='sm:max-w-[640px]'>
         <SheetHeader>
           <SheetTitle>
             {isEditing ? 'Editar' : 'Agregar'} {title}
