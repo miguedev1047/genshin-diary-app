@@ -9,8 +9,10 @@ import { IndexRoutes } from '@/app/(panel)/panel/(index)/_components/index-route
 import { ContentLayout } from '@/app/(panel)/_components/content-layout'
 
 export default async function IndexPanelPage() {
-  const RESUMEN_DATA = await fetchResumenChart()
-  const RESUMEN_ELEMENT = await fetchElementChart()
+  const [RESUMEN_DATA, RESUMEN_ELEMENT] = await Promise.all([
+    fetchResumenChart(),
+    fetchElementChart(),
+  ])
 
   return (
     <ContentLayout title='Panel'>

@@ -57,7 +57,7 @@ export async function fetchElementChart() {
     const CHART_DATA = [
       {
         element: 'anemo',
-        total: ELEMENTS.pyro ?? 0,
+        total: ELEMENTS?.anemo ?? 0,
         fill: 'var(--color-anemo)',
       },
       {
