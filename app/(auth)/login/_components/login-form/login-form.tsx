@@ -16,9 +16,11 @@ import { Button } from '@/components/ui/button'
 import { LoginSchema } from '@/schemas'
 import { login } from '@/app/(auth)/login/_services/login'
 import { toast } from 'sonner'
+import { useRouter } from 'next/navigation'
 
 export function LoginForm() {
   const [isPending, startTransition] = useTransition()
+  const { refresh } = useRouter()
 
   const form = useForm<z.infer<typeof LoginSchema>>({
     resolver: zodResolver(LoginSchema),
@@ -34,6 +36,7 @@ export function LoginForm() {
 
       if (status === 201) {
         toast.success(message)
+        refresh()
         return
       }
 
