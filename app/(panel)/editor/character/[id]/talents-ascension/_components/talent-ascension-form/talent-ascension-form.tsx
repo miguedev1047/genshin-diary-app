@@ -26,10 +26,10 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useGetCharacter } from '@/app/(panel)/editor/character/[id]/provider'
 import { useRouter } from 'next/navigation'
 import { createTalentAscension } from '@/app/(panel)/editor/character/[id]/talents-ascension/_services/create'
-import { MaterialSelector } from '@/app/(panel)/editor/character/[id]/talents-ascension/_components/material-selector'
 import { FormSheet } from '@/app/(panel)/_components/form-sheet'
 import { toast } from 'sonner'
 import { SpinLoaderInput } from '@/components/spin-loaders'
+import { TalentSelector } from '@/app/(panel)/editor/character/[id]/talents-ascension/_components/talent-selector'
 
 export function TalentAscensionForm() {
   const [isPending, startTransition] = useTransition()
@@ -128,7 +128,7 @@ export function TalentAscensionForm() {
                 <FormLabel>Materiales</FormLabel>
                 <FormControl>
                   <Suspense fallback={<SpinLoaderInput />}>
-                    <MaterialSelector {...field} />
+                    <TalentSelector {...field} />
                   </Suspense>
                 </FormControl>
                 <FormMessage />
