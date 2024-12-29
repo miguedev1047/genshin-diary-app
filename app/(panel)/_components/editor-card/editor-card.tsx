@@ -16,7 +16,7 @@ export function EditorCard(props: EditorCardProps) {
     <Card className='relative overflow-clip'>
       <CardHeader>
         <div className='flex items-center justify-between gap-3'>
-          <CardTitle>{title}</CardTitle>
+          <CardTitle className='h-10 flex items-center'>{title}</CardTitle>
           {renderForm}
         </div>
         {description && <CardDescription>{description}</CardDescription>}
