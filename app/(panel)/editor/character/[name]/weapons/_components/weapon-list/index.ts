@@ -1,1 +1,0 @@
-export { WeaponList } from './weapon-list'

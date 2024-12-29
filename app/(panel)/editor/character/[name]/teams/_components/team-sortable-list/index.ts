@@ -1,1 +1,0 @@
-export { TeamSortableList } from './team-sortable-list'

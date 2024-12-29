@@ -1,1 +1,0 @@
-export { Artifacts } from './artifacts'

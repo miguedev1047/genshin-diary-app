@@ -1,1 +1,0 @@
-export { PassiveItem } from './passive-item'

@@ -1,1 +1,0 @@
-export { ConstellationList } from './constellation-list'

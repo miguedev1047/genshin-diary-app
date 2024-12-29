@@ -1,1 +1,0 @@
-export { Passives } from './passives'

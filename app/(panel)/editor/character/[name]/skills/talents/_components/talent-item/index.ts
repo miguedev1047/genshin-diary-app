@@ -1,1 +1,0 @@
-export { TalentItem } from './talent-item'

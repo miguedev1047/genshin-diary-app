@@ -1,1 +1,0 @@
-export { ArtifactItem } from './artifact-item'
