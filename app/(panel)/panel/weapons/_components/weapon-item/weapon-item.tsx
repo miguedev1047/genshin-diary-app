@@ -17,10 +17,10 @@ import Link from 'next/link'
 import Image from 'next/image'
 
 export function WeaponItem(props: WeaponItemProps) {
-  const { image_url, name, rarity, id: weapon_id } = props
+  const { image_url, name, rarity, id } = props
 
-  const FORMATTED_NAME = formattedUrl(name)
-  const URL = `/editor/weapon/${FORMATTED_NAME}`
+  const WEAPON_ID = id
+  const URL = `/editor/weapon/${WEAPON_ID}`
 
   const WEAPON_IMAGE = image_url
   const STAR_COLOR = getBorderColorByRarity(rarity)
@@ -60,7 +60,7 @@ export function WeaponItem(props: WeaponItemProps) {
       </TooltipProvider>
 
       <DeleteButton
-        itemId={weapon_id}
+        itemId={id}
         onDelete={deleteWeapon}
         className='absolute z-40 bottom-3 right-3'
       >

@@ -14,7 +14,7 @@ import { TeamsCharacterSchema } from '@/schemas'
 import { FormSheet } from '@/app/(panel)/_components/form-sheet'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useRouter } from 'next/navigation'
-import { Suspense, useTransition } from 'react'
+import { Suspense, useState, useTransition } from 'react'
 import { useForm } from 'react-hook-form'
 import { CharacterSelector } from '@/app/(panel)/panel/teams/_components/character-selector'
 import { createTeam } from '@/app/(panel)/panel/teams/_services/create'
@@ -23,6 +23,7 @@ import { toast } from 'sonner'
 
 export function TeamForm() {
   const [isPending, startTranstion] = useTransition()
+  const [isOpen, setIsOpen] = useState(false)
   const { refresh } = useRouter()
 
   const form = useForm<z.infer<typeof TeamsCharacterSchema>>({
@@ -40,6 +41,7 @@ export function TeamForm() {
       if (status === 201) {
         toast.success(message)
         form.reset()
+        setIsOpen(false)
         refresh()
         return
       }
@@ -51,6 +53,8 @@ export function TeamForm() {
   return (
     <FormSheet
       formId='form-team'
+      isOpen={isOpen}
+      onOpenChange={setIsOpen}
       title='Crear equipo'
       isLoading={isPending}
     >

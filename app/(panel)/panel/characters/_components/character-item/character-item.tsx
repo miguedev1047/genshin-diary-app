@@ -2,16 +2,15 @@ import { CharacterItemProps } from '@/app/(panel)/panel/characters/_components/c
 import { Card } from '@/components/ui/card'
 import { AspectRatio } from '@/components/ui/aspect-ratio'
 import { getBorderColorByRarity } from '@/features/utils/rarity-color'
-import { formattedUrl } from '@/features/utils/formatted-names'
 import { cn } from '@/lib/utils'
 import Image from 'next/image'
 import Link from 'next/link'
 
 export function CharacterItem(props: CharacterItemProps) {
-  const { images, name, rarity } = props
+  const { images, name, rarity, id } = props
 
-  const FORMATTED_NAME = formattedUrl(name)
-  const URL = `/editor/character/${FORMATTED_NAME}`
+  const CHARACTER_ID = id
+  const URL = `/editor/character/${CHARACTER_ID}`
 
   const CHARACTER_SPLASH_ART = images?.splash_art_url
   const RARITY_COLOR = getBorderColorByRarity(rarity)

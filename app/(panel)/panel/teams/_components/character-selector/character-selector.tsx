@@ -1,6 +1,6 @@
 import { useGetCharacters } from '@/features/queries/panel/use-characters'
 import { DialogMultiSelect } from '@/app/(panel)/_components/dialog-multi-select'
-import { CharacterSelectorProps } from '@/app/(panel)/editor/weapon/[name]/best-characters/_components/character-selector/character-selector.type'
+import { CharacterSelectorProps } from '@/app/(panel)/editor/weapon/[id]/best-characters/_components/character-selector/character-selector.type'
 
 export function CharacterSelector(props: CharacterSelectorProps) {
   const { value, onChange } = props
