@@ -1,0 +1,5 @@
+export const PAGE_NAME = 'Genshin Diary'
+export const DEV_MODE = process.env.NODE_ENV === 'development'
+export const API_PANEL_PREFIX = '/api/v0/panel'
+export const NONE = ''
+export const DEFAULT_IMAGE = 'https://placehold.co/600?text=Hutao+Mains'

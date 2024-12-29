@@ -1,4 +1,10 @@
 import {
+  ArtifactImg,
+  CharacterImg,
+  MaterialImg,
+  WeaponImg,
+} from '@/assets/images'
+import {
   Anemo,
   Cryo,
   Dendro,
@@ -7,86 +13,33 @@ import {
   Hydro,
   Pyro,
 } from '@/assets/elements'
-import {
-  ArtifactImg,
-  CharacterImg,
-  MaterialImg,
-  WeaponImg,
-} from '@/assets/images'
-import { Star4, Star5 } from '@/assets/stars'
+import { Star1, Star2, Star3, Star4, Star5 } from '@/assets/stars'
 import { Sword, Bow, Catalyst, Claymore, Polearm } from '@/assets/weapon-types'
 
-export const DEV_MODE = process.env.NODE_ENV === 'development'
-
-export const API_PANEL_PREFIX = '/api/v0/panel'
-
-export const NONE = ''
-
-export const DEFAULT_IMAGE = 'https://placehold.co/600?text=Hutao+Mains'
-
-export const STARS = [
+export const HOME_ITEMS = [
   {
-    label: '5 Estrellas',
-    value: 'STAR_5',
-    stars: '5_stars',
+    title: 'Personajes',
+    href: '/characters',
   },
   {
-    label: '4 Estrellas',
-    value: 'STAR_4',
-    stars: '4_stars',
+    title: 'Armas',
+    href: '/weapons',
   },
   {
-    label: '3 Estrellas',
-    value: 'STAR_3',
-    stars: '3_stars',
+    title: 'Artefactos',
+    href: '/artifacts',
   },
   {
-    label: '2 Estrellas',
-    value: 'STAR_2',
-    stars: '2_stars',
+    title: 'Materiales',
+    href: '/materials',
   },
   {
-    label: '1 Estrella',
-    value: 'STAR_1',
-    stars: '1_star',
-  },
-]
-
-export const REGIONS = [
-  {
-    label: 'Mondstadt',
-    value: 'MONDSTADT',
-    region: 'mondstadt',
+    title: 'Equipos',
+    href: '/teams',
   },
   {
-    label: 'Liyue',
-    value: 'LIYUE',
-    region: 'liyue',
-  },
-  {
-    label: 'Inazuma',
-    value: 'INAZUMA',
-    region: 'inazuma',
-  },
-  {
-    label: 'Sumeru',
-    value: 'SUMERU',
-    region: 'sumeru',
-  },
-  {
-    label: 'Fontaine',
-    value: 'FONTAINE',
-    region: 'fontaine',
-  },
-  {
-    label: 'Natlan',
-    value: 'NATLAN',
-    region: 'natlan',
-  },
-  {
-    label: 'Snezhnaya',
-    value: 'SNEZHNAYA',
-    region: 'snezhnaya',
+    title: 'Tier List',
+    href: '/tierlist',
   },
 ]
 
@@ -135,23 +88,37 @@ export const ELEMENTS = [
   },
 ]
 
-export const ATTRIBUTES = [
-  { value: 'DMG_CRIT', label: 'Daño CRIT' },
-  { value: 'CRIT_RATE', label: 'Prob. CRIT' },
-  { value: 'ELEMENTAL_MASTERY', label: 'Maestría Elemental' },
-  { value: 'ENERGY_RECHARGE', label: 'Recarga de Energía' },
-  { value: 'HEAL_BONUS', label: 'Bono de Curación' },
-  { value: 'PHYSICAL_DMG', label: 'Bono de Daño Físico' },
-  { value: 'ATQ', label: 'ATQ' },
-  { value: 'DEF', label: 'DEF' },
-  { value: 'HP', label: 'Vida' },
-  { value: 'PYRO_DMG', label: 'Bono de Daño Pyro' },
-  { value: 'HYDRO_DMG', label: 'Bono de Daño Hydro' },
-  { value: 'ELECTRO_DMG', label: 'Bono de Daño Electro' },
-  { value: 'DENDRO_DMG', label: 'Bono de Daño Dendro' },
-  { value: 'CRYO_DMG', label: 'Bono de Daño Cryo' },
-  { value: 'ANEMO_DMG', label: 'Bono de Daño Anemo' },
-  { value: 'GEO_DMG', label: 'Bono de Daño Geo' },
+export const STARS = [
+  {
+    label: '5 Estrellas',
+    value: 'STAR_5',
+    stars: '5_stars',
+    src: Star5.src,
+  },
+  {
+    label: '4 Estrellas',
+    value: 'STAR_4',
+    stars: '4_stars',
+    src: Star4.src,
+  },
+  {
+    label: '3 Estrellas',
+    value: 'STAR_3',
+    stars: '3_stars',
+    src: Star3.src,
+  },
+  {
+    label: '2 Estrellas',
+    value: 'STAR_2',
+    stars: '2_stars',
+    src: Star2.src,
+  },
+  {
+    label: '1 Estrella',
+    value: 'STAR_1',
+    stars: '1_star',
+    src: Star1.src,
+  },
 ]
 
 export const WEAPON_TYPE = [
@@ -182,10 +149,79 @@ export const WEAPON_TYPE = [
   },
 ]
 
+export const ITEM_FILTERS = {
+  star_filters: STARS,
+  element_filters: ELEMENTS,
+  weapon_filters: WEAPON_TYPE,
+}
+
+export const REGIONS = [
+  {
+    label: 'Mondstadt',
+    value: 'MONDSTADT',
+    region: 'mondstadt',
+  },
+  {
+    label: 'Liyue',
+    value: 'LIYUE',
+    region: 'liyue',
+  },
+  {
+    label: 'Inazuma',
+    value: 'INAZUMA',
+    region: 'inazuma',
+  },
+  {
+    label: 'Sumeru',
+    value: 'SUMERU',
+    region: 'sumeru',
+  },
+  {
+    label: 'Fontaine',
+    value: 'FONTAINE',
+    region: 'fontaine',
+  },
+  {
+    label: 'Natlan',
+    value: 'NATLAN',
+    region: 'natlan',
+  },
+  {
+    label: 'Snezhnaya',
+    value: 'SNEZHNAYA',
+    region: 'snezhnaya',
+  },
+]
+
+export const ATTRIBUTES = [
+  { value: 'DMG_CRIT', label: 'Daño CRIT' },
+  { value: 'CRIT_RATE', label: 'Prob. CRIT' },
+  { value: 'ELEMENTAL_MASTERY', label: 'Maestría Elemental' },
+  { value: 'ENERGY_RECHARGE', label: 'Recarga de Energía' },
+  { value: 'HEAL_BONUS', label: 'Bono de Curación' },
+  { value: 'PHYSICAL_DMG', label: 'Bono de Daño Físico' },
+  { value: 'ATQ', label: 'ATQ' },
+  { value: 'DEF', label: 'DEF' },
+  { value: 'HP', label: 'Vida' },
+  { value: 'PYRO_DMG', label: 'Bono de Daño Pyro' },
+  { value: 'HYDRO_DMG', label: 'Bono de Daño Hydro' },
+  { value: 'ELECTRO_DMG', label: 'Bono de Daño Electro' },
+  { value: 'DENDRO_DMG', label: 'Bono de Daño Dendro' },
+  { value: 'CRYO_DMG', label: 'Bono de Daño Cryo' },
+  { value: 'ANEMO_DMG', label: 'Bono de Daño Anemo' },
+  { value: 'GEO_DMG', label: 'Bono de Daño Geo' },
+]
+
 export const ROLE = [
   { value: 'DPS', label: 'Main DPS' },
   { value: 'SUBDPS', label: 'Sub DPS' },
   { value: 'SUPPORT', label: 'Soporte' },
+]
+
+export const ACCOUNT_ROLE = [
+  { value: 'OWNER', label: 'Owner' },
+  { value: 'ADMIN', label: 'Administrador' },
+  { value: 'EDITOR', label: 'Editor' },
 ]
 
 export const ASCENSION_LEVEL = [
@@ -296,50 +332,6 @@ export const PANEL_ROUTES = [
   },
 ]
 
-export const HOME_ITEMS = [
-  {
-    title: 'Personajes',
-    href: '/characters',
-  },
-  {
-    title: 'Armas',
-    href: '/weapons',
-  },
-  {
-    title: 'Artefactos',
-    href: '/artifacts',
-  },
-  {
-    title: 'Materiales',
-    href: '/materials',
-  },
-  {
-    title: 'Equipos',
-    href: '/teams',
-  },
-  {
-    title: 'Tier List',
-    href: '/tierlist',
-  },
-]
-
-export const ITEM_FILTERS = {
-  star_filters: [
-    {
-      label: '5',
-      value: '5',
-      src: Star5.src,
-    },
-    {
-      label: '4',
-      value: '4',
-      src: Star4.src,
-    },
-  ],
-  element_filters: ELEMENTS,
-  weapon_filters: WEAPON_TYPE,
-}
-
 export const SKILL_TYPE = [
   { value: 'TALENT', label: 'Talento', skill: 'talent' },
   { value: 'PASSIVE', label: 'Pasiva', skill: 'passive' },
@@ -355,4 +347,3 @@ export const CONSTELLATION_TYPE = [
   { value: '5', label: 'Constelación 5' },
   { value: '6', label: 'Constelación 6' },
 ]
-
