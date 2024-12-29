@@ -1,3 +1,0 @@
-export const MAX_ASCENSION_ITEMS = 6
-export const MAX_ASCENSION_MATERIAL_ITEMS = 3
-export const MAX_BEST_CHARACTERS_ITEMS = 6
