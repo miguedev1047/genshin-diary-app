@@ -3,9 +3,20 @@ import { PrismaLibSQL } from '@prisma/adapter-libsql'
 import { createClient } from '@libsql/client'
 
 const libsql = createClient({
-  url: `${process.env.TURSO_DATABASE_URL}`,
-  authToken: `${process.env.TURSO_AUTH_TOKEN}`,
+  url: `libsql://hutao-mains-miguedev1047.turso.io`,
+  authToken: `${process.env.NEXT_PUBLIC_TURSO_AUTH_TOKEN}`,
 })
 
 const adapter = new PrismaLibSQL(libsql)
-export const db = new PrismaClient({ adapter })
+
+const prismaClientSingleton = () => {
+  return new PrismaClient({ adapter })
+}
+
+declare const globalThis: {
+  prismaGlobal: ReturnType<typeof prismaClientSingleton>
+} & typeof global
+
+export const db = globalThis.prismaGlobal ?? prismaClientSingleton()
+
+if (process.env.NODE_ENV !== 'production') globalThis.prismaGlobal = db

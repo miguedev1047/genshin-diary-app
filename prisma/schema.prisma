@@ -9,9 +9,9 @@ datasource db {
 }
 
 model User {
-  id       String       @id @default(uuid())
+  id       String @id @default(uuid())
   name     String
-  email    String       @unique
+  email    String @unique
   password String
   role     String @default("DEFAULT")
 }
@@ -19,7 +19,7 @@ model User {
 // <----- ------>
 // <----- PERSONAJES ------>
 model Characters {
-  id          String         @id @unique @default(uuid())
+  id          String  @id @unique @default(uuid())
   name        String
   description String
   role        String
@@ -28,8 +28,8 @@ model Characters {
   region      String
   weapon      String
   attribute   String
-  is_public   Boolean        @default(false)
-  is_new      Boolean        @default(false)
+  is_public   Boolean @default(false)
+  is_new      Boolean @default(false)
 
   date_created DateTime @default(now())
   date_updated DateTime @updatedAt
@@ -46,7 +46,7 @@ model Characters {
   talents           TalentsCharacter[]
   passives          PassivesCharacter[]
   constellations    ConstellationsCharacter[]
-  tierlist          TierList[]
+  tierlist          TierCharacter[]
 }
 
 model CharacterImage {
@@ -65,12 +65,12 @@ model CharacterImage {
 // <----- ------>
 // <----- ARMAS ------>
 model Weapons {
-  id                  String         @id @unique @default(uuid())
+  id                  String  @id @unique @default(uuid())
   image_url           String?
   name                String
   type                String
   rarity              String
-  base_attack         Int            @default(0)
+  base_attack         Int     @default(0)
   main_stat           String
   passive_description String
 
@@ -136,7 +136,7 @@ model WeaponCharacter {
 // <----- ------>
 // <----- ARTEFACTOS ------>
 model Artifacts {
-  id                String     @id @unique @default(uuid())
+  id                String  @id @unique @default(uuid())
   image_url         String?
   name              String
   rarity            String
@@ -161,7 +161,7 @@ model ArtifactCharacter {
 // <----- ------>
 // <----- MATERIALES ------>
 model Materials {
-  id          String        @id @unique @default(uuid())
+  id          String  @id @unique @default(uuid())
   image_url   String?
   name        String
   description String
@@ -320,7 +320,7 @@ model TalentsCharacter {
   image_url   String?
   description String
   type        String
-  order       Int           @default(0)
+  order       Int     @default(0)
 
   date_created DateTime @default(now())
   date_updated DateTime @updatedAt
@@ -338,7 +338,7 @@ model PassivesCharacter {
   image_url   String?
   description String
   type        String
-  order       Int           @default(0)
+  order       Int     @default(0)
 
   date_created DateTime @default(now())
   date_updated DateTime @updatedAt
@@ -356,7 +356,7 @@ model ConstellationsCharacter {
   image_url   String?
   description String
   type        String
-  order       Int           @default(0)
+  order       Int     @default(0)
 
   date_created DateTime @default(now())
   date_updated DateTime @updatedAt
@@ -394,15 +394,42 @@ model TeamCharacters {
 // <----- ------>
 // <----- TIERLIST ------>
 model TierList {
-  id           String @id @unique @default(uuid())
+  id    String @id @unique @default(uuid())
+  order Int    @default(0)
+
+  tier_category String
+
+  date_created DateTime @default(now())
+  date_updated DateTime @updatedAt
+
+  tiers TierRow[]
+}
+
+model TierRow {
+  id          String @id @unique @default(uuid())
+  tierlist_id String
+
+  order     Int    @default(0)
+  tier_rank String
+
+  date_created DateTime @default(now())
+  date_updated DateTime @updatedAt
+
+  characters TierCharacter[]
+  tierlist   TierList        @relation(fields: [tierlist_id], references: [id], onDelete: Cascade)
+}
+
+model TierCharacter {
+  id String @id @default(uuid())
+
+  tier_id      String
   character_id String
 
-  order         Int    @default(0)
-  tier_category String
-  tier_ranking  String
+  order Int @default(0)
 
   date_created DateTime @default(now())
   date_updated DateTime @updatedAt
 
   character Characters @relation(fields: [character_id], references: [id], onDelete: Cascade)
+  tier_row  TierRow    @relation(fields: [tier_id], references: [id], onDelete: Cascade)
 }

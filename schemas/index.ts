@@ -65,7 +65,7 @@ export const WeaponSchema = z.object({
   }),
 })
 
-export const WeaponBestCharactersSchema = z.object({
+export const CharacterSelectorSchema = z.object({
   characters: z
     .array(z.string().min(1))
     .min(1)
@@ -190,4 +190,10 @@ export const SkillCharacterSchema = z.object({
     message: 'El tipo de talento es requerido.',
   }),
   character_id: z.string(),
+})
+
+export const TierlistSchema = z.object({
+  tier_category: z
+    .string()
+    .min(1, { message: 'La categoria del tier es requerida.' }),
 })
