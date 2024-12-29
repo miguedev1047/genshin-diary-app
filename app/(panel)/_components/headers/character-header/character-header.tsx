@@ -51,11 +51,11 @@ export function CharacterHeader() {
 
       <Card className='p-4 flex justify-center items-center gap-6'>
         <ul className='flex space-x-2'>
-          {ITEM_FILTERS.star_filters.map((filter) => (
+          {ITEM_FILTERS.star_filters.slice(0, 2).map((filter) => (
             <QueryToggle
               key={filter.value}
               queryKey='stars'
-              queryValue={filter.value}
+              queryValue={filter.value.at(-1)!}
             >
               <Image
                 src={filter.src}

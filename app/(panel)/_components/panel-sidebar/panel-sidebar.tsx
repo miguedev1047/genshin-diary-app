@@ -10,11 +10,11 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from '@/components/ui/sidebar'
-import { PAGE_NAME } from '@/consts/site'
+import { PAGE_NAME } from '@/consts/misc'
 import { SIDEBAR_DATA } from '@/lib/menu-list'
 import { GalleryVerticalEnd } from 'lucide-react'
+import { PanelDropdown } from '@/app/(panel)/_components/panel-dropdown'
 import Link from 'next/link'
-import { PanelDropdown } from '../panel-dropdown'
 
 export function PanelSidebar() {
   return (

@@ -53,7 +53,7 @@ export function WeaponHeader() {
             <QueryToggle
               key={filter.value}
               queryKey='stars'
-              queryValue={filter.value}
+              queryValue={filter.value.at(-1)!}
             >
               <Image
                 src={filter.src}
