@@ -1,1 +1,0 @@
-export { MaterialSelector } from './material-selector'
