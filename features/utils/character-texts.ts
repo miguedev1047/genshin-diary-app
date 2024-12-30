@@ -2,6 +2,7 @@ import {
   ATTRIBUTES,
   ELEMENTS,
   MATERIAL_TYPES,
+  REGIONS,
   ROLE,
   SKILL_TYPE,
   STARS,
@@ -11,6 +12,13 @@ import {
 export function getWeaponText(weapon: string | undefined) {
   const WEAPON = WEAPON_TYPE.find((item) => item.value === weapon)
   if (WEAPON) return WEAPON.label
+
+  return 'Indefinido'
+}
+
+export function getRegionText(region: string | undefined) {
+  const REGION = REGIONS.find((item) => item.value === region)
+  if (REGION) return REGION.label
 
   return 'Indefinido'
 }
