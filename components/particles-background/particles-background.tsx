@@ -8,7 +8,7 @@ export function ParticlesBackground() {
   if (theme === 'light') return null
 
   return (
-    <div className='absolute w-full h-dvh -top-0 z-10'>
+    <div className='absolute w-full h-dvh top-0'>
       <Particles
         className='size-full'
         quantity={150}
