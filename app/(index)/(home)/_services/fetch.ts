@@ -28,6 +28,7 @@ function filterCharacters(characters: Array<CharacterProps>, filters: Props) {
 export async function getCharacters(props: Props) {
   try {
     const CHARACTERS = await db.characters.findMany({
+      where: { is_public: true },
       orderBy: [{ rarity: 'asc' }, { name: 'asc' }, { date_created: 'desc' }],
       include: { images: true },
     })
