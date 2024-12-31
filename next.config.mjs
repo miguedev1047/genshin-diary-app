@@ -4,21 +4,21 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'res.cloudinary.com',
+        hostname: 'enka.network',
         port: '',
-        pathname: '/dhnjhei13/**',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'homdgcat.wiki',
+        port: '',
+        pathname: '/homdgcat-res/**',
       },
       {
         protocol: 'https',
         hostname: 'gensh.honeyhunterworld.com',
         port: '',
         pathname: '/img/**',
-      },
-      {
-        protocol: 'https',
-        hostname: 'cdn.wanderer.moe',
-        port: '',
-        pathname: '/genshin-impact/**',
       },
     ],
   },
