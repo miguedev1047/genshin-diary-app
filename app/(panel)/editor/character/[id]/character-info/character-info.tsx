@@ -10,7 +10,7 @@ import {
 import { EditorCard } from '@/app/(panel)/_components/editor-card'
 import { Badge } from '@/components/ui/badge'
 import { Star } from 'lucide-react'
-import { DEFAULT_IMAGE } from '@/consts/misc'
+import { DEFAULT_IMAGE, PARSE_OPTIONS } from '@/consts/misc'
 import { useGetCharacter } from '@/app/(panel)/editor/character/[id]/provider'
 import { CharacterInfoForm } from '@/app/(panel)/editor/character/[id]/character-info/_components/character-info-form'
 import { SquareBox } from '@/components/square-box'
@@ -85,9 +85,9 @@ export function CharacterInfo() {
               <Badge>{WEAPON}</Badge>
             </ul>
 
-            <span className='[&>p]:text-pretty text-sm opacity-70 my-20 tiptap'>
-              {parse(CHARACTER?.description ?? '')}
-            </span>
+            <div className='tiptap text-sm md:text-base opacity-70'>
+              {parse(CHARACTER?.description ?? '', PARSE_OPTIONS)}
+            </div>
           </div>
         </div>
       </div>

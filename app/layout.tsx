@@ -3,7 +3,7 @@ import { Onest } from 'next/font/google'
 import { Providers } from '@/app/providers'
 import { Toaster } from '@/components/ui/sonner'
 import { cn } from '@/lib/utils'
-import { PAGE_NAME } from '@/consts/misc'
+import { PAGE_NAME, REACT_SCAN } from '@/consts/misc'
 import { DEV_MODE } from '@/consts/misc'
 import NextTopLoader from 'nextjs-toploader'
 import '@/styles/styles.css'
@@ -22,7 +22,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='es'>
-      {DEV_MODE && (
+      {DEV_MODE && REACT_SCAN && (
         <head>
           <script
             src='https://unpkg.com/react-scan/dist/auto.global.js'
