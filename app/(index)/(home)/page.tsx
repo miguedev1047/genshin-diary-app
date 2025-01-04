@@ -12,7 +12,7 @@ export default async function Home(props: PageProps) {
 
   return (
     <>
-      <ContentLayout>
+      <ContentLayout particles>
         <HomeHero />
         <Suspense fallback={<SpinLoaderContent />}>
           <HomeCharacters data={CHARACTERS} />
