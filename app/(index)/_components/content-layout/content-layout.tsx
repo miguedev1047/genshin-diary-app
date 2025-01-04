@@ -3,14 +3,16 @@ import { Header } from '@/app/(index)/_components/header'
 import { ContentLayoutProps } from '@/app/(index)/_components/content-layout/content-layout.type'
 
 export function ContentLayout(props: ContentLayoutProps) {
-  const { children } = props
+  const { children, particles = false } = props
 
   return (
     <>
-      <ParticlesBackground />
-      
+      {particles && <ParticlesBackground />}
+
       <Header />
-      <main className='py-20 container mx-auto relative z-20'>{children}</main>
+      <main className='py-20 container max-w-[1240px] mx-auto relative z-20'>
+        {children}
+      </main>
     </>
   )
 }
