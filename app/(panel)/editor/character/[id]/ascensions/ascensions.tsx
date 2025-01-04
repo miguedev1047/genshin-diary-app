@@ -1,11 +1,11 @@
 'use client'
 
 import { EditorCard } from '@/app/(panel)/_components/editor-card'
-import { AscensionTable } from '@/app/(panel)/editor/character/[id]/ascensions/_components/ascension-table'
 import { AscensionForm } from '@/app/(panel)/editor/character/[id]/ascensions/_components/ascension-form'
 import { columns } from '@/app/(panel)/editor/character/[id]/ascensions/_components/ascension-table/ascension-columns'
 import { Prisma } from '@prisma/client'
 import { useGetCharacter } from '@/app/(panel)/editor/character/[id]/provider'
+import { DataTable } from '@/components/data-tabla'
 
 export type Ascension = Prisma.AscensionCharacterGetPayload<{
   include: { materials: true }
@@ -20,7 +20,7 @@ export function Ascension() {
       title='Materiales de ascension'
       renderForm={<AscensionForm data={CHARACTER} />}
     >
-      <AscensionTable
+      <DataTable
         columns={columns}
         data={ASCENSIONS}
       />

@@ -21,7 +21,7 @@ interface DataTableProps<TData, TValue> {
   data: TData[]
 }
 
-export function TalentAscensionTable<TData, TValue>({
+export function DataTable<TData, TValue>({
   columns,
   data,
 }: DataTableProps<TData, TValue>) {
@@ -32,8 +32,8 @@ export function TalentAscensionTable<TData, TValue>({
   })
 
   return (
-    <div className='rounded-md border select-none'>
-      <Table> 
+    <div className='rounded-md border'>
+      <Table>
         <TableHeader>
           {table.getHeaderGroups().map((headerGroup) => (
             <TableRow key={headerGroup.id}>
@@ -70,9 +70,9 @@ export function TalentAscensionTable<TData, TValue>({
             <TableRow>
               <TableCell
                 colSpan={columns.length}
-                className='h-24 text-center text-2xl uppercase font-bold opacity-70 py-20'
+                className='h-24 text-center py-20 text-2xl opacity-70 font-extrabold'
               >
-                No hay resultados
+                No hay resultados.
               </TableCell>
             </TableRow>
           )}
