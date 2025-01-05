@@ -70,9 +70,9 @@ export function DataTable<TData, TValue>({
             <TableRow>
               <TableCell
                 colSpan={columns.length}
-                className='h-24 text-center py-20 text-2xl opacity-70 font-extrabold'
+                className='h-24 text-center py-20 text-2xl opacity-70 font-extrabold uppercase'
               >
-                No hay resultados.
+                No hay elementos para mostrar
               </TableCell>
             </TableRow>
           )}
