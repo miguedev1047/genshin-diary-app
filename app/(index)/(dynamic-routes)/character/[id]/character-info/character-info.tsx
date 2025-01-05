@@ -81,7 +81,7 @@ export function CharacterInfo(props: CharacterInfoProps) {
         </div>
       </div>
 
-      <figure className='w-[540px] h-auto'>
+      <figure className='w-[540px] h-[375px]'>
         <BlurImage
           src={CHARACTER.images?.splash_art_url ?? DEFAULT_IMAGE}
           alt={CHARACTER.name}
