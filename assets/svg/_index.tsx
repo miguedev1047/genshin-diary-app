@@ -18,39 +18,6 @@ import { AnemoIcon } from '@/assets/svg/AnemoIcon'
 import { GeoIcon } from '@/assets/svg/GeoIcon'
 import { DendroIcon } from '@/assets/svg/DendroIcon'
 
-export const FIGHT_ATTRIBUTES = {
-  FIGHT_PROP_BASE_ATTACK: <AttackIcon />,
-  FIGHT_PROP_HP: <HpIcon />,
-  FIGHT_PROP_MAX_HP: <HpIcon />,
-  FIGHT_PROP_CUR_HP: <HpIcon />,
-  FIGHT_PROP_CUR_DEFENSE: <DefenseIcon />,
-  FIGHT_PROP_CUR_ATTACK: <AttackIcon />,
-  FIGHT_PROP_ATTACK: <AttackIcon />,
-  FIGHT_PROP_DEFENSE: <DefenseIcon />,
-  FIGHT_PROP_HP_PERCENT: <HpPercentIcon />,
-  FIGHT_PROP_ATTACK_PERCENT: <AttackPercentIcon />,
-  FIGHT_PROP_DEFENSE_PERCENT: <DefensePercentIcon />,
-  FIGHT_PROP_CRITICAL: <ProbRateIcon />,
-  FIGHT_PROP_CRITICAL_HURT: <DmgCritIcon />,
-  FIGHT_PROP_CHARGE_EFFICIENCY: <EnergyRecharge />,
-  FIGHT_PROP_HEAL_ADD: <HealIcon />,
-  FIGHT_PROP_ELEMENT_MASTERY: <ElementalMastery />,
-  FIGHT_PROP_PHYSICAL_ADD_HURT: <PhysicalIcon />,
-  FIGHT_PROP_FIRE_ADD_HURT: <PyroIcon />,
-  FIGHT_PROP_ELEC_ADD_HURT: <ElectroIcon />,
-  FIGHT_PROP_WATER_ADD_HURT: <HydroIcon />,
-  FIGHT_PROP_WIND_ADD_HURT: <AnemoIcon />,
-  FIGHT_PROP_ICE_ADD_HURT: <CryoIcon />,
-  FIGHT_PROP_ROCK_ADD_HURT: <GeoIcon />,
-  FIGHT_PROP_GRASS_ADD_HURT: <DendroIcon />,
-}
-
-export const AttributeIcon = ({ attribute }: { attribute: string }) => (
-  <span className='!size-4'>
-    {FIGHT_ATTRIBUTES[attribute as FightAttributesProps]}
-  </span>
-)
-
 export type FightAttributesProps =
   | 'FIGHT_PROP_BASE_ATTACK'
   | 'FIGHT_PROP_HP'
@@ -72,3 +39,38 @@ export type FightAttributesProps =
   | 'FIGHT_PROP_ICE_ADD_HURT'
   | 'FIGHT_PROP_ROCK_ADD_HURT'
   | 'FIGHT_PROP_GRASS_ADD_HURT'
+
+export const FIGHT_ATTRIBUTES = {
+  FIGHT_PROP_BASE_ATTACK: <AttackIcon className='size-full' />,
+  FIGHT_PROP_HP: <HpIcon className='size-full' />,
+  FIGHT_PROP_MAX_HP: <HpIcon className='size-full' />,
+  FIGHT_PROP_CUR_HP: <HpIcon className='size-full' />,
+  FIGHT_PROP_CUR_DEFENSE: <DefenseIcon className='size-full' />,
+  FIGHT_PROP_CUR_ATTACK: <AttackIcon className='size-full' />,
+  FIGHT_PROP_ATTACK: <AttackIcon className='size-full' />,
+  FIGHT_PROP_DEFENSE: <DefenseIcon className='size-full' />,
+  FIGHT_PROP_HP_PERCENT: <HpPercentIcon className='size-full' />,
+  FIGHT_PROP_ATTACK_PERCENT: <AttackPercentIcon className='size-full' />,
+  FIGHT_PROP_DEFENSE_PERCENT: <DefensePercentIcon className='size-full' />,
+  FIGHT_PROP_CRITICAL: <ProbRateIcon className='size-full' />,
+  FIGHT_PROP_CRITICAL_HURT: <DmgCritIcon className='size-full' />,
+  FIGHT_PROP_CHARGE_EFFICIENCY: <EnergyRecharge className='size-full' />,
+  FIGHT_PROP_HEAL_ADD: <HealIcon className='size-full' />,
+  FIGHT_PROP_ELEMENT_MASTERY: <ElementalMastery className='size-full' />,
+  FIGHT_PROP_PHYSICAL_ADD_HURT: <PhysicalIcon className='size-full' />,
+  FIGHT_PROP_FIRE_ADD_HURT: <PyroIcon className='size-full' />,
+  FIGHT_PROP_ELEC_ADD_HURT: <ElectroIcon className='size-full' />,
+  FIGHT_PROP_WATER_ADD_HURT: <HydroIcon className='size-full' />,
+  FIGHT_PROP_WIND_ADD_HURT: <AnemoIcon className='size-full' />,
+  FIGHT_PROP_ICE_ADD_HURT: <CryoIcon className='size-full' />,
+  FIGHT_PROP_ROCK_ADD_HURT: <GeoIcon className='size-full' />,
+  FIGHT_PROP_GRASS_ADD_HURT: <DendroIcon className='size-full' />,
+}
+
+export const AttributeIcon = ({ attribute }: { attribute: string }) => {
+  return (
+    <div className='size-5 '>
+      {FIGHT_ATTRIBUTES[attribute as FightAttributesProps]}
+    </div>
+  )
+}
