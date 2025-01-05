@@ -1,4 +1,11 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-require-imports */
+
 import type { Config } from 'tailwindcss'
+
+const {
+  default: flattenColorPalette,
+} = require("tailwindcss/lib/util/flattenColorPalette");
 
 const config: Config = {
   darkMode: ['class'],
@@ -199,7 +206,21 @@ const config: Config = {
       },
     },
   },
-  // eslint-disable-next-line @typescript-eslint/no-require-imports
-  plugins: [require('tailwindcss-animate'), require('@pyncz/tailwind-mask-image')],
+  plugins: [
+    require('tailwindcss-animate'),
+    require('@pyncz/tailwind-mask-image'),
+    addVariablesForColors,
+  ],
 }
 export default config
+
+function addVariablesForColors({ addBase, theme }: any) {
+  const allColors = flattenColorPalette(theme('colors'))
+  const newVars = Object.fromEntries(
+    Object.entries(allColors).map(([key, val]) => [`--${key}`, val])
+  )
+
+  addBase({
+    ':root': newVars,
+  })
+}
