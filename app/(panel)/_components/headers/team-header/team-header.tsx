@@ -6,17 +6,17 @@ import {
 } from '@/components/ui/tooltip'
 import { TeamForm } from '@/app/(panel)/panel/teams/_components/team-form'
 import { SearchBar } from '@/components/search-bar'
-import { Tittle } from '@/components/ui/tittle'
+import { Title } from '@/components/ui/title'
 
 export function TeamHeader() {
   return (
     <div className='flex items-center justify-between gap-4 flex-wrap'>
-      <Tittle
+      <Title
         size='2xl'
         className='font-extrabold uppercase'
       >
         Equipos
-      </Tittle>
+      </Title>
 
       <div className='flex items-center gap-2'>
         <SearchBar

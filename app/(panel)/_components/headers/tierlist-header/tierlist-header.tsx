@@ -1,15 +1,15 @@
 import { TierlistForm } from '@/app/(panel)/panel/tierlist/_components/tierlist-form'
-import { Tittle } from '@/components/ui/tittle'
+import { Title } from '@/components/ui/title'
 
 export function TierlistHeader() {
   return (
     <div className='flex items-center justify-between gap-4'>
-      <Tittle
+      <Title
         size='2xl'
         className='font-extrabold uppercase'
       >
         Tierlists
-      </Tittle>
+      </Title>
 
       <TierlistForm />
     </div>

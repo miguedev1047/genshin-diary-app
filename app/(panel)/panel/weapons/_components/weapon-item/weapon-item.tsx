@@ -8,7 +8,7 @@ import { Card } from '@/components/ui/card'
 import { AspectRatio } from '@/components/ui/aspect-ratio'
 import { WeaponItemProps } from '@/app/(panel)/panel/weapons/_components/weapon-item/weapon-item.type'
 import { formattedUrl } from '@/features/utils/formatted-names'
-import { getBorderColorByRarity } from '@/features/utils/rarity-color'
+import { getBorderColorByRarityHover } from '@/features/utils/rarity-color'
 import { deleteWeapon } from '@/app/(panel)/panel/weapons/_services/delete'
 import { DeleteButton } from '@/app/(panel)/_components/delete-button'
 import { Trash2 } from 'lucide-react'
@@ -23,7 +23,7 @@ export function WeaponItem(props: WeaponItemProps) {
   const URL = `/editor/weapon/${WEAPON_ID}`
 
   const WEAPON_IMAGE = image_url
-  const STAR_COLOR = getBorderColorByRarity(rarity)
+  const STAR_COLOR = getBorderColorByRarityHover(rarity)
 
   return (
     <>

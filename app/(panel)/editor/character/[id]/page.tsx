@@ -56,9 +56,9 @@ export default async function EditorCharacterPage(props: PageProps) {
           <Weapons />
           <Artifacts />
           <StatsPriority />
-          <VideoGuide />
           <Teams />
           <Skills />
+          <VideoGuide />
         </section>
       </CharacterProvider>
     </ContentLayout>

@@ -20,7 +20,7 @@ export async function createAccount(data: z.infer<typeof AccountSchema>) {
   }
 
   const { email, name, password, role } = VALIDATE_FIELDS.data
-  const HASH_PASSWORD = await bcrypt.hash(password, 10)
+  const HASH_PASSWORD = await bcrypt.hash(password!, 10)
 
   try {
     await db.user.create({

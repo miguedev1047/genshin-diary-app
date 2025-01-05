@@ -7,7 +7,7 @@ import {
 import { Card } from '@/components/ui/card'
 import { AspectRatio } from '@/components/ui/aspect-ratio'
 import { ArtifactItemProps } from '@/app/(panel)/panel/artifacts/_components/artifact-item/artifact-item.type'
-import { getBorderColorByRarity } from '@/features/utils/rarity-color'
+import { getBorderColorByRarityHover } from '@/features/utils/rarity-color'
 import { DeleteButton } from '@/app/(panel)/_components/delete-button'
 import { deleteArtifact } from '@/panel/artifacts/_services/delete'
 import { Trash2 } from 'lucide-react'
@@ -19,7 +19,7 @@ export function ArtifactItem(props: ArtifactItemProps) {
   const { name, rarity, image_url, id } = props
 
   const ARTIFACT_IMAGE = image_url
-  const STAR_COLOR = getBorderColorByRarity(rarity)
+  const STAR_COLOR = getBorderColorByRarityHover(rarity)
 
   return (
     <>

@@ -1,4 +1,4 @@
-import { Tittle } from '@/components/ui/tittle'
+import { Title } from '@/components/ui/title'
 import { TierRowProps } from '@/app/(panel)/panel/tierlist/_components/tier-rows/tier-rows.type'
 import { sortedTierItems } from '@/features/helpers/sorted-tier-items'
 import { SquareBox } from '@/components/square-box'
@@ -22,7 +22,7 @@ export function TierRows(props: TierRowProps) {
             TIER_ROW_COLORS[row.tier_rank as 'S' | 'A' | 'B' | 'C' | 'D']
           )}
         >
-          <Tittle size='3xl'>{row.tier_rank}</Tittle>
+          <Title size='3xl'>{row.tier_rank}</Title>
         </SquareBox>
 
         <Card className='p-6 col-span-8'>

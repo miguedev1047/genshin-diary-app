@@ -3,7 +3,7 @@ import { useGetCharacter } from '@/features/queries/panel/use-characters'
 import { Skeleton } from '@/components/ui/skeleton'
 import { formattedUrl } from '@/features/utils/formatted-names'
 import { Card } from '@/components/ui/card'
-import { getBorderColorByRarity } from '@/features/utils/rarity-color'
+import { getBorderColorByRarityHover } from '@/features/utils/rarity-color'
 import { AspectRatio } from '@/components/ui/aspect-ratio'
 import { deleteCharacter } from '@/app/(panel)/editor/weapon/[id]/best-characters/_services/delete'
 import { DeleteButton } from '@/app/(panel)/_components/delete-button'
@@ -21,7 +21,7 @@ export function CharacterItem(props: CharacterItemProps) {
   const URL = `/editor/character/${FORMATTED_NAME}`
 
   const CHARACTER_SPLASH_ART = CHARACTER?.images?.splash_art_url
-  const RARITY_COLOR = getBorderColorByRarity(CHARACTER?.rarity)
+  const RARITY_COLOR = getBorderColorByRarityHover(CHARACTER?.rarity)
 
   return (
     <>

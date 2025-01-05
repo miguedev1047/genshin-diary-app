@@ -2,7 +2,7 @@
 
 import { Card } from '@/components/ui/card'
 import { AspectRatio } from '@/components/ui/aspect-ratio'
-import { getBorderColorByRarity } from '@/features/utils/rarity-color'
+import { getBorderColorByRarityHover } from '@/features/utils/rarity-color'
 import { formattedUrl } from '@/features/utils/formatted-names'
 import { useGetCharacter } from '@/features/queries/panel/use-characters'
 import { TierCharacterItemProps } from '@/app/(panel)/panel/tierlist/_components/tier-character-item/tier-character-item.type'
@@ -22,7 +22,7 @@ export function TierCharacterItem(props: TierCharacterItemProps) {
   const URL = `/editor/character/${FORMATTED_NAME}`
 
   const CHARACTER_SPLASH_ART = data.images?.splash_art_url
-  const RARITY_COLOR = getBorderColorByRarity(data.rarity)
+  const RARITY_COLOR = getBorderColorByRarityHover(data.rarity)
 
   return (
     <>

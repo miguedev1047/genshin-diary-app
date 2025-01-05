@@ -5,7 +5,7 @@ import Link from 'next/link'
 export function HomeHero() {
   return (
     <section className='relative mx-auto max-w-7xl h-[calc(100dvh-9rem)] px-6 text-center md:px-8 grid place-items-center z-20'>
-      <div className='-translate-y-8'>
+      <div className='-translate-y-8 animate-fade-in opacity-0 [--animation-delay:400ms]'>
         <AnimatedShinyText className='inline-flex max-w-full py-6 text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-medium leading-none tracking-tighter'>
           Tu web amigable para guías de Genshin Impact.
         </AnimatedShinyText>

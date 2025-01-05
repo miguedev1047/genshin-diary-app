@@ -6,7 +6,7 @@ import {
 } from '@/components/ui/tooltip'
 import { Card } from '@/components/ui/card'
 import { AspectRatio } from '@/components/ui/aspect-ratio'
-import { getBorderColorByRarity } from '@/features/utils/rarity-color'
+import { getBorderColorByRarityHover } from '@/features/utils/rarity-color'
 import { MaterialItemProps } from '@/app/(panel)/panel/materials/_components/material-item/material-item.type'
 import { DeleteButton } from '@/app/(panel)/_components/delete-button'
 import { deleteMaterial } from '@/panel/materials/_services/delete'
@@ -19,7 +19,7 @@ export function MaterialItem(props: MaterialItemProps) {
   const { name, rarity, image_url, id } = props
 
   const MATERIAL_IMAGE = image_url
-  const STAR_COLOR = getBorderColorByRarity(rarity)
+  const STAR_COLOR = getBorderColorByRarityHover(rarity)
 
   return (
     <>

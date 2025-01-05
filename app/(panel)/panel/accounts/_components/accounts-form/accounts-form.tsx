@@ -57,7 +57,6 @@ export function AccountsForm(props: AccountsFormProps) {
       startTransition(() => {
         form.setValue('name', ACCOUNT.name)
         form.setValue('email', ACCOUNT.email)
-        form.setValue('password', ACCOUNT.password)
         form.setValue('role', ACCOUNT.role)
       })
     }

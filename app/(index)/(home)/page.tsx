@@ -11,13 +11,11 @@ export default async function Home(props: PageProps) {
   const CHARACTERS = (await getCharacters(PARAMS)) as Array<CharacterProps>
 
   return (
-    <>
-      <ContentLayout particles>
-        <HomeHero />
-        <Suspense fallback={<SpinLoaderContent />}>
-          <HomeCharacters data={CHARACTERS} />
-        </Suspense>
-      </ContentLayout>
-    </>
+    <ContentLayout particles>
+      <HomeHero />
+      <Suspense fallback={<SpinLoaderContent />}>
+        <HomeCharacters data={CHARACTERS} />
+      </Suspense>
+    </ContentLayout>
   )
 }

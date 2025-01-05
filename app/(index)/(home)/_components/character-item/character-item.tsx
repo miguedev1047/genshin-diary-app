@@ -1,7 +1,7 @@
 import { CharacterItemProps } from '@/app/(panel)/panel/characters/_components/character-item/character-item.type'
 import { Card } from '@/components/ui/card'
 import { AspectRatio } from '@/components/ui/aspect-ratio'
-import { getBorderColorByRarity } from '@/features/utils/rarity-color'
+import { getBorderColorByRarityHover } from '@/features/utils/rarity-color'
 import { cn } from '@/lib/utils'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -11,7 +11,7 @@ export function CharacterItem(props: CharacterItemProps) {
 
   const URL = `/character/${id}`
   const CHARACTER_SPLASH_ART = images?.splash_art_url
-  const RARITY_COLOR = getBorderColorByRarity(rarity)
+  const RARITY_COLOR = getBorderColorByRarityHover(rarity)
 
   return (
     <Link
