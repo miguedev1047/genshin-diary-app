@@ -1,10 +1,10 @@
-import { useSuspenseQuery } from '@tanstack/react-query'
+import { useQuery } from '@tanstack/react-query'
 import { fetcher } from '@/features/helpers/fetcher'
 import { Artifacts } from '@prisma/client'
 import { API_PUBLIC_PREFIX } from '@/consts/misc'
 
 export function useGetArtifacts() {
-  const { data, status, error, refetch } = useSuspenseQuery<Array<Artifacts>>({
+  const { data, status, error, refetch } = useQuery<Array<Artifacts>>({
     queryKey: ['artifacts'],
     queryFn: async () => await fetcher(`${API_PUBLIC_PREFIX}/artifact`),
   })
@@ -13,9 +13,10 @@ export function useGetArtifacts() {
 }
 
 export function useGetArtifact(id: string) {
-  const { data, status, error, refetch } = useSuspenseQuery<Artifacts>({
+  const { data, status, error, refetch } = useQuery<Artifacts>({
     queryKey: ['artifact', id],
-    queryFn: async () => await fetcher(`${API_PUBLIC_PREFIX}/artifact/id/${id}`),
+    queryFn: async () =>
+      await fetcher(`${API_PUBLIC_PREFIX}/artifact/id/${id}`),
   })
 
   return { data, status, error, refetch }
