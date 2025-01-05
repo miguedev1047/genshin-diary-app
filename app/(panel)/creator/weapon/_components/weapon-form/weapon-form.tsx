@@ -6,6 +6,7 @@ import {
   FormField,
   FormItem,
   FormLabel,
+  FormMessage,
 } from '@/components/ui/form'
 import {
   Select,
@@ -91,6 +92,7 @@ export function WeaponForm() {
                       {...field}
                     />
                   </FormControl>
+                  <FormMessage />
                 </FormItem>
               )}
             />
@@ -108,6 +110,7 @@ export function WeaponForm() {
                       {...field}
                     />
                   </FormControl>
+                  <FormMessage />
                 </FormItem>
               )}
             />
@@ -147,6 +150,7 @@ export function WeaponForm() {
                       </SelectContent>
                     </Select>
                   </FormControl>
+                  <FormMessage />
                 </FormItem>
               )}
             />
@@ -165,6 +169,7 @@ export function WeaponForm() {
                       placeholder='Ataque base'
                     />
                   </FormControl>
+                  <FormMessage />
                 </FormItem>
               )}
             />
@@ -207,6 +212,7 @@ export function WeaponForm() {
                       </SelectContent>
                     </Select>
                   </FormControl>
+                  <FormMessage />
                 </FormItem>
               )}
             />
@@ -244,6 +250,7 @@ export function WeaponForm() {
                       </SelectContent>
                     </Select>
                   </FormControl>
+                  <FormMessage />
                 </FormItem>
               )}
             />
@@ -262,6 +269,7 @@ export function WeaponForm() {
                     isLoading={isPending}
                   />
                 </FormControl>
+                <FormMessage />
               </FormItem>
             )}
           />

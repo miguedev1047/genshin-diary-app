@@ -6,6 +6,7 @@ import {
   FormField,
   FormItem,
   FormLabel,
+  FormMessage,
 } from '@/components/ui/form'
 import {
   Select,
@@ -132,6 +133,7 @@ export function MaterialForm() {
                       {...field}
                     />
                   </FormControl>
+                  <FormMessage />
                 </FormItem>
               )}
             />
@@ -148,6 +150,7 @@ export function MaterialForm() {
                       {...field}
                     />
                   </FormControl>
+                  <FormMessage />
                 </FormItem>
               )}
             />
@@ -186,6 +189,7 @@ export function MaterialForm() {
                       ))}
                     </SelectContent>
                   </Select>
+                  <FormMessage />
                 </FormItem>
               )}
             />
@@ -217,6 +221,7 @@ export function MaterialForm() {
                       ))}
                     </SelectContent>
                   </Select>
+                  <FormMessage />
                 </FormItem>
               )}
             />
@@ -236,6 +241,7 @@ export function MaterialForm() {
                     isLoading={isPending}
                   />
                 </FormControl>
+                <FormMessage />
               </FormItem>
             )}
           />

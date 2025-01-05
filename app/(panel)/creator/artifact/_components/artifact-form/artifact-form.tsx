@@ -6,6 +6,7 @@ import {
   FormField,
   FormItem,
   FormLabel,
+  FormMessage,
 } from '@/components/ui/form'
 import {
   Select,
@@ -133,6 +134,7 @@ export function ArtifactForm() {
                       {...field}
                     />
                   </FormControl>
+                  <FormMessage />
                 </FormItem>
               )}
             />
@@ -149,6 +151,7 @@ export function ArtifactForm() {
                       {...field}
                     />
                   </FormControl>
+                  <FormMessage />
                 </FormItem>
               )}
             />
@@ -190,6 +193,7 @@ export function ArtifactForm() {
                     </SelectGroup>
                   </SelectContent>
                 </Select>
+                <FormMessage />
               </FormItem>
             )}
           />
@@ -208,6 +212,7 @@ export function ArtifactForm() {
                     isLoading={isPending}
                   />
                 </FormControl>
+                <FormMessage />
               </FormItem>
             )}
           />

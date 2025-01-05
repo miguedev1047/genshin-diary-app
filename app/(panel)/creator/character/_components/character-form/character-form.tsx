@@ -6,6 +6,7 @@ import {
   FormField,
   FormItem,
   FormLabel,
+  FormMessage,
 } from '@/components/ui/form'
 import {
   Select,
@@ -98,6 +99,7 @@ export function CharacterForm() {
                       {...field}
                     />
                   </FormControl>
+                  <FormMessage />
                 </FormItem>
               )}
             />
@@ -115,6 +117,7 @@ export function CharacterForm() {
                       {...field}
                     />
                   </FormControl>
+                  <FormMessage />
                 </FormItem>
               )}
             />
@@ -153,6 +156,7 @@ export function CharacterForm() {
                       ))}
                     </SelectContent>
                   </Select>
+                  <FormMessage />
                 </FormItem>
               )}
             />
@@ -186,6 +190,7 @@ export function CharacterForm() {
                       ))}
                     </SelectContent>
                   </Select>
+                  <FormMessage />
                 </FormItem>
               )}
             />
@@ -217,6 +222,7 @@ export function CharacterForm() {
                       ))}
                     </SelectContent>
                   </Select>
+                  <FormMessage />
                 </FormItem>
               )}
             />
@@ -250,6 +256,7 @@ export function CharacterForm() {
                       ))}
                     </SelectContent>
                   </Select>
+                  <FormMessage />
                 </FormItem>
               )}
             />
@@ -283,6 +290,7 @@ export function CharacterForm() {
                       ))}
                     </SelectContent>
                   </Select>
+                  <FormMessage />
                 </FormItem>
               )}
             />
@@ -316,6 +324,7 @@ export function CharacterForm() {
                       ))}
                     </SelectContent>
                   </Select>
+                  <FormMessage />
                 </FormItem>
               )}
             />
@@ -334,6 +343,7 @@ export function CharacterForm() {
                     isLoading={isPending}
                   />
                 </FormControl>
+                <FormMessage />
               </FormItem>
             )}
           />
