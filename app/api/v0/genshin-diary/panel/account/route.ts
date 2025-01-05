@@ -13,6 +13,12 @@ export async function GET(request: Request) {
 
   try {
     const ACCOUNTS = await db.user.findMany({
+      select: {
+        email: true,
+        id: true,
+        name: true,
+        role: true,
+      },
       orderBy: { name: 'asc' },
     })
     return NextResponse.json(ACCOUNTS, { status: 201 })

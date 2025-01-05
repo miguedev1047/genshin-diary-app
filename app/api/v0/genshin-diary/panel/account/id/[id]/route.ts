@@ -18,6 +18,12 @@ export async function GET(
 
   try {
     const ACCOUNT = await db.user.findUnique({
+      select: {
+        email: true,
+        id: true,
+        name: true,
+        role: true,
+      },
       where: { id: ACCOUNT_ID },
     })
 
