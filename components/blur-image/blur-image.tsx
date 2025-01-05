@@ -6,7 +6,7 @@ export function BlurImage(props: BlurImageProps) {
   const { alt, height, src, width, className } = props
 
   return (
-    <div className={cn('relative', className)}>
+    <div className={cn('relative z-0', className)}>
       <Image
         {...props}
         priority
