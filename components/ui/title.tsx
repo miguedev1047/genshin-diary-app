@@ -2,7 +2,7 @@ import * as React from 'react'
 import { cva, type VariantProps } from 'class-variance-authority'
 import { cn } from '@/lib/utils'
 
-const tittleVariants = cva('text-balance', {
+const titleVariants = cva('text-balance', {
   variants: {
     size: {
       xs: 'text-xs font-light',
@@ -26,19 +26,19 @@ const tittleVariants = cva('text-balance', {
   },
 })
 
-export interface TittleProps
+export interface TitleProps
   extends React.HTMLAttributes<HTMLHeadingElement>,
-    VariantProps<typeof tittleVariants> {}
+    VariantProps<typeof titleVariants> {}
 
-const Tittle = React.forwardRef<HTMLHeadingElement, TittleProps>(
+const Title = React.forwardRef<HTMLHeadingElement, TitleProps>(
   ({ className, size, ...props }, ref) => (
     <h2
-      className={cn(tittleVariants({ size, className }))}
+      className={cn(titleVariants({ size, className }))}
       ref={ref}
       {...props}
     />
   )
 )
-Tittle.displayName = 'Tittle'
+Title.displayName = 'Title'
 
-export { Tittle }
+export { Title }
