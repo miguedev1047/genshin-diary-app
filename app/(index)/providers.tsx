@@ -1,7 +1,7 @@
 'use client'
 
 import { createContext, use } from 'react'
-import { CharacterProps } from '@/app/(index)/(home)/_types'
+import { CharacterProps } from '@/app/(index)/(routes)/(home)/_types'
 
 type CharacterProviderProps = {
   data: Array<CharacterProps> | null

@@ -1,6 +1,6 @@
 import { GRID_LIST } from '@/consts/classes'
-import { CharacterItem } from '@/app/(index)/(home)/_components/character-item'
-import { CharacterRoutesProps } from '@/app/(index)/(home)/_components/character-routes/character-routes.type'
+import { CharacterRoutesProps } from '@/app/(index)/(routes)/(home)/_components/character-routes/character-routes.type'
+import { CharacterItem } from '@/app/(index)/(routes)/(home)/_components/character-item'
 
 export function CharacterRoutes(props: CharacterRoutesProps) {
   const { data: CHARACTERS } = props

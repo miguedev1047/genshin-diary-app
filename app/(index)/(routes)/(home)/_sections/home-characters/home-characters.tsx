@@ -3,10 +3,11 @@
 import { Card, CardContent, CardHeader } from '@/components/ui/card'
 import { BorderBeam } from '@/components/magicui/border-beam'
 import { FocalLight } from '@/components/focal-light'
-import { HomeCharactersProps } from '@/app/(index)/(home)/_sections/home-characters/home-characters.type'
-import { CharacterRoutes } from '@/app/(index)/(home)/_components/character-routes'
+
 import { CharacterFilter } from '@/app/(index)/_components/filters/character-filter'
 import { HeaderWrapper } from '@/components/header-wrapper'
+import { HomeCharactersProps } from '@/app/(index)/(routes)/(home)/_sections/home-characters/home-characters.type'
+import { CharacterRoutes } from '@/app/(index)/(routes)/(home)/_components/character-routes'
 
 export function HomeCharacters(props: HomeCharactersProps) {
   const { data: CHARACTERS } = props
