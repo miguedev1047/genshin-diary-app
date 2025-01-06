@@ -22,36 +22,16 @@ export function Teams(props: TeamsProps) {
     )
   }
 
-  const MAPPED_TABS = TEAMS.map((team) => (
-    <TabsTrigger
-      value={`tab-${team.id}`}
-      key={team.id}
-      className='relative rounded-none py-2 after:absolute after:inset-x-0 after:bottom-0 after:h-0.5 data-[state=active]:bg-transparent data-[state=active]:shadow-none data-[state=active]:after:bg-primary'
-    >
-      <Title>{team.name}</Title>
-    </TabsTrigger>
-  ))
-
   const MAPPED_CONTENT = TEAMS.map((team) => (
-    <TabsContent
-      value={`tab-${team.id}`}
-      key={team.id}
-    >
+    <li key={team.id}>
       <TeamItem {...team} />
-    </TabsContent>
+    </li>
   ))
 
   return (
     <div className='col-span-2'>
       <ViewCard title='Mejores equipos'>
-        <ul className='grid gap-4'>
-          <Tabs defaultValue={`tab-${DEFAULT_TEAM?.id}`}>
-            <TabsList className='h-auto rounded-none border-b border-border bg-transparent p-0'>
-              {MAPPED_TABS}
-            </TabsList>
-            {MAPPED_CONTENT}
-          </Tabs>
-        </ul>
+        <ul className='grid md:grid-cols-2 gap-4'>{MAPPED_CONTENT}</ul>
       </ViewCard>
     </div>
   )

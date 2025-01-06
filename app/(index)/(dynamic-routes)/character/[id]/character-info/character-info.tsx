@@ -43,21 +43,28 @@ export function CharacterInfo(props: CharacterInfoProps) {
             </BreadcrumbItem>
             <BreadcrumbSeparator />
             <BreadcrumbItem>
+              <BreadcrumbLink href='/characters'>Personajes</BreadcrumbLink>
+            </BreadcrumbItem>
+            <BreadcrumbSeparator />
+            <BreadcrumbItem>
               <BreadcrumbPage>{CHARACTER.name}</BreadcrumbPage>
             </BreadcrumbItem>
           </BreadcrumbList>
         </Breadcrumb>
-
+    
         <div className='space-y-3'>
           <div className='flex items-center gap-4'>
             <Title size='3xl'>{CHARACTER.name}</Title>
 
-            <BlurImage
-              width={32}
-              height={32}
-              src={ELEMENT?.src ?? DEFAULT_IMAGE}
-              alt={ELEMENT?.label ?? ''}
-            />
+            <figure className='size-8'>
+              <BlurImage
+                width={32}
+                height={32}
+                src={ELEMENT?.src ?? DEFAULT_IMAGE}
+                alt={ELEMENT?.label ?? ''}
+                className='size-full object-cover'
+              />
+            </figure>
           </div>
 
           <ul className='flex items-center gap-1'>

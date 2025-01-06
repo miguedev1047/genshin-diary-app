@@ -11,11 +11,12 @@ import { ArtifactItemProps } from '@/app/(index)/(dynamic-routes)/character/[id]
 import { SpinLoaderCard } from '@/components/spin-loaders'
 import { Title } from '@/components/ui/title'
 import { SquareBox } from '@/components/square-box'
-import Image from 'next/image'
-import parse from 'html-react-parser'
 import { Card } from '@/components/ui/card'
 import { getBorderColorByRarity } from '@/features/utils/rarity-color'
 import { cn } from '@/lib/utils'
+import { Separator } from '@/components/ui/separator'
+import Image from 'next/image'
+import parse from 'html-react-parser'
 
 export function ArtifactItem(props: ArtifactItemProps) {
   const { artifact_id } = props
@@ -58,6 +59,8 @@ export function ArtifactItem(props: ArtifactItemProps) {
             </SquareBox>
             <Title size='xl'>{ARTIFACT.name}</Title>
           </div>
+
+          <Separator />
 
           <div className='tiptap opacity-70'>
             {parse(ARTIFACT.bonus_description, PARSE_OPTIONS)}
