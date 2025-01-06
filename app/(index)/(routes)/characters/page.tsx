@@ -3,9 +3,8 @@ import { Card, CardContent, CardHeader } from '@/components/ui/card'
 import { getCharacters } from '@/app/(index)/(routes)/characters/_services/fetch'
 import { CharacterItem } from '@/app/(index)/(routes)/characters/_components/character-item'
 import { BorderBeam } from '@/components/magicui/border-beam'
-import { FocalLight } from '@/components/focal-light'
+import { CharacterHeader } from '@/components/headers/character-header'
 import { HeaderWrapper } from '@/components/header-wrapper'
-import { CharacterFilter } from '@/app/(index)/_components/filters/character-filter'
 import { redirect } from 'next/navigation'
 import { GRID_LIST } from '@/consts/classes'
 
@@ -23,12 +22,10 @@ export default async function CharacterPage(props: PageProps) {
 
   return (
     <section className='relative'>
-      <FocalLight />
-
       <Card className='overflow-hidden'>
         <CardHeader className='space-y-4'>
           <HeaderWrapper>
-            <CharacterFilter />
+            <CharacterHeader />
           </HeaderWrapper>
         </CardHeader>
 
