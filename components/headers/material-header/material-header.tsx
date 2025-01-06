@@ -57,7 +57,7 @@ export function MaterialHeader(props: HeaderProps) {
       </div>
 
       <Card className='p-4 w-full'>
-        <ul className='grid grid-cols-4 gap-4'>
+        <ul className='grid sm:grid-cols-2 lg:grid-cols-4 gap-4'>
           {MATERIAL_TYPES.map((filter) => (
             <QueryToggle
               key={filter.value}

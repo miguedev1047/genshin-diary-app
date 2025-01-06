@@ -58,7 +58,7 @@ export function CharacterHeader(props: HeaderProps) {
         </div>
       </div>
 
-      <Card className='p-4 flex justify-center items-center gap-6'>
+      <Card className='p-4 flex flex-wrap max-xl:flex-col justify-center items-center gap-6'>
         <ul className='flex space-x-2'>
           {ITEM_FILTERS.star_filters.slice(0, 2).map((filter) => (
             <QueryToggle
@@ -77,7 +77,7 @@ export function CharacterHeader(props: HeaderProps) {
         </ul>
 
         <Separator
-          className='h-8'
+          className='h-8 max-xl:hidden'
           orientation='vertical'
         />
 
@@ -99,7 +99,7 @@ export function CharacterHeader(props: HeaderProps) {
         </ul>
 
         <Separator
-          className='h-8'
+          className='h-8 max-xl:hidden'
           orientation='vertical'
         />
 
