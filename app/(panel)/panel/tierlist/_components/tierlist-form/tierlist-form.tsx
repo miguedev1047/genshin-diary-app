@@ -14,15 +14,23 @@ import { Input } from '@/components/ui/input'
 import { TierlistSchema } from '@/schemas'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useRouter } from 'next/navigation'
-import { useState, useTransition } from 'react'
+import { useEffect, useState, useTransition } from 'react'
 import { useForm } from 'react-hook-form'
 import { createTierlist } from '@/app/(panel)/panel/tierlist/_services/create'
 import { toast } from 'sonner'
+import { TierlistFormProps } from '@/app/(panel)/panel/tierlist/_components/tierlist-form/tierlist-form.type'
+import { API_PANEL_PREFIX } from '@/consts/misc'
+import { fetcher } from '@/features/helpers/fetcher'
+import { updateTierlist } from '@/app/(panel)/panel/tierlist/_services/update'
 
-export function TierlistForm() {
-  const [isPending, startTranstion] = useTransition()
+export function TierlistForm(props: TierlistFormProps) {
+  const { id } = props
+
+  const [isPending, startTransition] = useTransition()
   const [isOpen, setIsOpen] = useState(false)
   const { refresh } = useRouter()
+
+  const IS_EDITING = !!id
 
   const form = useForm<z.infer<typeof TierlistSchema>>({
     resolver: zodResolver(TierlistSchema),
@@ -31,8 +39,34 @@ export function TierlistForm() {
     },
   })
 
+  useEffect(() => {
+    if (IS_EDITING) {
+      startTransition(async () => {
+        const DATA = await fetcher(`${API_PANEL_PREFIX}/tierlist/id/${id}`)
+        if (!DATA) return
+
+        form.setValue('tier_category', DATA.tier_category)
+      })
+    }
+  }, [id, form, IS_EDITING])
+
   const handledSubmit = form.handleSubmit((values) => {
-    startTranstion(async () => {
+    startTransition(async () => {
+      if (IS_EDITING) {
+        const { status, message } = await updateTierlist(values, id)
+
+        if (status === 201) {
+          toast.success(message)
+          setIsOpen(false)
+          refresh()
+
+          return
+        }
+
+        toast.error(message)
+        return
+      }
+
       const { status, message } = await createTierlist(values)
 
       if (status === 201) {
@@ -54,6 +88,7 @@ export function TierlistForm() {
       isOpen={isOpen}
       onOpenChange={setIsOpen}
       formId='creator-tier'
+      isEditing={IS_EDITING}
       isLoading={isPending}
     >
       <Form {...form}>

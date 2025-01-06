@@ -26,7 +26,7 @@ export function TierRows(props: TierRowProps) {
         </SquareBox>
 
         <Card className='p-6 col-span-8'>
-          <ul  className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4 h-full'>
+          <ul  className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 h-full'>
             <TierCharacterList characters={row.characters} />
             <CharacterForm
               data={row.characters}
