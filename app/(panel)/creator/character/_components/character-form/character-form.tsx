@@ -119,7 +119,7 @@ export function CharacterForm() {
                         <FormControl>
                           <Input
                             disabled={isPending}
-                            placeholder='URL de perfil'
+                            placeholder='URL del icono'
                             {...field}
                           />
                         </FormControl>

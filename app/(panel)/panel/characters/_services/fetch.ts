@@ -32,7 +32,7 @@ export async function getCharacters(props: Props) {
 
   try {
     const CHARACTERS = await db.characters.findMany({
-      orderBy: [{ rarity: 'asc' }, { name: 'asc' }, { date_created: 'desc' }],
+      orderBy: [{ rarity: 'desc' }, { name: 'asc' }, { date_created: 'desc' }],
       include: { images: true },
     })
 

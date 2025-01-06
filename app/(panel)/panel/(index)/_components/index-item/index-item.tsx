@@ -9,7 +9,7 @@ export function IndexItem(props: IndexItemProps) {
   return (
     <Link
       href={href}
-      className='w-full h-[240px] relative group duration-300 ease-out transition overflow-hidden group/image'
+      className='w-full  size-full relative group duration-300 ease-out transition overflow-hidden group/image'
     >
       <Card className='size-full relative'>
         <CardContent className='size-full z-50 p-5 flex justify-start items-end'>

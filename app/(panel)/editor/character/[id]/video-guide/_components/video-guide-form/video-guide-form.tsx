@@ -113,7 +113,7 @@ export function VideoGuideForm() {
             name='youtuber_channel'
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Nombre del Canal</FormLabel>
+                <FormLabel>Url del canal</FormLabel>
                 <FormControl>
                   <Input
                     placeholder='@Tanna'
@@ -131,7 +131,7 @@ export function VideoGuideForm() {
             name='embed_video_url'
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Embed del Video</FormLabel>
+                <FormLabel>Url del video</FormLabel>
                 <FormControl>
                   <Input
                     placeholder='https://www.youtube.com/embed/XXXXXXXXXXXX'
