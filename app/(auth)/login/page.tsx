@@ -1,5 +1,12 @@
 import { Back } from '@/app/(auth)/login/_components/back'
 import { LoginForm } from '@/app/(auth)/login/_components/login-form'
+import { PAGE_NAME } from '@/consts/misc'
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: `${PAGE_NAME} - Login`,
+  description: 'Accede al panel de administrador con tus credenciales.',
+}
 
 export default function PageLogin() {
   return (
