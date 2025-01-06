@@ -1,10 +1,4 @@
 import {
-  ArtifactImg,
-  CharacterImg,
-  MaterialImg,
-  WeaponImg,
-} from '@/assets/images'
-import {
   Anemo,
   Cryo,
   Dendro,
@@ -15,33 +9,6 @@ import {
 } from '@/assets/elements'
 import { Star1, Star2, Star3, Star4, Star5 } from '@/assets/stars'
 import { Sword, Bow, Catalyst, Claymore, Polearm } from '@/assets/weapon-types'
-
-export const HOME_ITEMS = [
-  {
-    title: 'Personajes',
-    href: '/characters',
-  },
-  {
-    title: 'Armas',
-    href: '/weapons',
-  },
-  {
-    title: 'Artefactos',
-    href: '/artifacts',
-  },
-  {
-    title: 'Materiales',
-    href: '/materials',
-  },
-  {
-    title: 'Equipos',
-    href: '/teams',
-  },
-  {
-    title: 'Tier List',
-    href: '/tierlist',
-  },
-]
 
 export const ELEMENTS = [
   {
@@ -309,29 +276,6 @@ export const MATERIAL_TYPES = [
   },
 ]
 
-export const PANEL_ROUTES = [
-  {
-    title: 'Personajes',
-    href: '/panel/characters',
-    src: CharacterImg.src,
-  },
-  {
-    title: 'Armas',
-    href: '/panel/weapons',
-    src: WeaponImg.src,
-  },
-  {
-    title: 'Artefactos',
-    href: '/panel/artifacts',
-    src: ArtifactImg.src,
-  },
-  {
-    title: 'Materiales',
-    href: '/panel/materials',
-    src: MaterialImg.src,
-  },
-]
-
 export const SKILL_TYPE = [
   { value: 'TALENT', label: 'Talento', skill: 'talent' },
   { value: 'PASSIVE', label: 'Pasiva', skill: 'passive' },
@@ -349,24 +293,24 @@ export const CONSTELLATION_TYPE = [
 ]
 
 export const FIGHT_ENUMS_ATTRIBUTES = [
-  "FIGHT_PROP_BASE_ATTACK",
-  "FIGHT_PROP_HP",
-  "FIGHT_PROP_ATTACK",
-  "FIGHT_PROP_DEFENSE",
-  "FIGHT_PROP_HP_PERCENT",
-  "FIGHT_PROP_ATTACK_PERCENT",
-  "FIGHT_PROP_DEFENSE_PERCENT",
-  "FIGHT_PROP_CRITICAL",
-  "FIGHT_PROP_CRITICAL_HURT",
-  "FIGHT_PROP_CHARGE_EFFICIENCY",
-  "FIGHT_PROP_HEAL_ADD",
-  "FIGHT_PROP_ELEMENT_MASTERY",
-  "FIGHT_PROP_PHYSICAL_ADD_HURT",
-  "FIGHT_PROP_FIRE_ADD_HURT",
-  "FIGHT_PROP_ELEC_ADD_HURT",
-  "FIGHT_PROP_WATER_ADD_HURT",
-  "FIGHT_PROP_WIND_ADD_HURT",
-  "FIGHT_PROP_ICE_ADD_HURT",
-  "FIGHT_PROP_ROCK_ADD_HURT",
-  "FIGHT_PROP_GRASS_ADD_HURT",
-];
+  'FIGHT_PROP_BASE_ATTACK',
+  'FIGHT_PROP_HP',
+  'FIGHT_PROP_ATTACK',
+  'FIGHT_PROP_DEFENSE',
+  'FIGHT_PROP_HP_PERCENT',
+  'FIGHT_PROP_ATTACK_PERCENT',
+  'FIGHT_PROP_DEFENSE_PERCENT',
+  'FIGHT_PROP_CRITICAL',
+  'FIGHT_PROP_CRITICAL_HURT',
+  'FIGHT_PROP_CHARGE_EFFICIENCY',
+  'FIGHT_PROP_HEAL_ADD',
+  'FIGHT_PROP_ELEMENT_MASTERY',
+  'FIGHT_PROP_PHYSICAL_ADD_HURT',
+  'FIGHT_PROP_FIRE_ADD_HURT',
+  'FIGHT_PROP_ELEC_ADD_HURT',
+  'FIGHT_PROP_WATER_ADD_HURT',
+  'FIGHT_PROP_WIND_ADD_HURT',
+  'FIGHT_PROP_ICE_ADD_HURT',
+  'FIGHT_PROP_ROCK_ADD_HURT',
+  'FIGHT_PROP_GRASS_ADD_HURT',
+]
