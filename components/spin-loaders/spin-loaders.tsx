@@ -6,6 +6,11 @@ import { Loader } from 'lucide-react'
 import { Card } from '@/components/ui/card'
 import { useTheme } from 'next-themes'
 import { Bars } from 'react-loader-spinner'
+import { cn } from '@/lib/utils'
+
+type SpinLoaderSquareCardProps = {
+  fullSize?: boolean
+}
 
 export function SpinLoaderCard() {
   return (
@@ -15,9 +20,15 @@ export function SpinLoaderCard() {
   )
 }
 
-export function SpinLoaderSquareCard() {
+export function SpinLoaderSquareCard(props: SpinLoaderSquareCardProps) {
+  const { fullSize = false } = props
   return (
-    <Card className='size-20 aspect-square grid place-items-center'>
+    <Card
+      className={cn(
+        'aspect-square grid place-items-center',
+        fullSize ? 'size-full' : 'size-20'
+      )}
+    >
       <Loader className='animate-spin' />
     </Card>
   )
