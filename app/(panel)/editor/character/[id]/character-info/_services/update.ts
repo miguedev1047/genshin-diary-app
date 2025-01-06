@@ -25,7 +25,8 @@ export async function updateCharacter(
     attribute,
     description,
     element,
-    image_url,
+    profile_image_url,
+    splash_art_url,
     name,
     rarity,
     region,
@@ -55,7 +56,8 @@ export async function updateCharacter(
     await db.characterImage.update({
       where: { character_id: CHARACTER_UPDATED.id },
       data: {
-        splash_art_url: image_url,
+        profile_image_url,
+        splash_art_url,
       },
     })
 

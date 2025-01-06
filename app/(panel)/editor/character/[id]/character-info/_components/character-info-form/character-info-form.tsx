@@ -53,7 +53,8 @@ export function CharacterInfoForm() {
       attribute: CHARACTER?.attribute,
       description: CHARACTER?.description,
       element: CHARACTER?.element,
-      image_url: CHARACTER?.images?.splash_art_url ?? DEFAULT_IMAGE,
+      profile_image_url: CHARACTER?.images?.profile_image_url ?? DEFAULT_IMAGE,
+      splash_art_url: CHARACTER?.images?.splash_art_url ?? DEFAULT_IMAGE,
       name: CHARACTER?.name,
       rarity: CHARACTER?.rarity,
       region: CHARACTER?.region,
@@ -119,23 +120,47 @@ export function CharacterInfoForm() {
               )}
             />
 
-            <FormField
-              control={form.control}
-              name='image_url'
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>URL de la imagen</FormLabel>
-                  <FormControl>
-                    <Input
-                      disabled={isPending}
-                      placeholder='URL de la imagen'
-                      {...field}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+            <FormItem className='space-y-2'>
+              <FormLabel>Imagenes</FormLabel>
+
+              <FormControl>
+                <div className='grid grid-cols-2 gap-2'>
+                  <FormField
+                    control={form.control}
+                    name='profile_image_url'
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormControl>
+                          <Input
+                            disabled={isPending}
+                            placeholder='URL de perfil'
+                            {...field}
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+
+                  <FormField
+                    control={form.control}
+                    name='splash_art_url'
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormControl>
+                          <Input
+                            disabled={isPending}
+                            placeholder='URL del splash art'
+                            {...field}
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </div>
+              </FormControl>
+            </FormItem>
 
             <FormField
               control={form.control}

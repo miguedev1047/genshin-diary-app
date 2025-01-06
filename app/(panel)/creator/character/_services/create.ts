@@ -22,7 +22,8 @@ export const createCharacter = async (
 
   const {
     name,
-    image_url,
+    profile_image_url,
+    splash_art_url,
     description,
     role,
     element,
@@ -49,7 +50,8 @@ export const createCharacter = async (
     await db.characterImage.create({
       data: {
         character_id: CHARACTER.id,
-        splash_art_url: image_url,
+        splash_art_url,
+        profile_image_url,
       },
     })
 

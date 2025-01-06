@@ -26,7 +26,10 @@ export const CharacterSchema = z.object({
   name: z.string().min(3, {
     message: 'El nombre del personaje es requerido.',
   }),
-  image_url: z.string().min(1, {
+  profile_image_url: z.string().min(1, {
+    message: 'La url de la imagen es requerida.',
+  }),
+  splash_art_url: z.string().min(1, {
     message: 'La url de la imagen es requerida.',
   }),
   description: z.string().min(3, {

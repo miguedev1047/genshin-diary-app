@@ -61,7 +61,7 @@ export function ConstellationForm(props: ConstellationFormProps) {
           className='hover:scale-110 transition-transform ease-in-out duration-200 cursor-pointer'
         >
           <Image
-            src={CHARACTER?.images?.splash_art_url ?? DEFAULT_IMAGE}
+            src={CHARACTER?.images?.profile_image_url ?? DEFAULT_IMAGE}
             alt={CHARACTER?.name ?? 'Character Image'}
             width={1080}
             height={1080}

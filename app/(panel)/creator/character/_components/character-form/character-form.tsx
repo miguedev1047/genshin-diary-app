@@ -35,6 +35,7 @@ import { Input } from '@/components/ui/input'
 import { FormCard } from '@/app/(panel)/_components/form-card'
 import { TextEditor } from '@/app/(panel)/_components/text-editor'
 import { toast } from 'sonner'
+import { Title } from '@/components/ui/title'
 
 export function CharacterForm() {
   const [isPending, startTranstion] = useTransition()
@@ -44,7 +45,8 @@ export function CharacterForm() {
     resolver: zodResolver(CharacterSchema),
     defaultValues: {
       name: '',
-      image_url: '',
+      splash_art_url: '',
+      profile_image_url: '',
       description: '',
       role: '',
       element: '',
@@ -104,23 +106,47 @@ export function CharacterForm() {
               )}
             />
 
-            <FormField
-              control={form.control}
-              name='image_url'
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>URL de la imagen</FormLabel>
-                  <FormControl>
-                    <Input
-                      disabled={isPending}
-                      placeholder='URL de la imagen'
-                      {...field}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+            <FormItem className='space-y-2'>
+              <FormLabel>Imagenes</FormLabel>
+
+              <FormControl>
+                <div className='grid grid-cols-2 gap-2'>
+                  <FormField
+                    control={form.control}
+                    name='profile_image_url'
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormControl>
+                          <Input
+                            disabled={isPending}
+                            placeholder='URL de perfil'
+                            {...field}
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+
+                  <FormField
+                    control={form.control}
+                    name='splash_art_url'
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormControl>
+                          <Input
+                            disabled={isPending}
+                            placeholder='URL del splash art'
+                            {...field}
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </div>
+              </FormControl>
+            </FormItem>
           </div>
 
           <div className='grid lg:grid-cols-2 gap-4'>
