@@ -14,7 +14,7 @@ export function BlurImage(props: BlurImageProps) {
         height={height}
         width={width}
         src={src}
-        className='relative z-10'
+        className='relative z-10 size-full object-cover'
       />
 
       <Image
@@ -24,7 +24,7 @@ export function BlurImage(props: BlurImageProps) {
         height={height}
         width={width}
         src={src}
-        className='absolute top-0 left-0 blur-xl scale-110 opacity-40'
+        className='absolute top-0 left-0 blur-xl scale-110 opacity-40 size-full object-cover'
       />
     </div>
   )
