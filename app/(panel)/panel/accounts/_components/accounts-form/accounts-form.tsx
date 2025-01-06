@@ -82,6 +82,7 @@ export function AccountsForm(props: AccountsFormProps) {
 
       if (status === 201) {
         toast.success(message)
+        form.reset()
         setIsOpen(false)
         refresh()
         return
