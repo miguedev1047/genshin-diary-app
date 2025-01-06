@@ -4,7 +4,7 @@ import { ArtifactRoutes } from '@/app/(panel)/panel/artifacts/_components/artifa
 import { ArtifactSkeleton } from '@/app/(panel)/panel/artifacts/_components/artifact-skeleton'
 import { PageProps } from '@/app/(panel)/panel/artifacts/_types'
 import { HeaderWrapper } from '@/components/header-wrapper'
-import { ArtifactHeader } from '@/app/(panel)/_components/headers/artifact-header'
+import { ArtifactHeader } from '@/components/headers/artifact-header'
 
 export default function PanelArtifactsPage(props: PageProps) {
   const { searchParams: PARAMS } = props
@@ -13,7 +13,7 @@ export default function PanelArtifactsPage(props: PageProps) {
   return (
     <ContentLayout title='Artefactos'>
       <HeaderWrapper>
-        <ArtifactHeader />
+        <ArtifactHeader isCreator />
       </HeaderWrapper>
 
       <Suspense
