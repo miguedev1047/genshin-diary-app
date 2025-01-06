@@ -18,6 +18,9 @@ import Link from 'next/link'
 export function ArtifactItem(props: ArtifactItemProps) {
   const { name, rarity, image_url, id } = props
 
+  const ARTIFACT = id
+  const URL = `/editor/artifact/${ARTIFACT}`
+
   const ARTIFACT_IMAGE = image_url
   const STAR_COLOR = getBorderColorByRarityHover(rarity)
 
@@ -27,7 +30,7 @@ export function ArtifactItem(props: ArtifactItemProps) {
         <Tooltip>
           <TooltipTrigger asChild>
             <Link
-              href={`/editor/artifact/${id}`}
+              href={URL}
               className={cn(
                 'group/item flex aspect-[1/1] overflow-hidden rounded-[1rem] border border-muted/30 bg-background transition relative',
                 STAR_COLOR

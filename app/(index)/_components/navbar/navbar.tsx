@@ -8,14 +8,14 @@ import {
   NavigationMenuList,
   navigationMenuTriggerStyle,
 } from '@/components/ui/navigation-menu'
-import { HOME_ITEMS } from '@/consts/general'
+import { HOME_ROUTES } from '@/lib/menu-list'
 import Link from 'next/link'
 
 export function Navbar() {
   return (
     <NavigationMenu className='hidden xl:block sm:hidden'>
       <NavigationMenuList>
-        {HOME_ITEMS.map(({ title, href }) => (
+        {HOME_ROUTES.map(({ title, href }) => (
           <NavigationMenuItem
             key={title}
             asChild

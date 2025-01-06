@@ -10,8 +10,8 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from '@/components/ui/sidebar'
-import { PAGE_NAME } from '@/consts/misc'
-import { SIDEBAR_DATA } from '@/lib/menu-list'
+import { PAGE_NAME, PAGE_VERSION } from '@/consts/misc'
+import { SIDEBAR_ROUTES } from '@/lib/menu-list'
 import { GalleryVerticalEnd } from 'lucide-react'
 import { PanelDropdown } from '@/app/(panel)/_components/panel-dropdown'
 import Link from 'next/link'
@@ -34,7 +34,7 @@ export function PanelSidebar() {
                   <span className='truncate font-semibold'>
                     Panel {PAGE_NAME}
                   </span>
-                  <span className='truncate text-xs'>v1.0.0</span>
+                  <span className='truncate text-xs'>{PAGE_VERSION}</span>
                 </div>
               </Link>
             </SidebarMenuButton>
@@ -46,7 +46,7 @@ export function PanelSidebar() {
           <SidebarGroupLabel>Administrar</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
-              {SIDEBAR_DATA.sidebar_items.map((item) => (
+              {SIDEBAR_ROUTES.sidebar_items.map((item) => (
                 <SidebarMenuItem key={item.title}>
                   <SidebarMenuButton asChild>
                     <Link href={item.url}>
