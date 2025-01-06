@@ -14,6 +14,7 @@ import { Card } from '@/components/ui/card'
 import { getBorderColorByRarity } from '@/features/utils/rarity-color'
 import { cn } from '@/lib/utils'
 import { useGetWeapon } from '@/features/queries/index/use-weapons'
+import { Separator } from '@/components/ui/separator'
 import Image from 'next/image'
 import parse from 'html-react-parser'
 
@@ -60,6 +61,8 @@ export function WeaponItem(props: WeaponItemProps) {
             </SquareBox>
             <Title size='xl'>{WEAPON.name}</Title>
           </div>
+
+          <Separator />
 
           <div className='tiptap opacity-70'>
             {parse(WEAPON.passive_description, PARSE_OPTIONS)}
