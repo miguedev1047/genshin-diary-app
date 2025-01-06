@@ -4,7 +4,7 @@ import { WeaponSkeleton } from '@/app/(panel)/panel/weapons/_components/weapon-s
 import { ContentLayout } from '@/app/(panel)/_components/content-layout'
 import { PageProps } from '@/app/(panel)/panel/weapons/_types'
 import { HeaderWrapper } from '@/components/header-wrapper'
-import { WeaponHeader } from '@/app/(panel)/_components/headers/weapon-header'
+import { WeaponHeader } from '@/components/headers/weapon-header'
 
 export default function PanelWeaponsPage(props: PageProps) {
   const { searchParams: PARAMS } = props
@@ -13,7 +13,7 @@ export default function PanelWeaponsPage(props: PageProps) {
   return (
     <ContentLayout title='Armas'>
       <HeaderWrapper>
-        <WeaponHeader />
+        <WeaponHeader isCreator />
       </HeaderWrapper>
 
       <Suspense

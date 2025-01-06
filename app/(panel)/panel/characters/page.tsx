@@ -4,7 +4,8 @@ import { CharacterRoutes } from '@/app/(panel)/panel/characters/_components/char
 import { ContentLayout } from '@/app/(panel)/_components/content-layout'
 import { PageProps } from '@/app/(panel)/panel/characters/_types'
 import { HeaderWrapper } from '@/components/header-wrapper'
-import { CharacterHeader } from '@/app/(panel)/_components/headers/character-header'
+import { CharacterHeader } from '@/components/headers/character-header'
+
 
 export default function PanelCharactersPage(props: PageProps) {
   const { searchParams: PARAMS } = props
@@ -13,7 +14,7 @@ export default function PanelCharactersPage(props: PageProps) {
   return (
     <ContentLayout title='Personajes'>
       <HeaderWrapper>
-        <CharacterHeader />
+        <CharacterHeader isCreator />
       </HeaderWrapper>
 
       <Suspense

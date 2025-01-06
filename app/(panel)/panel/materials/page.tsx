@@ -4,7 +4,8 @@ import { MaterialRoutes } from '@/app/(panel)/panel/materials/_components/materi
 import { MaterialSkeleton } from '@/app/(panel)/panel/materials/_components/material-skeleton'
 import { PageProps } from '@/app/(panel)/panel/materials/_types'
 import { HeaderWrapper } from '@/components/header-wrapper'
-import { MaterialHeader } from '@/app/(panel)/_components/headers/material-header'
+import { MaterialHeader } from '@/components/headers/material-header'
+
 
 export default function PanelMaterialsPage(props: PageProps) {
   const { searchParams: PARAMS } = props
@@ -13,7 +14,7 @@ export default function PanelMaterialsPage(props: PageProps) {
   return (
     <ContentLayout title='Materiales'>
       <HeaderWrapper>
-        <MaterialHeader />
+        <MaterialHeader isCreator />
       </HeaderWrapper>
 
       <Suspense
