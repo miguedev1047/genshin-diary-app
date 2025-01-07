@@ -7,38 +7,120 @@ import {
   Hydro,
   Pyro,
 } from '@/assets/elements'
-import { ArtifactImg, CharacterImg, MaterialImg, WeaponImg } from '@/assets/images'
-import { Star4, Star5 } from '@/assets/stars'
+import { Star1, Star2, Star3, Star4, Star5 } from '@/assets/stars'
 import { Sword, Bow, Catalyst, Claymore, Polearm } from '@/assets/weapon-types'
 
+export const ELEMENTS = [
+  {
+    label: 'Anemo',
+    value: 'ANEMO',
+    src: Anemo.src,
+    element: 'anemo',
+  },
+  {
+    label: 'Hydro',
+    value: 'HYDRO',
+    src: Hydro.src,
+    element: 'hydro',
+  },
+  {
+    label: 'Cryo',
+    value: 'CRYO',
+    src: Cryo.src,
+    element: 'cryo',
+  },
+  {
+    label: 'Dendro',
+    value: 'DENDRO',
+    src: Dendro.src,
+    element: 'dendro',
+  },
+  {
+    label: 'Electro',
+    value: 'ELECTRO',
+    src: Electro.src,
+    element: 'electro',
+  },
+  {
+    label: 'Pyro',
+    value: 'PYRO',
+    src: Pyro.src,
+    element: 'pyro',
+  },
+  {
+    label: 'Geo',
+    value: 'GEO',
+    src: Geo.src,
+    element: 'geo',
+  },
+]
 
 export const STARS = [
   {
     label: '5 Estrellas',
     value: 'STAR_5',
     stars: '5_stars',
+    src: Star5.src,
   },
   {
     label: '4 Estrellas',
     value: 'STAR_4',
     stars: '4_stars',
+    src: Star4.src,
   },
   {
     label: '3 Estrellas',
     value: 'STAR_3',
     stars: '3_stars',
+    src: Star3.src,
   },
   {
     label: '2 Estrellas',
     value: 'STAR_2',
     stars: '2_stars',
+    src: Star2.src,
   },
   {
     label: '1 Estrella',
     value: 'STAR_1',
     stars: '1_star',
+    src: Star1.src,
   },
 ]
+
+export const WEAPON_TYPE = [
+  {
+    label: 'Espada',
+    value: 'SWORD',
+    src: Sword.src,
+  },
+  {
+    label: 'Lanza',
+    value: 'POLEARM',
+    src: Polearm.src,
+  },
+  {
+    label: 'Mandoble',
+    value: 'CLAYMORE',
+    src: Claymore.src,
+  },
+  {
+    label: 'Arco',
+    value: 'BOW',
+    src: Bow.src,
+  },
+  {
+    label: 'Catalizador',
+    value: 'CATALYST',
+    src: Catalyst.src,
+  },
+]
+
+export const ITEM_FILTERS = {
+  star_filters: STARS,
+  element_filters: ELEMENTS,
+  weapon_filters: WEAPON_TYPE,
+}
 
 export const REGIONS = [
   {
@@ -78,44 +160,6 @@ export const REGIONS = [
   },
 ]
 
-export const ELEMENTS = [
-  {
-    label: 'Pyro',
-    value: 'PYRO',
-    element: 'pyro',
-  },
-  {
-    label: 'Cryo',
-    value: 'CRYO',
-    element: 'cryo',
-  },
-  {
-    label: 'Hydro',
-    value: 'HYDRO',
-    element: 'hydro',
-  },
-  {
-    label: 'Electro',
-    value: 'ELECTRO',
-    element: 'electro',
-  },
-  {
-    label: 'Dendro',
-    value: 'DENDRO',
-    element: 'dendro',
-  },
-  {
-    label: 'Anemo',
-    value: 'ANEMO',
-    element: 'anemo',
-  },
-  {
-    label: 'Geo',
-    value: 'GEO',
-    element: 'geo',
-  },
-]
-
 export const ATTRIBUTES = [
   { value: 'DMG_CRIT', label: 'Daño CRIT' },
   { value: 'CRIT_RATE', label: 'Prob. CRIT' },
@@ -135,18 +179,16 @@ export const ATTRIBUTES = [
   { value: 'GEO_DMG', label: 'Bono de Daño Geo' },
 ]
 
-export const WEAPON_TYPE = [
-  { value: 'POLEARM', label: 'Lanza' },
-  { value: 'SWORD', label: 'Espada' },
-  { value: 'CLAYMORE', label: 'Mandoble' },
-  { value: 'BOW', label: 'Arco' },
-  { value: 'CATALYST', label: 'Catalizador' },
-]
-
 export const ROLE = [
   { value: 'DPS', label: 'Main DPS' },
   { value: 'SUBDPS', label: 'Sub DPS' },
   { value: 'SUPPORT', label: 'Soporte' },
+]
+
+export const ACCOUNT_ROLE = [
+  { value: 'OWNER', label: 'Owner' },
+  { value: 'ADMIN', label: 'Administrador' },
+  { value: 'EDITOR', label: 'Editor' },
 ]
 
 export const ASCENSION_LEVEL = [
@@ -156,15 +198,39 @@ export const ASCENSION_LEVEL = [
   { value: 'ASCENSION_4', label: 'Ascensión 4', name: 'ascension_4' },
   { value: 'ASCENSION_5', label: 'Ascensión 5', name: 'ascension_5' },
   { value: 'ASCENSION_6', label: 'Ascensión 6', name: 'ascension_6' },
+  { value: 'ASCENSION_7', label: 'Ascensión 7', name: 'ascension_7' },
+  { value: 'ASCENSION_8', label: 'Ascensión 8', name: 'ascension_8' },
+  { value: 'ASCENSION_9', label: 'Ascensión 9', name: 'ascension_9' },
+]
+
+export const ASCENSION_CHARACTER = [
+  { ascension: 'ASCENSION_1', cost: 20000, level: '20-40', order: 1 },
+  { ascension: 'ASCENSION_2', cost: 40000, level: '40-50', order: 2 },
+  { ascension: 'ASCENSION_3', cost: 60000, level: '50-60', order: 3 },
+  { ascension: 'ASCENSION_4', cost: 80000, level: '60-70', order: 4 },
+  { ascension: 'ASCENSION_5', cost: 100000, level: '70-80', order: 5 },
+  { ascension: 'ASCENSION_6', cost: 120000, level: '80-90', order: 6 },
+]
+
+export const ASCENSION_TALENT = [
+  { ascension: 'ASCENSION_1', cost: 12500, level: '1-2', order: 1 },
+  { ascension: 'ASCENSION_2', cost: 17500, level: '2-3', order: 2 },
+  { ascension: 'ASCENSION_3', cost: 25000, level: '3-4', order: 3 },
+  { ascension: 'ASCENSION_4', cost: 30000, level: '4-5', order: 4 },
+  { ascension: 'ASCENSION_5', cost: 37500, level: '5-6', order: 5 },
+  { ascension: 'ASCENSION_6', cost: 120000, level: '6-7', order: 6 },
+  { ascension: 'ASCENSION_7', cost: 260000, level: '7-8', order: 7 },
+  { ascension: 'ASCENSION_8', cost: 450000, level: '8-9', order: 8 },
+  { ascension: 'ASCENSION_9', cost: 700000, level: '9-10', order: 9 },
 ]
 
 export const ASCENSION_WEAPON = [
-  { ascension_level: 'ASCENSION_1', cost: 20000, level: '20/40', order: 1 },
-  { ascension_level: 'ASCENSION_2', cost: 40000, level: '40/50', order: 2 },
-  { ascension_level: 'ASCENSION_3', cost: 60000, level: '50/60', order: 3 },
-  { ascension_level: 'ASCENSION_4', cost: 80000, level: '60/70', order: 4 },
-  { ascension_level: 'ASCENSION_5', cost: 100000, level: '70/80', order: 5 },
-  { ascension_level: 'ASCENSION_6', cost: 120000, level: '80/90', order: 6 },
+  { ascension_level: 'ASCENSION_1', cost: 20000, level: '20-40', order: 1 },
+  { ascension_level: 'ASCENSION_2', cost: 40000, level: '40-50', order: 2 },
+  { ascension_level: 'ASCENSION_3', cost: 60000, level: '50-60', order: 3 },
+  { ascension_level: 'ASCENSION_4', cost: 80000, level: '60-70', order: 4 },
+  { ascension_level: 'ASCENSION_5', cost: 100000, level: '70-80', order: 5 },
+  { ascension_level: 'ASCENSION_6', cost: 120000, level: '80-90', order: 6 },
 ]
 
 export const MATERIAL_TYPES = [
@@ -210,135 +276,41 @@ export const MATERIAL_TYPES = [
   },
 ]
 
-export const PANEL_ROUTES = [
-  {
-    title: 'Personajes',
-    href: '/panel/characters',
-    src: CharacterImg.src
-  },
-  {
-    title: 'Armas',
-    href: '/panel/weapons',
-    src: WeaponImg.src
-  },
-  {
-    title: 'Artefactos',
-    href: '/panel/artifacts',
-    src: ArtifactImg.src
-  },
-  {
-    title: 'Materiales',
-    href: '/panel/materials',
-    src: MaterialImg.src
-  },
-
+export const SKILL_TYPE = [
+  { value: 'TALENT', label: 'Talento', skill: 'talent' },
+  { value: 'PASSIVE', label: 'Pasiva', skill: 'passive' },
+  { value: 'CONSTELLATION', label: 'Constelacion', skill: 'constellation' },
 ]
 
-export const HOME_ITEMS = [
-  {
-    title: 'Personajes',
-    href: '/characters',
-  },
-  {
-    title: 'Armas',
-    href: '/weapons',
-  },
-  {
-    title: 'Artefactos',
-    href: '/artifacts',
-  },
-  {
-    title: 'Materiales',
-    href: '/materials',
-  },
-  {
-    title: 'Equipos',
-    href: '/teams',
-  },
-  {
-    title: 'Tier List',
-    href: '/tierlist',
-  },
+export const CONSTELLATION_TYPE = [
+  { value: '0', label: 'Por defecto' },
+  { value: '1', label: 'Constelación 1' },
+  { value: '2', label: 'Constelación 2' },
+  { value: '3', label: 'Constelación 3' },
+  { value: '4', label: 'Constelación 4' },
+  { value: '5', label: 'Constelación 5' },
+  { value: '6', label: 'Constelación 6' },
 ]
 
-export const ITEM_FILTERS = {
-  star_filters: [
-    {
-      label: '5',
-      value: '5',
-      src: Star5.src,
-    },
-    {
-      label: '4',
-      value: '4',
-      src: Star4.src,
-    },
-  ],
-  element_filters: [
-    {
-      label: 'Anemo',
-      value: 'ANEMO',
-      src: Anemo.src,
-    },
-    {
-      label: 'Hydro',
-      value: 'HYDRO',
-      src: Hydro.src,
-    },
-    {
-      label: 'Cryo',
-      value: 'CRYO',
-      src: Cryo.src,
-    },
-    {
-      label: 'Dendro',
-      value: 'DENDRO',
-      src: Dendro.src,
-    },
-    {
-      label: 'Electro',
-      value: 'ELECTRO',
-      src: Electro.src,
-    },
-    {
-      label: 'Pyro',
-      value: 'PYRO',
-      src: Pyro.src,
-    },
-    {
-      label: 'Geo',
-      value: 'GEO',
-      src: Geo.src,
-    },
-  ],
-  weapon_filters: [
-    {
-      label: 'Espada',
-      value: 'SWORD',
-      src: Sword.src,
-    },
-    {
-      label: 'Lanza',
-      value: 'POLEARM',
-      src: Polearm.src,
-    },
-    {
-      label: 'Mandoble',
-      value: 'CLAYMORE',
-      src: Claymore.src,
-    },
-    {
-      label: 'Arco',
-      value: 'BOW',
-      src: Bow.src,
-    },
-    {
-      label: 'Catalizador',
-      value: 'CATALYST',
-      src: Catalyst.src,
-    },
-  ],
-}
-
-
-export const DEFAULT_IMAGE = 'https://placehold.co/600?text=Hutao+Mains'
+export const FIGHT_ENUMS_ATTRIBUTES = [
+  'FIGHT_PROP_BASE_ATTACK',
+  'FIGHT_PROP_HP',
+  'FIGHT_PROP_ATTACK',
+  'FIGHT_PROP_DEFENSE',
+  'FIGHT_PROP_HP_PERCENT',
+  'FIGHT_PROP_ATTACK_PERCENT',
+  'FIGHT_PROP_DEFENSE_PERCENT',
+  'FIGHT_PROP_CRITICAL',
+  'FIGHT_PROP_CRITICAL_HURT',
+  'FIGHT_PROP_CHARGE_EFFICIENCY',
+  'FIGHT_PROP_HEAL_ADD',
+  'FIGHT_PROP_ELEMENT_MASTERY',
+  'FIGHT_PROP_PHYSICAL_ADD_HURT',
+  'FIGHT_PROP_FIRE_ADD_HURT',
+  'FIGHT_PROP_ELEC_ADD_HURT',
+  'FIGHT_PROP_WATER_ADD_HURT',
+  'FIGHT_PROP_WIND_ADD_HURT',
+  'FIGHT_PROP_ICE_ADD_HURT',
+  'FIGHT_PROP_ROCK_ADD_HURT',
+  'FIGHT_PROP_GRASS_ADD_HURT',
+]

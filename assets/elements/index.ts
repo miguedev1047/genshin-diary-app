@@ -6,4 +6,27 @@ import Geo from '@/assets/elements/Element_Geo.png'
 import Hydro from '@/assets/elements/Element_Hydro.png'
 import Pyro from '@/assets/elements/Element_Pyro.png'
 
-export { Anemo, Cryo, Dendro, Electro, Geo, Hydro, Pyro }
+import AnemoBg from '@/assets/elements/Anemo-bg.jpg'
+import CryoBg from '@/assets/elements/Cryo-bg.jpg'
+import DendroBg from '@/assets/elements/Dendro-bg.jpg'
+import ElectroBg from '@/assets/elements/Electro-bg.jpg'
+import GeoBg from '@/assets/elements/Geo-bg.jpg'
+import HydroBg from '@/assets/elements/Hydro-bg.jpg'
+import PyroBg from '@/assets/elements/Pyro-bg.jpg'
+
+export {
+  Anemo,
+  Cryo,
+  Dendro,
+  Electro,
+  Geo,
+  Hydro,
+  Pyro,
+  AnemoBg,
+  CryoBg,
+  DendroBg,
+  ElectroBg,
+  GeoBg,
+  HydroBg,
+  PyroBg,
+}

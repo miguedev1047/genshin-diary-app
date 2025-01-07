@@ -1,0 +1,72 @@
+'use client'
+
+import {
+  HoverCard,
+  HoverCardContent,
+  HoverCardTrigger,
+} from '@/components/ui/hover-card'
+import { useGetArtifact } from '@/features/queries/index/use-artifacts'
+import { DEFAULT_IMAGE, PARSE_OPTIONS } from '@/consts/misc'
+import { ArtifactItemProps } from '@/app/(index)/(dynamic-routes)/character/[id]/weapons/_components/weapon-item/weapon-item.type'
+import { SpinLoaderCard } from '@/components/spin-loaders'
+import { Title } from '@/components/ui/title'
+import { SquareBox } from '@/components/square-box'
+import { Card } from '@/components/ui/card'
+import { getBorderColorByRarity } from '@/features/utils/rarity-color'
+import { cn } from '@/lib/utils'
+import { Separator } from '@/components/ui/separator'
+import Image from 'next/image'
+import parse from 'html-react-parser'
+
+export function ArtifactItem(props: ArtifactItemProps) {
+  const { artifact_id } = props
+  const { data: ARTIFACT, status } = useGetArtifact(artifact_id)
+
+  if (status === 'pending') return <SpinLoaderCard />
+  if (status === 'error') return <SpinLoaderCard />
+
+  if (!ARTIFACT) return null
+
+  const colorRarity = getBorderColorByRarity(ARTIFACT.rarity)
+
+  return (
+    <HoverCard>
+      <HoverCardTrigger asChild>
+        <Card className={cn('flex items-center gap-4 p-4 border', colorRarity)}>
+          <SquareBox size='sm'>
+            <Image
+              src={ARTIFACT.image_url ?? DEFAULT_IMAGE}
+              alt={ARTIFACT.name ?? 'Artifact Image'}
+              width={1080}
+              height={1080}
+              className='object-cover size-full'
+            />
+          </SquareBox>
+          <Title>{ARTIFACT.name}</Title>
+        </Card>
+      </HoverCardTrigger>
+      <HoverCardContent className='w-[480px]'>
+        <article className='space-y-4'>
+          <div className='flex items-center gap-4'>
+            <SquareBox size='sm'>
+              <Image
+                src={ARTIFACT.image_url ?? DEFAULT_IMAGE}
+                alt={ARTIFACT.name ?? 'Artifact Image'}
+                width={1080}
+                height={1080}
+                className='object-cover size-full'
+              />
+            </SquareBox>
+            <Title size='xl'>{ARTIFACT.name}</Title>
+          </div>
+
+          <Separator />
+
+          <div className='tiptap opacity-70'>
+            {parse(ARTIFACT.bonus_description, PARSE_OPTIONS)}
+          </div>
+        </article>
+      </HoverCardContent>
+    </HoverCard>
+  )
+}

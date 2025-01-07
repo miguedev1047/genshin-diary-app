@@ -1,7 +1,10 @@
-export default function PanelLayout({
+import { PanelLayout } from "@/app/(panel)/_components/panel-layout"
+
+
+export default function AdminPanelLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
-  return children
+  return <PanelLayout>{children}</PanelLayout>
 }

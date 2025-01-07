@@ -1,8 +1,9 @@
-export default function PanelLayout({
-    children,
-  }: {
-    children: React.ReactNode
-  }) {
-    return children
-  }
-  
+import { PanelLayout } from '@/app/(panel)/_components/panel-layout'
+
+export default function EditorLayout({
+  children,
+}: {
+  children: React.ReactNode
+}) {
+  return <PanelLayout>{children}</PanelLayout>
+}

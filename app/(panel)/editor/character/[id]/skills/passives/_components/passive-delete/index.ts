@@ -1,0 +1,1 @@
+export { PassiveDelete } from './passive-delete'

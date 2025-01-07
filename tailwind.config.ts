@@ -1,19 +1,26 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-require-imports */
+
 import type { Config } from 'tailwindcss'
 
-const config = {
+const {
+  default: flattenColorPalette,
+} = require("tailwindcss/lib/util/flattenColorPalette");
+
+const config: Config = {
   darkMode: ['class'],
   content: [
     './pages/**/*.{ts,tsx}',
     './components/**/*.{ts,tsx}',
     './app/**/*.{ts,tsx}',
     './src/**/*.{ts,tsx}',
-    './render/**/*.{ts,tsx}',
+    './shared/**/*.{ts,tsx}',
+    './features/**/*.{ts,tsx}',
     './consts/**/*.{ts,tsx}',
   ],
   prefix: '',
   theme: {
     container: {
-      center: true,
       padding: '2rem',
       screens: {
         '2xl': '1400px',
@@ -24,8 +31,7 @@ const config = {
         'main-primary': '#18181B',
         'main-secondary': '#27272A',
         'main-text': '#E5E5E5',
-        'main-accent': '#3B82F6',
-        'main-state': '#F97316',
+        'main-muted': '#616060',
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
         ring: 'hsl(var(--ring))',
@@ -43,6 +49,14 @@ const config = {
           DEFAULT: 'hsl(var(--destructive))',
           foreground: 'hsl(var(--destructive-foreground))',
         },
+        warning: {
+          DEFAULT: 'hsl(var(--warning))',
+          foreground: 'hsl(var(--warning-foreground))',
+        },
+        success: {
+          DEFAULT: 'hsl(var(--success))',
+          foreground: 'hsl(var(--success-foreground))',
+        },
         muted: {
           DEFAULT: 'hsl(var(--muted))',
           foreground: 'hsl(var(--muted-foreground))',
@@ -58,6 +72,21 @@ const config = {
         card: {
           DEFAULT: 'hsl(var(--card))',
           foreground: 'hsl(var(--card-foreground))',
+        },
+        'color-1': 'hsl(var(--color-1))',
+        'color-2': 'hsl(var(--color-2))',
+        'color-3': 'hsl(var(--color-3))',
+        'color-4': 'hsl(var(--color-4))',
+        'color-5': 'hsl(var(--color-5))',
+        sidebar: {
+          DEFAULT: 'hsl(var(--sidebar-background))',
+          foreground: 'hsl(var(--sidebar-foreground))',
+          primary: 'hsl(var(--sidebar-primary))',
+          'primary-foreground': 'hsl(var(--sidebar-primary-foreground))',
+          accent: 'hsl(var(--sidebar-accent))',
+          'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
+          border: 'hsl(var(--sidebar-border))',
+          ring: 'hsl(var(--sidebar-ring))',
         },
       },
       borderRadius: {
@@ -80,12 +109,20 @@ const config = {
           },
         },
         'accordion-down': {
-          from: { height: '0' },
-          to: { height: 'var(--radix-accordion-content-height)' },
+          from: {
+            height: '0',
+          },
+          to: {
+            height: 'var(--radix-accordion-content-height)',
+          },
         },
         'accordion-up': {
-          from: { height: 'var(--radix-accordion-content-height)' },
-          to: { height: '0' },
+          from: {
+            height: 'var(--radix-accordion-content-height)',
+          },
+          to: {
+            height: '0',
+          },
         },
         'border-beam': {
           '100%': {
@@ -93,12 +130,24 @@ const config = {
           },
         },
         'fade-in': {
-          from: { opacity: '0', transform: 'translateY(-10px)' },
-          to: { opacity: '1', transform: 'none' },
+          from: {
+            opacity: '0',
+            transform: 'translateY(-10px)',
+          },
+          to: {
+            opacity: '1',
+            transform: 'none',
+          },
         },
         'fade-up': {
-          from: { opacity: '0', transform: 'translateY(20px)' },
-          to: { opacity: '1', transform: 'none' },
+          from: {
+            opacity: '0',
+            transform: 'translateY(20px)',
+          },
+          to: {
+            opacity: '1',
+            transform: 'none',
+          },
         },
         shimmer: {
           '0%, 90%, 100%': {
@@ -109,16 +158,40 @@ const config = {
           },
         },
         'background-position-spin': {
-          '0%': { backgroundPosition: 'top center' },
-          '100%': { backgroundPosition: 'bottom center' },
+          '0%': {
+            backgroundPosition: 'top center',
+          },
+          '100%': {
+            backgroundPosition: 'bottom center',
+          },
         },
-        "shine": {
-          from: { backgroundPosition: '200% 0' },
-          to: { backgroundPosition: '-200% 0' },
+        shine: {
+          from: {
+            backgroundPosition: '200% 0',
+          },
+          to: {
+            backgroundPosition: '-200% 0',
+          },
+        },
+        'shiny-text': {
+          '0%, 90%, 100%': {
+            'background-position': 'calc(-100% - var(--shiny-width)) 0',
+          },
+          '30%, 60%': {
+            'background-position': 'calc(100% + var(--shiny-width)) 0',
+          },
+        },
+        rainbow: {
+          '0%': {
+            'background-position': '0%',
+          },
+          '100%': {
+            'background-position': '200%',
+          },
         },
       },
       animation: {
-        "shine": "shine 8s ease-in-out infinite",
+        shine: 'shine 8s ease-in-out infinite',
         'image-glow': 'image-glow 4100ms 600ms ease-out forwards',
         'fade-in': 'fade-in 1000ms var(--animation-delay, 0ms) ease forwards',
         'fade-up': 'fade-up 1000ms var(--animation-delay, 0ms) ease forwards',
@@ -128,10 +201,26 @@ const config = {
         'border-beam': 'border-beam calc(var(--duration)*1s) infinite linear',
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
+        'shiny-text': 'shiny-text 8s infinite',
+        rainbow: 'rainbow var(--speed, 2s) infinite linear',
       },
     },
   },
-  plugins: [require('tailwindcss-animate')],
-} satisfies Config
-
+  plugins: [
+    require('tailwindcss-animate'),
+    require('@pyncz/tailwind-mask-image'),
+    addVariablesForColors,
+  ],
+}
 export default config
+
+function addVariablesForColors({ addBase, theme }: any) {
+  const allColors = flattenColorPalette(theme('colors'))
+  const newVars = Object.fromEntries(
+    Object.entries(allColors).map(([key, val]) => [`--${key}`, val])
+  )
+
+  addBase({
+    ':root': newVars,
+  })
+}
