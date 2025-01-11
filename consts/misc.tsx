@@ -1,7 +1,7 @@
 import { HTMLReactParserOptions } from 'html-react-parser'
 
 export const PAGE_NAME = 'Genshin Diary'
-export const PAGE_VERSION = 'v0.5.2'
+export const PAGE_VERSION = 'v0.5.3'
 
 export const REACT_SCAN = false
 export const DEV_MODE = process.env.NODE_ENV === 'development'
