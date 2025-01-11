@@ -10,7 +10,7 @@ export const API_PANEL_PREFIX = '/api/v0/genshin-diary/panel'
 export const API_PUBLIC_PREFIX = '/api/v0/genshin-diary/public'
 
 export const NONE = ''
-export const DEFAULT_IMAGE = 'https://placehold.co/600?text=Hutao+Mains'
+export const DEFAULT_IMAGE = 'https://placehold.co/600?text=Genshin+Diary'
 
 export const PARSE_OPTIONS: HTMLReactParserOptions = {
   replace(domNode) {

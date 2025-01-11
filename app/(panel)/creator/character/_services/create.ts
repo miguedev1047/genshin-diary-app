@@ -4,6 +4,7 @@ import { z } from 'zod'
 import { currentRole } from '@/data/auth'
 import { CharacterSchema } from '@/schemas'
 import { db } from '@/lib/db'
+import { getCharacter } from '@/app/(panel)/creator/character/_services/fetch'
 
 export const createCharacter = async (
   data: z.infer<typeof CharacterSchema>
@@ -32,6 +33,12 @@ export const createCharacter = async (
     region,
     weapon,
   } = VALIDATE_FIELDS.data
+
+  const EXISTS_CHARACTER = await getCharacter(name)
+
+  if (EXISTS_CHARACTER) {
+    return { status: 500, message: 'Este personaje ya existe!' }
+  }
 
   try {
     const CHARACTER = await db.characters.create({

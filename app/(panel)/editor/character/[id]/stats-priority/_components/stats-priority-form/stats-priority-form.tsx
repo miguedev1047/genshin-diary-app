@@ -8,6 +8,14 @@ import {
   FormLabel,
   FormMessage,
 } from '@/components/ui/form'
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select'
+
 import { z } from 'zod'
 import { useGetCharacter } from '@/app/(panel)/editor/character/[id]/provider'
 import { useState, useTransition } from 'react'
@@ -20,6 +28,7 @@ import { Input } from '@/components/ui/input'
 import { FormSheet } from '@/app/(panel)/_components/form-sheet'
 import { useRouter } from 'next/navigation'
 import { toast } from 'sonner'
+import { ARTIFACTS_STATS } from '@/consts/general'
 
 export function StatsPriorityForm() {
   const [isPending, startTransition] = useTransition()
@@ -94,13 +103,26 @@ export function StatsPriorityForm() {
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Reloj</FormLabel>
-                <FormControl>
-                  <Input
-                    placeholder='Vida Porcentual'
-                    {...field}
-                    disabled={isPending}
-                  />
-                </FormControl>
+                <Select
+                  value={field.value}
+                  onValueChange={field.onChange}
+                >
+                  <FormControl>
+                    <SelectTrigger>
+                      <SelectValue placeholder='Vida Porcentual' />
+                    </SelectTrigger>
+                  </FormControl>
+                  <SelectContent>
+                    {ARTIFACTS_STATS.sands.map((stat) => (
+                      <SelectItem
+                        key={stat.value}
+                        value={stat.value}
+                      >
+                        {stat.label}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
                 <FormMessage />
               </FormItem>
             )}
@@ -112,13 +134,26 @@ export function StatsPriorityForm() {
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Caliz</FormLabel>
-                <FormControl>
-                  <Input
-                    placeholder='Bono de daño Pyro'
-                    {...field}
-                    disabled={isPending}
-                  />
-                </FormControl>
+                <Select
+                  value={field.value}
+                  onValueChange={field.onChange}
+                >
+                  <FormControl>
+                    <SelectTrigger>
+                      <SelectValue placeholder='Bono de Daño Pyro' />
+                    </SelectTrigger>
+                  </FormControl>
+                  <SelectContent>
+                    {ARTIFACTS_STATS.globet.map((stat) => (
+                      <SelectItem
+                        key={stat.value}
+                        value={stat.value}
+                      >
+                        {stat.label}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
                 <FormMessage />
               </FormItem>
             )}
@@ -130,13 +165,26 @@ export function StatsPriorityForm() {
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Tiara</FormLabel>
-                <FormControl>
-                  <Input
-                    placeholder='Daño de Critico'
-                    {...field}
-                    disabled={isPending}
-                  />
-                </FormControl>
+                <Select
+                  value={field.value}
+                  onValueChange={field.onChange}
+                >
+                  <FormControl>
+                    <SelectTrigger>
+                      <SelectValue placeholder='Daño Crit.' />
+                    </SelectTrigger>
+                  </FormControl>
+                  <SelectContent>
+                    {ARTIFACTS_STATS.circlet.map((stat) => (
+                      <SelectItem
+                        key={stat.value}
+                        value={stat.value}
+                      >
+                        {stat.label}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
                 <FormMessage />
               </FormItem>
             )}

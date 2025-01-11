@@ -179,6 +179,39 @@ export const ATTRIBUTES = [
   { value: 'GEO_DMG', label: 'Bono de Daño Geo' },
 ]
 
+export const ARTIFACTS_STATS = {
+  sands: [
+    { value: 'ELEMENTAL_MASTERY', label: 'Maestría Elemental' },
+    { value: 'ATQ', label: 'Ataque Porcentual' },
+    { value: 'ER', label: 'Recarga de Energia' },
+    { value: 'DEF', label: 'Defensa Porcentual' },
+    { value: 'HP', label: 'Vida Porcentual' },
+  ],
+  globet: [
+    { value: 'ATQ', label: 'Ataque Porcentual' },
+    { value: 'DEF', label: 'Defensa Porcentual' },
+    { value: 'HP', label: 'Vida Porcentual' },
+    { value: 'ELEMENTAL_MASTERY', label: 'Maestría Elemental' },
+    { value: 'PHYSICAL_DMG', label: 'Bono de Daño Físico' },
+    { value: 'PYRO_DMG', label: 'Bono de Daño Pyro' },
+    { value: 'HYDRO_DMG', label: 'Bono de Daño Hydro' },
+    { value: 'ELECTRO_DMG', label: 'Bono de Daño Electro' },
+    { value: 'DENDRO_DMG', label: 'Bono de Daño Dendro' },
+    { value: 'CRYO_DMG', label: 'Bono de Daño Cryo' },
+    { value: 'ANEMO_DMG', label: 'Bono de Daño Anemo' },
+    { value: 'GEO_DMG', label: 'Bono de Daño Geo' },
+  ],
+  circlet: [
+    { value: 'ELEMENTAL_MASTERY', label: 'Maestría Elemental' },
+    { value: 'DEF', label: 'Defensa Porcentual' },
+    { value: 'HP', label: 'Vida Porcentual' },
+    { value: 'ATQ', label: 'Ataque Porcentual' },
+    { value: 'HEAL_BONUS', label: 'Bono de Curación' },
+    { value: 'DMG_CRIT', label: 'Daño Crit.' },
+    { value: 'CRIT_RATE', label: 'Prob. Crit.' },
+  ],
+}
+
 export const ROLE = [
   { value: 'DPS', label: 'Main DPS' },
   { value: 'SUBDPS', label: 'Sub DPS' },

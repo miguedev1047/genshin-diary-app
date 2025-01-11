@@ -39,7 +39,7 @@ export function CharacterInfo() {
           >
             <Image
               priority
-              src={CHARACTER?.images?.splash_art_url ?? DEFAULT_IMAGE}
+              src={CHARACTER?.images?.profile_image_url ?? DEFAULT_IMAGE}
               alt={CHARACTER?.name ?? 'Personaje'}
               width={1080}
               height={1080}
