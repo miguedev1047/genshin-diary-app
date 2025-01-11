@@ -1,6 +1,10 @@
 'use client'
 
-import { getRarityStars, getWeaponText } from '@/features/utils/character-texts'
+import {
+  getAttributesText,
+  getRarityStars,
+  getWeaponText,
+} from '@/features/utils/character-texts'
 import { EditorCard } from '@/app/(panel)/_components/editor-card'
 import { WeaponInfoForm } from '@/app/(panel)/editor/weapon/[id]/weapon-info/_components/weapon-info-form'
 import { Badge } from '@/components/ui/badge'
@@ -17,6 +21,7 @@ export function WeaponInfo() {
 
   const STARS = getRarityStars(WEAPON?.rarity)
   const WEAPON_TYPE = getWeaponText(WEAPON?.type)
+  const SECONDARY_STAT = getAttributesText(WEAPON?.secondary_stat)
 
   return (
     <EditorCard
@@ -54,7 +59,10 @@ export function WeaponInfo() {
             {parse(WEAPON?.passive_description ?? '', PARSE_OPTIONS)}
           </div>
 
-          <Badge>{WEAPON_TYPE}</Badge>
+          <div className='space-x-2'>
+            <Badge>{WEAPON_TYPE}</Badge>
+            <Badge>{SECONDARY_STAT}</Badge>
+          </div>
         </div>
       </div>
     </EditorCard>

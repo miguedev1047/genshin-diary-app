@@ -38,11 +38,11 @@ export function WeaponName() {
       </div>
 
       <h2 className='text-2xl leading-none'>
-        ATQ: <span className='font-bold'>{ATTACK_BASE}</span>
+        ATQ Base: <span className='font-bold'>{ATTACK_BASE}</span>
       </h2>
 
       <h2 className='text-xl leading-none'>
-        {SECONDARY_STAT}{' '}
+        {SECONDARY_STAT}:{' '}
         <span className='font-bold'>{SECONDARY_STAT_BASE}%</span>
       </h2>
     </div>

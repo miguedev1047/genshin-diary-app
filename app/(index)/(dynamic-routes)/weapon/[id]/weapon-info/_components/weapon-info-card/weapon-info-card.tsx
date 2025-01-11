@@ -6,18 +6,19 @@ import {
 import { WeaponInfoCardProps } from '@/app/(index)/(dynamic-routes)/weapon/[id]/weapon-info/_components/weapon-info-card/weapon-info-card.type'
 import { SquareBox } from '@/components/square-box'
 import { DEFAULT_IMAGE, NONE, PARSE_OPTIONS } from '@/consts/misc'
+import { WeaponName } from '@/app/(index)/(dynamic-routes)/weapon/[id]/weapon-info/_components/weapon-name'
 import { Badge } from '@/components/ui/badge'
 import { Star } from 'lucide-react'
-import { WeaponName } from '../weapon-name'
 import Image from 'next/image'
 import parse from 'html-react-parser'
 
 export function WeaponInfoCard(props: WeaponInfoCardProps) {
-  const { image_url, name, rarity, passive_description, type } =
+  const { image_url, name, rarity, passive_description, secondary_stat, type } =
     props
 
   const STARS = getRarityStars(rarity)
   const WEAPON_TYPE = getWeaponText(type)
+  const SECONDARY_STAT = getAttributesText(secondary_stat)
 
   return (
     <div className='w-full flex gap-4'>
@@ -51,7 +52,10 @@ export function WeaponInfoCard(props: WeaponInfoCardProps) {
             {parse(passive_description ?? '', PARSE_OPTIONS)}
           </div>
 
-          <Badge>{WEAPON_TYPE}</Badge>
+          <div className='space-x-2'>
+            <Badge>{WEAPON_TYPE}</Badge>
+            <Badge>{SECONDARY_STAT}</Badge>
+          </div>
         </div>
       </div>
     </div>

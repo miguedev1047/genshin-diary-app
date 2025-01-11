@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { Switch } from '@/components/ui/switch'
-import { WeaponNameProps } from './weapon-name.type'
+import { WeaponNameProps } from '@/app/(index)/(dynamic-routes)/weapon/[id]/weapon-info/_components/weapon-name/weapon-name.type'
 import { getAttributesText } from '@/features/utils/character-texts'
 
 export function WeaponName(props: WeaponNameProps) {
@@ -38,11 +38,11 @@ export function WeaponName(props: WeaponNameProps) {
       </div>
 
       <h2 className='text-2xl leading-none'>
-        ATQ: <span className='font-bold'>{ATTACK_BASE}</span>
+        ATQ Base: <span className='font-bold'>{ATTACK_BASE}</span>
       </h2>
 
       <h2 className='text-xl leading-none'>
-        {SECONDARY_STAT}{' '}
+        {SECONDARY_STAT}:{' '}
         <span className='font-bold'>{SECONDARY_BASE_STAT}%</span>
       </h2>
     </div>
