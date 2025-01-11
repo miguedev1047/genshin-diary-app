@@ -49,7 +49,7 @@ export function WeaponInfoForm() {
       name: WEAPON?.name,
       max_base_attack: WEAPON?.max_base_attack.toString(),
       min_base_attack: WEAPON?.min_base_attack.toString(),
-      max_secondary_stat_base: WEAPON?.min_base_attack.toString(),
+      max_secondary_stat_base: WEAPON?.max_secondary_stat_base.toString(),
       min_secondary_stat_base: WEAPON?.min_secondary_stat_base.toString(),
       image_url: WEAPON?.image_url ?? DEFAULT_IMAGE,
       secondary_stat: WEAPON?.secondary_stat,

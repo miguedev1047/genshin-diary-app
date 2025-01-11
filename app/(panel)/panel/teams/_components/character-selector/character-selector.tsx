@@ -5,9 +5,6 @@ import { CharacterSelectorProps } from '@/app/(panel)/editor/weapon/[id]/best-ch
 export function CharacterSelector(props: CharacterSelectorProps) {
   const { value, onChange } = props
   const { data: ITEMS, status } = useGetCharacters()
-
-  const DISABLE_KEYS = ITEMS?.map((c) => c.id)
-  
   const isLoading = status !== 'success'
 
   return (

@@ -53,7 +53,11 @@ export function DialogMultiSelect(props: DialogMultiSelectProps) {
     return {
       label: item.name,
       value: item.id,
-      src: item.image_url || item.images?.splash_art_url || DEFAULT_IMAGE,
+      src:
+        item.images?.profile_image_url ||
+        item.image_url ||
+        item.images?.splash_art_url ||
+        DEFAULT_IMAGE,
     }
   })
 
