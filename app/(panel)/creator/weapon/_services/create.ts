@@ -48,8 +48,8 @@ export async function createWeapon(data: z.infer<typeof WeaponSchema>) {
         rarity,
         type,
         max_base_attack: parseInt(max_base_attack),
-        max_secondary_stat_base: parseInt(max_secondary_stat_base),
-        min_base_attack: Number(min_base_attack),
+        min_base_attack: parseInt(min_base_attack),
+        max_secondary_stat_base: Number(max_secondary_stat_base),
         min_secondary_stat_base: Number(min_secondary_stat_base),
       },
     })
