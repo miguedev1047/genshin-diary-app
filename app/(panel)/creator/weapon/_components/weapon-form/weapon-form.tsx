@@ -130,11 +130,11 @@ export function WeaponForm() {
                     <Select
                       disabled={isPending}
                       onValueChange={field.onChange}
-                      defaultValue={field.value}
+                      value={field.value}
                     >
                       <FormControl>
                         <SelectTrigger>
-                          <SelectValue placeholder='Daño Crit.' />
+                          <SelectValue placeholder='Selecciona un substat' />
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
