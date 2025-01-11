@@ -24,7 +24,7 @@ export async function createMaterial(data: z.infer<typeof MaterialSchema>) {
   const MATERIAL = await getMaterial(name)
 
   if (MATERIAL) {
-    return { status: 403, message: 'Ocurrio un error.' }
+    return { status: 403, message: 'Ese material ya existe!' }
   }
 
   try {
@@ -40,6 +40,7 @@ export async function createMaterial(data: z.infer<typeof MaterialSchema>) {
 
     return { status: 201, message: 'Material creado.' }
   } catch (error) {
+    console.log(error)
     return { status: 500, message: 'Ocurrio un error.' }
   }
 }
