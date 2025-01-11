@@ -41,7 +41,7 @@ export function StatsPriority() {
           <Card>
             <CardContent className='p-5'>
               <h2 className='text-sm'>
-                Caliz: <span className='font-extrabold'>{STATS.circlet_stat}</span>
+                Tiara: <span className='font-extrabold'>{STATS.circlet_stat}</span>
               </h2>
             </CardContent>
           </Card>

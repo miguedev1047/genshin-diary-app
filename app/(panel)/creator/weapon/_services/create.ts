@@ -4,6 +4,7 @@ import { z } from 'zod'
 import { currentRole } from '@/data/auth'
 import { WeaponSchema } from '@/schemas'
 import { db } from '@/lib/db'
+import { getWeapon } from './fetch'
 
 export async function createWeapon(data: z.infer<typeof WeaponSchema>) {
   const ROLE = await currentRole()
@@ -24,25 +25,38 @@ export async function createWeapon(data: z.infer<typeof WeaponSchema>) {
     passive_description,
     rarity,
     type,
-    base_attack,
-    main_stat,
+    max_base_attack,
+    max_secondary_stat_base,
+    min_base_attack,
+    min_secondary_stat_base,
+    secondary_stat,
   } = VALIDATE_FIELDS.data
+
+  const WEAPON = await getWeapon(name)
+
+  if (WEAPON) {
+    return { status: 500, message: 'Esta arma ya existe!' }
+  }
 
   try {
     await db.weapons.create({
       data: {
-        main_stat,
+        secondary_stat,
         name,
         image_url,
         passive_description,
         rarity,
         type,
-        base_attack: Number(base_attack),
+        max_base_attack: parseInt(max_base_attack),
+        max_secondary_stat_base: parseInt(max_secondary_stat_base),
+        min_base_attack: Number(min_base_attack),
+        min_secondary_stat_base: Number(min_secondary_stat_base),
       },
     })
 
     return { status: 201, message: 'Arma creada.' }
   } catch (error) {
+    console.log(error)
     return { status: 500, message: 'Ocurrio un error.' }
   }
 }

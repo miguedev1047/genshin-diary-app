@@ -19,7 +19,7 @@ import {
   SelectValue,
 } from '@/components/ui/select'
 import { z } from 'zod'
-import { ATTRIBUTES,  STARS, WEAPON_TYPE } from '@/consts/general'
+import { ATTRIBUTES, STARS, WEAPON_TYPE } from '@/consts/general'
 import { DEFAULT_IMAGE } from '@/consts/misc'
 import { useState, useTransition } from 'react'
 import { useForm } from 'react-hook-form'
@@ -47,11 +47,14 @@ export function WeaponInfoForm() {
     resolver: zodResolver(WeaponSchema),
     defaultValues: {
       name: WEAPON?.name,
-      main_stat: WEAPON?.main_stat,
+      max_base_attack: WEAPON?.max_base_attack.toString(),
+      min_base_attack: WEAPON?.min_base_attack.toString(),
+      max_secondary_stat_base: WEAPON?.min_base_attack.toString(),
+      min_secondary_stat_base: WEAPON?.min_secondary_stat_base.toString(),
       image_url: WEAPON?.image_url ?? DEFAULT_IMAGE,
+      secondary_stat: WEAPON?.secondary_stat,
       type: WEAPON?.type,
       rarity: WEAPON?.rarity,
-      base_attack: WEAPON?.base_attack.toString(),
       passive_description: WEAPON?.passive_description,
     },
   })
@@ -115,63 +118,6 @@ export function WeaponInfoForm() {
                     disabled={isPending}
                     placeholder='URL de la imagen'
                     {...field}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-
-          <FormField
-            control={form.control}
-            name='main_stat'
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Atributo principal</FormLabel>
-                <FormControl>
-                  <Select
-                    disabled={isPending}
-                    onValueChange={field.onChange}
-                    defaultValue={field.value}
-                  >
-                    <FormControl>
-                      <SelectTrigger>
-                        <SelectValue placeholder='Atributo principal' />
-                      </SelectTrigger>
-                    </FormControl>
-                    <SelectContent>
-                      <SelectGroup>
-                        <SelectLabel>Atributo principal</SelectLabel>
-                        <SelectSeparator />
-                        {ATTRIBUTES.slice(0, 9).map(({ label, value }) => (
-                          <SelectItem
-                            key={value}
-                            value={value}
-                          >
-                            {label}
-                          </SelectItem>
-                        ))}
-                      </SelectGroup>
-                    </SelectContent>
-                  </Select>
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-
-          <FormField
-            control={form.control}
-            name='base_attack'
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Ataque base</FormLabel>
-                <FormControl>
-                  <Input
-                    {...field}
-                    disabled={isPending}
-                    type='number'
-                    placeholder='Ataque base'
                   />
                 </FormControl>
                 <FormMessage />
@@ -259,6 +205,122 @@ export function WeaponInfoForm() {
               </FormItem>
             )}
           />
+
+          <FormField
+            control={form.control}
+            name='secondary_stat'
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Substat secundario</FormLabel>
+                <FormControl>
+                  <Select
+                    disabled={isPending}
+                    onValueChange={field.onChange}
+                    defaultValue={field.value}
+                  >
+                    <FormControl>
+                      <SelectTrigger>
+                        <SelectValue placeholder='Daño Crit.' />
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent>
+                      <SelectGroup>
+                        <SelectLabel>Atributo sencundario</SelectLabel>
+                        <SelectSeparator />
+                        {ATTRIBUTES.slice(0, 9).map(({ label, value }) => (
+                          <SelectItem
+                            key={value}
+                            value={value}
+                          >
+                            {label}
+                          </SelectItem>
+                        ))}
+                      </SelectGroup>
+                    </SelectContent>
+                  </Select>
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <div className='grid grid-cols-2 gap-4'>
+            <FormField
+              control={form.control}
+              name='min_base_attack'
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Ataque base minimo</FormLabel>
+                  <FormControl>
+                    <Input
+                      {...field}
+                      disabled={isPending}
+                      type='number'
+                      placeholder='41'
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <FormField
+              control={form.control}
+              name='max_base_attack'
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Ataque base maximo</FormLabel>
+                  <FormControl>
+                    <Input
+                      {...field}
+                      disabled={isPending}
+                      type='number'
+                      placeholder='674'
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <FormField
+              control={form.control}
+              name='min_secondary_stat_base'
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Substat base minimo</FormLabel>
+                  <FormControl>
+                    <Input
+                      {...field}
+                      disabled={isPending}
+                      type='number'
+                      placeholder='11%'
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <FormField
+              control={form.control}
+              name='max_secondary_stat_base'
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Substat base maximo</FormLabel>
+                  <FormControl>
+                    <Input
+                      {...field}
+                      disabled={isPending}
+                      type='number'
+                      placeholder='82%'
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </div>
 
           <FormField
             control={form.control}

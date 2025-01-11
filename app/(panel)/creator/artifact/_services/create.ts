@@ -4,6 +4,7 @@ import { z } from 'zod'
 import { ArtifactSchema } from '@/schemas'
 import { currentRole } from '@/data/auth'
 import { db } from '@/lib/db'
+import { getArtifact } from '@/app/(panel)/creator/artifact/_services/fetch'
 
 export async function createArtifact(data: z.infer<typeof ArtifactSchema>) {
   const ROLE = await currentRole()
@@ -19,6 +20,12 @@ export async function createArtifact(data: z.infer<typeof ArtifactSchema>) {
   }
 
   const { name, bonus_description, image_url, rarity } = VALIDATE_FIELDS.data
+
+  const ARTIFACT = await getArtifact(name)
+
+  if (ARTIFACT) {
+    return { status: 403, message: 'Esta arma ya existe.' }
+  }
 
   try {
     await db.artifacts.create({

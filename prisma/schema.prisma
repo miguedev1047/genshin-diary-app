@@ -65,14 +65,17 @@ model CharacterImage {
 // <----- ------>
 // <----- ARMAS ------>
 model Weapons {
-  id                  String  @id @unique @default(uuid())
-  image_url           String?
-  name                String
-  type                String
-  rarity              String
-  base_attack         Int     @default(0)
-  main_stat           String
-  passive_description String
+  id                      String  @id @unique @default(uuid())
+  image_url               String?
+  name                    String
+  type                    String
+  rarity                  String
+  secondary_stat          String
+  min_base_attack         Float   @default(0)
+  max_base_attack         Float   @default(0)
+  max_secondary_stat_base Float   @default(0)
+  min_secondary_stat_base Float   @default(0)
+  passive_description     String
 
   date_created DateTime @default(now())
   date_updated DateTime @updatedAt

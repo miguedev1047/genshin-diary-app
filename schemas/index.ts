@@ -67,11 +67,20 @@ export const WeaponSchema = z.object({
   passive_description: z.string().min(3, {
     message: 'La descripción de la arma es requerida.',
   }),
-  base_attack: z.string().min(2, {
-    message: 'El ataque base es requerido.',
+  min_base_attack: z.string().min(2, {
+    message: 'El ataque maximo es requerido.',
   }),
-  main_stat: z.string().min(1, {
-    message: 'El atributo principal es requerido.',
+  max_base_attack: z.string().min(2, {
+    message: 'El ataque maximo es requerido.',
+  }),
+  min_secondary_stat_base: z.string().min(1, {
+    message: 'El atributo secundario es requerido.',
+  }),
+  max_secondary_stat_base: z.string().min(1, {
+    message: 'El atributo base secundario es requerido.',
+  }),
+  secondary_stat: z.string().min(1, {
+    message: 'El atributo secundario es requerido.',
   }),
   type: z.string().min(1, {
     message: 'El tipo del arma es requerida.',

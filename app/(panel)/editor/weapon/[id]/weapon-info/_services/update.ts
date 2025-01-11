@@ -7,7 +7,7 @@ import { db } from '@/lib/db'
 
 export async function updateWeapon(
   data: z.infer<typeof WeaponSchema>,
-  weapon_id: string | undefined 
+  weapon_id: string | undefined
 ) {
   const ROLE = await currentRole()
 
@@ -24,12 +24,17 @@ export async function updateWeapon(
   const {
     name,
     image_url,
-    main_stat,
-    base_attack,
+    max_base_attack,
+    max_secondary_stat_base,
+    min_base_attack,
+    min_secondary_stat_base,
+    secondary_stat,
     passive_description,
     type,
     rarity,
   } = data
+
+  console.log(data)
 
   try {
     await db.weapons.update({
@@ -39,9 +44,12 @@ export async function updateWeapon(
       data: {
         name,
         image_url,
-        main_stat,
-        base_attack: Number(base_attack),
+        max_base_attack: parseInt(max_base_attack),
+        min_base_attack: parseInt(min_base_attack),
+        max_secondary_stat_base: Number(max_secondary_stat_base),
+        min_secondary_stat_base: Number(min_secondary_stat_base),
         passive_description,
+        secondary_stat,
         type,
         rarity,
       },

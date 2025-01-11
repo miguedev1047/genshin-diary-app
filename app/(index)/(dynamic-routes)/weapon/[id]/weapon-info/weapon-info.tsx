@@ -13,7 +13,7 @@ export function WeaponInfo(props: WeaponInfoProps) {
   const { data: WEAPON } = props
 
   return (
-    <section className='space-y-8'>
+    <div className='space-y-8'>
       <Breadcrumb>
         <BreadcrumbList>
           <BreadcrumbItem>
@@ -31,6 +31,6 @@ export function WeaponInfo(props: WeaponInfoProps) {
       </Breadcrumb>
 
       <WeaponInfoCard {...WEAPON} />
-    </section>
+    </div>
   )
 }
