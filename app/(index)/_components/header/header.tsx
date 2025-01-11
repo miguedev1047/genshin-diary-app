@@ -18,10 +18,6 @@ export function Header() {
         </nav>
 
         <Navbar />
-
-        <nav className='flex flex-grow justify-end basis-0'>
-          <ModeToggle />
-        </nav>
       </div>
     </header>
   )
