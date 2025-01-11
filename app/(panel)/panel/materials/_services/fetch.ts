@@ -42,7 +42,7 @@ export async function getMaterials(props: Props) {
 
   try {
     const MATERIALS = await db.materials.findMany({
-      orderBy: [{ rarity: 'asc' }, { name: 'asc' }, { date_created: 'desc' }],
+      orderBy: [{ rarity: 'desc' }, { name: 'asc' }, { date_created: 'desc' }],
     })
 
     const FILTERED_MATERIALS = filterMaterials(MATERIALS, { ...props })
