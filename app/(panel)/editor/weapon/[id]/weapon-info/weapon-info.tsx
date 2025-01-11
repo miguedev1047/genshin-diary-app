@@ -1,10 +1,6 @@
 'use client'
 
-import {
-  getAttributesText,
-  getRarityStars,
-  getWeaponText,
-} from '@/features/utils/character-texts'
+import { getRarityStars, getWeaponText } from '@/features/utils/character-texts'
 import { EditorCard } from '@/app/(panel)/_components/editor-card'
 import { WeaponInfoForm } from '@/app/(panel)/editor/weapon/[id]/weapon-info/_components/weapon-info-form'
 import { Badge } from '@/components/ui/badge'
@@ -12,7 +8,7 @@ import { Star } from 'lucide-react'
 import { DEFAULT_IMAGE, NONE, PARSE_OPTIONS } from '@/consts/misc'
 import { useGetWeapon } from '@/app/(panel)/editor/weapon/[id]/provider'
 import { SquareBox } from '@/components/square-box'
-import { WeaponName } from './_components/weapon-name'
+import { WeaponName } from '@/app/(panel)/editor/weapon/[id]/weapon-info/_components/weapon-name'
 import Image from 'next/image'
 import parse from 'html-react-parser'
 
@@ -20,7 +16,6 @@ export function WeaponInfo() {
   const { data: WEAPON } = useGetWeapon()
 
   const STARS = getRarityStars(WEAPON?.rarity)
-  const MAIN_STAT = getAttributesText(WEAPON?.secondary_stat)
   const WEAPON_TYPE = getWeaponText(WEAPON?.type)
 
   return (
@@ -59,10 +54,7 @@ export function WeaponInfo() {
             {parse(WEAPON?.passive_description ?? '', PARSE_OPTIONS)}
           </div>
 
-          <ul className='flex items-center gap-2 mb-4'>
-            <Badge>{MAIN_STAT}</Badge>
-            <Badge>{WEAPON_TYPE}</Badge>
-          </ul>
+          <Badge>{WEAPON_TYPE}</Badge>
         </div>
       </div>
     </EditorCard>

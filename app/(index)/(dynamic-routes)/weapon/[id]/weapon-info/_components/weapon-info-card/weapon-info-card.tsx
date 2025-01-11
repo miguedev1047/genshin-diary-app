@@ -13,11 +13,10 @@ import Image from 'next/image'
 import parse from 'html-react-parser'
 
 export function WeaponInfoCard(props: WeaponInfoCardProps) {
-  const { image_url, name, rarity, passive_description, secondary_stat, type } =
+  const { image_url, name, rarity, passive_description, type } =
     props
 
   const STARS = getRarityStars(rarity)
-  const MAIN_STAT = getAttributesText(secondary_stat)
   const WEAPON_TYPE = getWeaponText(type)
 
   return (
@@ -52,10 +51,7 @@ export function WeaponInfoCard(props: WeaponInfoCardProps) {
             {parse(passive_description ?? '', PARSE_OPTIONS)}
           </div>
 
-          <ul className='flex items-center gap-2 mb-4'>
-            <Badge>{MAIN_STAT}</Badge>
-            <Badge>{WEAPON_TYPE}</Badge>
-          </ul>
+          <Badge>{WEAPON_TYPE}</Badge>
         </div>
       </div>
     </div>

@@ -3,17 +3,19 @@
 import { useState } from 'react'
 import { Switch } from '@/components/ui/switch'
 import { WeaponNameProps } from './weapon-name.type'
+import { getAttributesText } from '@/features/utils/character-texts'
 
 export function WeaponName(props: WeaponNameProps) {
   const { data: WEAPON } = props
-
   const [isMaxView, setIsMaxView] = useState(false)
+
+  const SECONDARY_STAT = getAttributesText(WEAPON?.secondary_stat)
 
   const ATTACK_BASE = isMaxView
     ? WEAPON?.max_base_attack
     : WEAPON?.min_base_attack
 
-  const SECONDARY_STAT = isMaxView
+  const SECONDARY_BASE_STAT = isMaxView
     ? WEAPON?.max_secondary_stat_base
     : WEAPON?.min_secondary_stat_base
 
@@ -40,7 +42,8 @@ export function WeaponName(props: WeaponNameProps) {
       </h2>
 
       <h2 className='text-xl leading-none'>
-        Substat secundaria: <span className='font-bold'>{SECONDARY_STAT}%</span>
+        {SECONDARY_STAT}{' '}
+        <span className='font-bold'>{SECONDARY_BASE_STAT}%</span>
       </h2>
     </div>
   )
