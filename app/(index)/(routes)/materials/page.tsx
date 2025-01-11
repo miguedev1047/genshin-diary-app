@@ -3,9 +3,9 @@ import { MaterialHeader } from '@/components/headers/material-header'
 import { BorderBeam } from '@/components/magicui/border-beam'
 import { Card, CardContent, CardHeader } from '@/components/ui/card'
 import { PageProps } from '@/app/(index)/(routes)/materials/_types'
-import { DataTable } from '@/components/data-tabla'
 import { materialColumns } from '@/app/(index)/(routes)/materials/_components/material-table'
 import { getMaterials } from '@/app/(index)/(routes)/materials/_services/fetch'
+import { MaterialTable } from '@/app/(index)/(routes)/materials/_components/material-table/material-table'
 
 export default async function MaterialPage(props: PageProps) {
   const { searchParams: PARAMS } = props
@@ -20,7 +20,7 @@ export default async function MaterialPage(props: PageProps) {
           </HeaderWrapper>
         </CardHeader>
         <CardContent>
-          <DataTable
+          <MaterialTable
             data={MATERIALS ?? []}
             columns={materialColumns}
           />

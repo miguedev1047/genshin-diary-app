@@ -4,8 +4,8 @@ import { BorderBeam } from '@/components/magicui/border-beam'
 import { Card, CardContent, CardHeader } from '@/components/ui/card'
 import { getArtifacts } from '@/app/(index)/(routes)/artifacts/_services/fetch'
 import { PageProps } from '@/app/(index)/(routes)/artifacts/_types'
-import { DataTable } from '@/components/data-tabla'
 import { artifactColumns } from '@/app/(index)/(routes)/artifacts/_components/artifact-table/artifact-table.column'
+import { ArtifactsTable } from '@/app/(index)/(routes)/artifacts/_components/artifact-table/artifact-table'
 
 export default async function ArtifactPage(props: PageProps) {
   const { searchParams: PARAMS } = props
@@ -20,7 +20,7 @@ export default async function ArtifactPage(props: PageProps) {
           </HeaderWrapper>
         </CardHeader>
         <CardContent>
-          <DataTable
+          <ArtifactsTable
             data={ARTIFACTS ?? []}
             columns={artifactColumns}
           />
