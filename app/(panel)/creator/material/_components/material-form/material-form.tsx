@@ -130,6 +130,7 @@ export function MaterialForm() {
                   <FormControl>
                     <Input
                       placeholder='Nombre del material'
+                      disabled={isPending}
                       {...field}
                     />
                   </FormControl>
@@ -147,6 +148,7 @@ export function MaterialForm() {
                   <FormControl>
                     <Input
                       placeholder='URL de la imagen'
+                      disabled={isPending}
                       {...field}
                     />
                   </FormControl>
