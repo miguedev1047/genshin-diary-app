@@ -1,3 +1,5 @@
+'use client'
+
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -8,41 +10,21 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
 import {
-  ChevronsUpDown,
-  House,
-  LayoutGrid,
-  LogOut,
-  Moon,
-  Sun,
-} from 'lucide-react'
-import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
 } from '@/components/ui/sidebar'
+import { ChevronsUpDown, House, LayoutGrid, LogOut } from 'lucide-react'
 import { Avatar, AvatarFallback } from '@/components/ui/avatar'
-import { Switch } from '@/components/ui/switch'
-import { useCurrentUser } from '@/features/hooks/use-session'
-import { useTheme } from 'next-themes'
+import { useAuth } from '@/features/providers/auth-provider'
 import { handleSignout } from '@/features/helpers/sign-out'
 import Link from 'next/link'
 
 export function PanelDropdown() {
-  const SESSION = useCurrentUser()
-  const FIRST_LETTER_NAME = SESSION?.name?.slice(0, 1)
-
-  const { theme, setTheme } = useTheme()
-  const IS_DARK_MODE = theme === 'dark'
-
-  const handleThemeChange = (value: boolean) => {
-    if (value) {
-      setTheme('dark')
-    } else {
-      setTheme('light')
-    }
-  }
-
-  if (!SESSION) return null
+  const { user } = useAuth()
+  const FIRST_LETTER_NAME = user?.name && user?.name[0]
+  
+  if (!user) return null
 
   return (
     <SidebarMenu>
@@ -59,8 +41,8 @@ export function PanelDropdown() {
                 </AvatarFallback>
               </Avatar>
               <div className='grid flex-1 text-left text-sm leading-tight'>
-                <span className='truncate font-semibold'>{SESSION.name}</span>
-                <span className='truncate text-xs'>{SESSION.email}</span>
+                <span className='truncate font-semibold'>{user?.name}</span>
+                <span className='truncate text-xs'>{user?.email}</span>
               </div>
               <ChevronsUpDown className='ml-auto size-4' />
             </SidebarMenuButton>
@@ -79,8 +61,8 @@ export function PanelDropdown() {
                   </AvatarFallback>
                 </Avatar>
                 <div className='grid flex-1 text-left text-sm leading-tight'>
-                  <span className='truncate font-semibold'>{SESSION.name}</span>
-                  <span className='truncate text-xs'>{SESSION.email}</span>
+                  <span className='truncate font-semibold'>{user?.name}</span>
+                  <span className='truncate text-xs'>{user?.email}</span>
                 </div>
               </div>
             </DropdownMenuLabel>
@@ -106,21 +88,6 @@ export function PanelDropdown() {
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
-            <DropdownMenuItem className='flex items-center justify-between'>
-              <div className='flex items-center'>
-                {IS_DARK_MODE ? (
-                  <Moon className='mr-2 size-4' />
-                ) : (
-                  <Sun className='mr-2 size-4' />
-                )}
-                <span>Modo oscuro</span>
-              </div>
-              <Switch
-                checked={IS_DARK_MODE}
-                onCheckedChange={handleThemeChange}
-                aria-label='Cambiar modo oscuro'
-              />
-            </DropdownMenuItem>
             <DropdownMenuSeparator />
             <DropdownMenuItem onClick={handleSignout}>
               <div className='flex items-center gap-3'>

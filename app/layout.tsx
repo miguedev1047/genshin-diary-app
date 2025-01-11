@@ -7,6 +7,8 @@ import { PAGE_NAME, REACT_SCAN } from '@/consts/misc'
 import { DEV_MODE } from '@/consts/misc'
 import NextTopLoader from 'nextjs-toploader'
 import '@/styles/styles.css'
+import { AuthProvider } from '@/features/providers/auth-provider'
+import { AuthWrapper } from '@/features/providers/auth-provider/auth.wrapper'
 
 const onest = Onest({ subsets: ['latin'] })
 
@@ -36,14 +38,16 @@ export default function RootLayout({
           onest.className
         )}
       >
-        <Providers>
-          <NextTopLoader
-            color='#FABC3F'
-            showSpinner={false}
-          />
-          <Toaster />
-          {children}
-        </Providers>
+        <AuthWrapper>
+          <Providers>
+            <NextTopLoader
+              color='#FABC3F'
+              showSpinner={false}
+            />
+            <Toaster />
+            {children}
+          </Providers>
+        </AuthWrapper>
       </body>
     </html>
   )

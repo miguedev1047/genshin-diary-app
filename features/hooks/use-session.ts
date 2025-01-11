@@ -1,11 +1,11 @@
-import { useSession } from 'next-auth/react'
+import { useAuth } from '@/features/providers/auth-provider'
 
 export const useCurrentRole = () => {
-  const session = useSession()
-  return session.data?.user?.role
+  const session = useAuth()
+  return session.user?.role
 }
 
 export const useCurrentUser = () => {
-  const session = useSession()
-  return session.data?.user
+  const session = useAuth()
+  return session.user
 }
