@@ -21,7 +21,7 @@ export const artifactColumns: ColumnDef<Artifacts>[] = [
             width={128}
             height={128}
             alt={name}
-            className='size-full object-cover'
+            className='size-full object-contain'
           />
         </SquareBox>
       )

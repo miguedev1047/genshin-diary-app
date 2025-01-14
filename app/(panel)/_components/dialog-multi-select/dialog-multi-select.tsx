@@ -32,6 +32,7 @@ import { Separator } from '@/components/ui/separator'
 import { Badge } from '@/components/ui/badge'
 import { cn } from '@/lib/utils'
 import { DEFAULT_IMAGE } from '@/consts/misc'
+import { SquareBox } from '@/components/square-box'
 import React, { useEffect, useState } from 'react'
 import Image from 'next/image'
 
@@ -219,16 +220,19 @@ export function DialogMultiSelect(props: DialogMultiSelectProps) {
                         >
                           <div className='flex items-center gap-2'>
                             {option.src && (
-                              <figure className='size-14 aspect-square p-1 rounded-md bg-secondary overflow-hidden'>
+                              <SquareBox
+                                size='sm'
+                                className='bg-secondary overflow-hidden'
+                              >
                                 <Image
                                   src={option.src}
                                   alt={option.label}
                                   width={720}
                                   height={720}
                                   priority
-                                  className='size-full object-cover'
+                                  className='size-full object-contain'
                                 />
-                              </figure>
+                              </SquareBox>
                             )}
                             <span>{option.label}</span>
                           </div>

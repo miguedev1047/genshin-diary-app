@@ -6,6 +6,7 @@ import { Materials } from '@prisma/client'
 import { ColumnDef } from '@tanstack/react-table'
 import Image from 'next/image'
 import parse from 'html-react-parser'
+import { MaterialDescription } from '../material-description'
 
 export const materialColumns: ColumnDef<Materials>[] = [
   {
@@ -21,7 +22,7 @@ export const materialColumns: ColumnDef<Materials>[] = [
             width={128}
             height={128}
             alt={name}
-            className='size-full object-cover'
+            className='size-full object-contain'
           />
         </SquareBox>
       )
@@ -42,11 +43,7 @@ export const materialColumns: ColumnDef<Materials>[] = [
     cell: ({ row }) => {
       const { description } = row.original
 
-      return (
-        <div className='text-pretty opacity-70'>
-          {parse(description, PARSE_OPTIONS)}
-        </div>
-      )
+      return <MaterialDescription description={description} />
     },
   },
 ]
