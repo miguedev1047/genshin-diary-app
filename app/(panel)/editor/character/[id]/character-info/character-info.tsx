@@ -29,65 +29,58 @@ export function CharacterInfo() {
   return (
     <EditorCard
       title='Informacion del personaje'
+      className='grid grid-cols-5 gap-4'
       renderForm={<CharacterInfoForm />}
     >
-      <div className='grid grid-cols-5 gap-4'>
-        <div className='col-span-1'>
-          <SquareBox
-            size='full'
-            className='aspect-square bg-secondary'
-          >
+      <div className='col-span-1 flex items-center flex-col gap-4'>
+        <SquareBox
+          size='full'
+          className='aspect-square bg-secondary'
+        >
+          <Image
+            priority
+            src={CHARACTER?.images?.profile_image_url ?? DEFAULT_IMAGE}
+            alt={CHARACTER?.name ?? 'Personaje'}
+            width={1080}
+            height={1080}
+            className='object-cover size-full'
+          />
+        </SquareBox>
+        <ul className='flex items-center gap-1'>
+          {STARS.map((_, index) => (
+            <li key={index}>
+              <Star className='text-amber-500' />
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div className='col-span-4 space-y-5'>
+        <div className='flex items-center justify-between gap-4'>
+          <h2 className='text-6xl font-bold uppercase leading-none'>
+            {CHARACTER?.name}
+          </h2>
+
+          <div className='size-12'>
             <Image
-              priority
-              src={CHARACTER?.images?.profile_image_url ?? DEFAULT_IMAGE}
-              alt={CHARACTER?.name ?? 'Personaje'}
-              width={1080}
-              height={1080}
+              src={ELEMENT?.src ?? DEFAULT_IMAGE}
+              alt={ELEMENT?.label ?? 'Elemento'}
+              width={128}
+              height={128}
               className='object-cover size-full'
             />
-          </SquareBox>
+          </div>
         </div>
 
-        <div className='col-span-4 space-y-5'>
-          <div className='space-y-2'>
-            <h2 className='text-6xl font-bold uppercase leading-none'>
-              {CHARACTER?.name}
-            </h2>
-
-            <Badge
-              variant='secondary'
-              className='rounded-lg p-3 flex justify-between items-center gap-2'
-            >
-              <ul className='flex items-center gap-1'>
-                {STARS.map((_, index) => (
-                  <li key={index}>
-                    <Star className='text-amber-500' />
-                  </li>
-                ))}
-              </ul>
-
-              <div className='size-12'>
-                <Image
-                  src={ELEMENT?.src ?? DEFAULT_IMAGE}
-                  alt={ELEMENT?.label ?? 'Elemento'}
-                  width={128}
-                  height={128}
-                  className='object-cover size-full'
-                />
-              </div>
-            </Badge>
+        <div className='space-y-4'>
+          <div className='[&>p]:text-pretty text-sm opacity-70 tiptap'>
+            {parse(CHARACTER?.description ?? '', PARSE_OPTIONS)}
           </div>
 
-          <div className='space-y-2'>
-            <ul className='flex items-center gap-2 mb-4'>
-              <Badge>{ROLE}</Badge>
-              <Badge>{ATTRIBUTE}</Badge>
-              <Badge>{WEAPON}</Badge>
-            </ul>
-
-            <div className='tiptap text-sm md:text-base opacity-70'>
-              {parse(CHARACTER?.description ?? '', PARSE_OPTIONS)}
-            </div>
+          <div className='space-x-2'>
+            <Badge>{ROLE}</Badge>
+            <Badge>{ATTRIBUTE}</Badge>
+            <Badge>{WEAPON}</Badge>
           </div>
         </div>
       </div>

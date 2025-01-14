@@ -24,7 +24,7 @@ export async function createArtifact(data: z.infer<typeof ArtifactSchema>) {
   const ARTIFACT = await getArtifact(name)
 
   if (ARTIFACT) {
-    return { status: 403, message: 'Esta arma ya existe.' }
+    return { status: 403, message: 'Este artefacto ya existe.' }
   }
 
   try {

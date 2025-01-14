@@ -8,11 +8,11 @@ export function CharacterSelector(props: CharacterSelectorProps) {
 
   return (
     <DialogMultiSelect
+      defaultValue={value}
       items={ITEMS as never}
       placeholder='Buscar personaje'
-      maxCount={4}
       onValueChange={onChange}
-      defaultValue={value}
+      maxCount={4}
     />
   )
 }

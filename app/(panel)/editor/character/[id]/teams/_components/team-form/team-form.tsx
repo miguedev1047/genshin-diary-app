@@ -43,17 +43,17 @@ export function TeamForm() {
   })
 
   const handleSubmit = form.handleSubmit((values) => {
-    const MAX_CHARACTER_ITEMS = values.characters.length > MAX_CHARACTERS
+    const CHARACTER_ITEMS = values.characters.length > MAX_CHARACTERS
 
-    if (MAX_CHARACTER_ITEMS) {
+    if (CHARACTER_ITEMS) {
       return toast.error(
         `No puedes añadir más de ${MAX_CHARACTERS} personajes a un equipo.`
       )
     }
 
-    const MAX_TEAM_ITEMS = TEAMS.length >= MAX_TEAMS
+    const TEAM_ITEMS = TEAMS.length >= MAX_TEAMS
 
-    if (MAX_TEAM_ITEMS) {
+    if (TEAM_ITEMS) {
       return toast.error(`No puedes añadir más de ${MAX_TEAMS} equipos.`)
     }
 

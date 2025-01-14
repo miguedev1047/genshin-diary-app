@@ -4,10 +4,10 @@ import { useGetCharacter } from '@/app/(panel)/editor/character/[id]/provider'
 import { useGetTalents } from '@/features/queries/panel/use-talents'
 
 export function TalentSelector(props: MaterialSelectorProps) {
+  const { value, onChange } = props
+
   const { data: CHARACTER } = useGetCharacter()
   const { data: ITEMS } = useGetTalents()
-
-  const { value, onChange } = props
 
   const DISABLE_KEYS = CHARACTER?.talents.map((talent) => talent.id)
 
