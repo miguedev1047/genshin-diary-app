@@ -33,6 +33,7 @@ import { toast } from 'sonner'
 import { FormSheet } from '@/app/(panel)/_components/form-sheet'
 import { TextEditor } from '@/app/(panel)/_components/text-editor'
 import { Star } from 'lucide-react'
+import { ViewImageInput } from '@/app/(panel)/_components/view-image-input'
 
 export function WeaponInfoForm() {
   const [isPending, startTransition] = useTransition()
@@ -114,7 +115,7 @@ export function WeaponInfoForm() {
               <FormItem>
                 <FormLabel>URL de la imagen</FormLabel>
                 <FormControl>
-                  <Input
+                  <ViewImageInput
                     disabled={isPending}
                     placeholder='URL de la imagen'
                     {...field}

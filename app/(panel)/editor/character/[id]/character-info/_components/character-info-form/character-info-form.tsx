@@ -39,6 +39,7 @@ import { FormSheet } from '@/app/(panel)/_components/form-sheet'
 import { TextEditor } from '@/app/(panel)/_components/text-editor'
 import { Switch } from '@/components/ui/switch'
 import { DEFAULT_IMAGE } from '@/consts/misc'
+import { ViewImageInput } from '@/app/(panel)/_components/view-image-input'
 
 export function CharacterInfoForm() {
   const { data: CHARACTER } = useGetCharacter()
@@ -131,7 +132,7 @@ export function CharacterInfoForm() {
                     render={({ field }) => (
                       <FormItem>
                         <FormControl>
-                          <Input
+                          <ViewImageInput
                             disabled={isPending}
                             placeholder='URL de perfil'
                             {...field}
@@ -148,7 +149,7 @@ export function CharacterInfoForm() {
                     render={({ field }) => (
                       <FormItem>
                         <FormControl>
-                          <Input
+                          <ViewImageInput
                             disabled={isPending}
                             placeholder='URL del splash art'
                             {...field}

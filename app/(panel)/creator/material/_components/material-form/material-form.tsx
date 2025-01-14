@@ -30,6 +30,7 @@ import { toast } from 'sonner'
 import { TextEditor } from '@/app/(panel)/_components/text-editor'
 import { useGetMaterial } from '@/features/queries/panel/use-materiales'
 import { updateMaterial } from '@/app/(panel)/creator/material/_services/update'
+import { ViewImageInput } from '@/app/(panel)/_components/view-image-input'
 
 export function MaterialForm() {
   const [key, setKey] = useState(+new Date())
@@ -146,7 +147,7 @@ export function MaterialForm() {
                 <FormItem>
                   <FormLabel>URL de la imagen</FormLabel>
                   <FormControl>
-                    <Input
+                    <ViewImageInput
                       placeholder='URL de la imagen'
                       disabled={isPending}
                       {...field}

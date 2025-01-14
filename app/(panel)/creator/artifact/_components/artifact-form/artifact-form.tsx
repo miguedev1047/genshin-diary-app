@@ -33,6 +33,7 @@ import { TextEditor } from '@/app/(panel)/_components/text-editor'
 import { updateArtifact } from '@/app/(panel)/creator/artifact/_services/update'
 import { useGetArtifact } from '@/features/queries/panel/use-artifacts'
 import { toast } from 'sonner'
+import { ViewImageInput } from '@/app/(panel)/_components/view-image-input'
 
 export function ArtifactForm() {
   const [key, setKey] = useState(+new Date())
@@ -130,6 +131,7 @@ export function ArtifactForm() {
                   <FormLabel>Nombre</FormLabel>
                   <FormControl>
                     <Input
+                      disabled={isPending}
                       placeholder='Nombre del artefacto'
                       {...field}
                     />
@@ -146,7 +148,8 @@ export function ArtifactForm() {
                 <FormItem>
                   <FormLabel>URL de la imagen</FormLabel>
                   <FormControl>
-                    <Input
+                    <ViewImageInput
+                      disabled={isPending}
                       placeholder='URL de la imagen'
                       {...field}
                     />

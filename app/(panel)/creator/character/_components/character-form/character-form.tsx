@@ -34,8 +34,8 @@ import { useForm } from 'react-hook-form'
 import { Input } from '@/components/ui/input'
 import { FormCard } from '@/app/(panel)/_components/form-card'
 import { TextEditor } from '@/app/(panel)/_components/text-editor'
+import { ViewImageInput } from '@/app/(panel)/_components/view-image-input'
 import { toast } from 'sonner'
-import { Title } from '@/components/ui/title'
 
 export function CharacterForm() {
   const [isPending, startTranstion] = useTransition()
@@ -117,7 +117,7 @@ export function CharacterForm() {
                     render={({ field }) => (
                       <FormItem>
                         <FormControl>
-                          <Input
+                          <ViewImageInput
                             disabled={isPending}
                             placeholder='URL del icono'
                             {...field}
@@ -134,7 +134,7 @@ export function CharacterForm() {
                     render={({ field }) => (
                       <FormItem>
                         <FormControl>
-                          <Input
+                          <ViewImageInput
                             disabled={isPending}
                             placeholder='URL del splash art'
                             {...field}

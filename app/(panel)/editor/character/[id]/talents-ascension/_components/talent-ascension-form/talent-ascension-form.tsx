@@ -31,6 +31,8 @@ import { toast } from 'sonner'
 import { SpinLoaderInput } from '@/components/spin-loaders'
 import { TalentSelector } from '@/app/(panel)/editor/character/[id]/talents-ascension/_components/talent-selector'
 
+const MAX_MATERIALS = 4
+
 export function TalentAscensionForm() {
   const [isPending, startTransition] = useTransition()
 
@@ -51,6 +53,12 @@ export function TalentAscensionForm() {
   })
 
   const handleSubmit = form.handleSubmit((values) => {
+    const ASCENSION_ITEMS = values.materials.length > MAX_MATERIALS
+
+    if (ASCENSION_ITEMS) {
+      return toast.error(`No puedes añadir mas de ${MAX_MATERIALS} materiales!`)
+    }
+
     startTransition(async () => {
       const { message, status } = await createTalentAscension(
         values,

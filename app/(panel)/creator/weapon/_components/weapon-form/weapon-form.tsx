@@ -31,6 +31,7 @@ import { useTransition } from 'react'
 import { useForm } from 'react-hook-form'
 import { useRouter } from 'next/navigation'
 import { toast } from 'sonner'
+import { ViewImageInput } from '@/app/(panel)/_components/view-image-input'
 
 export function WeaponForm() {
   const [isPending, startTranstion] = useTransition()
@@ -107,7 +108,7 @@ export function WeaponForm() {
                 <FormItem>
                   <FormLabel>URL de la imagen</FormLabel>
                   <FormControl>
-                    <Input
+                    <ViewImageInput
                       disabled={isPending}
                       placeholder='URL de la imagen'
                       {...field}
