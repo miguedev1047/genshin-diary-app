@@ -6,9 +6,8 @@ import { cn } from '@/lib/utils'
 import { PAGE_NAME, REACT_SCAN } from '@/consts/misc'
 import { DEV_MODE } from '@/consts/misc'
 import NextTopLoader from 'nextjs-toploader'
-import '@/styles/styles.css'
-import { AuthProvider } from '@/features/providers/auth-provider'
 import { AuthWrapper } from '@/features/providers/auth-provider/auth.wrapper'
+import '@/styles/styles.css'
 
 const onest = Onest({ subsets: ['latin'] })
 
