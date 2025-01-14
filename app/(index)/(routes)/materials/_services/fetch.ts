@@ -19,11 +19,10 @@ function filterMaterials(materials: Array<Materials>, filters: Props) {
 export async function getMaterials(props: Props) {
   try {
     const MATERIALS = await db.materials.findMany({
-      orderBy: [{ rarity: 'desc' }, { name: 'asc' }, { date_created: 'desc' }],
+      orderBy: [{ date_created: 'desc' }, { rarity: 'desc' }, { name: 'asc' }],
     })
 
     const FILTERED_MATERIALS = filterMaterials(MATERIALS, { ...props })
-
     return FILTERED_MATERIALS
   } catch (error) {
     return null

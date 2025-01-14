@@ -24,12 +24,11 @@ export async function getArtifacts(props: Props) {
 
   try {
     const ARTIFACTS = await db.artifacts.findMany({
-      orderBy: [{ name: 'asc' }, { date_created: 'desc' }],
+      orderBy: [{ rarity: 'desc' }, { name: 'asc' }, { date_created: 'desc' }],
     })
 
     const FILTERED_ARTIFACTS = filterArtifacts(ARTIFACTS, { ...props })
     return FILTERED_ARTIFACTS
-
   } catch (error) {
     return null
   }
