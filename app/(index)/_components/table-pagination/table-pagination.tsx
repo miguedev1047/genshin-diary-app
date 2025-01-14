@@ -18,7 +18,6 @@ export function TablePagination<TData>(props: TablePaginationProps<TData>) {
     <div className='flex items-center justify-between w-full space-x-4 py-2'>
       <div className='flex items-center gap-2'>
         <Select
-          
           value={table.getState().pagination.pageSize.toString()}
           onValueChange={(value) => {
             table.setPageSize(Number(value))
@@ -48,6 +47,7 @@ export function TablePagination<TData>(props: TablePaginationProps<TData>) {
           size='sm'
           onClick={() => table.previousPage()}
           disabled={!table.getCanPreviousPage()}
+          className='select-none'
         >
           Atras
         </Button>
@@ -62,6 +62,7 @@ export function TablePagination<TData>(props: TablePaginationProps<TData>) {
           size='sm'
           onClick={() => table.nextPage()}
           disabled={!table.getCanNextPage()}
+          className='select-none'
         >
           Siguiente
         </Button>
