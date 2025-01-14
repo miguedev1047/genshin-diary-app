@@ -298,14 +298,14 @@ export const MATERIAL_TYPES = [
     name: 'material_talent',
   },
   {
-    value: 'MATERIAL_UPGRADE_WEAPON',
-    label: 'Mejora de arma',
-    name: 'material_upgrade_weapon',
+    value: 'WEAPON_MATERIAL',
+    label: 'Material de arma',
+    name: 'weapon_material',
   },
   {
-    value: 'MATERIAL_UPGRADE_CHARACTER',
-    label: 'Mejora de personaje',
-    name: 'material_upgrade_character',
+    value: 'UPGRADE_MATERIAL',
+    label: 'Material de mejora',
+    name: 'upgrade_material',
   },
 ]
 
