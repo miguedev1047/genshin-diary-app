@@ -1,20 +1,56 @@
-import { Badge } from '@/components/ui/badge'
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from '@/components/ui/tooltip'
 import { Navbar } from '@/app/(index)/_components/navbar'
 import { Logo } from '@/app/(index)/_components/logo'
+import { currentRole } from '@/data/auth'
+import { Button } from '@/components/ui/button'
+import { User2 } from 'lucide-react'
+import Link from 'next/link'
 
 export function Header() {
   return (
     <header className='sticky top-0 w-full bg-background/95 shadow backdrop-blur supports-[backdrop-filter]:bg-background/60 dark:shadow-secondary px-16 z-40'>
-      <div className='max-w-7xl mx-auto flex h-16 items-center '>
-        <nav className='flex flex-grow basis-0 items-center gap-3'>
+      <div className='max-w-7xl mx-auto flex h-16 items-center justify-between'>
+        <nav className='flex flex-grow basis-0'>
           <Logo />
-          <Badge>Beta</Badge>
         </nav>
 
         <Navbar />
 
-        
+        <nav className='flex flex-grow basis-0 justify-end'>
+          <PanelButton />
+        </nav>
       </div>
     </header>
+  )
+}
+
+async function PanelButton() {
+  const ROLE = await currentRole()
+  if (ROLE === 'USER') return null
+
+  return (
+    <TooltipProvider>
+      <Tooltip>
+        <TooltipTrigger asChild>
+          <Button
+            size='icon'
+            variant='outline'
+            asChild
+          >
+            <Link href='/panel'>
+              <User2 />
+            </Link>
+          </Button>
+        </TooltipTrigger>
+        <TooltipContent>
+          <p>Ir al panel</p>
+        </TooltipContent>
+      </Tooltip>
+    </TooltipProvider>
   )
 }
