@@ -7,19 +7,14 @@ export async function GET(
   request: Request,
   { params }: { params: { id: string } }
 ) {
-  const TEAM_ID = params.id
+  const MATERIAL_ID = params.id
 
   try {
-    const TEAM = await db.team.findUnique({
-      where: { id: TEAM_ID },
-      include: {
-        characters: {
-          orderBy: [{ order: 'asc' }, { date_created: 'desc' }],
-        },
-      },
+    const TALENTS = await db.materials.findUnique({
+      where: { id: MATERIAL_ID },
     })
 
-    return NextResponse.json(TEAM, { status: 201 })
+    return NextResponse.json(TALENTS, { status: 201 })
   } catch (error) {
     return new NextResponse('Internal Server Error', { status: 404 })
   }
