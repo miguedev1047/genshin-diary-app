@@ -38,10 +38,7 @@ export function ArtifactItem(props: ArtifactItemProps) {
             >
               <Card className='size-full'>
                 {ARTIFACT_IMAGE && (
-                  <AspectRatio
-                    ratio={1 / 1}
-                    className='p-8'
-                  >
+                  <AspectRatio ratio={1 / 1}>
                     <Image
                       src={ARTIFACT_IMAGE!}
                       alt={name}
@@ -64,9 +61,9 @@ export function ArtifactItem(props: ArtifactItemProps) {
       <DeleteButton
         itemId={id}
         onDelete={deleteArtifact}
-        className='absolute z-40 bottom-3 right-3'
+        className='absolute z-40 bottom-2 right-2 size-8 !rounded-md'
       >
-        <Trash2 />
+        <Trash2 className='size-5' />
       </DeleteButton>
     </>
   )
