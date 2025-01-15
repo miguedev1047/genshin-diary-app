@@ -45,7 +45,7 @@ export function ArtifactItem(props: ArtifactItemProps) {
                     <Image
                       src={ARTIFACT_IMAGE!}
                       alt={name}
-                      width={720}
+                      width={1080}
                       height={1080}
                       priority
                       className='object-contain w-full h-full transition-all duration-300 ease-in-out [mask-image:linear-gradient(to_bottom,rgba(0,0,0,1),rgba(0,0,0,.1))] group-hover/item:[mask-image:linear-gradient(to_bottom,rgba(0,0,0,1),rgba(0,0,0,1))] group-hover/item:scale-110 group-hover/item:grayscale-0'

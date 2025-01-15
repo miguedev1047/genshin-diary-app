@@ -1,21 +1,16 @@
 'use client'
 
 import { MoraImg } from '@/assets/game'
-import { ColumnDef } from '@tanstack/react-table'
-import { MaterialItem } from '@/app/(panel)/editor/character/[id]/ascensions/_components/material-item'
-import { Ascension } from '@/app/(panel)/editor/character/[id]/ascensions'
 import { SquareBox } from '@/components/square-box'
-import { DeleteButton } from '@/app/(panel)/_components/delete-button'
-import { deleteAscension } from '@/app/(panel)/editor/character/[id]/ascensions/_services/delete'
-import { Trash2 } from 'lucide-react'
-import { SpinLoaderSquareCard } from '@/components/spin-loaders'
-import { Suspense } from 'react'
+import { ColumnDef } from '@tanstack/react-table'
+import { MaterialItem } from '@/app/(index)/(dynamic-routes)/character/[id]/ascensions/_components/material-item'
+import { AscensionProps } from '@/app/(index)/(dynamic-routes)/character/[id]/ascensions/_components/ascension-table/ascension.type'
 import Image from 'next/image'
 
-export const columns: ColumnDef<Ascension>[] = [
+export const ascensionColumns: ColumnDef<AscensionProps>[] = [
   {
     accessorKey: 'ascension',
-    header: 'Ascension',
+    header: 'Ascensiones',
     cell: ({ row }) => {
       const { ascension_level } = row.original
       const [_, LEVEL_NUMBER] = ascension_level.split('_')
@@ -71,28 +66,10 @@ export const columns: ColumnDef<Ascension>[] = [
         <ul className='flex items-center gap-2'>
           {materials.map((material) => (
             <li key={material.id}>
-              <Suspense fallback={<SpinLoaderSquareCard />}>
-                <MaterialItem {...material} />
-              </Suspense>
+              <MaterialItem {...material} />
             </li>
           ))}
         </ul>
-      )
-    },
-  },
-  {
-    accessorKey: 'actions',
-    header: 'Acciones',
-    cell: ({ row }) => {
-      const { id } = row.original
-
-      return (
-        <DeleteButton
-          itemId={id}
-          onDelete={deleteAscension}
-        >
-          <Trash2 />
-        </DeleteButton>
       )
     },
   },

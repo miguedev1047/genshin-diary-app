@@ -17,7 +17,7 @@ import {
 import { CharacterInfoProps } from '@/app/(index)/(dynamic-routes)/character/[id]/character-info/character-info.type'
 import { Title } from '@/components/ui/title'
 import { Badge } from '@/components/ui/badge'
-import { DEFAULT_IMAGE, PARSE_OPTIONS } from '@/consts/misc'
+import { DEFAULT_IMAGE } from '@/consts/misc'
 import { Star } from 'lucide-react'
 import { BlurImage } from '@/components/blur-image'
 import parse from 'html-react-parser'
@@ -84,7 +84,7 @@ export function CharacterInfo(props: CharacterInfoProps) {
         </div>
 
         <div className='tiptap opacity-70'>
-          {parse(CHARACTER.description, PARSE_OPTIONS)}
+          {parse(CHARACTER.description)}
         </div>
       </div>
 

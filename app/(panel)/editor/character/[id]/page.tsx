@@ -7,10 +7,10 @@ import {
   BreadcrumbSeparator,
 } from '@/components/ui/breadcrumb'
 import { redirect } from 'next/navigation'
-import { CharacterProvider } from '@/app/(panel)/editor/character/[id]/provider'
+import { CharacterProvider } from '@/features/providers/character-provider'
 import { PageProps } from '@/app/(panel)/editor/character/[id]/_shared/types'
 import { ContentLayout } from '@/app/(panel)/_components/content-layout'
-import { getCharacterByName } from '@/app/(panel)/editor/character/[id]/_shared/_services/fetch'
+import { getCharacterById } from '@/app/(panel)/editor/character/[id]/_shared/_services/fetch'
 import { AlertStatus } from '@/app/(panel)/editor/character/[id]/alert-status'
 import { CharacterInfo } from '@/app/(panel)/editor/character/[id]/character-info'
 import { Ascension } from '@/app/(panel)/editor/character/[id]/ascensions'
@@ -27,7 +27,7 @@ export default async function EditorCharacterPage(props: PageProps) {
   const { params } = props
 
   const CHARACTER_ID = params.id
-  const CHARACTER = await getCharacterByName(CHARACTER_ID)
+  const CHARACTER = await getCharacterById(CHARACTER_ID)
 
   if (!CHARACTER) return redirect('/panel/characters')
 

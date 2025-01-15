@@ -5,17 +5,17 @@ import {
   TooltipTrigger,
 } from '@/components/ui/tooltip'
 import { SquareBox } from '@/components/square-box'
-import { useGetMaterial } from '@/features/queries/index/use-materiales'
+import { useGetMaterial } from '@/features/queries/use-materiales'
 import { MaterialItemProps } from '@/app/(index)/(dynamic-routes)/character/[id]/ascension-talent/_components/material-item/material-item.type'
 import { SpinLoaderSquareCard } from '@/components/spin-loaders'
 import Image from 'next/image'
 
 export function MaterialItem(props: MaterialItemProps) {
   const { material_id, quantity } = props
+
   const { data: MATERIAL, status } = useGetMaterial(material_id)
-  
-    if (status === 'pending') return <SpinLoaderSquareCard />
-    if (status === 'error') return <SpinLoaderSquareCard />
+  if (status === 'pending') return <SpinLoaderSquareCard />
+  if (status === 'error') return <SpinLoaderSquareCard />
 
   return (
     <TooltipProvider>

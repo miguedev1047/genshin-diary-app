@@ -6,7 +6,7 @@ import { columns } from '@/app/(panel)/panel/accounts/_components/accounts-table
 import { AccountNoAccess } from '@/app/(panel)/panel/accounts/_components/account-no-access'
 import { currentRole } from '@/data/auth'
 import { User } from '@prisma/client'
-import { DataTable } from '@/components/data-tabla'
+import { DataTable } from '@/components/data-table'
 import { AccountsHeader } from '@/components/headers/accounts-header'
 
 export default async function AccountsPage() {

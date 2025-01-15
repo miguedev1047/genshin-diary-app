@@ -1,13 +1,17 @@
 import { Card, CardContent } from '@/components/ui/card'
 import { CharacterItemProps } from '@/app/(panel)/editor/character/[id]/teams/_components/character-item/character-item.type'
-import { useGetCharacter } from '@/features/queries/panel/use-characters'
+import { useGetCharacter } from '@/features/queries/use-characters'
 import { SortableList } from '@/app/(panel)/_components/sortable-list'
 import { ConstellationForm } from '@/app/(panel)/editor/character/[id]/teams/_components/constellation-form'
+import { SpinLoaderCard } from '@/components/spin-loaders'
 import { Badge } from '@/components/ui/badge'
 
 export function CharacterItem(props: CharacterItemProps) {
   const { character_id, id, constellation } = props
-  const { data: CHARACTER } = useGetCharacter(character_id)
+
+  const { data: CHARACTER, status } = useGetCharacter(character_id)
+  if (status === 'pending') return <SpinLoaderCard />
+  if (status === 'error') return <SpinLoaderCard />
 
   return (
     <Card className='select-none'>

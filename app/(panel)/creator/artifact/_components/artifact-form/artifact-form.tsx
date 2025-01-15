@@ -31,7 +31,7 @@ import { useForm } from 'react-hook-form'
 import { createArtifact } from '@/app/(panel)/creator/artifact/_services/create'
 import { TextEditor } from '@/app/(panel)/_components/text-editor'
 import { updateArtifact } from '@/app/(panel)/creator/artifact/_services/update'
-import { useGetArtifact } from '@/features/queries/panel/use-artifacts'
+import { useGetArtifact } from '@/features/queries/use-artifacts'
 import { toast } from 'sonner'
 import { ViewImageInput } from '@/app/(panel)/_components/view-image-input'
 

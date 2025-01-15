@@ -10,14 +10,18 @@ import {
   PopoverTrigger,
 } from '@/components/ui/popover'
 import { MaterialItemProps } from '@/app/(panel)/editor/character/[id]/ascensions/_components/material-item/material-item.type'
-import { useGetMaterial } from '@/features/queries/panel/use-materiales'
+import { useGetMaterial } from '@/features/queries/use-materiales'
 import { MaterialForm } from '@/app/(panel)/editor/character/[id]/ascensions/_components/material-form'
 import { SquareBox } from '@/components/square-box'
+import { SpinLoaderSquareCard } from '@/components/spin-loaders'
 import Image from 'next/image'
 
 export function MaterialItem(props: MaterialItemProps) {
   const { material_id, quantity } = props
-  const { data: MATERIAL } = useGetMaterial(material_id)
+
+  const { data: MATERIAL, status } = useGetMaterial(material_id)
+  if (status === 'pending') return <SpinLoaderSquareCard />
+  if (status === 'error') return <SpinLoaderSquareCard />
 
   return (
     <Popover>

@@ -2,10 +2,15 @@ import { StatsPriorityCardProps } from '@/app/(index)/(dynamic-routes)/character
 import { ViewCard } from '@/app/(index)/_components/view-card'
 import { Card, CardContent } from '@/components/ui/card'
 import { Title } from '@/components/ui/title'
-import { Crown, Hourglass,  Wine } from 'lucide-react'
+import { getStatPriorityText } from '@/features/utils/character-texts'
+import { Crown, Hourglass, Wine } from 'lucide-react'
 
 export function StatePriorityCard(props: StatsPriorityCardProps) {
   const { circlet_stat, globet_stat, sand_stat, order_priority } = props
+
+  const SANDS = getStatPriorityText('sands', sand_stat)
+  const GLOBET = getStatPriorityText('globet', globet_stat)
+  const CIRCLET = getStatPriorityText('circlet', circlet_stat)
 
   return (
     <ViewCard title='Mejores estadisticas'>
@@ -15,7 +20,7 @@ export function StatePriorityCard(props: StatsPriorityCardProps) {
             <Title className='flex items-center justify-between gap-2'>
               <article>
                 <span>Reloj: </span>
-                <span className='font-extrabold'>{sand_stat}</span>
+                <span className='font-extrabold'>{SANDS}</span>
               </article>
               <Hourglass />
             </Title>
@@ -27,7 +32,7 @@ export function StatePriorityCard(props: StatsPriorityCardProps) {
             <Title className='flex items-center justify-between gap-2'>
               <article>
                 <span>Copa: </span>
-                <span className='font-extrabold'>{globet_stat}</span>
+                <span className='font-extrabold'>{GLOBET}</span>
               </article>
               <Wine />
             </Title>
@@ -39,7 +44,7 @@ export function StatePriorityCard(props: StatsPriorityCardProps) {
             <Title className='flex items-center justify-between gap-2'>
               <article>
                 <span>Corona: </span>
-                <span className='font-extrabold'>{circlet_stat}</span>
+                <span className='font-extrabold'>{CIRCLET}</span>
               </article>
               <Crown />
             </Title>

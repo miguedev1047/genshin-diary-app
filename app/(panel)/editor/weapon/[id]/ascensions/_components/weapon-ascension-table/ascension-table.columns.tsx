@@ -8,15 +8,13 @@ import { Trash2 } from 'lucide-react'
 import { deleteWeaponAscension } from '@/app/(panel)/editor/weapon/[id]/ascensions/_services/delete'
 import { MaterialItem } from '@/app/(panel)/editor/weapon/[id]/ascensions/_components/material-item'
 import { SquareBox } from '@/components/square-box'
-import { Suspense } from 'react'
-import { SpinLoaderSquareCard } from '@/components/spin-loaders'
 import Image from 'next/image'
 
 type Ascension = Prisma.WeaponAscensionsGetPayload<{
   include: { materials: true }
 }>
 
-export const columns: ColumnDef<Ascension>[] = [
+export const ascensionWeaponColumns: ColumnDef<Ascension>[] = [
   {
     accessorKey: 'ascension',
     header: 'Ascensión',
@@ -75,9 +73,7 @@ export const columns: ColumnDef<Ascension>[] = [
         <ul className='flex items-center gap-2'>
           {materials.map((material) => (
             <li key={material.id}>
-              <Suspense fallback={<SpinLoaderSquareCard />}>
-                <MaterialItem {...material} />
-              </Suspense>
+              <MaterialItem {...material} />
             </li>
           ))}
         </ul>

@@ -4,7 +4,7 @@ import { Card } from '@/components/ui/card'
 import { AspectRatio } from '@/components/ui/aspect-ratio'
 import { getBorderColorByRarityHover } from '@/features/utils/rarity-color'
 import { formattedUrl } from '@/features/utils/formatted-names'
-import { useGetCharacter } from '@/features/queries/panel/use-characters'
+import { useGetCharacter } from '@/features/queries/use-characters'
 import { TierCharacterItemProps } from '@/app/(panel)/panel/tierlist/_components/tier-character-item/tier-character-item.type'
 import { deleteCharacterTier } from '@/app/(panel)/panel/tierlist/_services/delete'
 import { DeleteButton } from '@/app/(panel)/_components/delete-button'
@@ -12,17 +12,22 @@ import { Trash2 } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import Image from 'next/image'
 import Link from 'next/link'
+import { SpinAspectRatio } from '@/components/spin-loaders'
 
 export function TierCharacterItem(props: TierCharacterItemProps) {
   const { character_id, id } = props
 
-  const { data } = useGetCharacter(character_id)
+  const { data: CHARACTER, status } = useGetCharacter(character_id)
+  if (status === 'pending') return <SpinAspectRatio />
+  if (status === 'error') return <SpinAspectRatio />
 
-  const FORMATTED_NAME = formattedUrl(data.name)
+  if (!CHARACTER) return null
+
+  const FORMATTED_NAME = formattedUrl(CHARACTER.name)
   const URL = `/editor/character/${FORMATTED_NAME}`
 
-  const CHARACTER_SPLASH_ART = data.images?.splash_art_url
-  const RARITY_COLOR = getBorderColorByRarityHover(data.rarity)
+  const CHARACTER_SPLASH_ART = CHARACTER.images?.splash_art_url
+  const RARITY_COLOR = getBorderColorByRarityHover(CHARACTER.rarity)
 
   return (
     <>
@@ -41,7 +46,7 @@ export function TierCharacterItem(props: TierCharacterItemProps) {
             >
               <Image
                 src={CHARACTER_SPLASH_ART}
-                alt={data.name}
+                alt={CHARACTER.name}
                 width={720}
                 height={1080}
                 priority
@@ -51,7 +56,7 @@ export function TierCharacterItem(props: TierCharacterItemProps) {
           )}
 
           <p className='absolute top-0 uppercase text-xl font-extrabold opacity-50 group-hover/item:opacity-100 z-20 w-full m-3 p-1 line-clamp-1'>
-            {data.name}
+            {CHARACTER.name}
           </p>
         </Card>
       </Link>

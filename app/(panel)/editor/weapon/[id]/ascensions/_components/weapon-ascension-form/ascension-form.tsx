@@ -21,14 +21,13 @@ import { ASCENSION_LEVEL } from '@/consts/general'
 import { WeaponAscensionSchema } from '@/schemas'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { MaterialSelector } from '@/app/(panel)/editor/weapon/[id]/ascensions/_components/material-selector'
-import { Suspense, useState, useTransition } from 'react'
+import { useState, useTransition } from 'react'
 import { useForm } from 'react-hook-form'
 import { createWeaponAscension } from '@/app/(panel)/editor/weapon/[id]/ascensions/_services/create'
-import { useGetWeapon } from '@/app/(panel)/editor/weapon/[id]/provider'
+import { useGetWeapon } from '@/features/providers/weapon-provider'
 import { FormSheet } from '@/app/(panel)/_components/form-sheet'
 import { useRouter } from 'next/navigation'
 import { toast } from 'sonner'
-import { SpinLoaderInput } from '@/components/spin-loaders'
 
 export function WeaponAscensionForm() {
   const [isPending, startTransition] = useTransition()
@@ -126,9 +125,7 @@ export function WeaponAscensionForm() {
               <FormItem>
                 <FormLabel>Materiales</FormLabel>
                 <FormControl>
-                  <Suspense fallback={<SpinLoaderInput />}>
-                    <MaterialSelector {...field} />
-                  </Suspense>
+                  <MaterialSelector {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>

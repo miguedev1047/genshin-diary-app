@@ -4,7 +4,7 @@ import { getBorderColorByRarityHover } from '@/features/utils/rarity-color'
 import { CharacterItemProps } from '@/app/(index)/(dynamic-routes)/weapon/[id]/best-characters/_components/characters-item/characters-item.type'
 import { getElementIcon } from '@/features/utils/character-texts'
 import { SpinAspectRatio } from '@/components/spin-loaders'
-import { useGetCharacter } from '@/features/queries/index/use-characters'
+import { useGetCharacter } from '@/features/queries/use-characters'
 import { cn } from '@/lib/utils'
 import { Card } from '@/components/ui/card'
 import { AspectRatio } from '@/components/ui/aspect-ratio'
@@ -17,7 +17,6 @@ export function CharacterItem(props: CharacterItemProps) {
   const { character_id } = props
 
   const { data: CHARACTER, status } = useGetCharacter(character_id)
-
   if (status === 'pending') return <SpinAspectRatio />
   if (status === 'error') return <SpinAspectRatio />
 

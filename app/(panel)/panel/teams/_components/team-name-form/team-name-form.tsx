@@ -9,7 +9,7 @@ import { toast } from 'sonner'
 import { useState, useTransition } from 'react'
 import { Pencil } from 'lucide-react'
 import { updateTeamName } from '@/app/(panel)/panel/teams/_services/update'
-import { useGetTeams } from '@/features/queries/panel/use-teams'
+import { useGetTeams } from '@/features/queries/use-teams'
 
 export function TeamNameForm(props: TeamNameFormProps) {
   const { name, id } = props

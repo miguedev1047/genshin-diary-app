@@ -7,13 +7,13 @@ import {
 import { MaterialItemProps } from '@/app/(index)/(dynamic-routes)/character/[id]/ascensions/_components/material-item/material-item.type'
 import { SquareBox } from '@/components/square-box'
 import { SpinLoaderSquareCard } from '@/components/spin-loaders'
-import { useGetMaterial } from '@/features/queries/index/use-materiales'
+import { useGetMaterial } from '@/features/queries/use-materiales'
 import Image from 'next/image'
 
 export function MaterialItem(props: MaterialItemProps) {
   const { material_id, quantity } = props
+  
   const { data: MATERIAL, status } = useGetMaterial(material_id)
-
   if (status === 'pending') return <SpinLoaderSquareCard />
   if (status === 'error') return <SpinLoaderSquareCard />
 

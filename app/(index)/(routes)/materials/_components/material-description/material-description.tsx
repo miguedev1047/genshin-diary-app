@@ -1,8 +1,7 @@
 import { useState } from 'react'
 import { MaterialDescriptionProps } from './material-description.type'
-import parse from 'html-react-parser'
-import { PARSE_OPTIONS } from '@/consts/misc'
 import { cn } from '@/lib/utils'
+import parse from 'html-react-parser'
 
 const MAX_CHARS = 400
 
@@ -13,7 +12,7 @@ export function MaterialDescription(props: MaterialDescriptionProps) {
   const MAX_DESC = description.length > MAX_CHARS
 
   const DESC = description
-  const PARSE_DESC = parse(DESC, PARSE_OPTIONS)
+  const PARSE_DESC = parse(DESC)
 
   return (
     <div className='text-pretty opacity-70 max-w-[720px] w-full'>

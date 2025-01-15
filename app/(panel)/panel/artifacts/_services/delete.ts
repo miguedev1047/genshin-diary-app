@@ -11,6 +11,9 @@ export async function deleteArtifact(artifact_id: string) {
   }
 
   try {
+    await db.artifactCharacter.deleteMany({
+      where: { id: artifact_id },
+    })
     await db.artifacts.delete({
       where: { id: artifact_id },
     })

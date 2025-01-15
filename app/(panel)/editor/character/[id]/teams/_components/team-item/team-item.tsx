@@ -10,8 +10,6 @@ import { DeleteButton } from '@/app/(panel)/_components/delete-button'
 import { TeamNameForm } from '@/app/(panel)/editor/character/[id]/teams/_components/team-name-form'
 import { useDrag } from '@/features/hooks/use-drag'
 import { Trash2 } from 'lucide-react'
-import { SpinLoaderCard } from '@/components/spin-loaders'
-import { Suspense } from 'react'
 
 export function TeamItem(props: TeamItemProps) {
   const { characters, id } = props
@@ -45,9 +43,7 @@ export function TeamItem(props: TeamItemProps) {
           onDragEnd={handleDragEnd}
           renderItem={(item) => (
             <SortableList.Item id={item.id}>
-              <Suspense fallback={<SpinLoaderCard />}>
-                <CharacterItem {...item} />
-              </Suspense>
+              <CharacterItem {...item} />
             </SortableList.Item>
           )}
         />

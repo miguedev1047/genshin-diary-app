@@ -27,9 +27,8 @@ import { AscensionSchema } from '@/schemas'
 import { FormSheet } from '@/app/(panel)/_components/form-sheet'
 import { createAscension } from '@/app/(panel)/editor/character/[id]/ascensions/_services/create'
 import { useRouter } from 'next/navigation'
-import { Suspense, useState, useTransition } from 'react'
+import { useState, useTransition } from 'react'
 import { toast } from 'sonner'
-import { SpinLoaderInput } from '@/components/spin-loaders'
 
 const MAX_MATERIALS = 4
 
@@ -132,9 +131,7 @@ export function AscensionForm(props: AscensionsFormProps) {
               <FormItem>
                 <FormLabel>Seleccionar materiales</FormLabel>
                 <FormControl>
-                  <Suspense fallback={<SpinLoaderInput />}>
-                    <MaterialSelector {...field} />
-                  </Suspense>
+                  <MaterialSelector {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>

@@ -1,17 +1,21 @@
 import { Card, CardContent } from '@/components/ui/card'
 import { WeaponItemProps } from './weapon-item.type'
-import { useGetWeapon } from '@/features/queries/panel/use-weapons'
+import { useGetWeapon } from '@/features/queries/use-weapons'
 import { DEFAULT_IMAGE } from '@/consts/misc'
 import { SortableList } from '@/app/(panel)/_components/sortable-list'
 import { DeleteButton } from '@/app/(panel)/_components/delete-button'
 import { deleteWeapon } from '@/app/(panel)/editor/character/[id]/weapons/_services/delete'
 import { Trash2 } from 'lucide-react'
 import { SquareBox } from '@/components/square-box'
+import { SpinLoaderCard } from '@/components/spin-loaders'
 import Image from 'next/image'
 
 export function WeaponItem(props: WeaponItemProps) {
   const { weapon_id, id } = props
-  const { data: WEAPON } = useGetWeapon(weapon_id)
+
+  const { data: WEAPON, status } = useGetWeapon(weapon_id)
+  if (status === 'pending') return <SpinLoaderCard />
+  if (status === 'error') return <SpinLoaderCard />
 
   return (
     <Card className='select-none'>

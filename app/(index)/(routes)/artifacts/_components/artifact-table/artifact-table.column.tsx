@@ -1,7 +1,7 @@
 'use client'
 
 import { SquareBox } from '@/components/square-box'
-import { DEFAULT_IMAGE, PARSE_OPTIONS } from '@/consts/misc'
+import { DEFAULT_IMAGE } from '@/consts/misc'
 import { Artifacts } from '@prisma/client'
 import { ColumnDef } from '@tanstack/react-table'
 import Image from 'next/image'
@@ -44,7 +44,7 @@ export const artifactColumns: ColumnDef<Artifacts>[] = [
 
       return (
         <div className='text-pretty opacity-70'>
-          {parse(bonus_description, PARSE_OPTIONS)}
+          {parse(bonus_description)}
         </div>
       )
     },

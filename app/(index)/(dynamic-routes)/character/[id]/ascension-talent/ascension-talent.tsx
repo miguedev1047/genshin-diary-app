@@ -1,6 +1,6 @@
 import { ViewCard } from '@/app/(index)/_components/view-card'
-import { DataTable } from '@/components/data-tabla'
-import { AscensionTalentsColumns } from '@/app/(index)/(dynamic-routes)/character/[id]/ascension-talent/_components/ascension-talent/ascension-talent.column'
+import { DataTable } from '@/components/data-table'
+import { ascensionTalentsColumns } from '@/app/(index)/(dynamic-routes)/character/[id]/ascension-talent/_components/ascension-talent-table/ascension-talent-table.column'
 import { AscensionTalentsProps } from '@/app/(index)/(dynamic-routes)/character/[id]/ascension-talent/ascension-talent.type'
 
 export function AscensionTalents(props: AscensionTalentsProps) {
@@ -12,7 +12,7 @@ export function AscensionTalents(props: AscensionTalentsProps) {
       <ViewCard title='Mejora de talentos'>
         <DataTable
           data={ASCENSION_TALENTS}
-          columns={AscensionTalentsColumns}
+          columns={ascensionTalentsColumns}
         />
       </ViewCard>
     </div>

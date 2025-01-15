@@ -4,14 +4,18 @@ import { DEFAULT_IMAGE } from '@/consts/misc'
 import { SortableList } from '@/app/(panel)/_components/sortable-list'
 import { DeleteButton } from '@/app/(panel)/_components/delete-button'
 import { deleteArtifact } from '@/app/(panel)/editor/character/[id]/artifacts/_services/delete'
-import { useGetArtifact } from '@/features/queries/panel/use-artifacts'
+import { useGetArtifact } from '@/features/queries/use-artifacts'
 import { Trash2 } from 'lucide-react'
+import { SpinLoaderCard } from '@/components/spin-loaders'
 import { SquareBox } from '@/components/square-box'
 import Image from 'next/image'
 
 export function ArtifactItem(props: ArtifactItemProps) {
   const { artifact_id, id } = props
-  const { data: ARTIFACT } = useGetArtifact(artifact_id)
+
+  const { data: ARTIFACT, status } = useGetArtifact(artifact_id)
+  if (status === 'pending') return <SpinLoaderCard />
+  if (status === 'error') return <SpinLoaderCard />
 
   return (
     <Card className='select-none'>

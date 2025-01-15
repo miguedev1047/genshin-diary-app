@@ -8,11 +8,9 @@ import { TalentAscensionProps } from '@/app/(panel)/editor/character/[id]/talent
 import { MaterialItem } from '@/app/(panel)/editor/character/[id]/talents-ascension/_components/material-item'
 import { deleteTalentAscension } from '@/app/(panel)/editor/character/[id]/talents-ascension/_services/delete'
 import { SquareBox } from '@/components/square-box'
-import { SpinLoaderSquareCard } from '@/components/spin-loaders'
-import { Suspense } from 'react'
 import Image from 'next/image'
 
-export const columns: ColumnDef<TalentAscensionProps>[] = [
+export const talentAscensionColumns: ColumnDef<TalentAscensionProps>[] = [
   {
     accessorKey: 'ascension',
     header: 'Ascensión',
@@ -71,9 +69,7 @@ export const columns: ColumnDef<TalentAscensionProps>[] = [
         <ul className='flex items-center gap-2'>
           {materials.map((material) => (
             <li key={material.id}>
-              <Suspense fallback={<SpinLoaderSquareCard />}>
-                <MaterialItem {...material} />
-              </Suspense>
+              <MaterialItem {...material} />
             </li>
           ))}
         </ul>

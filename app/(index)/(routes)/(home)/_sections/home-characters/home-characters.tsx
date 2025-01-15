@@ -10,9 +10,12 @@ import { CharacterRoutes } from '@/app/(index)/(routes)/(home)/_components/chara
 
 export function HomeCharacters(props: HomeCharactersProps) {
   const { data: CHARACTERS } = props
-  
+
   return (
-    <section className='relative mx-auto max-w-[1440px] px-4 md:px-8'>
+    <section
+      id='characters'
+      className='relative mx-auto max-w-[1440px] px-4 md:px-8'
+    >
       <FocalLight />
 
       <Card className='relative overflow-hidden'>

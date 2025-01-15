@@ -37,7 +37,7 @@ export function WeaponName(props: WeaponNameProps) {
         </div>
       </div>
 
-      <h2 className='text-2xl leading-none'>
+      <h2 className='text-xl leading-none'>
         ATQ Base: <span className='font-bold'>{ATTACK_BASE}</span>
       </h2>
 

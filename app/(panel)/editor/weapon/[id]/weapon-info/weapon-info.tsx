@@ -9,8 +9,8 @@ import { EditorCard } from '@/app/(panel)/_components/editor-card'
 import { WeaponInfoForm } from '@/app/(panel)/editor/weapon/[id]/weapon-info/_components/weapon-info-form'
 import { Badge } from '@/components/ui/badge'
 import { Star } from 'lucide-react'
-import { DEFAULT_IMAGE, NONE, PARSE_OPTIONS } from '@/consts/misc'
-import { useGetWeapon } from '@/app/(panel)/editor/weapon/[id]/provider'
+import { DEFAULT_IMAGE, NONE } from '@/consts/misc'
+import { useGetWeapon } from '@/features/providers/weapon-provider'
 import { SquareBox } from '@/components/square-box'
 import { WeaponName } from '@/app/(panel)/editor/weapon/[id]/weapon-info/_components/weapon-name'
 import Image from 'next/image'
@@ -56,7 +56,7 @@ export function WeaponInfo() {
 
         <div className='space-y-4'>
           <div className='[&>p]:text-pretty text-sm opacity-70 tiptap'>
-            {parse(WEAPON?.passive_description ?? '', PARSE_OPTIONS)}
+            {parse(WEAPON?.passive_description ?? '')}
           </div>
 
           <div className='space-x-2'>

@@ -1,12 +1,11 @@
 'use client'
 
 import { SquareBox } from '@/components/square-box'
-import { DEFAULT_IMAGE, PARSE_OPTIONS } from '@/consts/misc'
+import { DEFAULT_IMAGE } from '@/consts/misc'
 import { Materials } from '@prisma/client'
 import { ColumnDef } from '@tanstack/react-table'
+import { MaterialDescription } from '@/app/(index)/(routes)/materials/_components/material-description'
 import Image from 'next/image'
-import parse from 'html-react-parser'
-import { MaterialDescription } from '../material-description'
 
 export const materialColumns: ColumnDef<Materials>[] = [
   {

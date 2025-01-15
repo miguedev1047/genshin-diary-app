@@ -1,1 +1,1 @@
-export * from './ascension-table'
+export * from './ascension-table.columns'

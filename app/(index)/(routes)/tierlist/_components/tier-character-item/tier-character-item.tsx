@@ -3,7 +3,7 @@
 import { Card } from '@/components/ui/card'
 import { AspectRatio } from '@/components/ui/aspect-ratio'
 import { getBorderColorByRarityHover } from '@/features/utils/rarity-color'
-import { useGetCharacter } from '@/features/queries/index/use-characters'
+import { useGetCharacter } from '@/features/queries/use-characters'
 import { TierCharacterItemProps } from '@/app/(index)/(routes)/tierlist/_components/tier-character-item/tier-character-item.type'
 import { cn } from '@/lib/utils'
 import { SpinAspectRatio } from '@/components/spin-loaders'

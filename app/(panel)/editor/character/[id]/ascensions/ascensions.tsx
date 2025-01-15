@@ -2,10 +2,10 @@
 
 import { EditorCard } from '@/app/(panel)/_components/editor-card'
 import { AscensionForm } from '@/app/(panel)/editor/character/[id]/ascensions/_components/ascension-form'
-import { columns } from '@/app/(panel)/editor/character/[id]/ascensions/_components/ascension-table/ascension-columns'
+import { ascensionColumns } from '@/app/(panel)/editor/character/[id]/ascensions/_components/ascension-table/ascension.columns'
 import { Prisma } from '@prisma/client'
-import { useGetCharacter } from '@/app/(panel)/editor/character/[id]/provider'
-import { DataTable } from '@/components/data-tabla'
+import { useGetCharacter } from '@/features/providers/character-provider'
+import { DataTable } from '@/components/data-table'
 
 export type Ascension = Prisma.AscensionCharacterGetPayload<{
   include: { materials: true }
@@ -21,7 +21,7 @@ export function Ascension() {
       renderForm={<AscensionForm data={CHARACTER} />}
     >
       <DataTable
-        columns={columns}
+        columns={ascensionColumns}
         data={ASCENSIONS}
       />
     </EditorCard>

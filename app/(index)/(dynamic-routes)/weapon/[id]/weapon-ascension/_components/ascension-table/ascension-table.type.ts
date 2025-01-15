@@ -1,5 +1,5 @@
 import { Prisma } from '@prisma/client'
 
-export type Ascension = Prisma.WeaponAscensionsGetPayload<{
+export type AscensionProps = Prisma.WeaponAscensionsGetPayload<{
   include: { materials: true }
 }>

@@ -3,11 +3,11 @@
 import { MoraImg } from '@/assets/game'
 import { ColumnDef } from '@tanstack/react-table'
 import { SquareBox } from '@/components/square-box'
-import { Ascension } from '@/app/(index)/(dynamic-routes)/weapon/[id]/weapon-ascension/_components/ascension-table/ascension-table.type'
+import { AscensionProps } from '@/app/(index)/(dynamic-routes)/weapon/[id]/weapon-ascension/_components/ascension-table/ascension-table.type'
 import { MaterialItem } from '@/app/(index)/(dynamic-routes)/weapon/[id]/weapon-ascension/_components/material-item'
 import Image from 'next/image'
 
-export const ascensionColumns: ColumnDef<Ascension>[] = [
+export const ascensionColumns: ColumnDef<AscensionProps>[] = [
   {
     accessorKey: 'ascension',
     header: 'Ascensión',

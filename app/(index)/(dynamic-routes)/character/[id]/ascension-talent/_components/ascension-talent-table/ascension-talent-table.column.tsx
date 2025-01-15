@@ -2,16 +2,12 @@
 
 import { MoraImg } from '@/assets/game'
 import { SquareBox } from '@/components/square-box'
-import { Prisma } from '@prisma/client'
 import { ColumnDef } from '@tanstack/react-table'
 import { MaterialItem } from '@/app/(index)/(dynamic-routes)/character/[id]/ascension-talent/_components/material-item'
+import { AscensionTalentProps } from '@/app/(index)/(dynamic-routes)/character/[id]/ascension-talent/_components/ascension-talent-table/ascension-talent.type'
 import Image from 'next/image'
 
-export type AscensionTalents = Prisma.TalentsAscensionCharacterGetPayload<{
-  include: { materials: true }
-}>
-
-export const AscensionTalentsColumns: ColumnDef<AscensionTalents>[] = [
+export const ascensionTalentsColumns: ColumnDef<AscensionTalentProps>[] = [
   {
     accessorKey: 'ascension',
     header: 'Ascensiones',

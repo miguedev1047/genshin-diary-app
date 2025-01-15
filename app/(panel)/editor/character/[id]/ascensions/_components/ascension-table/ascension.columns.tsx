@@ -1,20 +1,17 @@
-'use client'
-
 import { MoraImg } from '@/assets/game'
-import { SquareBox } from '@/components/square-box'
-import { Prisma } from '@prisma/client'
 import { ColumnDef } from '@tanstack/react-table'
-import { MaterialItem } from '../material-item'
+import { MaterialItem } from '@/app/(panel)/editor/character/[id]/ascensions/_components/material-item'
+import { Ascension } from '@/app/(panel)/editor/character/[id]/ascensions'
+import { SquareBox } from '@/components/square-box'
+import { DeleteButton } from '@/app/(panel)/_components/delete-button'
+import { deleteAscension } from '@/app/(panel)/editor/character/[id]/ascensions/_services/delete'
+import { Trash2 } from 'lucide-react'
 import Image from 'next/image'
 
-export type Ascensions = Prisma.AscensionCharacterGetPayload<{
-  include: { materials: true }
-}>
-
-export const AscensionsColumns: ColumnDef<Ascensions>[] = [
+export const ascensionColumns: ColumnDef<Ascension>[] = [
   {
     accessorKey: 'ascension',
-    header: 'Ascensiones',
+    header: 'Ascension',
     cell: ({ row }) => {
       const { ascension_level } = row.original
       const [_, LEVEL_NUMBER] = ascension_level.split('_')
@@ -74,6 +71,22 @@ export const AscensionsColumns: ColumnDef<Ascensions>[] = [
             </li>
           ))}
         </ul>
+      )
+    },
+  },
+  {
+    accessorKey: 'actions',
+    header: 'Acciones',
+    cell: ({ row }) => {
+      const { id } = row.original
+
+      return (
+        <DeleteButton
+          itemId={id}
+          onDelete={deleteAscension}
+        >
+          <Trash2 />
+        </DeleteButton>
       )
     },
   },

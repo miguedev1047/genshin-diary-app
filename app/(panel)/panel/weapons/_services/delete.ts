@@ -11,10 +11,11 @@ export async function deleteWeapon(weapon_id: string) {
   }
 
   try {
+    await db.weaponCharacter.deleteMany({
+      where: { id: weapon_id },
+    })
     await db.weapons.delete({
-      where: {
-        id: weapon_id,
-      },
+      where: { id: weapon_id },
     })
 
     return { status: 201, message: 'Arma eliminada.' }

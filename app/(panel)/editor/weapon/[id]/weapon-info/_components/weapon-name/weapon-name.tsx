@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { useGetWeapon } from '@/app/(panel)/editor/weapon/[id]/provider'
+import { useGetWeapon } from '@/features/providers/weapon-provider'
 import { Switch } from '@/components/ui/switch'
 import { getAttributesText } from '@/features/utils/character-texts'
 
@@ -37,7 +37,7 @@ export function WeaponName() {
         </div>
       </div>
 
-      <h2 className='text-2xl leading-none'>
+      <h2 className='text-xl leading-none'>
         ATQ Base: <span className='font-bold'>{ATTACK_BASE}</span>
       </h2>
 

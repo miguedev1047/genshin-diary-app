@@ -1,7 +1,7 @@
 import { currentRole } from '@/data/auth'
 import { db } from '@/lib/db'
 
-export async function getCharacterByName(id: string) {
+export async function getCharacterById(id: string) {
   const CHARACTER_ID = id
 
   const ROLE = await currentRole()

@@ -1,7 +1,7 @@
 import { ViewCard } from '@/app/(index)/_components/view-card'
 import { AscensionsProps } from '@/app/(index)/(dynamic-routes)/character/[id]/ascensions/ascensions.type'
-import { AscensionsColumns } from '@/app/(index)/(dynamic-routes)/character/[id]/ascensions/_components/ascension-table/ascensions.column'
-import { DataTable } from '@/components/data-tabla'
+import { ascensionColumns } from '@/app/(index)/(dynamic-routes)/character/[id]/ascensions/_components/ascension-table/ascension.column'
+import { DataTable } from '@/components/data-table'
 
 export function Ascensions(props: AscensionsProps) {
   const { data } = props
@@ -12,7 +12,7 @@ export function Ascensions(props: AscensionsProps) {
       <ViewCard title='Ascensiones'>
         <DataTable
           data={ASCENSIONS}
-          columns={AscensionsColumns}
+          columns={ascensionColumns}
         />
       </ViewCard>
     </div>

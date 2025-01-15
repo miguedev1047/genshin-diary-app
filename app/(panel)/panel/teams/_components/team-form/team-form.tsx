@@ -11,14 +11,13 @@ import {
 import { z } from 'zod'
 import { Input } from '@/components/ui/input'
 import { TeamsCharacterSchema } from '@/schemas'
+import { useRouter } from 'next/navigation'
 import { FormSheet } from '@/app/(panel)/_components/form-sheet'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useRouter } from 'next/navigation'
-import { Suspense, useState, useTransition } from 'react'
+import { useState, useTransition } from 'react'
 import { useForm } from 'react-hook-form'
 import { CharacterSelector } from '@/app/(panel)/panel/teams/_components/character-selector'
 import { createTeam } from '@/app/(panel)/panel/teams/_services/create'
-import { SpinLoaderInput } from '@/components/spin-loaders'
 import { toast } from 'sonner'
 
 export function TeamForm() {
@@ -89,9 +88,7 @@ export function TeamForm() {
               <FormItem>
                 <FormLabel>Personajes</FormLabel>
                 <FormControl>
-                  <Suspense fallback={<SpinLoaderInput />}>
-                    <CharacterSelector {...field} />
-                  </Suspense>
+                  <CharacterSelector {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>

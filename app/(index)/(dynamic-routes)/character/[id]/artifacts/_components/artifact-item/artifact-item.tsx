@@ -5,14 +5,14 @@ import {
   HoverCardContent,
   HoverCardTrigger,
 } from '@/components/ui/hover-card'
-import { useGetArtifact } from '@/features/queries/index/use-artifacts'
-import { DEFAULT_IMAGE, PARSE_OPTIONS } from '@/consts/misc'
+import { useGetArtifact } from '@/features/queries/use-artifacts'
+import { DEFAULT_IMAGE } from '@/consts/misc'
 import { ArtifactItemProps } from '@/app/(index)/(dynamic-routes)/character/[id]/weapons/_components/weapon-item/weapon-item.type'
 import { SpinLoaderCard } from '@/components/spin-loaders'
 import { Title } from '@/components/ui/title'
 import { SquareBox } from '@/components/square-box'
 import { Card } from '@/components/ui/card'
-import { getBorderColorByRarity } from '@/features/utils/rarity-color'
+import { getBorderColorByRarityHover } from '@/features/utils/rarity-color'
 import { cn } from '@/lib/utils'
 import { Separator } from '@/components/ui/separator'
 import Image from 'next/image'
@@ -20,19 +20,19 @@ import parse from 'html-react-parser'
 
 export function ArtifactItem(props: ArtifactItemProps) {
   const { artifact_id } = props
-  const { data: ARTIFACT, status } = useGetArtifact(artifact_id)
 
+  const { data: ARTIFACT, status } = useGetArtifact(artifact_id)
   if (status === 'pending') return <SpinLoaderCard />
   if (status === 'error') return <SpinLoaderCard />
 
   if (!ARTIFACT) return null
 
-  const colorRarity = getBorderColorByRarity(ARTIFACT.rarity)
+  const STAR_COLOR = getBorderColorByRarityHover(ARTIFACT.rarity)
 
   return (
     <HoverCard>
       <HoverCardTrigger asChild>
-        <Card className={cn('flex items-center gap-4 p-4 border', colorRarity)}>
+        <Card className={cn('flex items-center gap-4 p-4 border transition duration-200 ease-in-out', STAR_COLOR)}>
           <SquareBox size='sm'>
             <Image
               src={ARTIFACT.image_url ?? DEFAULT_IMAGE}
@@ -63,7 +63,7 @@ export function ArtifactItem(props: ArtifactItemProps) {
           <Separator />
 
           <div className='tiptap opacity-70'>
-            {parse(ARTIFACT.bonus_description, PARSE_OPTIONS)}
+            {parse(ARTIFACT.bonus_description)}
           </div>
         </article>
       </HoverCardContent>

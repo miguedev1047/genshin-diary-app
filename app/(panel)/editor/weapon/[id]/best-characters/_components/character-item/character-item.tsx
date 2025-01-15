@@ -1,11 +1,11 @@
 import { CharacterItemProps } from '@/app/(panel)/editor/weapon/[id]/best-characters/_components/character-item/character-item.type'
-import { useGetCharacter } from '@/features/queries/panel/use-characters'
-import { Skeleton } from '@/components/ui/skeleton'
+import { useGetCharacter } from '@/features/queries/use-characters'
 import { formattedUrl } from '@/features/utils/formatted-names'
 import { Card } from '@/components/ui/card'
 import { getBorderColorByRarityHover } from '@/features/utils/rarity-color'
 import { AspectRatio } from '@/components/ui/aspect-ratio'
 import { deleteCharacter } from '@/app/(panel)/editor/weapon/[id]/best-characters/_services/delete'
+import { SpinAspectRatio } from '@/components/spin-loaders'
 import { DeleteButton } from '@/app/(panel)/_components/delete-button'
 import { Trash2 } from 'lucide-react'
 import { cn } from '@/lib/utils'
@@ -15,7 +15,9 @@ import Link from 'next/link'
 export function CharacterItem(props: CharacterItemProps) {
   const { character_id, id } = props
 
-  const { data: CHARACTER } = useGetCharacter(character_id)
+  const { data: CHARACTER, status } = useGetCharacter(character_id)
+  if (status === 'pending') return <SpinAspectRatio />
+  if (status === 'error') return <SpinAspectRatio />
 
   const FORMATTED_NAME = formattedUrl(CHARACTER?.name)
   const URL = `/editor/character/${FORMATTED_NAME}`

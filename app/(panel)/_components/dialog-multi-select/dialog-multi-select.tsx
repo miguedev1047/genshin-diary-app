@@ -33,7 +33,7 @@ import { Badge } from '@/components/ui/badge'
 import { cn } from '@/lib/utils'
 import { DEFAULT_IMAGE } from '@/consts/misc'
 import { SquareBox } from '@/components/square-box'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import Image from 'next/image'
 
 export function DialogMultiSelect(props: DialogMultiSelectProps) {
@@ -50,17 +50,21 @@ export function DialogMultiSelect(props: DialogMultiSelectProps) {
     maxCount = 3,
   } = props
 
-  const OPTIONS = items?.map((item) => {
-    return {
-      label: item.name,
-      value: item.id,
-      src:
-        item.images?.profile_image_url ||
-        item.image_url ||
-        item.images?.splash_art_url ||
-        DEFAULT_IMAGE,
-    }
-  })
+  const OPTIONS = useMemo(
+    () =>
+      items?.map((item) => {
+        return {
+          label: item.name,
+          value: item.id,
+          src:
+            item.images?.profile_image_url ||
+            item.image_url ||
+            item.images?.splash_art_url ||
+            DEFAULT_IMAGE,
+        }
+      }),
+    [items]
+  )
 
   const [selectedValues, setSelectedValues] = useState<string[]>(defaultValue)
   const [isDialogOpen, setIsDialogOpen] = useState(false)

@@ -19,7 +19,7 @@ import { useForm } from 'react-hook-form'
 import { createTierlist } from '@/app/(panel)/panel/tierlist/_services/create'
 import { toast } from 'sonner'
 import { TierlistFormProps } from '@/app/(panel)/panel/tierlist/_components/tierlist-form/tierlist-form.type'
-import { API_PANEL_PREFIX } from '@/consts/misc'
+import { API_PREFIX } from '@/consts/misc'
 import { fetcher } from '@/features/helpers/fetcher'
 import { updateTierlist } from '@/app/(panel)/panel/tierlist/_services/update'
 
@@ -42,7 +42,7 @@ export function TierlistForm(props: TierlistFormProps) {
   useEffect(() => {
     if (IS_EDITING) {
       startTransition(async () => {
-        const DATA = await fetcher(`${API_PANEL_PREFIX}/tierlist/id/${id}`)
+        const DATA = await fetcher(`${API_PREFIX}/tierlist/id/${id}`)
         if (!DATA) return
 
         form.setValue('tier_category', DATA.tier_category)

@@ -10,8 +10,8 @@ import {
 import { EditorCard } from '@/app/(panel)/_components/editor-card'
 import { Badge } from '@/components/ui/badge'
 import { Star } from 'lucide-react'
-import { DEFAULT_IMAGE, PARSE_OPTIONS } from '@/consts/misc'
-import { useGetCharacter } from '@/app/(panel)/editor/character/[id]/provider'
+import { DEFAULT_IMAGE } from '@/consts/misc'
+import { useGetCharacter } from '@/features/providers/character-provider'
 import { CharacterInfoForm } from '@/app/(panel)/editor/character/[id]/character-info/_components/character-info-form'
 import { SquareBox } from '@/components/square-box'
 import parse from 'html-react-parser'
@@ -74,7 +74,7 @@ export function CharacterInfo() {
 
         <div className='space-y-4'>
           <div className='[&>p]:text-pretty text-sm opacity-70 tiptap'>
-            {parse(CHARACTER?.description ?? '', PARSE_OPTIONS)}
+            {parse(CHARACTER?.description ?? '')}
           </div>
 
           <div className='space-x-2'>

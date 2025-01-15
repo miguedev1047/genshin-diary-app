@@ -3,7 +3,7 @@ import { SortableList } from '@/app/(panel)/_components/sortable-list'
 import { useDrag } from '@/features/hooks/use-drag'
 import { TalentItem } from '@/app/(panel)/editor/character/[id]/skills/talents/_components/talent-item'
 import { updateTalentOrder } from '@/app/(panel)/editor/character/[id]/skills/talents/_services/update'
-import { useGetCharacter } from '@/app/(panel)/editor/character/[id]/provider'
+import { useGetCharacter } from '@/features/providers/character-provider'
 import { TalentsCharacter } from '@prisma/client'
 
 export function TalentList() {

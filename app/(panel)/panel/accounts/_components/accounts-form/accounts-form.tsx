@@ -30,7 +30,7 @@ import { toast } from 'sonner'
 import { createAccount } from '@/app/(panel)/panel/accounts/_services/create'
 import { updateAccount } from '@/app/(panel)/panel/accounts/_services/update'
 import { ACCOUNT_ROLE } from '@/consts/general'
-import { useGetAccount } from '@/features/queries/panel/use-accounts'
+import { useGetAccount } from '@/features/queries/use-accounts'
 
 export function AccountsForm(props: AccountsFormProps) {
   const { id } = props

@@ -1,7 +1,8 @@
 'use client'
 
+import { useGetCharacter } from '@/features/providers/character-provider'
 import { Eclipse } from 'lucide-react'
-import { useGetCharacter } from '@/app/(panel)/editor/character/[id]/provider'
+// import { useGetCharacter } from '@/features/providers/character-provider'
 
 export function AlertStatus() {
   const { data: CHARACTER } = useGetCharacter()

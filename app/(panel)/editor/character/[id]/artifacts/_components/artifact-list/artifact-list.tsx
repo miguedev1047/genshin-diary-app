@@ -2,11 +2,9 @@
 
 import { SortableList } from '@/app/(panel)/_components/sortable-list'
 import { ArtifactItem } from '@/app/(panel)/editor/character/[id]/artifacts/_components/artifact-item'
-import { useGetCharacter } from '@/app/(panel)/editor/character/[id]/provider'
+import { useGetCharacter } from '@/features/providers/character-provider'
 import { updateArtifacts } from '@/app/(panel)/editor/character/[id]/artifacts/_services/update'
 import { useDrag } from '@/features/hooks/use-drag'
-import { Suspense } from 'react'
-import { SpinLoaderCard } from '@/components/spin-loaders'
 
 export function ArtifactList() {
   const { data: CHARACTER } = useGetCharacter()
@@ -23,9 +21,7 @@ export function ArtifactList() {
       onDragEnd={handleDragEnd}
       renderItem={(item) => (
         <SortableList.Item id={item.id}>
-          <Suspense fallback={<SpinLoaderCard />}>
-            <ArtifactItem {...item} />
-          </Suspense>
+          <ArtifactItem {...item} />
         </SortableList.Item>
       )}
     />
