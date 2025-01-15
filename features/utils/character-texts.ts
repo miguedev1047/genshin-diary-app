@@ -1,4 +1,5 @@
 import {
+  ARTIFACTS_STATS,
   ATTRIBUTES,
   ELEMENTS,
   MATERIAL_TYPES,
@@ -65,6 +66,18 @@ export function getElementIcon(element: string | undefined) {
 export function getSkillTypeText(skillType: string | undefined) {
   const SKILL = SKILL_TYPE.find((item) => item.value === skillType)
   if (SKILL) return SKILL.label
+
+  return 'Indefinido'
+}
+
+export function getStatPriorityText(
+  type: 'circlet' | 'globet' | 'sands',
+  statPriority?: string
+) {
+  const STAT_PRIORITY = ARTIFACTS_STATS[type].find(
+    (item) => item.value === statPriority
+  )
+  if (STAT_PRIORITY) return STAT_PRIORITY.label
 
   return 'Indefinido'
 }
