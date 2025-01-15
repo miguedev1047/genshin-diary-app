@@ -209,6 +209,7 @@ export const ARTIFACTS_STATS = {
     { value: 'HEAL_BONUS', label: 'Bono de Curación' },
     { value: 'DMG_CRIT', label: 'Daño Crit.' },
     { value: 'CRIT_RATE', label: 'Prob. Crit.' },
+    { value: 'CRIT_RATE/DMG_CRIT', label: 'Prob. Crit. / Daño Crit.' },
   ],
 }
 
