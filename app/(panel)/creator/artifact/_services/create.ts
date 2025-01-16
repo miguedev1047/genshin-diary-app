@@ -5,6 +5,7 @@ import { ArtifactSchema } from '@/schemas'
 import { currentRole } from '@/data/auth'
 import { db } from '@/lib/db'
 import { getArtifact } from '@/app/(panel)/creator/artifact/_services/fetch'
+import { revalidatePath } from 'next/cache'
 
 export async function createArtifact(data: z.infer<typeof ArtifactSchema>) {
   const ROLE = await currentRole()
@@ -37,6 +38,7 @@ export async function createArtifact(data: z.infer<typeof ArtifactSchema>) {
       },
     })
 
+    revalidatePath('/artifacts')
     return { status: 201, message: 'Artefacto creado.' }
   } catch (error) {
     return { status: 500, message: 'Ocurrio un error.' }

@@ -4,6 +4,7 @@ import { z } from 'zod'
 import { ArtifactSchema } from '@/schemas'
 import { currentRole } from '@/data/auth'
 import { db } from '@/lib/db'
+import { revalidatePath } from 'next/cache'
 
 export async function updateArtifact(
   data: z.infer<typeof ArtifactSchema>,
@@ -34,6 +35,7 @@ export async function updateArtifact(
       },
     })
 
+    revalidatePath('/artifacts')
     return { status: 201, message: 'Cambios guardados.' }
   } catch (error) {
     return { status: 500, message: 'Ocurrio un error.' }

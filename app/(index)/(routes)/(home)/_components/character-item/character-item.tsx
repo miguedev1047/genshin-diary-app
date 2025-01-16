@@ -37,7 +37,7 @@ export function CharacterItem(props: CharacterItemProps) {
               alt={name}
               width={720}
               height={1080}
-              priority
+              loading='lazy'
               className='object-cover w-full h-full transition-all duration-300 ease-in-out dark:[mask-image:linear-gradient(to_bottom,rgba(0,0,0,1),rgba(0,0,0,.1))] group-hover/item:[mask-image:linear-gradient(to_bottom,rgba(0,0,0,1),rgba(0,0,0,1))] group-hover/item:scale-110 group-hover/item:grayscale-0'
             />
           </AspectRatio>

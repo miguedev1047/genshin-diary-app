@@ -19,7 +19,7 @@ export function VideoGuideCard(props: VideoGuideCardProps) {
     <ViewCard title='Video guia'>
       <article className='space-y-8'>
         <Title>
-          {youtuber_name} Video Guía por{' '}
+          Video Guía por{' '}
           <Link
             href={YOUTUBE_URL}
             className='text-sky-600 dark:text-sky-300 underline'

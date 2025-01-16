@@ -38,7 +38,7 @@ import { ViewImageInput } from '@/app/(panel)/_components/view-image-input'
 export function ArtifactForm() {
   const [key, setKey] = useState(+new Date())
   const [isPending, startTranstion] = useTransition()
-  const { refresh, push } = useRouter()
+  const { back } = useRouter()
 
   const params = useParams<{ id: string }>()
   const ITEM_ID = params?.id
@@ -76,9 +76,8 @@ export function ArtifactForm() {
 
         if (status === 201) {
           toast.success(message)
+          back()
 
-          push('/panel/artifacts')
-          refresh()
           return
         }
 
@@ -90,9 +89,8 @@ export function ArtifactForm() {
 
       if (status === 201) {
         toast.success(message)
+        back()
 
-        push('/panel/artifacts')
-        refresh()
         return
       }
 

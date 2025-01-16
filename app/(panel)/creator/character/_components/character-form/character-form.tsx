@@ -39,7 +39,7 @@ import { toast } from 'sonner'
 
 export function CharacterForm() {
   const [isPending, startTranstion] = useTransition()
-  const { refresh, push } = useRouter()
+  const { back } = useRouter()
 
   const form = useForm<z.infer<typeof CharacterSchema>>({
     resolver: zodResolver(CharacterSchema),
@@ -63,9 +63,8 @@ export function CharacterForm() {
 
       if (status === 201) {
         toast.success(message)
+        back()
 
-        push('/panel/characters')
-        refresh()
         return
       }
 

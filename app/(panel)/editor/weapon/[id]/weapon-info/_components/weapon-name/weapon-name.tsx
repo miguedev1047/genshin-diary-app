@@ -10,6 +10,7 @@ export function WeaponName() {
   const [isMaxView, setIsMaxView] = useState(false)
 
   const SECONDARY_STAT = getAttributesText(WEAPON?.secondary_stat)
+  const IS_ELEM_MASTERY = WEAPON?.secondary_stat !== 'ELEMENTAL_MASTERY'
 
   const ATTACK_BASE = isMaxView
     ? WEAPON?.max_base_attack
@@ -43,7 +44,9 @@ export function WeaponName() {
 
       <h2 className='text-xl leading-none'>
         {SECONDARY_STAT}:{' '}
-        <span className='font-bold'>{SECONDARY_STAT_BASE}%</span>
+        <span className='font-bold'>
+          {SECONDARY_STAT_BASE}{IS_ELEM_MASTERY && '%'}
+        </span> 
       </h2>
     </div>
   )

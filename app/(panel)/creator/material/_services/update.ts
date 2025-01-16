@@ -4,6 +4,7 @@ import { z } from 'zod'
 import { currentRole } from '@/data/auth'
 import { MaterialSchema } from '@/schemas'
 import { db } from '@/lib/db'
+import { revalidatePath } from 'next/cache'
 
 export async function updateMaterial(
   data: z.infer<typeof MaterialSchema>,
@@ -35,6 +36,7 @@ export async function updateMaterial(
       },
     })
 
+    revalidatePath('/materials')
     return { status: 201, message: 'Cambios guardados.' }
   } catch (error) {
     return { status: 500, message: 'Ocurrio un error.' }

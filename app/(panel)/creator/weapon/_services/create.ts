@@ -5,6 +5,7 @@ import { currentRole } from '@/data/auth'
 import { WeaponSchema } from '@/schemas'
 import { db } from '@/lib/db'
 import { getWeapon } from './fetch'
+import { revalidatePath } from 'next/cache'
 
 export async function createWeapon(data: z.infer<typeof WeaponSchema>) {
   const ROLE = await currentRole()
@@ -54,9 +55,9 @@ export async function createWeapon(data: z.infer<typeof WeaponSchema>) {
       },
     })
 
+    revalidatePath('/weapons')
     return { status: 201, message: 'Arma creada.' }
   } catch (error) {
-    console.log(error)
     return { status: 500, message: 'Ocurrio un error.' }
   }
 }

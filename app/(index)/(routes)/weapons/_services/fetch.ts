@@ -24,12 +24,16 @@ function filterWeapons(weapons: Array<Weapons>, filters: Props) {
 export async function getWeapons(props: Props) {
   try {
     const WEAPONS = await db.weapons.findMany({
-      orderBy: [{ rarity: 'desc' }, { name: 'asc' }, { date_created: 'desc' }],
+      orderBy: [
+        { rarity: 'desc' },
+        { type: 'asc' },
+        { name: 'asc' },
+        { date_created: 'desc' },
+      ],
     })
 
     const FILTERED_WEAPONS = filterWeapons(WEAPONS, { ...props })
     return FILTERED_WEAPONS
-
   } catch (error) {
     return null
   }

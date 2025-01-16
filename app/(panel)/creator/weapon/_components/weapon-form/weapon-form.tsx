@@ -35,7 +35,7 @@ import { ViewImageInput } from '@/app/(panel)/_components/view-image-input'
 
 export function WeaponForm() {
   const [isPending, startTranstion] = useTransition()
-  const { refresh, push } = useRouter()
+  const { back } = useRouter()
 
   const form = useForm<z.infer<typeof WeaponSchema>>({
     resolver: zodResolver(WeaponSchema),
@@ -59,9 +59,8 @@ export function WeaponForm() {
 
       if (status === 201) {
         toast.success(message)
-
-        push('/panel/weapons')
-        refresh()
+        back()
+        
         return
       }
 
@@ -180,7 +179,7 @@ export function WeaponForm() {
                         <SelectGroup>
                           <SelectLabel>Rareza</SelectLabel>
                           <SelectSeparator />
-                          {STARS.map(({ label, value }) => (
+                          {STARS.slice(0, 3).map(({ label, value }) => (
                             <SelectItem
                               key={value}
                               value={value}

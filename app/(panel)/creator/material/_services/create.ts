@@ -4,7 +4,8 @@ import { z } from 'zod'
 import { currentRole } from '@/data/auth'
 import { MaterialSchema } from '@/schemas'
 import { db } from '@/lib/db'
-import { getMaterial } from './fetch'
+import { getMaterial } from '@/app/(panel)/creator/material/_services/fetch'
+import { revalidatePath } from 'next/cache'
 
 export async function createMaterial(data: z.infer<typeof MaterialSchema>) {
   const ROLE = await currentRole()
@@ -38,6 +39,7 @@ export async function createMaterial(data: z.infer<typeof MaterialSchema>) {
       },
     })
 
+    revalidatePath('/materials')
     return { status: 201, message: 'Material creado.' }
   } catch (error) {
     console.log(error)

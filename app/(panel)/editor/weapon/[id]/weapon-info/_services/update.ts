@@ -34,8 +34,6 @@ export async function updateWeapon(
     rarity,
   } = data
 
-  console.log(data)
-
   try {
     await db.weapons.update({
       where: {

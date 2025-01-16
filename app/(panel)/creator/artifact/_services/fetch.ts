@@ -1,5 +1,3 @@
-'use server'
-
 import { currentRole } from '@/data/auth'
 import { db } from '@/lib/db'
 
