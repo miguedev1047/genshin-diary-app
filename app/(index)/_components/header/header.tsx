@@ -6,8 +6,8 @@ import {
 } from '@/components/ui/tooltip'
 import { Navbar } from '@/app/(index)/_components/navbar'
 import { Logo } from '@/app/(index)/_components/logo'
-import { currentRole } from '@/data/auth'
 import { Button } from '@/components/ui/button'
+import { auth } from '@/auth'
 import { User2 } from 'lucide-react'
 import Link from 'next/link'
 
@@ -30,8 +30,8 @@ export function Header() {
 }
 
 async function PanelButton() {
-  const ROLE = await currentRole()
-  if (ROLE === 'USER') return null
+  const SESSION = await auth()
+  if (!SESSION) return null
 
   return (
     <TooltipProvider>
