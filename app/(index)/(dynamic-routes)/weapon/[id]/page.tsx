@@ -1,5 +1,4 @@
 import BlurFade from '@/components/magicui/blur-fade'
-import { TracingBeam } from '@/components/ui/tracing-beam'
 import { PageProps } from '@/app/(index)/(dynamic-routes)/weapon/[id]/_types'
 import { getWeapon } from '@/app/(index)/(dynamic-routes)/weapon/[id]/_services/fetch'
 import { PAGE_NAME } from '@/consts/misc'
@@ -32,13 +31,11 @@ export default async function WeaponPage(props: PageProps) {
 
   return (
     <BlurFade delay={0.2}>
-      <TracingBeam className='px-6 max-w-full'>
-        <section className='space-y-16'>
-          <WeaponInfo data={WEAPON} />
-          <BestCharacter data={WEAPON} />
-          <WeaponAscension data={WEAPON} />
-        </section>
-      </TracingBeam>
+      <section className='space-y-16'>
+        <WeaponInfo data={WEAPON} />
+        <BestCharacter data={WEAPON} />
+        <WeaponAscension data={WEAPON} />
+      </section>
     </BlurFade>
   )
 }
