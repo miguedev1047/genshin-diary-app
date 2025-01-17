@@ -8,15 +8,40 @@ import {
 import { Separator } from '@/components/ui/separator'
 import { cn } from '@/lib/utils'
 import { ViewCardProps } from '@/app/(index)/_components/view-card/view-card.type'
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from '@/components/ui/popover'
+import { Button } from '@/components/ui/button'
+import { Info } from 'lucide-react'
 
 export function ViewCard(props: ViewCardProps) {
-  const { title, description, children, className } = props
+  const { title, description, children, className, helper = false } = props
 
   return (
     <Card className='relative overflow-clip'>
       <CardHeader>
         <div className='flex items-center justify-between gap-3'>
           <CardTitle className='h-10 flex items-center'>{title}</CardTitle>
+          {helper && (
+            <Popover>
+              <PopoverTrigger asChild>
+                <Button
+                  size='icon'
+                  variant='outline'
+                >
+                  <Info />
+                </Button>
+              </PopoverTrigger>
+              <PopoverContent>
+                <p>
+                  Esta configuración se basa en los artefactos y armas más
+                  utilizados por la comunidad.
+                </p>
+              </PopoverContent>
+            </Popover>
+          )}
         </div>
         {description && <CardDescription>{description}</CardDescription>}
       </CardHeader>

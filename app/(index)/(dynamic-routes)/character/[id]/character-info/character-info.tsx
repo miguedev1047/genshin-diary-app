@@ -51,7 +51,7 @@ export function CharacterInfo(props: CharacterInfoProps) {
             </BreadcrumbItem>
           </BreadcrumbList>
         </Breadcrumb>
-    
+
         <div className='space-y-3'>
           <div className='flex items-center gap-4'>
             <Title size='3xl'>{CHARACTER.name}</Title>
@@ -83,18 +83,16 @@ export function CharacterInfo(props: CharacterInfoProps) {
           <Badge>{ROLE}</Badge>
         </div>
 
-        <div className='tiptap opacity-70'>
-          {parse(CHARACTER.description)}
-        </div>
+        <div className='tiptap opacity-70'>{parse(CHARACTER.description)}</div>
       </div>
 
-      <figure className='w-[540px] h-[375px]'>
+      <figure className='w-[540px] h-[375px] overflow-hidden mask-linear mask-from-0 mask-via-100 mask-to-70'>
         <BlurImage
           src={CHARACTER.images?.splash_art_url ?? DEFAULT_IMAGE}
           alt={CHARACTER.name}
           width={1600}
           height={900}
-          className='size-full object-cover'
+          className='size-full object-cover mask-reach-[45%_180%] mask-via-85 mask-radial'
         />
       </figure>
     </div>

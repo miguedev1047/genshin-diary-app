@@ -134,7 +134,7 @@ export function TalentForm(props: TalentFormProps) {
               <FormItem>
                 <FormLabel>Nombre</FormLabel>
                 <FormControl>
-                  <ViewImageInput
+                  <Input
                     placeholder='Nombre del talento'
                     disabled={isPending}
                     {...field}
@@ -152,7 +152,7 @@ export function TalentForm(props: TalentFormProps) {
               <FormItem>
                 <FormLabel>URL de la imagen</FormLabel>
                 <FormControl>
-                  <Input
+                  <ViewImageInput
                     placeholder='URL de la imagen'
                     disabled={isPending}
                     {...field}
