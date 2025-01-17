@@ -217,6 +217,7 @@ export const ROLE = [
   { value: 'DPS', label: 'Main DPS' },
   { value: 'SUBDPS', label: 'Sub DPS' },
   { value: 'SUPPORT', label: 'Soporte' },
+  { value: 'NOT_DETERMINED', label: 'Sin determinar' },
 ]
 
 export const ACCOUNT_ROLE = [
