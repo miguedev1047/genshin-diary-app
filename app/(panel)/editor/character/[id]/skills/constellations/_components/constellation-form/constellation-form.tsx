@@ -35,6 +35,7 @@ import { DEFAULT_IMAGE } from '@/consts/misc'
 import { TextEditor } from '@/app/(panel)/_components/text-editor'
 import { Input } from '@/components/ui/input'
 import { toast } from 'sonner'
+import { ViewImageInput } from '@/app/(panel)/_components/view-image-input'
 
 const MAX_ITEMS = 6
 
@@ -151,7 +152,7 @@ export function ConstellationForm(props: ConstellationFormProps) {
               <FormItem>
                 <FormLabel>URL de la imagen</FormLabel>
                 <FormControl>
-                  <Input
+                  <ViewImageInput
                     placeholder='URL de la imagen'
                     disabled={isPending}
                     {...field}

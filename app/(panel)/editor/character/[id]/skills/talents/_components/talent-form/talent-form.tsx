@@ -35,6 +35,7 @@ import { getTalent } from '@/app/(panel)/editor/character/[id]/skills/talents/_s
 import { TalentFormProps } from '@/app/(panel)/editor/character/[id]/skills/talents/_components/talent-form/talent-form.type'
 import { updateTalent } from '@/app/(panel)/editor/character/[id]/skills/talents/_services/update'
 import { toast } from 'sonner'
+import { ViewImageInput } from '@/app/(panel)/_components/view-image-input'
 
 const MAX_ITEMS = 3
 
@@ -133,7 +134,7 @@ export function TalentForm(props: TalentFormProps) {
               <FormItem>
                 <FormLabel>Nombre</FormLabel>
                 <FormControl>
-                  <Input
+                  <ViewImageInput
                     placeholder='Nombre del talento'
                     disabled={isPending}
                     {...field}

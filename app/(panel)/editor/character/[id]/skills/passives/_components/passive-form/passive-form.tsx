@@ -35,8 +35,9 @@ import { getPassive } from '@/app/(panel)/editor/character/[id]/skills/passives/
 import { createPassive } from '@/app/(panel)/editor/character/[id]/skills/passives/_services/create'
 import { updatePassive } from '@/app/(panel)/editor/character/[id]/skills/passives/_services/update'
 import { toast } from 'sonner'
+import { ViewImageInput } from '@/app/(panel)/_components/view-image-input'
 
-const MAX_ITEMS = 3
+const MAX_ITEMS = 4
 
 export function PassiveForm(props: PassiveFormProps) {
   const { id } = props
@@ -151,7 +152,7 @@ export function PassiveForm(props: PassiveFormProps) {
               <FormItem>
                 <FormLabel>URL de la imagen</FormLabel>
                 <FormControl>
-                  <Input
+                  <ViewImageInput
                     placeholder='URL de la imagen'
                     disabled={isPending}
                     {...field}
