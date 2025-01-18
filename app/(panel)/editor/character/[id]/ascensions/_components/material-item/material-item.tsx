@@ -29,7 +29,7 @@ export function MaterialItem(props: MaterialItemProps) {
         <Tooltip>
           <PopoverTrigger asChild>
             <TooltipTrigger asChild>
-              <SquareBox className='cursor-pointer'>
+              <SquareBox className='cursor-pointer transition hover:scale-105 ease-in-out duration-300'>
                 <Image
                   priority
                   src={MATERIAL?.image_url}
