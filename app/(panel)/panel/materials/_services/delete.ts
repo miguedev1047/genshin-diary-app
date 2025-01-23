@@ -11,12 +11,10 @@ export async function deleteMaterial(material_id: string) {
   }
 
   try {
-    await db.materialCharacter.deleteMany({
-      where: { material_id },
-    })
     await db.weaponAscensionMaterials.deleteMany({
       where: { material_id },
     })
+    
     await db.materials.delete({
       where: { id: material_id },
     })
