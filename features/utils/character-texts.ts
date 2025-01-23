@@ -63,6 +63,13 @@ export function getElementIcon(element: string | undefined) {
   return null
 }
 
+export function getElementText(element: string | undefined) {
+  const ELEMENT = ELEMENTS.find((item) => item.value === element)
+  if (ELEMENT) return ELEMENT.label
+
+  return null
+}
+
 export function getSkillTypeText(skillType: string | undefined) {
   const SKILL = SKILL_TYPE.find((item) => item.value === skillType)
   if (SKILL) return SKILL.label
