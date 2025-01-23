@@ -69,7 +69,7 @@ export function TeamForm(props: TeamFormProps) {
     const CHARACTER_ITEMS = values.characters.length > MAX_CHARACTERS
     if (CHARACTER_ITEMS) return toast.error(ERR_CHARACTER_LIST)
 
-    const TEAM_ITEMS = TEAMS.length >= MAX_TEAMS
+    const TEAM_ITEMS = TEAMS.length > MAX_TEAMS
     if (TEAM_ITEMS) return toast.error(ERR_TEAM_LIST)
 
     startTransition(async () => {
