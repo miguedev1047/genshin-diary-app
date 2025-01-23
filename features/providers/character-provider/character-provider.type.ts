@@ -2,10 +2,12 @@ import { Prisma } from '@prisma/client'
 
 type CharacterProps = Prisma.CharactersGetPayload<{
   include: {
-    artifacts: { orderBy: { order: 'asc' } }
+    artifacts: {
+      orderBy: { order: 'asc' }
+      include: { artifact_set: { orderBy: { order: 'asc' } } }
+    }
     ascensions: { orderBy: { level: 'asc' }; include: { materials: true } }
     images: true
-    materials: true
     stats_priority: true
     video_guide: true
     weapons: { orderBy: { order: 'asc' } }
