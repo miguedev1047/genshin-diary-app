@@ -37,7 +37,7 @@ export async function generateMetadata(props: PageProps): Promise<Metadata> {
     openGraph: {
       images: [
         {
-          url: CHARACTER.images?.profile_image_url ?? DEFAULT_IMAGE,
+          url: CHARACTER.images?.splash_art_url ?? DEFAULT_IMAGE,
           width: 800,
           height: 600,
           alt: `Imagen de ${CHARACTER.name}`,
@@ -53,7 +53,8 @@ export default async function CharacterPage(props: PageProps) {
   const CHARACTER_ID = params.id
   const CHARACTER = await getCharacterById(CHARACTER_ID)
 
-  if (!CHARACTER) return redirect('/')
+  const IS_PUBLIC = CHARACTER?.is_public
+  if (!CHARACTER || !IS_PUBLIC) return redirect('/')
 
   return (
     <BlurFade delay={0.2}>
