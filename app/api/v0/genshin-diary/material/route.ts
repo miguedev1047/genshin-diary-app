@@ -6,6 +6,7 @@ export const dynamic = 'force-dynamic'
 export async function GET(request: NextRequest) {
   try {
     const MATERIALS = await db.materials.findMany({
+      orderBy: [{ date_created: 'asc' }, { rarity: 'desc' }, { name: 'asc' }],
       where: {
         OR: [
           { type: 'MATERIAL_UPGRADE' },
