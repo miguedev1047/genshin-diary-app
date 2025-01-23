@@ -3,7 +3,7 @@ import { PrismaLibSQL } from '@prisma/adapter-libsql'
 import { createClient } from '@libsql/client'
 
 const libsql = createClient({
-  url: `libsql://genshin-diary-backup-miguedev1047.turso.io`,
+  url: `libsql://genshin-diary-db-miguedev1047.turso.io`,
   authToken: `${process.env.TURSO_AUTH_TOKEN}`,
 })
 
