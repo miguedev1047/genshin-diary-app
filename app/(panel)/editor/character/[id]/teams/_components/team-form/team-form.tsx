@@ -69,9 +69,6 @@ export function TeamForm(props: TeamFormProps) {
     const CHARACTER_ITEMS = values.characters.length > MAX_CHARACTERS
     if (CHARACTER_ITEMS) return toast.error(ERR_CHARACTER_LIST)
 
-    const TEAM_ITEMS = TEAMS.length > MAX_TEAMS
-    if (TEAM_ITEMS) return toast.error(ERR_TEAM_LIST)
-
     startTransition(async () => {
       if (IS_EDITING) {
         const { status, message } = await updateTeamsCharacters(values, TEAM_ID)
@@ -85,6 +82,12 @@ export function TeamForm(props: TeamFormProps) {
         }
 
         toast.error(message)
+        return
+      }
+
+      const TEAM_ITEMS = TEAMS.length > MAX_TEAMS
+      if (TEAM_ITEMS) {
+        toast.error(ERR_TEAM_LIST)
         return
       }
 
@@ -143,10 +146,7 @@ export function TeamForm(props: TeamFormProps) {
               <FormItem>
                 <FormLabel>Personajes</FormLabel>
                 <FormControl>
-                  <CharacterSelector
-                    disabled={isPending}
-                    {...field}
-                  />
+                  <CharacterSelector {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>

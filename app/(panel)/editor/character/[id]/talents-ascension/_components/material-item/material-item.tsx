@@ -81,7 +81,7 @@ export function MaterialItem(props: MaterialItemProps) {
               <SquareBox className='cursor-pointer transition hover:scale-105 ease-in-out duration-300'>
                 <Image
                   priority
-                  src={MATERIAL.image_url || DEFAULT_IMAGE}
+                  src={MATERIAL.image_url ?? DEFAULT_IMAGE}
                   alt={MATERIAL.name}
                   width={720}
                   height={720}
@@ -111,6 +111,7 @@ export function MaterialItem(props: MaterialItemProps) {
                     <FormControl>
                       <Input
                         disabled={isPending}
+                        type='number'
                         placeholder='0'
                         className='col-span-2'
                         {...field}

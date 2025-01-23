@@ -28,9 +28,9 @@ import { useRouter } from 'next/navigation'
 import { createTalentAscension } from '@/app/(panel)/editor/character/[id]/talents-ascension/_services/create'
 import { FormSheet } from '@/app/(panel)/_components/form-sheet'
 import { toast } from 'sonner'
-import { TalentSelector } from '@/app/(panel)/editor/character/[id]/talents-ascension/_components/talent-selector'
 import { TalentAscensionFormProps } from '@/app/(panel)/editor/character/[id]/talents-ascension/_components/talent-ascension-form/talent-ascension-form.type'
 import { updateMaterialTalentAscension } from '@/app/(panel)/editor/character/[id]/talents-ascension/_services/update'
+import { TalentSelector } from '@/app/(panel)/_components/dialog-selectors/talent-selector'
 
 const MAX_MATERIALS = 4
 

@@ -13,8 +13,8 @@ import { useForm } from 'react-hook-form'
 import { useEffect, useMemo, useState, useTransition } from 'react'
 import { ArtifactCharacterSchema } from '@/schemas'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { ArtifactSelector } from '@/app/(panel)/editor/character/[id]/artifacts/_components/artifact-selector'
 import { createArtifacts } from '@/app/(panel)/editor/character/[id]/artifacts/_services/create'
+import { ArtifactSelector } from '@/app/(panel)/_components/dialog-selectors/artifact-selector'
 import { useGetCharacter } from '@/features/providers/character-provider'
 import { FormSheet } from '@/app/(panel)/_components/form-sheet'
 import { toast } from 'sonner'
@@ -25,8 +25,8 @@ import { useRouter } from 'next/navigation'
 const MAX_ARTIFACTS_SET = 5
 const MAX_ARTIFACTS_SET_ITEM = 5
 
-const ERR_ARTIFACT_LIST = `No puedes añadir más de ${MAX_ARTIFACTS_SET} artefactos.`
-const ERR_ARTIFACT_SET_ITEM = `No puedes añadir más de ${MAX_ARTIFACTS_SET_ITEM} artfecatos x set.`
+const ERR_ARTIFACT_LIST = `No puedes añadir más de ${MAX_ARTIFACTS_SET} sets de artefactos.`
+const ERR_ARTIFACT_SET_ITEM = `No puedes añadir más de ${MAX_ARTIFACTS_SET_ITEM} artfefactos por set.`
 
 export function ArtifactForm(props: ArtifactFormProps) {
   const { id: ARTIFACT_SET_ID } = props
@@ -61,10 +61,9 @@ export function ArtifactForm(props: ArtifactFormProps) {
   const handleSubmit = form.handleSubmit((values) => {
     const CHARACTER_ID = CHARACTER?.id
 
-    const MAX_ITEMS = ARTIFACTS.length > MAX_ARTIFACTS_SET
-    const MAX_SETS = values.artifacts.length > MAX_ARTIFACTS_SET_ITEM
+    console.log(values.artifacts.length)
 
-    if (MAX_ITEMS) return toast.error(ERR_ARTIFACT_LIST)
+    const MAX_SETS = values.artifacts.length > MAX_ARTIFACTS_SET_ITEM
     if (MAX_SETS) return toast.error(ERR_ARTIFACT_SET_ITEM)
 
     startTransition(async () => {
@@ -84,6 +83,13 @@ export function ArtifactForm(props: ArtifactFormProps) {
         }
 
         toast.success(message)
+        return
+      }
+
+      const MAX_ITEMS =
+        [...ARTIFACTS, values.artifacts].length > MAX_ARTIFACTS_SET
+      if (MAX_ITEMS) {
+        toast.error(ERR_ARTIFACT_LIST)
         return
       }
 
