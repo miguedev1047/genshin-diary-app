@@ -8,15 +8,9 @@ export async function GET(request: Request) {
     const TALENTS = await db.materials.findMany({
       where: {
         OR: [
-          {
-            type: 'MATERIAL_TALENT',
-          },
-          {
-            type: 'MATERIAL_COMMON',
-          },
-          {
-            type: 'MATERIAL_WEEKLY_BOSS',
-          },
+          { type: 'MATERIAL_TALENT' },
+          { type: 'MATERIAL_COMMON' },
+          { type: 'MATERIAL_WEEKLY_BOSS' },
         ],
       },
     })
