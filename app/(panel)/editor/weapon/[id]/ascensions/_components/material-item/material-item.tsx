@@ -9,22 +9,71 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from '@/components/ui/popover'
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+} from '@/components/ui/form'
 import { MaterialItemProps } from '@/app/(panel)/editor/weapon/[id]/ascensions/_components/material-item/material-item.type'
-import { useGetMaterial } from '@/features/queries/use-materiales'
-import { MaterialForm } from '@/app/(panel)/editor/weapon/[id]/ascensions/_components/material-form'
 import { SquareBox } from '@/components/square-box'
-import { SpinLoaderSquareCard } from '@/components/spin-loaders'
+import { useGetData } from '@/features/providers/data-provider'
+import { DEFAULT_IMAGE } from '@/consts/misc'
+import { z } from 'zod'
+import { updateWeaponAscensionMaterialQuantity } from '@/app/(panel)/editor/weapon/[id]/ascensions/_services/update'
+import { useRouter } from 'next/navigation'
+import { MaterialQuantitySchema } from '@/schemas'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { useState, useTransition } from 'react'
+import { useForm } from 'react-hook-form'
+import { toast } from 'sonner'
+import { Input } from '@/components/ui/input'
 import Image from 'next/image'
 
 export function MaterialItem(props: MaterialItemProps) {
   const { material_id, quantity } = props
+  const { data } = useGetData()
 
-  const { data: MATERIAL, status } = useGetMaterial(material_id)
-  if (status === 'pending') return <SpinLoaderSquareCard />
-  if (status === 'error') return <SpinLoaderSquareCard />
+  const { materials } = data
+  const MATERIAL = materials?.find((item) => item.id === material_id)
+
+  const [isPending, startTranstion] = useTransition()
+  const [isOpen, setIsOpen] = useState(false)
+  const { refresh } = useRouter()
+
+  const form = useForm<z.infer<typeof MaterialQuantitySchema>>({
+    resolver: zodResolver(MaterialQuantitySchema),
+    defaultValues: {
+      quantity: quantity.toString(),
+    },
+  })
+
+  const handleSubmit = form.handleSubmit((values) => {
+    startTranstion(async () => {
+      const { status, message } = await updateWeaponAscensionMaterialQuantity(
+        values,
+        material_id
+      )
+
+      if (status === 201) {
+        toast.success(message)
+        setIsOpen(false)
+        refresh()
+        return
+      }
+
+      toast.error(message)
+    })
+  })
+
+  if (!MATERIAL) return null
 
   return (
-    <Popover>
+    <Popover
+      open={isOpen}
+      onOpenChange={setIsOpen}
+    >
       <TooltipProvider>
         <Tooltip>
           <PopoverTrigger asChild>
@@ -32,8 +81,8 @@ export function MaterialItem(props: MaterialItemProps) {
               <SquareBox className='cursor-pointer transition hover:scale-105 ease-in-out duration-300'>
                 <Image
                   priority
-                  src={MATERIAL?.image_url}
-                  alt={MATERIAL?.name}
+                  src={MATERIAL.image_url ?? DEFAULT_IMAGE}
+                  alt={MATERIAL.name}
                   width={720}
                   height={720}
                   className='object-contain size-full'
@@ -50,7 +99,29 @@ export function MaterialItem(props: MaterialItemProps) {
         </Tooltip>
       </TooltipProvider>
       <PopoverContent side='bottom'>
-        <MaterialForm {...props} />
+        <Form {...form}>
+          <form onSubmit={handleSubmit}>
+            <FormField
+              name='quantity'
+              control={form.control}
+              render={({ field }) => (
+                <FormItem>
+                  <div className='grid grid-cols-3 items-center gap-4'>
+                    <FormLabel>Cantidad</FormLabel>
+                    <FormControl>
+                      <Input
+                        disabled={isPending}
+                        placeholder='0'
+                        className='col-span-2'
+                        {...field}
+                      />
+                    </FormControl>
+                  </div>
+                </FormItem>
+              )}
+            />
+          </form>
+        </Form>
       </PopoverContent>
     </Popover>
   )

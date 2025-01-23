@@ -27,20 +27,18 @@ export async function createTeams(
 
   const { name, characters } = VALIDATE_FIELDS.data
 
+  const CHARACTERS = characters.map((character, index) => ({
+    character_id: character,
+    order: index + +1,
+  }))
+
   try {
-    const TEAMS = await db.teamsCharacter.create({
-      data: { name, character_id },
-    })
-
-    const CHARACTERS = characters.map((character, index) => ({
-      character_id: character,
-      team_id: TEAMS.id,
-      order: index++ + 1,
-      id: crypto.randomUUID()
-    }))
-
-    await db.teamsCharacters.createMany({
-      data: CHARACTERS,
+    await db.teamsCharacter.create({
+      data: {
+        name,
+        character_id,
+        characters: { createMany: { data: CHARACTERS } },
+      },
     })
 
     return { status: 201, message: 'Equipo creado.' }

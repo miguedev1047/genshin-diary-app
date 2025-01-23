@@ -6,23 +6,22 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from '@/components/ui/tooltip'
-import { useGetCharacter } from '@/features/queries/use-characters'
 import { CharacterItemProps } from '@/app/(index)/(dynamic-routes)/character/[id]/teams/_components/character-item/character-item.type'
-import { cn } from '@/lib/utils'
 import { getBorderColorByRarityHover } from '@/features/utils/rarity-color'
-import { SpinLoaderSquareCard } from '@/components/spin-loaders'
 import { Badge } from '@/components/ui/badge'
 import { SquareBox } from '@/components/square-box'
 import { DEFAULT_IMAGE } from '@/consts/misc'
+import { useGetData } from '@/features/providers/data-provider'
+import { cn } from '@/lib/utils'
 import Link from 'next/link'
 import Image from 'next/image'
 
 export function CharacterItem(props: CharacterItemProps) {
   const { character_id, constellation } = props
+  const { data } = useGetData()
 
-  const { data: CHARACTER, status } = useGetCharacter(character_id)
-  if (status === 'pending') return <SpinLoaderSquareCard fullSize />
-  if (status === 'error') return <SpinLoaderSquareCard fullSize />
+  const { characters } = data
+  const CHARACTER = characters?.find((material) => material.id === character_id)
 
   if (!CHARACTER) return null
 

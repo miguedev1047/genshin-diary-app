@@ -2,8 +2,49 @@
 
 import { z } from 'zod'
 import { currentRole } from '@/data/auth'
-import { MaterialQuantitySchema } from '@/schemas'
+import { MaterialQuantitySchema, TalentSchema } from '@/schemas'
 import { db } from '@/lib/db'
+
+export async function updateMaterialTalentAscension(
+  data: z.infer<typeof TalentSchema>,
+  character_id: string | undefined,
+  ascension_id: string
+) {
+  if (!character_id) return { status: 403, message: 'El personaje no existe.' }
+
+  const ROLE = await currentRole()
+  if (ROLE === 'USER') {
+    return { status: 403, message: 'No tienes permisos.' }
+  }
+
+  const VALIDATE_FIELDS = TalentSchema.safeParse(data)
+  if (!VALIDATE_FIELDS.success) {
+    return { status: 403, message: 'Campos invalidos.' }
+  }
+
+  const { materials } = VALIDATE_FIELDS.data
+
+  const MATERIALS = materials.map((material) => ({
+    character_id,
+    ascension_id,
+    material_id: material,
+  }))
+
+  try {
+    await db.talentsAscensionCharacterMaterial.deleteMany({
+      where: { ascension_id },
+    })
+
+    await db.talentsAscensionCharacterMaterial.createMany({
+      data: MATERIALS,
+    })
+      
+    return { status: 201, message: 'Cambios guardados.' }
+  } catch (error) {
+    console.log(error)
+    return { status: 500, message: 'Ocurrio un error.' }
+  }
+}
 
 export async function updateTalentAscensionMaterialQuantity(
   data: z.infer<typeof MaterialQuantitySchema>,

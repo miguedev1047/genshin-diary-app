@@ -5,6 +5,7 @@ import { Ascension } from '@/app/(panel)/editor/character/[id]/ascensions'
 import { SquareBox } from '@/components/square-box'
 import { DeleteButton } from '@/app/(panel)/_components/delete-button'
 import { deleteAscension } from '@/app/(panel)/editor/character/[id]/ascensions/_services/delete'
+import { AscensionForm as AscensionEditor } from '@/app/(panel)/editor/character/[id]/ascensions/_components/ascension-form'
 import { Trash2 } from 'lucide-react'
 import Image from 'next/image'
 
@@ -81,12 +82,16 @@ export const ascensionColumns: ColumnDef<Ascension>[] = [
       const { id } = row.original
 
       return (
-        <DeleteButton
-          itemId={id}
-          onDelete={deleteAscension}
-        >
-          <Trash2 />
-        </DeleteButton>
+        <div className='flex items-center gap-2'>
+          <AscensionEditor id={id} />
+
+          <DeleteButton
+            itemId={id}
+            onDelete={deleteAscension}
+          >
+            <Trash2 />
+          </DeleteButton>
+        </div>
       )
     },
   },

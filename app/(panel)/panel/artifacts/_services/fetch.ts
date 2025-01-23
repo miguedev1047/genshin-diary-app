@@ -13,7 +13,7 @@ function filterArtifacts(artifacts: Array<Artifacts>, filters: Props) {
     const matches = [
       name ? a.name.toLowerCase().includes(name.toLowerCase()) : true,
     ]
-
+    https://x.com/HatsuneMiku/status/1879874259113382388
     return matches.every(Boolean)
   })
 }

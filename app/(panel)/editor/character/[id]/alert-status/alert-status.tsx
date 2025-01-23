@@ -2,7 +2,6 @@
 
 import { useGetCharacter } from '@/features/providers/character-provider'
 import { Eclipse } from 'lucide-react'
-// import { useGetCharacter } from '@/features/providers/character-provider'
 
 export function AlertStatus() {
   const { data: CHARACTER } = useGetCharacter()
@@ -10,7 +9,7 @@ export function AlertStatus() {
 
   if (!CHARACTER_STATUS)
     return (
-      <div className='dark bg-muted px-4 py-3 text-foreground rounded-[1rem]'>
+      <div className='col-span-2 bg-muted px-4 py-3 text-foreground rounded-[1rem]'>
         <div className='flex flex-col justify-between gap-2 md:flex-row'>
           <div className='flex grow gap-3'>
             <Eclipse
@@ -32,7 +31,7 @@ export function AlertStatus() {
     )
 
   return (
-    <div className='dark bg-muted px-4 py-3 text-foreground rounded-[1rem]'>
+    <div className='col-span-2 bg-muted px-4 py-3 text-foreground rounded-[1rem]'>
       <div className='flex flex-col justify-between gap-2 md:flex-row'>
         <div className='flex grow gap-3'>
           <Eclipse
@@ -52,5 +51,3 @@ export function AlertStatus() {
     </div>
   )
 }
-
-// Dependencies: pnpm install lucide-react

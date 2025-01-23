@@ -19,7 +19,7 @@ export function WeaponInfoCard(props: WeaponInfoCardProps) {
   const STARS = getRarityStars(rarity)
   const WEAPON_TYPE = getWeaponText(type)
   const SECONDARY_STAT = getAttributesText(secondary_stat)
-
+ 
   return (
     <div className='grid grid-cols-5 w-full gap-4'>
       <div className='col-span-1 flex items-center flex-col gap-4'>
@@ -48,7 +48,7 @@ export function WeaponInfoCard(props: WeaponInfoCardProps) {
         <WeaponName data={props} />
 
         <div className='space-y-4'>
-          <div className='[&>p]:text-pretty text-sm opacity-70 tiptap'>
+          <div className='text-pretty text-sm opacity-70 tiptap pr-2'>
             {parse(passive_description ?? '')}
           </div>
 

@@ -27,16 +27,20 @@ export async function createArtifacts(
 
   const { artifacts } = VALIDATE_FIELDS.data
 
-  const ITEMS = artifacts.map((item, index) => ({
-    artifact_id: item,
+  const ARTIFACTS = artifacts.map((artifact, index) => ({
+    order: index + 1,
     character_id,
-    order: index++ + 1,
-    id: crypto.randomUUID()
+    artifact_id: artifact,
   }))
 
   try {
-    await db.artifactCharacter.createMany({
-      data: ITEMS,
+    await db.artifactCharacter.create({
+      data: {
+        character_id,
+        artifact_set: {
+          createMany: { data: ARTIFACTS },
+        },
+      },
     })
 
     return { status: 201, message: 'Artefactos agregados.' }

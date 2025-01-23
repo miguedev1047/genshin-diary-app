@@ -1,5 +1,3 @@
-import { Suspense } from 'react'
-import { SpinLoaderContent } from '@/components/spin-loaders'
 import { ContentLayout } from '@/app/(index)/_components/content-layout'
 import { CharacterProps, PageProps } from '@/app/(index)/(routes)/(home)/_types'
 import { getCharacters } from '@/app/(index)/(routes)/(home)/_services/fetch'
@@ -11,11 +9,9 @@ export default async function Home(props: PageProps) {
   const CHARACTERS = (await getCharacters(PARAMS)) as Array<CharacterProps>
 
   return (
-    <Suspense fallback={<SpinLoaderContent />}>
-      <ContentLayout particles>
-        <HomeHero />
-        <HomeCharacters data={CHARACTERS} />
-      </ContentLayout>
-    </Suspense>
+    <ContentLayout particles>
+      <HomeHero />
+      <HomeCharacters data={CHARACTERS} />
+    </ContentLayout>
   )
 }

@@ -12,14 +12,16 @@ export function TalentAscension() {
   const TALENTS = CHARACTER?.talents_ascension as Array<TalentAscensionProps>
 
   return (
-    <EditorCard
-      title='Mejora de talentos'
-      renderForm={<TalentAscensionForm />}
-    >
-      <DataTable
-        columns={talentAscensionColumns}
-        data={TALENTS}
-      />
-    </EditorCard>
+    <div className='col-span-2'>
+      <EditorCard
+        title='Mejora de talentos'
+        renderForm={<TalentAscensionForm />}
+      >
+        <DataTable
+          columns={talentAscensionColumns}
+          data={TALENTS}
+        />
+      </EditorCard>
+    </div>
   )
 }

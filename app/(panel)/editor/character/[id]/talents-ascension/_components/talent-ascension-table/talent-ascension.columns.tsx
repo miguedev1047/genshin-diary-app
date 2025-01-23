@@ -5,6 +5,7 @@ import { ColumnDef } from '@tanstack/react-table'
 import { DeleteButton } from '@/app/(panel)/_components/delete-button'
 import { Trash2 } from 'lucide-react'
 import { TalentAscensionProps } from '@/app/(panel)/editor/character/[id]/talents-ascension/talent-ascension.type'
+import { TalentAscensionForm as TalentAscensionEditor } from '@/app/(panel)/editor/character/[id]/talents-ascension/_components/talent-ascension-form'
 import { MaterialItem } from '@/app/(panel)/editor/character/[id]/talents-ascension/_components/material-item'
 import { deleteTalentAscension } from '@/app/(panel)/editor/character/[id]/talents-ascension/_services/delete'
 import { SquareBox } from '@/components/square-box'
@@ -83,12 +84,16 @@ export const talentAscensionColumns: ColumnDef<TalentAscensionProps>[] = [
       const { id } = row.original
 
       return (
-        <DeleteButton
-          itemId={id}
-          onDelete={deleteTalentAscension}
-        >
-          <Trash2 />
-        </DeleteButton>
+        <div className='flex items-center gap-3'>
+          <TalentAscensionEditor id={id} />
+
+          <DeleteButton
+            itemId={id}
+            onDelete={deleteTalentAscension}
+          >
+            <Trash2 />
+          </DeleteButton>
+        </div>
       )
     },
   },

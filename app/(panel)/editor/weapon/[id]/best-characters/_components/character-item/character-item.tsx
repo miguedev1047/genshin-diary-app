@@ -1,26 +1,27 @@
 import { CharacterItemProps } from '@/app/(panel)/editor/weapon/[id]/best-characters/_components/character-item/character-item.type'
-import { useGetCharacter } from '@/features/queries/use-characters'
 import { formattedUrl } from '@/features/utils/formatted-names'
 import { Card } from '@/components/ui/card'
 import { getBorderColorByRarityHover } from '@/features/utils/rarity-color'
 import { AspectRatio } from '@/components/ui/aspect-ratio'
 import { deleteCharacter } from '@/app/(panel)/editor/weapon/[id]/best-characters/_services/delete'
-import { SpinAspectRatio } from '@/components/spin-loaders'
 import { DeleteButton } from '@/app/(panel)/_components/delete-button'
 import { Trash2 } from 'lucide-react'
+import { useGetData } from '@/features/providers/data-provider'
 import { cn } from '@/lib/utils'
 import Image from 'next/image'
 import Link from 'next/link'
 
 export function CharacterItem(props: CharacterItemProps) {
   const { character_id, id } = props
+  const { data } = useGetData()
 
-  const { data: CHARACTER, status } = useGetCharacter(character_id)
-  if (status === 'pending') return <SpinAspectRatio />
-  if (status === 'error') return <SpinAspectRatio />
+  const { characters } = data
+  const CHARACTER = characters?.find((material) => material.id === character_id)
 
-  const FORMATTED_NAME = formattedUrl(CHARACTER?.name)
-  const URL = `/editor/character/${FORMATTED_NAME}`
+  if (!CHARACTER) return null
+
+  const CHARACTER_ID = CHARACTER.id
+  const URL = `/editor/character/${CHARACTER_ID}`
 
   const CHARACTER_SPLASH_ART = CHARACTER?.images?.splash_art_url
   const RARITY_COLOR = getBorderColorByRarityHover(CHARACTER?.rarity)

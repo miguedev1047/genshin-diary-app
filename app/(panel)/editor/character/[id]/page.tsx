@@ -6,11 +6,11 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from '@/components/ui/breadcrumb'
+import { getCharacterById } from '@/app/(panel)/editor/character/[id]/_shared/_services/fetch'
 import { redirect } from 'next/navigation'
 import { CharacterProvider } from '@/features/providers/character-provider'
 import { PageProps } from '@/app/(panel)/editor/character/[id]/_shared/types'
 import { ContentLayout } from '@/app/(panel)/_components/content-layout'
-import { getCharacterById } from '@/app/(panel)/editor/character/[id]/_shared/_services/fetch'
 import { AlertStatus } from '@/app/(panel)/editor/character/[id]/alert-status'
 import { CharacterInfo } from '@/app/(panel)/editor/character/[id]/character-info'
 import { Ascension } from '@/app/(panel)/editor/character/[id]/ascensions'
@@ -48,7 +48,7 @@ export default async function EditorCharacterPage(props: PageProps) {
       </Breadcrumb>
 
       <CharacterProvider data={CHARACTER}>
-        <section className='space-y-6'>
+        <section className='grid grid-cols-2 gap-x-4 gap-y-6'>
           <AlertStatus />
           <CharacterInfo />
           <Ascension />

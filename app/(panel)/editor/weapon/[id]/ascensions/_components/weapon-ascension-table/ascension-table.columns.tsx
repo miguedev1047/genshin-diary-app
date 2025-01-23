@@ -9,6 +9,7 @@ import { deleteWeaponAscension } from '@/app/(panel)/editor/weapon/[id]/ascensio
 import { MaterialItem } from '@/app/(panel)/editor/weapon/[id]/ascensions/_components/material-item'
 import { SquareBox } from '@/components/square-box'
 import Image from 'next/image'
+import { WeaponAscensionForm } from '../weapon-ascension-form'
 
 type Ascension = Prisma.WeaponAscensionsGetPayload<{
   include: { materials: true }
@@ -88,12 +89,16 @@ export const ascensionWeaponColumns: ColumnDef<Ascension>[] = [
       const { id } = row.original
 
       return (
-        <DeleteButton
-          itemId={id}
-          onDelete={deleteWeaponAscension}
-        >
-          <Trash2 />
-        </DeleteButton>
+        <div className='flex items-center gap-2'>
+          <WeaponAscensionForm id={id} />
+
+          <DeleteButton
+            itemId={id}
+            onDelete={deleteWeaponAscension}
+          >
+            <Trash2 />
+          </DeleteButton>
+        </div>
       )
     },
   },

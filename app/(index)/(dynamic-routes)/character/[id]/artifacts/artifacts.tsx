@@ -1,6 +1,6 @@
 import { ArtifactsProps } from '@/app/(index)/(dynamic-routes)/character/[id]/artifacts/artifacts.type'
-import { ArtifactItem } from '@/app/(index)/(dynamic-routes)/character/[id]/artifacts/_components/artifact-item'
 import { ViewCard } from '@/app/(index)/_components/view-card'
+import { ArtifactSetList } from '@/app/(index)/(dynamic-routes)/character/[id]/artifacts/_components/artifact-set-list'
 import { Title } from '@/components/ui/title'
 
 export function Artifacts(props: ArtifactsProps) {
@@ -19,12 +19,15 @@ export function Artifacts(props: ArtifactsProps) {
 
   const MAPPED_ARTIFACTS = ARTIFACTS.map((artifact) => (
     <li key={artifact.id}>
-      <ArtifactItem {...artifact} />
+      <ArtifactSetList {...artifact} />
     </li>
   ))
 
   return (
-    <ViewCard title='Mejores artefactos' helper>
+    <ViewCard
+      title='Mejores artefactos'
+      helper
+    >
       <ul className='grid gap-4'>{MAPPED_ARTIFACTS}</ul>
     </ViewCard>
   )

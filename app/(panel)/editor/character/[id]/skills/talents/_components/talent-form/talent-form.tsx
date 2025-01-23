@@ -20,7 +20,7 @@ import {
 } from '@/components/ui/select'
 import { z } from 'zod'
 import { useForm } from 'react-hook-form'
-import { useEffect, useState, useTransition } from 'react'
+import { useEffect, useMemo, useState, useTransition } from 'react'
 import { SkillCharacterSchema } from '@/schemas'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { SKILL_TYPE } from '@/consts/general'
@@ -31,24 +31,26 @@ import { useGetCharacter } from '@/features/providers/character-provider'
 import { createTalent } from '@/app/(panel)/editor/character/[id]/skills/talents/_services/create'
 import { useRouter } from 'next/navigation'
 import { FormSheet } from '@/app/(panel)/_components/form-sheet'
-import { getTalent } from '@/app/(panel)/editor/character/[id]/skills/talents/_services/fetch'
 import { TalentFormProps } from '@/app/(panel)/editor/character/[id]/skills/talents/_components/talent-form/talent-form.type'
 import { updateTalent } from '@/app/(panel)/editor/character/[id]/skills/talents/_services/update'
 import { toast } from 'sonner'
 import { ViewImageInput } from '@/app/(panel)/_components/view-image-input'
 
-const MAX_ITEMS = 3
+const MAX_TALENTS = 3
+
+const ERR_TALENT_LIST = `No puedes añadir más de ${MAX_TALENTS} talentos.`
 
 export function TalentForm(props: TalentFormProps) {
-  const { id } = props
+  const { id: TALENT_ID } = props
 
   const { data: CHARACTER } = useGetCharacter()
   const [isOpen, setIsOpen] = useState(false)
+
   const [isPending, startTransition] = useTransition()
   const { refresh } = useRouter()
 
-  const MAX_TALENTS = (CHARACTER?.talents.length ?? 0) >= MAX_ITEMS
-  const IS_EDITING = !!id
+  const TALENTS = useMemo(() => CHARACTER?.talents ?? [], [CHARACTER])
+  const IS_EDITING = !!TALENT_ID
 
   const form = useForm<z.infer<typeof SkillCharacterSchema>>({
     resolver: zodResolver(SkillCharacterSchema),
@@ -62,23 +64,21 @@ export function TalentForm(props: TalentFormProps) {
   })
 
   useEffect(() => {
-    if (IS_EDITING) {
-      startTransition(async () => {
-        const DATA = await getTalent(id)
-        if (!DATA) return
+    if (IS_EDITING && isOpen) {
+      const TALENT = TALENTS.find((i) => i.id === TALENT_ID)
+      if (!TALENT) return
 
-        form.setValue('title', DATA.title)
-        form.setValue('description', DATA.description)
-        form.setValue('image_url', DATA.image_url ?? DEFAULT_IMAGE)
-        form.setValue('type', DATA.type)
-      })
+      form.setValue('title', TALENT.title)
+      form.setValue('description', TALENT.description)
+      form.setValue('image_url', TALENT.image_url ?? DEFAULT_IMAGE)
+      form.setValue('type', TALENT.type)
     }
-  }, [id, form, IS_EDITING])
+  }, [form, TALENT_ID, TALENTS, IS_EDITING, isOpen])
 
   const handleSubmit = form.handleSubmit((values) => {
     startTransition(async () => {
       if (IS_EDITING) {
-        const { status, message } = await updateTalent(values, id)
+        const { status, message } = await updateTalent(values, TALENT_ID)
 
         if (status === 201) {
           toast.success(message)
@@ -92,8 +92,9 @@ export function TalentForm(props: TalentFormProps) {
         return
       }
 
-      if (MAX_TALENTS) {
-        toast.error(`No puedes añadir más de ${MAX_ITEMS} talentos.`)
+      const MAX_ITEMS = TALENTS.length >= MAX_TALENTS
+      if (MAX_ITEMS) {
+        toast.error(ERR_TALENT_LIST)
         return
       }
 

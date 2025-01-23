@@ -18,6 +18,7 @@ export async function createAscension(
   }
 
   const VALIDATE_FIELDS = AscensionSchema.safeParse(data)
+  
   if (!VALIDATE_FIELDS.success) {
     return { status: 403, message: 'Campos invalidos.' }
   }
@@ -28,26 +29,23 @@ export async function createAscension(
     (item) => item.ascension === ascension_level
   )!
 
+  const MATERIALS = materials.map((material) => ({
+    character_id,
+    material_id: material,
+  }))
+
   try {
-    const ASCENSION = await db.ascensionCharacter.create({
+    await db.ascensionCharacter.create({
       data: {
         character_id,
         ascension_level: SELECTED_ASCENSION?.ascension,
         order: SELECTED_ASCENSION?.order,
         cost: SELECTED_ASCENSION?.cost,
         level: SELECTED_ASCENSION?.level,
+        materials: {
+          createMany: { data: MATERIALS },
+        },
       },
-    })
-
-    const MATERIALS = materials.map((material) => ({
-      character_id,
-      material_id: material,
-      ascension_id: ASCENSION.id,
-      id: crypto.randomUUID()
-    }))
-
-    await db.materialAscension.createMany({
-      data: MATERIALS,
     })
 
     return { status: 201, message: 'Ascension añadida.' }

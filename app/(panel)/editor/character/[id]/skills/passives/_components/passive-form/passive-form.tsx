@@ -20,7 +20,7 @@ import {
 } from '@/components/ui/select'
 import { z } from 'zod'
 import { useForm } from 'react-hook-form'
-import { useEffect, useState, useTransition } from 'react'
+import { useEffect, useMemo, useState, useTransition } from 'react'
 import { SkillCharacterSchema } from '@/schemas'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { SKILL_TYPE } from '@/consts/general'
@@ -31,24 +31,26 @@ import { useGetCharacter } from '@/features/providers/character-provider'
 import { useRouter } from 'next/navigation'
 import { FormSheet } from '@/app/(panel)/_components/form-sheet'
 import { PassiveFormProps } from '@/app/(panel)/editor/character/[id]/skills/passives/_components/passive-form/passive-form.type'
-import { getPassive } from '@/app/(panel)/editor/character/[id]/skills/passives/_services/fetch'
 import { createPassive } from '@/app/(panel)/editor/character/[id]/skills/passives/_services/create'
 import { updatePassive } from '@/app/(panel)/editor/character/[id]/skills/passives/_services/update'
 import { toast } from 'sonner'
 import { ViewImageInput } from '@/app/(panel)/_components/view-image-input'
 
-const MAX_ITEMS = 4
+const MAX_PASSIVES = 4
+
+const ERR_PASSIVE_LIST = `No puedes añadir más de ${MAX_PASSIVES} pasivas.`
 
 export function PassiveForm(props: PassiveFormProps) {
-  const { id } = props
+  const { id: PASSIVE_ID } = props
 
   const { data: CHARACTER } = useGetCharacter()
   const [isOpen, setIsOpen] = useState(false)
+
   const [isPending, startTransition] = useTransition()
   const { refresh } = useRouter()
 
-  const MAX_PASSIVES = (CHARACTER?.passives.length ?? 0) >= MAX_ITEMS
-  const IS_EDITING = !!id
+  const PASSIVES = useMemo(() => CHARACTER?.passives ?? [], [CHARACTER])
+  const IS_EDITING = !!PASSIVE_ID
 
   const form = useForm<z.infer<typeof SkillCharacterSchema>>({
     resolver: zodResolver(SkillCharacterSchema),
@@ -62,23 +64,21 @@ export function PassiveForm(props: PassiveFormProps) {
   })
 
   useEffect(() => {
-    if (IS_EDITING) {
-      startTransition(async () => {
-        const DATA = await getPassive(id)
-        if (!DATA) return
+    if (IS_EDITING && isOpen) {
+      const PASSIVE = PASSIVES.find((i) => i.id === PASSIVE_ID)
+      if (!PASSIVE) return
 
-        form.setValue('title', DATA.title)
-        form.setValue('description', DATA.description)
-        form.setValue('image_url', DATA.image_url ?? DEFAULT_IMAGE)
-        form.setValue('type', DATA.type)
-      })
+      form.setValue('title', PASSIVE.title)
+      form.setValue('description', PASSIVE.description)
+      form.setValue('image_url', PASSIVE.image_url ?? DEFAULT_IMAGE)
+      form.setValue('type', PASSIVE.type)
     }
-  }, [id, form, IS_EDITING])
+  }, [form, PASSIVES, PASSIVE_ID, IS_EDITING, isOpen])
 
   const handleSubmit = form.handleSubmit((values) => {
     startTransition(async () => {
       if (IS_EDITING) {
-        const { status, message } = await updatePassive(values, id)
+        const { status, message } = await updatePassive(values, PASSIVE_ID)
 
         if (status === 201) {
           toast.success(message)
@@ -92,8 +92,9 @@ export function PassiveForm(props: PassiveFormProps) {
         return
       }
 
-      if (MAX_PASSIVES) {
-        toast.error(`No puedes añadir más de ${MAX_ITEMS} pasivas.`)
+      const MAX_ITEMS = PASSIVES.length >= MAX_PASSIVES
+      if (MAX_ITEMS) {
+        toast.error(ERR_PASSIVE_LIST)
         return
       }
 

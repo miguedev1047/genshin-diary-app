@@ -8,11 +8,13 @@ export function WeaponAscension(props: WeaponAscensionProps) {
   const WEAPON_ASCENSION = WEAPON.ascensions ?? []
 
   return (
-    <ViewCard title='Ascensión'>
-      <DataTable
-        data={WEAPON_ASCENSION}
-        columns={ascensionColumns}
-      />
-    </ViewCard>
+    <div className='col-span-2'>
+      <ViewCard title='Ascensión'>
+        <DataTable
+          data={WEAPON_ASCENSION}
+          columns={ascensionColumns}
+        />
+      </ViewCard>
+    </div>
   )
 }

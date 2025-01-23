@@ -10,7 +10,7 @@ export function WeaponSelector(props: WeaponSelectorProps) {
 
   const { data: WEAPON, status } = useGetWeapons()
   if (status === 'pending') return <SpinLoaderInput />
-    if (status === 'error') return <SpinLoaderInput />
+  if (status === 'error') return <SpinLoaderInput />
 
   const ITEMS = WEAPON?.filter((weapon) => weapon.type === CHARACTER?.weapon)
   const DISABLED_KEYS = CHARACTER?.weapons.map((weapon) => weapon.weapon_id)

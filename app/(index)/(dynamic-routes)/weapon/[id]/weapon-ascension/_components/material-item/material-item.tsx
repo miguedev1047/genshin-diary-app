@@ -5,16 +5,19 @@ import {
   TooltipTrigger,
 } from '@/components/ui/tooltip'
 import { MaterialItemProps } from '@/app/(panel)/editor/weapon/[id]/ascensions/_components/material-item/material-item.type'
-import { useGetMaterial } from '@/features/queries/use-materiales'
+import { DEFAULT_IMAGE } from '@/consts/misc'
 import { SquareBox } from '@/components/square-box'
-import { SpinLoaderSquareCard } from '@/components/spin-loaders'
+import { useGetData } from '@/features/providers/data-provider'
 import Image from 'next/image'
 
 export function MaterialItem(props: MaterialItemProps) {
   const { material_id, quantity } = props
-  
-  const { data: MATERIAL, status } = useGetMaterial(material_id)
-  if (status === 'error') return <SpinLoaderSquareCard />
+  const { data } = useGetData()
+
+  const { materials } = data
+  const MATERIAL = materials?.find((material) => material.id === material_id)
+
+  if (!MATERIAL) return null
 
   return (
     <TooltipProvider>
@@ -23,8 +26,8 @@ export function MaterialItem(props: MaterialItemProps) {
           <SquareBox className='cursor-pointer'>
             <Image
               priority
-              src={MATERIAL?.image_url}
-              alt={MATERIAL?.name}
+              src={MATERIAL.image_url ?? DEFAULT_IMAGE}
+              alt={MATERIAL.name}
               width={720}
               height={720}
               className='object-contain size-full'
@@ -35,7 +38,7 @@ export function MaterialItem(props: MaterialItemProps) {
           </SquareBox>
         </TooltipTrigger>
         <TooltipContent side='bottom'>
-          <p>{MATERIAL?.name}</p>
+          <p>{MATERIAL.name}</p>
         </TooltipContent>
       </Tooltip>
     </TooltipProvider>

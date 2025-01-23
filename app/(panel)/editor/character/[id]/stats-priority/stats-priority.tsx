@@ -17,64 +17,66 @@ export function StatsPriority() {
   const CIRCLET = getStatPriorityText('circlet', STATS?.circlet_stat)
 
   return (
-    <EditorCard
-      title='Mejores estadisticas'
-      renderForm={<StatsPriorityForm />}
-    >
-      {!STATS && (
-        <h2 className='text-2xl font-bold uppercase py-20 opacity-70 mx-auto text-center'>
-          No hay estadisticas para mostrar
-        </h2>
-      )}
+    <div className='col-span-2'>
+      <EditorCard
+        title='Mejores estadisticas'
+        renderForm={<StatsPriorityForm />}
+      >
+        {!STATS && (
+          <h2 className='text-2xl font-bold uppercase py-20 opacity-70 mx-auto text-center'>
+            No hay estadisticas para mostrar
+          </h2>
+        )}
 
-      {STATS && (
-        <article className='grid grid-cols-1 lg:grid-cols-3 gap-5'>
-          <Card>
-            <CardContent className='p-5'>
-              <Title className='flex items-center justify-between gap-2'>
-                <article>
-                  <span>Reloj: </span>
-                  <span className='font-extrabold'>{SANDS}</span>
-                </article>
-                <Hourglass />
-              </Title>
-            </CardContent>
-          </Card>
+        {STATS && (
+          <article className='grid grid-cols-1 lg:grid-cols-3 gap-5'>
+            <Card>
+              <CardContent className='p-5'>
+                <Title className='flex items-center justify-between gap-2'>
+                  <article>
+                    <span>Reloj: </span>
+                    <span className='font-extrabold'>{SANDS}</span>
+                  </article>
+                  <Hourglass />
+                </Title>
+              </CardContent>
+            </Card>
 
-          <Card>
-            <CardContent className='p-5'>
-              <Title className='flex items-center justify-between gap-2'>
-                <article>
-                  <span>Copa: </span>
-                  <span className='font-extrabold'>{GLOBET}</span>
-                </article>
-                <Wine />
-              </Title>
-            </CardContent>
-          </Card>
+            <Card>
+              <CardContent className='p-5'>
+                <Title className='flex items-center justify-between gap-2'>
+                  <article>
+                    <span>Copa: </span>
+                    <span className='font-extrabold'>{GLOBET}</span>
+                  </article>
+                  <Wine />
+                </Title>
+              </CardContent>
+            </Card>
 
-          <Card>
-            <CardContent className='p-5'>
-              <Title className='flex items-center justify-between gap-2'>
-                <article>
-                  <span>Corona: </span>
-                  <span className='font-extrabold'>{CIRCLET}</span>
-                </article>
-                <Crown />
-              </Title>
-            </CardContent>
-          </Card>
+            <Card>
+              <CardContent className='p-5'>
+                <Title className='flex items-center justify-between gap-2'>
+                  <article>
+                    <span>Corona: </span>
+                    <span className='font-extrabold'>{CIRCLET}</span>
+                  </article>
+                  <Crown />
+                </Title>
+              </CardContent>
+            </Card>
 
-          <Card className='col-span-1 lg:col-span-3'>
-            <CardContent className='p-5 text-center'>
-              <Title>
-                Estadisticas secundarias:{' '}
-                <span className='font-extrabold'>{STATS.order_priority}</span>
-              </Title>
-            </CardContent>
-          </Card>
-        </article>
-      )}
-    </EditorCard>
+            <Card className='col-span-1 lg:col-span-3'>
+              <CardContent className='p-5 text-center'>
+                <Title>
+                  Estadisticas secundarias:{' '}
+                  <span className='font-extrabold'>{STATS.order_priority}</span>
+                </Title>
+              </CardContent>
+            </Card>
+          </article>
+        )}
+      </EditorCard>
+    </div>
   )
 }

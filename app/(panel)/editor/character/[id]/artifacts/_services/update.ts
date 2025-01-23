@@ -3,8 +3,10 @@
 import { db } from '@/lib/db'
 import { currentRole } from '@/data/auth'
 import { ArtifactCharacter } from '@prisma/client'
+import { ArtifactCharacterSchema } from '@/schemas'
+import { z } from 'zod'
 
-export async function updateArtifacts(data: Array<ArtifactCharacter>) {
+export async function updateArtifactsOrder(data: Array<ArtifactCharacter>) {
   const ROLE = await currentRole()
 
   if (ROLE === 'USER') {
@@ -26,6 +28,51 @@ export async function updateArtifacts(data: Array<ArtifactCharacter>) {
           order: item.order,
         },
       })
+    })
+
+    return { status: 201, message: 'Cambios guardados.' }
+  } catch (error) {
+    return { status: 500, message: 'Ocurrio un error.' }
+  }
+}
+
+export async function updateArtifacts(
+  data: z.infer<typeof ArtifactCharacterSchema>,
+  character_id: string | undefined,
+  artifact_set_id: string
+) {
+  if (!character_id) {
+    return { status: 403, message: 'Este personaje no existe.' }
+  }
+
+  const ROLE = await currentRole()
+
+  if (ROLE === 'USER') {
+    return { status: 403, message: 'No tienes permisos.' }
+  }
+
+  const VALIDATE_FIELDS = ArtifactCharacterSchema.safeParse(data)
+
+  if (!VALIDATE_FIELDS.success) {
+    return { status: 403, message: 'Campos invalidos.' }
+  }
+
+  const { artifacts } = VALIDATE_FIELDS.data
+
+  const ARTIFACTS = artifacts.map((artifact, index) => ({
+    order: index + 1,
+    character_id,
+    artifact_set_id,
+    artifact_id: artifact,
+  }))
+
+  try {
+    await db.artifactCharacterSet.deleteMany({
+      where: { artifact_set_id },
+    })
+
+    await db.artifactCharacterSet.createMany({
+      data: ARTIFACTS,
     })
 
     return { status: 201, message: 'Cambios guardados.' }

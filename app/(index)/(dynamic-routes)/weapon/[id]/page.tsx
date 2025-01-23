@@ -6,6 +6,8 @@ import { redirect } from 'next/navigation'
 import { WeaponInfo } from '@/app/(index)/(dynamic-routes)/weapon/[id]/weapon-info'
 import { WeaponAscension } from '@/app/(index)/(dynamic-routes)/weapon/[id]/weapon-ascension'
 import { BestCharacter } from '@/app/(index)/(dynamic-routes)/weapon/[id]//best-characters'
+import { AlertError } from './alert-error'
+import { ScrollToTop } from '@/components/scroll-to-top'
 
 export async function generateMetadata(props: PageProps) {
   const { params } = props
@@ -31,10 +33,12 @@ export default async function WeaponPage(props: PageProps) {
 
   return (
     <BlurFade delay={0.2}>
-      <section className='space-y-16'>
+      <section className='space-y-16 gap-x-4 grid grid-cols-2 relative'>
+        <ScrollToTop />
         <WeaponInfo data={WEAPON} />
         <BestCharacter data={WEAPON} />
         <WeaponAscension data={WEAPON} />
+        <AlertError />
       </section>
     </BlurFade>
   )

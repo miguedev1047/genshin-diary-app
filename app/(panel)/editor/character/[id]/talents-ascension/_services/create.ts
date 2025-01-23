@@ -28,27 +28,27 @@ export async function createTalentAscension(
     (item) => item.ascension === talent_level
   )!
 
+  const MATERIALS = materials.map((material) => ({
+    character_id,
+    material_id: material,
+  }))
+
   try {
-    const LEVEL = await db.talentsAscensionCharacter.create({
+    await db.talentsAscensionCharacter.create({
       data: {
         character_id,
         ascension_level: SELECTED_LEVEL?.ascension,
         order: SELECTED_LEVEL?.order,
         cost: SELECTED_LEVEL?.cost,
         level: SELECTED_LEVEL?.level,
+        materials: {
+          createMany: {
+            data: MATERIALS
+          }
+        }
       },
     })
-
-    const MATERIALS = materials.map((material) => ({
-      material_id: material,
-      ascension_id: LEVEL.id,
-      id: crypto.randomUUID()
-    }))
-
-    await db.talentsAscensionCharacterMaterial.createMany({
-      data: MATERIALS,
-    })
-
+      
     return { status: 201, message: 'Talento añadido.' }
   } catch (error) {
     console.log(error)

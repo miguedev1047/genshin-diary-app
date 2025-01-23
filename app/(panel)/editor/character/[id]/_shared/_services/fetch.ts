@@ -13,10 +13,12 @@ export async function getCharacterById(id: string) {
         id: CHARACTER_ID,
       },
       include: {
-        artifacts: { orderBy: { order: 'asc' } },
+        artifacts: {
+          orderBy: { order: 'asc' },
+          include: { artifact_set: { orderBy: { order: 'asc' } } },
+        },
         ascensions: { orderBy: { level: 'asc' }, include: { materials: true } },
         images: true,
-        materials: true,
         stats_priority: true,
         video_guide: true,
         weapons: { orderBy: { order: 'asc' } },
@@ -35,6 +37,56 @@ export async function getCharacterById(id: string) {
     })
 
     return CHARACTER
+  } catch (error) {
+    return null
+  }
+}
+
+export async function getCharacters() {
+  const ROLE = await currentRole()
+  if (ROLE === 'USER') return null
+
+  try {
+    const CHARACTERS = await db.characters.findMany({
+      include: { images: true },
+    })
+    return CHARACTERS
+  } catch (error) {
+    return null
+  }
+}
+
+export async function getWeapons() {
+  const ROLE = await currentRole()
+  if (ROLE === 'USER') return null
+
+  try {
+    const WEAPONS = await db.weapons.findMany()
+    return WEAPONS
+  } catch (error) {
+    return null
+  }
+}
+
+export async function getArtifacts() {
+  const ROLE = await currentRole()
+  if (ROLE === 'USER') return null
+
+  try {
+    const ARTIFACTS = await db.artifacts.findMany()
+    return ARTIFACTS
+  } catch (error) {
+    return null
+  }
+}
+
+export async function getMaterials() {
+  const ROLE = await currentRole()
+  if (ROLE === 'USER') return null
+
+  try {
+    const MATERIALS = await db.materials.findMany()
+    return MATERIALS
   } catch (error) {
     return null
   }

@@ -3,7 +3,7 @@
 import { currentRole } from '@/data/auth'
 import { db } from '@/lib/db'
 
-export async function deleteArtifact(id: string) {
+export async function deleteArtifactSet(id: string) {
   const ROLE = await currentRole()
 
   if (ROLE === 'USER') {
@@ -12,9 +12,7 @@ export async function deleteArtifact(id: string) {
 
   try {
     await db.artifactCharacter.delete({
-      where: {
-        id,
-      },
+      where: { id },
     })
 
     return { status: 201, message: 'Artefacto eliminado.' }

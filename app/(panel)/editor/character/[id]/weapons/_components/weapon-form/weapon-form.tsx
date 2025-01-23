@@ -19,8 +19,10 @@ import { useGetCharacter } from '@/features/providers/character-provider'
 import { useRouter } from 'next/navigation'
 import { FormSheet } from '@/app/(panel)/_components/form-sheet'
 import { toast } from 'sonner'
-
+ 
 const MAX_WEAPONS = 5
+
+const ERR_WEAPON_LIST = `No puedes añadir más de ${MAX_WEAPONS} armas`
 
 export function WeaponForm() {
   const [isPending, startTransition] = useTransition()
@@ -39,10 +41,7 @@ export function WeaponForm() {
 
   const handleSubmit = form.handleSubmit((values) => {
     const MAX_ITEMS = [...WEAPONS, ...values.weapons].length > MAX_WEAPONS
-
-    if (MAX_ITEMS) {
-      return toast.error(`No puedes añadir más de ${MAX_WEAPONS} armas`)
-    }
+    if (MAX_ITEMS) return toast.error(ERR_WEAPON_LIST)
 
     startTransition(async () => {
       const { status, message } = await createWeapons(values, CHARACTER?.id)

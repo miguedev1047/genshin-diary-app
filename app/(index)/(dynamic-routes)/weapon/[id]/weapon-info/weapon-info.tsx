@@ -13,7 +13,7 @@ export function WeaponInfo(props: WeaponInfoProps) {
   const { data: WEAPON } = props
 
   return (
-    <div className='space-y-8'>
+    <div className='col-span-2 space-y-8'>
       <Breadcrumb>
         <BreadcrumbList>
           <BreadcrumbItem>
