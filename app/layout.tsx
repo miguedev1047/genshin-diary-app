@@ -5,8 +5,10 @@ import { Toaster } from '@/components/ui/sonner'
 import { cn } from '@/lib/utils'
 import { PAGE_NAME, REACT_SCAN } from '@/consts/misc'
 import { DEV_MODE } from '@/consts/misc'
-import NextTopLoader from 'nextjs-toploader'
 import { AuthWrapper } from '@/features/providers/auth-provider/auth.wrapper'
+import { DataWrapper } from '@/features/providers/data-provider/data.wrapper'
+import NextTopLoader from 'nextjs-toploader'
+
 import '@/styles/styles.css'
 
 const onest = Onest({ subsets: ['latin'] })
@@ -38,14 +40,16 @@ export default function RootLayout({
         )}
       >
         <AuthWrapper>
-          <Providers>
-            <NextTopLoader
-              color='#FABC3F'
-              showSpinner={false}
-            />
-            <Toaster />
-            {children}
-          </Providers>
+          <DataWrapper>
+            <Providers>
+              <NextTopLoader
+                color='#FABC3F'
+                showSpinner={false}
+              />
+              <Toaster />
+              {children}
+            </Providers>
+          </DataWrapper>
         </AuthWrapper>
       </body>
     </html>
