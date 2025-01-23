@@ -1,6 +1,6 @@
+import { MaterialSelectorProps } from '@/app/(panel)/editor/weapon/[id]/ascensions/_components/material-selector/material-selector.type'
 import { useGetMaterials } from '@/features/queries/use-materiales'
 import { DialogMultiSelect } from '@/app/(panel)/_components/dialog-multi-select'
-import { MaterialSelectorProps } from '@/app/(panel)/editor/character/[id]/ascensions/_components/material-selector/material-selector.type'
 import { SpinLoaderInput } from '@/components/spin-loaders'
 
 export function MaterialSelector(props: MaterialSelectorProps) {
