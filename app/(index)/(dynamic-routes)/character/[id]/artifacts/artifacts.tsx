@@ -24,11 +24,13 @@ export function Artifacts(props: ArtifactsProps) {
   ))
 
   return (
-    <ViewCard
-      title='Mejores artefactos'
-      helper
-    >
-      <ul className='grid gap-4'>{MAPPED_ARTIFACTS}</ul>
-    </ViewCard>
+    <div className='col-span-2'>
+      <ViewCard
+        title='Mejores artefactos'
+        helper
+      >
+        <ul className='grid gap-4'>{MAPPED_ARTIFACTS}</ul>
+      </ViewCard>
+    </div>
   )
 }
