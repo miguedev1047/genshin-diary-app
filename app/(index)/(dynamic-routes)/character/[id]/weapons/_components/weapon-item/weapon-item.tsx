@@ -5,12 +5,17 @@ import {
   HoverCardContent,
   HoverCardTrigger,
 } from '@/components/ui/hover-card'
+import {
+  getAttributesText,
+  getRarityStars,
+} from '@/features/utils/character-texts'
 import { DEFAULT_IMAGE } from '@/consts/misc'
 import { WeaponItemProps } from '@/app/(index)/(dynamic-routes)/character/[id]/artifacts/_components/artifact-set-item/artifact-set-item.type'
 import { Title } from '@/components/ui/title'
 import { SquareBox } from '@/components/square-box'
 import { Card } from '@/components/ui/card'
 import { getBorderColorByRarityHover } from '@/features/utils/rarity-color'
+import { Star } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { Separator } from '@/components/ui/separator'
 import { useGetData } from '@/features/providers/data-provider'
@@ -26,7 +31,9 @@ export function WeaponItem(props: WeaponItemProps) {
 
   if (!WEAPON) return null
 
-  const STAR_COLOR = getBorderColorByRarityHover(WEAPON.rarity)
+  const RARITY_COLOR_BORDER_HOVER = getBorderColorByRarityHover(WEAPON.rarity)
+  const SECONDARY_STAT = getAttributesText(WEAPON.secondary_stat)
+  const STARS = getRarityStars(WEAPON.rarity)
 
   return (
     <HoverCard>
@@ -34,34 +41,51 @@ export function WeaponItem(props: WeaponItemProps) {
         <Card
           className={cn(
             'flex items-center gap-4 p-4 border transition duration-200 ease-in-out',
-            STAR_COLOR
+            RARITY_COLOR_BORDER_HOVER
           )}
         >
-          <SquareBox size='sm'>
+          <SquareBox>
             <Image
               src={WEAPON.image_url ?? DEFAULT_IMAGE}
-              alt={WEAPON.name ?? 'WEAPON Image'}
+              alt={WEAPON.name}
               width={1080}
               height={1080}
               className='object-contain size-full'
             />
           </SquareBox>
-          <Title>{WEAPON.name}</Title>
+          <article>
+            <Title>{WEAPON.name}</Title>
+            <Title size='sm'>
+              <span className='opacity-70'>{SECONDARY_STAT}</span>
+            </Title>
+          </article>
         </Card>
       </HoverCardTrigger>
       <HoverCardContent className='w-[480px]'>
         <article className='space-y-4'>
           <div className='flex items-center gap-4'>
-            <SquareBox size='sm'>
+            <SquareBox>
               <Image
                 src={WEAPON.image_url ?? DEFAULT_IMAGE}
-                alt={WEAPON.name ?? 'WEAPON Image'}
+                alt={WEAPON.name}
                 width={1080}
                 height={1080}
                 className='object-contain size-full'
               />
             </SquareBox>
-            <Title size='xl'>{WEAPON.name}</Title>
+            <article>
+              <Title>{WEAPON.name}</Title>
+              <Title size='sm'>
+                <span className='opacity-70'>{SECONDARY_STAT}</span>
+              </Title>
+            </article>
+            <ul className='flex items-center flex-1 justify-end gap-1'>
+              {STARS.map((_, index) => (
+                <li key={index}>
+                  <Star className='text-amber-500 size-5' />
+                </li>
+              ))}
+            </ul>
           </div>
 
           <Separator />
