@@ -14,13 +14,13 @@ import { useEffect, useMemo, useState, useTransition } from 'react'
 import { TeamsCharacterSchema } from '@/schemas'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Input } from '@/components/ui/input'
-import { CharacterSelector } from '@/app/(panel)/editor/character/[id]/teams/_components/character-selector'
 import { createTeams } from '@/app/(panel)/editor/character/[id]/teams/_services/create'
 import { useGetCharacter } from '@/features/providers/character-provider'
 import { FormSheet } from '@/app/(panel)/_components/form-sheet'
 import { useRouter } from 'next/navigation'
 import { updateTeamsCharacters } from '@/app/(panel)/editor/character/[id]/teams/_services/update'
 import { TeamFormProps } from '@/app/(panel)/editor/character/[id]/teams/_components/team-form/team-form.type'
+import { CharacterSelector } from '@/app/(panel)/_components/dialog-selectors/character-selector'
 import { toast } from 'sonner'
 import { NONE } from '@/consts/misc'
 
@@ -40,7 +40,7 @@ export function TeamForm(props: TeamFormProps) {
 
   const TEAMS = useMemo(() => CHARACTER?.teams ?? [], [CHARACTER])
   const IS_EDITING = !!TEAM_ID
-  const TEAM_NAME = `Equipo de ${CHARACTER?.name} #${TEAMS.length + 1}`
+  const TEAM_NAME = `Equipo de ${CHARACTER?.name}`
 
   const form = useForm<z.infer<typeof TeamsCharacterSchema>>({
     resolver: zodResolver(TeamsCharacterSchema),
