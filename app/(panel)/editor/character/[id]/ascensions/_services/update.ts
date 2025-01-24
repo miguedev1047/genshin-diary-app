@@ -4,6 +4,7 @@ import { z } from 'zod'
 import { currentRole } from '@/data/auth'
 import { AscensionSchema, MaterialQuantitySchema } from '@/schemas'
 import { db } from '@/lib/db'
+import { ASCENSION_CHARACTER } from '@/consts/general'
 
 export async function updateMaterials(
   data: z.infer<typeof AscensionSchema>,
@@ -23,12 +24,17 @@ export async function updateMaterials(
     return { status: 403, message: 'Campos invalidos.' }
   }
 
-  const { materials } = VALIDATE_FIELDS.data
+  const { ascension_level, materials } = VALIDATE_FIELDS.data
 
-  const MATERIALS = materials.map((material) => ({
+  const SELECTED_ASCENSION = ASCENSION_CHARACTER.find(
+    (item) => item.ascension === ascension_level
+  )!
+
+  const MATERIALS = materials.map((material, index) => ({
     character_id,
     ascension_id,
     material_id: material,
+    quantity: SELECTED_ASCENSION.materialQuatities[index] ?? 0,
   }))
 
   try {

@@ -4,6 +4,7 @@ import { z } from 'zod'
 import { currentRole } from '@/data/auth'
 import { MaterialQuantitySchema, TalentSchema } from '@/schemas'
 import { db } from '@/lib/db'
+import { ASCENSION_TALENT } from '@/consts/general'
 
 export async function updateMaterialTalentAscension(
   data: z.infer<typeof TalentSchema>,
@@ -22,12 +23,17 @@ export async function updateMaterialTalentAscension(
     return { status: 403, message: 'Campos invalidos.' }
   }
 
-  const { materials } = VALIDATE_FIELDS.data
+  const { talent_level, materials } = VALIDATE_FIELDS.data
 
-  const MATERIALS = materials.map((material) => ({
+  const SELECTED_LEVEL = ASCENSION_TALENT.find(
+    (item) => item.ascension === talent_level
+  )!
+
+  const MATERIALS = materials.map((material, index) => ({
     character_id,
     ascension_id,
     material_id: material,
+    quantity: SELECTED_LEVEL.materialQuatities[index] ?? 0,
   }))
 
   try {
@@ -38,10 +44,9 @@ export async function updateMaterialTalentAscension(
     await db.talentsAscensionCharacterMaterial.createMany({
       data: MATERIALS,
     })
-      
+
     return { status: 201, message: 'Cambios guardados.' }
   } catch (error) {
-    console.log(error)
     return { status: 500, message: 'Ocurrio un error.' }
   }
 }

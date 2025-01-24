@@ -28,9 +28,10 @@ export async function createTalentAscension(
     (item) => item.ascension === talent_level
   )!
 
-  const MATERIALS = materials.map((material) => ({
+  const MATERIALS = materials.map((material, index) => ({
     character_id,
     material_id: material,
+    quantity: SELECTED_LEVEL.materialQuatities[index] ?? 0,
   }))
 
   try {
@@ -43,12 +44,12 @@ export async function createTalentAscension(
         level: SELECTED_LEVEL?.level,
         materials: {
           createMany: {
-            data: MATERIALS
-          }
-        }
+            data: MATERIALS,
+          },
+        },
       },
     })
-      
+
     return { status: 201, message: 'Talento añadido.' }
   } catch (error) {
     console.log(error)

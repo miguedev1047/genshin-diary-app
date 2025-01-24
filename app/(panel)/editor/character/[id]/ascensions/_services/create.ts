@@ -18,7 +18,7 @@ export async function createAscension(
   }
 
   const VALIDATE_FIELDS = AscensionSchema.safeParse(data)
-  
+
   if (!VALIDATE_FIELDS.success) {
     return { status: 403, message: 'Campos invalidos.' }
   }
@@ -29,9 +29,10 @@ export async function createAscension(
     (item) => item.ascension === ascension_level
   )!
 
-  const MATERIALS = materials.map((material) => ({
+  const MATERIALS = materials.map((material, index) => ({
     character_id,
     material_id: material,
+    quantity: SELECTED_ASCENSION.materialQuatities[index] ?? 0,
   }))
 
   try {
