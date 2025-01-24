@@ -13,7 +13,7 @@ import Link from 'next/link'
 
 export function Header() {
   return (
-    <header className='sticky top-0 w-full bg-background/95 shadow backdrop-blur supports-[backdrop-filter]:bg-background/60 dark:shadow-secondary px-16 z-40'>
+    <header className='sticky top-0 w-full bg-background/95 shadow backdrop-blur supports-[backdrop-filter]:bg-background/60 px-16 z-40'>
       <div className='max-w-7xl mx-auto flex h-16 items-center justify-between'>
         <nav className='flex flex-grow basis-0'>
           <Logo />

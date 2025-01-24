@@ -16,9 +16,9 @@ import { Separator } from '@/components/ui/separator'
 import { useGetData } from '@/features/providers/data-provider'
 import { Badge } from '@/components/ui/badge'
 import { getRarityStars } from '@/features/utils/character-texts'
+import { Star } from 'lucide-react'
 import Image from 'next/image'
 import parse from 'html-react-parser'
-import { Star } from 'lucide-react'
 
 export function ArtifactSetItem(props: ArtifactItemProps) {
   const { data: ARTIFACT_DATA, requiredPieces } = props
