@@ -2,6 +2,12 @@
 
 import './text-editor.style.css'
 import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from '@/components/ui/tooltip'
+import {
   EditorBubble,
   EditorCommand,
   EditorCommandEmpty,

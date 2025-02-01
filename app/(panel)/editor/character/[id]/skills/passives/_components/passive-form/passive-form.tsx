@@ -35,6 +35,7 @@ import { createPassive } from '@/app/(panel)/editor/character/[id]/skills/passiv
 import { updatePassive } from '@/app/(panel)/editor/character/[id]/skills/passives/_services/update'
 import { toast } from 'sonner'
 import { ViewImageInput } from '@/app/(panel)/_components/view-image-input'
+import { PasteButtonInput } from '@/app/(panel)/_components/paste-button-input'
 
 const MAX_PASSIVES = 4
 
@@ -135,7 +136,7 @@ export function PassiveForm(props: PassiveFormProps) {
               <FormItem>
                 <FormLabel>Nombre</FormLabel>
                 <FormControl>
-                  <Input
+                  <PasteButtonInput
                     placeholder='Nombre de la pasiva'
                     disabled={isPending}
                     {...field}

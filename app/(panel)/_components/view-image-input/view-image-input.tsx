@@ -1,19 +1,25 @@
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from '@/components/ui/tooltip'
 import { Input } from '@/components/ui/input'
 import { ViewImageInputProps } from './view-image-input.type'
-import { Check, Eye, ImageIcon, X } from 'lucide-react'
-import {
-  HoverCard,
-  HoverCardContent,
-  HoverCardTrigger,
-} from '@/components/ui/hover-card'
-import { SquareBox } from '@/components/square-box'
-import { cn } from '@/lib/utils'
-import { DEFAULT_IMAGE } from '@/consts/misc'
-import Image from 'next/image'
+import { Clipboard } from 'lucide-react'
+import { Button } from '@/components/ui/button'
 
 export function ViewImageInput(props: ViewImageInputProps) {
   const { disabled, onChange, value, placeholder } = props
-  const VALID_URL = value.startsWith('https://gensh.honeyhunterworld.com/img/')
+
+  const handlePaste = async () => {
+    try {
+      const text = await navigator.clipboard.readText()
+      onChange(text)
+    } catch (err) {
+      console.error('Failed to read clipboard contents: ', err)
+    }
+  }
 
   return (
     <div className='relative'>
@@ -21,37 +27,29 @@ export function ViewImageInput(props: ViewImageInputProps) {
         value={value}
         placeholder={placeholder}
         disabled={disabled}
-        onChange={onChange}
+        onChange={(e) => onChange(e.target.value)}
         className='peer pe-9'
       />
-      <div
-        className={cn(
-          VALID_URL
-            ? 'text-success'
-            : 'pointer-events-none text-muted-foreground/80',
-          'absolute inset-y-0 end-0 flex items-center justify-center pe-3  peer-disabled:opacity-50'
-        )}
-      >
-        <HoverCard>
-          <HoverCardTrigger asChild>
-            {VALID_URL && <ImageIcon />}
-          </HoverCardTrigger>
-          <HoverCardContent className='size-32'>
-            <SquareBox size='full'>
-              {VALID_URL && (
-                <Image
-                  src={value ?? DEFAULT_IMAGE}
-                  width={256}
-                  height={256}
-                  loading='lazy'
-                  alt='View Image Input'
-                  className='size-full object-contain'
-                />
-              )}
-            </SquareBox>
-          </HoverCardContent>
-        </HoverCard>
-      </div>
+      <TooltipProvider>
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <Button
+              type='button'
+              onClick={handlePaste}
+              variant='ghost'
+              disabled={disabled}
+              size='icon'
+              className='absolute right-0 top-0 mx-1 hover:bg-transparent'
+            >
+              <Clipboard className='h-4 w-4' />
+              <span className='sr-only'>Pegar</span>
+            </Button>
+          </TooltipTrigger>
+          <TooltipContent side='bottom'>
+            <p>Pegar</p>
+          </TooltipContent>
+        </Tooltip>
+      </TooltipProvider>
     </div>
   )
 }

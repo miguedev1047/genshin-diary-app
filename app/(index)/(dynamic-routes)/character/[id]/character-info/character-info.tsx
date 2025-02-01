@@ -86,7 +86,7 @@ export function CharacterInfo(props: CharacterInfoProps) {
         <div className='tiptap opacity-70'>{parse(CHARACTER.description)}</div>
       </div>
 
-      <figure className='w-[540px] h-[375px] overflow-hidden mask-linear mask-from-0 mask-via-100 mask-to-70'>
+      <figure className='w-[540px] h-[375px] overflow-hidden mask-linear mask-from-0 mask-via-100 mask-to-100'>
         <BlurImage
           src={CHARACTER.images?.splash_art_url ?? DEFAULT_IMAGE}
           alt={CHARACTER.name}

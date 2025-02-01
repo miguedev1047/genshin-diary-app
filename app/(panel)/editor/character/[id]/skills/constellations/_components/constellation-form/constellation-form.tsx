@@ -35,6 +35,7 @@ import { TextEditor } from '@/app/(panel)/_components/text-editor'
 import { Input } from '@/components/ui/input'
 import { toast } from 'sonner'
 import { ViewImageInput } from '@/app/(panel)/_components/view-image-input'
+import { PasteButtonInput } from '@/app/(panel)/_components/paste-button-input'
 
 const MAX_CONSTELLATIONS = 6
 
@@ -144,7 +145,7 @@ export function ConstellationForm(props: ConstellationFormProps) {
               <FormItem>
                 <FormLabel>Nombre</FormLabel>
                 <FormControl>
-                  <Input
+                  <PasteButtonInput
                     placeholder='Nombre de la constelación'
                     disabled={isPending}
                     {...field}

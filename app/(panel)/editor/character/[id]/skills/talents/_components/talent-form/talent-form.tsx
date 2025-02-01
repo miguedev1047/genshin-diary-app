@@ -35,6 +35,7 @@ import { TalentFormProps } from '@/app/(panel)/editor/character/[id]/skills/tale
 import { updateTalent } from '@/app/(panel)/editor/character/[id]/skills/talents/_services/update'
 import { toast } from 'sonner'
 import { ViewImageInput } from '@/app/(panel)/_components/view-image-input'
+import { PasteButtonInput } from '@/app/(panel)/_components/paste-button-input'
 
 const MAX_TALENTS = 3
 
@@ -135,7 +136,7 @@ export function TalentForm(props: TalentFormProps) {
               <FormItem>
                 <FormLabel>Nombre</FormLabel>
                 <FormControl>
-                  <Input
+                  <PasteButtonInput
                     placeholder='Nombre del talento'
                     disabled={isPending}
                     {...field}
