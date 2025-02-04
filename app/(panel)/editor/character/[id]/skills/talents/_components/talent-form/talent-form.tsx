@@ -25,7 +25,7 @@ import { toast } from 'sonner'
 import { ViewImageInput } from '@/app/(panel)/_components/view-image-input'
 import { PasteButtonInput } from '@/app/(panel)/_components/paste-button-input'
 
-const MAX_TALENTS = 3
+const MAX_TALENTS = 4
 
 const ERR_TALENT_LIST = `No puedes añadir más de ${MAX_TALENTS} talentos.`
 
