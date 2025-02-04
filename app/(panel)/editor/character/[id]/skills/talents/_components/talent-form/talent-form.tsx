@@ -8,24 +8,12 @@ import {
   FormLabel,
   FormMessage,
 } from '@/components/ui/form'
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectLabel,
-  SelectSeparator,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select'
 import { z } from 'zod'
 import { useForm } from 'react-hook-form'
 import { useEffect, useMemo, useState, useTransition } from 'react'
 import { SkillCharacterSchema } from '@/schemas'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { SKILL_TYPE } from '@/consts/general'
 import { DEFAULT_IMAGE } from '@/consts/misc'
-import { Input } from '@/components/ui/input'
 import { TextEditor } from '@/app/(panel)/_components/text-editor/text-editor'
 import { useGetCharacter } from '@/features/providers/character-provider'
 import { createTalent } from '@/app/(panel)/editor/character/[id]/skills/talents/_services/create'
@@ -60,7 +48,7 @@ export function TalentForm(props: TalentFormProps) {
       title: '',
       description: '',
       image_url: '',
-      type: undefined,
+      type: 'TALENT',
     },
   })
 
@@ -161,41 +149,6 @@ export function TalentForm(props: TalentFormProps) {
                   />
                 </FormControl>
                 <FormMessage />
-              </FormItem>
-            )}
-          />
-
-          <FormField
-            control={form.control}
-            name='type'
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Tipo</FormLabel>
-                <Select
-                  value={field.value}
-                  onValueChange={field.onChange}
-                  disabled={isPending}
-                >
-                  <FormControl>
-                    <SelectTrigger>
-                      <SelectValue placeholder='Tipo de habilidad' />
-                    </SelectTrigger>
-                  </FormControl>
-                  <SelectContent>
-                    <SelectGroup>
-                      <SelectLabel>Tipo</SelectLabel>
-                      <SelectSeparator />
-                      {SKILL_TYPE.map(({ value, label }) => (
-                        <SelectItem
-                          value={value}
-                          key={value}
-                        >
-                          {label}
-                        </SelectItem>
-                      ))}
-                    </SelectGroup>
-                  </SelectContent>
-                </Select>
               </FormItem>
             )}
           />
