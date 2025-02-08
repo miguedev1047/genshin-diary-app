@@ -3,17 +3,14 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from '@/components/ui/popover'
-import { Button } from '@/components/ui/button'
-import { Stars } from 'lucide-react'
 import { ChatForm } from '@/app/(panel)/_components/chat-ai/chat-ai.form'
+import { RainbowButton } from '@/components/ui/rainbow-button'
 
 export function ChatAI() {
   return (
     <Popover>
       <PopoverTrigger asChild>
-        <Button size='icon'>
-          <Stars />
-        </Button>
+        <RainbowButton>IA Chat</RainbowButton>
       </PopoverTrigger>
       <PopoverContent
         side='left'

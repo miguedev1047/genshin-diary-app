@@ -53,7 +53,7 @@ export function ChatForm({ className, ...props }: React.ComponentProps<'div'>) {
   }
 
   const header = (
-    <header className='m-auto flex max-w-96 mt-20 flex-col gap-5 text-center'>
+    <header className='m-auto flex max-w-96 mt-20 flex-col gap-4 text-center'>
       <h1 className='text-2xl font-semibold leading-none tracking-tight'>
         Hu Tao AI Bot
       </h1>
@@ -67,30 +67,30 @@ export function ChatForm({ className, ...props }: React.ComponentProps<'div'>) {
   const messageList = (
     <div className='my-4 flex h-fit min-h-full flex-col gap-4'>
       {messages.map((message, index) => (
-      <div
-        key={index}
-        className={cn(
-          'flex items-start gap-3',
-          message.role === 'assistant' ? 'self-start' : 'self-end flex-row-reverse'
-        )}
-      >
-        {message.role === 'assistant' && <AssistantAvatar />}
         <div
+          key={index}
           className={cn(
-            'max-w-[80%] rounded-xl px-3 py-2 text-sm break-words',
-            message.role === 'assistant'
-              ? 'bg-gray-100 text-black'
-              : 'bg-blue-500 text-white text-right'
+            'flex items-start gap-3',
+            message.role === 'assistant' ? 'justify-start' : 'justify-end'
           )}
         >
-          {message.role === 'assistant' ? (
-            <FormattedResponse content={message.content} />
-          ) : (
-            message.content
-          )}
+          {message.role === 'assistant' && <AssistantAvatar />}
+          <div
+            className={cn(
+              'max-w-[80%] rounded-xl px-3 py-2 text-sm break-words',
+              message.role === 'assistant'
+                ? 'bg-gray-100 text-black'
+                : 'bg-blue-500 text-white text-right'
+            )}
+          >
+            {message.role === 'assistant' ? (
+              <FormattedResponse content={message.content} />
+            ) : (
+              message.content
+            )}
+          </div>
         </div>
-      </div>
-    ))}
+      ))}
     </div>
   )
 
