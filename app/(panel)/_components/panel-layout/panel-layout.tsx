@@ -16,8 +16,7 @@ export function PanelLayout({ children }: { children: React.ReactNode }) {
       onOpenChange={sidebarHook.setIsOpen}
     >
       <GridBackground />
-
-      <PanelSidebar />
+      <PanelSidebar />  
 
       {children}
     </SidebarProvider>

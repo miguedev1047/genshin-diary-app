@@ -18,7 +18,7 @@ import Link from 'next/link'
 
 export function PanelSidebar() {
   return (
-    <Sidebar collapsible='icon' className='z-[999]'>
+    <Sidebar collapsible='icon'>
       <SidebarHeader>
         <SidebarMenu>
           <SidebarMenuItem>

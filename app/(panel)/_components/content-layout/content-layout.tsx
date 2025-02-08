@@ -15,6 +15,7 @@ import {
 import { Separator } from '@/components/ui/separator'
 import { ContentLayoutProps } from '@/app/(panel)/_components/content-layout/content-layout.type'
 import { PAGE_NAME } from '@/consts/misc'
+import { ChatAI } from '@/app/(panel)/_components/chat-ai'
 import { cn } from '@/lib/utils'
 
 export function ContentLayout(props: ContentLayoutProps) {
@@ -31,20 +32,24 @@ export function ContentLayout(props: ContentLayoutProps) {
         isMobile && 'ml-0'
       )}
     >
-      <header className='flex flex-1 z-50 items-center sticky top-0 border-b py-5 px-5 bg-background/70 backdrop-blur-2xl'>
-        <SidebarTrigger />
-        <Separator
-          orientation='vertical'
-          className='mx-2 h-4'
-        />
-        <Breadcrumb>
-          <BreadcrumbList>
-            <BreadcrumbSeparator />
-            <BreadcrumbItem>
-              <BreadcrumbPage>{title}</BreadcrumbPage>
-            </BreadcrumbItem>
-          </BreadcrumbList>
-        </Breadcrumb>
+      <header className='flex flex-1 justify-between z-50 items-center sticky top-0 border-b py-5 px-5 bg-background/70 backdrop-blur-2xl'>
+        <nav className='flex items-center gap-2'>
+          <SidebarTrigger />
+          <Separator
+            orientation='vertical'
+            className='mx-2 h-4'
+          />
+          <Breadcrumb>
+            <BreadcrumbList>
+              <BreadcrumbSeparator />
+              <BreadcrumbItem>
+                <BreadcrumbPage>{title}</BreadcrumbPage>
+              </BreadcrumbItem>
+            </BreadcrumbList>
+          </Breadcrumb>
+        </nav>
+
+        <ChatAI />
       </header>
 
       <div className='min-h-[calc(100svh_-_8rem)] p-8 container mx-auto space-y-5'>
