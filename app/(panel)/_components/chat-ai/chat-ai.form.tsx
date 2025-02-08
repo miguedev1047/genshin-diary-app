@@ -67,32 +67,30 @@ export function ChatForm({ className, ...props }: React.ComponentProps<'div'>) {
   const messageList = (
     <div className='my-4 flex h-fit min-h-full flex-col gap-4'>
       {messages.map((message, index) => (
+      <div
+        key={index}
+        className={cn(
+          'flex items-start gap-3',
+          message.role === 'assistant' ? 'self-start' : 'self-end flex-row-reverse'
+        )}
+      >
+        {message.role === 'assistant' && <AssistantAvatar />}
         <div
-          key={index}
           className={cn(
-            'flex items-start gap-3',
+            'max-w-[80%] rounded-xl px-3 py-2 text-sm break-words',
             message.role === 'assistant'
-              ? 'self-start'
-              : 'self-end flex-row-reverse'
+              ? 'bg-gray-100 text-black'
+              : 'bg-blue-500 text-white text-right'
           )}
         >
-          {message.role === 'assistant' && <AssistantAvatar />}
-          <div
-            className={cn(
-              'max-w-[80%] rounded-xl px-3 py-2 text-sm',
-              message.role === 'assistant'
-                ? 'bg-gray-100 text-black'
-                : 'bg-blue-500 text-white'
-            )}
-          >
-            {message.role === 'assistant' ? (
-              <FormattedResponse content={message.content} />
-            ) : (
-              message.content
-            )}
-          </div>
+          {message.role === 'assistant' ? (
+            <FormattedResponse content={message.content} />
+          ) : (
+            message.content
+          )}
         </div>
-      ))}
+      </div>
+    ))}
     </div>
   )
 
@@ -157,7 +155,7 @@ export function ChatForm({ className, ...props }: React.ComponentProps<'div'>) {
       </form>
 
       <div className='text-center text-xs text-muted-foreground mb-2'>
-        Hu Tao Bot puede cometer errores. Usar a discreción.
+        Hu Tao es un bot inteligente y puede cometer errores. Usar a discreción.
       </div>
     </div>
   )

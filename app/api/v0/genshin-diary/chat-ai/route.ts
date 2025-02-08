@@ -6,15 +6,9 @@ export async function POST(req: Request) {
 
   const result = streamText({
     model: openai('gpt-4o-mini-2024-07-18'),
-    system: 'You are a helpful genshin impact assistant and act like hu tao',
-    messages: [
-      {
-        role: 'system',
-        content:
-          'You are an expert in Genshin Impact. Use the information provided to answer questions about the characters',
-      },
-      ...messages,
-    ],
+    system:
+      'Eres un asistente experto en Genshin Impact y puedes responder preguntas relacionadas con genshin impact actuando como Hu Tao en español',
+    messages,
   })
 
   return result.toDataStreamResponse()
