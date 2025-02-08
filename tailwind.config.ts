@@ -209,6 +209,7 @@ const config: Config = {
   plugins: [
     require('tailwindcss-animate'),
     require('@pyncz/tailwind-mask-image'),
+    require("@tailwindcss/typography"),
     addVariablesForColors,
   ],
 }
