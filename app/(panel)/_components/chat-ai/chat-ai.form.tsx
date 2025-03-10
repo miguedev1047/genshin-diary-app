@@ -97,7 +97,7 @@ export function ChatForm({ className, ...props }: React.ComponentProps<'div'>) {
   return (
     <div
       className={cn(
-        'h-[calc(100dvh_-_16rem)] flex justify-between flex-col',
+        'h-[calc(100dvh_-_24rem)] flex justify-between flex-col',
         (className = '')
       )}
       {...props}
@@ -127,7 +127,6 @@ export function ChatForm({ className, ...props }: React.ComponentProps<'div'>) {
           onKeyDown={handleKeyDown}
           onChange={(v) => setInput(v)}
           value={input}
-          disabled={isPending}
           placeholder='Escribe un mensaje'
           className='placeholder:text-muted-foreground relative flex-1 bg-transparent focus:outline-none pr-24'
         />

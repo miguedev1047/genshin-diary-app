@@ -1,24 +1,16 @@
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from '@/components/ui/popover'
 import { ChatForm } from '@/app/(panel)/_components/chat-ai/chat-ai.form'
+import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog'
 import { RainbowButton } from '@/components/ui/rainbow-button'
 
 export function ChatAI() {
   return (
-    <Popover>
-      <PopoverTrigger asChild>
+    <Dialog>
+      <DialogTrigger asChild>
         <RainbowButton>IA Chat</RainbowButton>
-      </PopoverTrigger>
-      <PopoverContent
-        side='left'
-        className='w-[720px]'
-        align='start'
-      >
+      </DialogTrigger>
+      <DialogContent className='max-w-[840px]'>
         <ChatForm className='size-full' />
-      </PopoverContent>
-    </Popover>
+      </DialogContent>
+    </Dialog>
   )
 }

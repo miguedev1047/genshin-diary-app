@@ -86,13 +86,13 @@ export function CharacterInfo(props: CharacterInfoProps) {
         <div className='tiptap opacity-70'>{parse(CHARACTER.description)}</div>
       </div>
 
-      <figure className='w-[540px] h-[375px] overflow-hidden mask-linear mask-from-0 mask-via-100 mask-to-100'>
+      <figure className='w-[540px] h-[375px] overflow-hidden'>
         <BlurImage
           src={CHARACTER.images?.splash_art_url ?? DEFAULT_IMAGE}
           alt={CHARACTER.name}
           width={1600}
           height={900}
-          className='size-full object-cover mask-reach-[45%_180%] mask-via-85 mask-radial'
+          className='size-full object-cover'
         />
       </figure>
     </div>

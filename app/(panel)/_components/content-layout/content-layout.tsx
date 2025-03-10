@@ -47,7 +47,7 @@ export function ContentLayout(props: ContentLayoutProps) {
               </BreadcrumbItem>
             </BreadcrumbList>
           </Breadcrumb>
-        </nav>
+        </nav> 
 
         <ChatAI />
       </header>
