@@ -55,7 +55,7 @@ export function ChatForm({ className, ...props }: React.ComponentProps<'div'>) {
   const header = (
     <header className='m-auto flex max-w-96 mt-20 flex-col gap-4 text-center'>
       <h1 className='text-2xl font-semibold leading-none tracking-tight'>
-        Hu Tao AI Bot
+        Hu Tao AI Bot (Experimental)
       </h1>
 
       <p className='text-muted-foreground text-sm'>
