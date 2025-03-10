@@ -37,3 +37,23 @@ export async function getMaterials() {
     return null
   }
 }
+
+export async function getTeams() {
+  try {
+    const TEAMS = await db.team.findMany({ include: { characters: true } })
+    return TEAMS
+  } catch (error) {
+    return null
+  }
+}
+
+export async function getTierlists() {
+  try {
+    const TIERLIST = await db.tierList.findMany({
+      include: { tiers: { include: { characters: true } } },
+    })
+    return TIERLIST
+  } catch (error) {
+    return null
+  }
+}
