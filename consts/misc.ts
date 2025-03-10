@@ -11,3 +11,5 @@ export const DEFAULT_IMAGE = 'https://placehold.co/600?text=Genshin+Diary'
 
 export const STALE_MS = 60 * 60 * 3600
 export const GC_MS = 60 * 60 * 3600
+
+export const EMPTY_LIST = 0

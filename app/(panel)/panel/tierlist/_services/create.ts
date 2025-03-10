@@ -11,6 +11,7 @@ const TIERS = [
   { tier_rank: 'B' },
   { tier_rank: 'A' },
   { tier_rank: 'S' },
+  { tier_rank: 'SS' },
 ]
 
 export async function createTierlist(data: z.infer<typeof TierlistSchema>) {

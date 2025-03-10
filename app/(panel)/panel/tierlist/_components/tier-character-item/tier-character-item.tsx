@@ -4,23 +4,22 @@ import { Card } from '@/components/ui/card'
 import { AspectRatio } from '@/components/ui/aspect-ratio'
 import { getBorderColorByRarityHover } from '@/features/utils/rarity-color'
 import { formattedUrl } from '@/features/utils/formatted-names'
-import { useGetCharacter } from '@/features/queries/use-characters'
 import { TierCharacterItemProps } from '@/app/(panel)/panel/tierlist/_components/tier-character-item/tier-character-item.type'
 import { deleteCharacterTier } from '@/app/(panel)/panel/tierlist/_services/delete'
 import { DeleteButton } from '@/app/(panel)/_components/delete-button'
 import { Trash2 } from 'lucide-react'
+import { useGetData } from '@/features/providers/data-provider'
 import { cn } from '@/lib/utils'
 import Image from 'next/image'
 import Link from 'next/link'
-import { SpinAspectRatio } from '@/components/spin-loaders'
 
 export function TierCharacterItem(props: TierCharacterItemProps) {
   const { character_id, id } = props
 
-  const { data: CHARACTER, status } = useGetCharacter(character_id)
-  if (status === 'pending') return <SpinAspectRatio />
-  if (status === 'error') return <SpinAspectRatio />
+  const { data } = useGetData()
+  const { characters: CHARACTERS } = data
 
+  const CHARACTER = CHARACTERS?.find((item) => item.id === character_id)
   if (!CHARACTER) return null
 
   const FORMATTED_NAME = formattedUrl(CHARACTER.name)
