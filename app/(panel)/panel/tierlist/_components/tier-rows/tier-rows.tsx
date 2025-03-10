@@ -19,14 +19,14 @@ export function TierRows(props: TierRowProps) {
           size='xl'
           className={cn(
             'col-span-2 grid place-items-center aspect-[2/3] size-full',
-            TIER_ROW_COLORS[row.tier_rank as 'S' | 'A' | 'B' | 'C' | 'D']
+            TIER_ROW_COLORS[row.tier_rank as 'SS' | 'S' | 'A' | 'B' | 'C' | 'D']
           )}
         >
           <Title size='3xl'>{row.tier_rank}</Title>
         </SquareBox>
 
         <Card className='p-6 col-span-8'>
-          <ul  className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 h-full'>
+          <ul className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 h-full'>
             <TierCharacterList characters={row.characters} />
             <CharacterForm
               data={row.characters}

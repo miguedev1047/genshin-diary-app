@@ -64,11 +64,10 @@ export const BG_ELEMENT = {
 }
 
 export const TIER_ROW_COLORS = {
+  SS: 'bg-pink-400',
   S: 'bg-yellow-400',
   A: 'bg-green-400',
   B: 'bg-blue-400',
   C: 'bg-purple-400',
   D: 'bg-red-400',
 }
-
-
