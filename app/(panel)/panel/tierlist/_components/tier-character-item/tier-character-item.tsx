@@ -22,8 +22,7 @@ export function TierCharacterItem(props: TierCharacterItemProps) {
   const CHARACTER = CHARACTERS?.find((item) => item.id === character_id)
   if (!CHARACTER) return null
 
-  const FORMATTED_NAME = formattedUrl(CHARACTER.name)
-  const URL = `/editor/character/${FORMATTED_NAME}`
+  const URL = `/editor/character/${character_id}`
 
   const CHARACTER_SPLASH_ART = CHARACTER.images?.splash_art_url
   const RARITY_COLOR = getBorderColorByRarityHover(CHARACTER.rarity)
