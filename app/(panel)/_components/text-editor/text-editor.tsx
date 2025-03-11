@@ -62,7 +62,7 @@ export function TextEditor(props: TextEditorProps) {
               keydown: (_view, event) => handleCommandNavigation(event),
             },
             attributes: {
-              class: `prose prose-lg dark:prose-invert prose-headings:font-title font-default focus:outline-none max-w-full min-h-[100px] leading-[2rem]`,
+              class: `prose prose-lg dark:prose-invert prose-headings:font-title font-default focus:outline-none max-w-full min-h-[100px] leading-[1.75rem] text-sm`,
             },
           }}
         >
