@@ -68,10 +68,10 @@ export function CharacterForm(props: CharacterFormProps) {
     >
       <SheetTrigger asChild>
         <Button
-          variant='ghost'
-          className='!size-full border-4 border-dashed col-span-1 aspect-[2/3] grid place-content-center'
+          variant='outline'
+          size='icon'
         >
-          <Plus className='size-8' />
+          <Plus />
         </Button>
       </SheetTrigger>
       <SheetContent className='sm:max-w-[640px]'>

@@ -25,13 +25,16 @@ export function TierRows(props: TierRowProps) {
           <Title size='3xl'>{row.tier_rank}</Title>
         </SquareBox>
 
-        <Card className='p-6 col-span-8'>
-          <ul className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 h-full'>
-            <TierCharacterList characters={row.characters} />
+        <Card className='p-6 col-span-8 space-y-4'>
+          <article className='flex items-center justify-end flex-1 gap-4'>
             <CharacterForm
               data={row.characters}
               tierId={row.id}
             />
+          </article>
+
+          <ul className='flex gap-4'>
+            <TierCharacterList characters={row.characters} />
           </ul>
         </Card>
       </article>

@@ -9,14 +9,10 @@ import { AspectRatio } from '@/components/ui/aspect-ratio'
 import { getBorderColorByRarityHover } from '@/features/utils/rarity-color'
 import { WeaponItemProps } from '@/app/(index)/(routes)/weapons/_components/weapon-item/weapon-item.type'
 import { cn } from '@/lib/utils'
-import Link from 'next/link'
 import Image from 'next/image'
 
 export function WeaponItem(props: WeaponItemProps) {
-  const { image_url, name, rarity, id } = props
-
-  const WEAPON_ID = id
-  const URL = `/weapon/${WEAPON_ID}`
+  const { image_url, name, rarity } = props
 
   const WEAPON_IMAGE = image_url
   const STAR_COLOR = getBorderColorByRarityHover(rarity)
@@ -25,8 +21,7 @@ export function WeaponItem(props: WeaponItemProps) {
     <TooltipProvider>
       <Tooltip>
         <TooltipTrigger asChild>
-          <Link
-            href={URL}
+          <div
             className={cn(
               'group/item flex aspect-[1/1] overflow-hidden rounded-[1rem] border border-muted/30 bg-background transition relative',
               STAR_COLOR
@@ -46,7 +41,7 @@ export function WeaponItem(props: WeaponItemProps) {
                 </AspectRatio>
               )}
             </Card>
-          </Link>
+          </div>
         </TooltipTrigger>
         <TooltipContent side='bottom'>
           <p>{name}</p>
