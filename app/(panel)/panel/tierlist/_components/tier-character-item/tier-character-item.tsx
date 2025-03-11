@@ -17,7 +17,7 @@ import { useRouter } from 'next/navigation'
 
 export function TierCharacterItem(props: TierCharacterItemProps) {
   const { character_id, id } = props
-  const { push } = useRouter() 
+  const { push } = useRouter()
 
   const { data } = useGetData()
   const { characters: CHARACTERS } = data
@@ -58,15 +58,15 @@ export function TierCharacterItem(props: TierCharacterItemProps) {
         {CHARACTER.name}
       </p>
 
-      <div className='absolute bottom-4 right-4 flex gap-2'>
+      <div className='absolute bottom-2 right-2 flex gap-1'>
+        <SortableList.DragHandle variant='outline' />
+
         <DeleteButton
           onDelete={deleteCharacterTier}
           itemId={id}
         >
           <Trash2 />
         </DeleteButton>
-        
-        <SortableList.DragHandle />
       </div>
     </Card>
   )
