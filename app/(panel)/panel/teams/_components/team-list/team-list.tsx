@@ -5,6 +5,8 @@ import { updateOrderTeams } from '@/app/(panel)/panel/teams/_services/update'
 import { TeamItem } from '@/app/(panel)/panel/teams/_components/team-item'
 import { TeamListProps } from '@/app/(panel)/panel/teams/_components/team-list/team-list.type'
 import { SortableList } from '@/app/(panel)/_components/sortable-list'
+import { EMPTY_LIST } from '@/consts/misc'
+import { EmptyList } from '@/components/empty-list'
 
 export function TeamList(props: TeamListProps) {
   const { data: TEAMS } = props
@@ -15,6 +17,10 @@ export function TeamList(props: TeamListProps) {
     items: ITEMS,
     updateFn: updateOrderTeams,
   })
+
+  if (!TEAMS || TEAMS.length === EMPTY_LIST) {
+    return <EmptyList text='No hay equipos disponibles' />
+  }
 
   return (
     <SortableList

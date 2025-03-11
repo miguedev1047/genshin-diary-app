@@ -9,12 +9,11 @@ import { toast } from 'sonner'
 import { useState, useTransition } from 'react'
 import { Pencil } from 'lucide-react'
 import { updateTeamName } from '@/app/(panel)/panel/teams/_services/update'
-import { useGetTeams } from '@/features/queries/use-teams'
+import { useRouter } from 'next/navigation'
 
 export function TeamNameForm(props: TeamNameFormProps) {
   const { name, id } = props
-
-  const { refetch } = useGetTeams()
+  const { refresh } = useRouter()
 
   const [isPending, startTransition] = useTransition()
   const [isEditing, setIsEditing] = useState(false)
@@ -38,7 +37,7 @@ export function TeamNameForm(props: TeamNameFormProps) {
       if (status === 201) {
         toast.success(message)
         setIsEditing(false)
-        refetch()
+        refresh()
 
         return
       }
