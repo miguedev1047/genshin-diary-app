@@ -9,6 +9,7 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
+  SidebarRail,
 } from '@/components/ui/sidebar'
 import { PAGE_NAME, PAGE_VERSION } from '@/consts/misc'
 import { SIDEBAR_ROUTES } from '@/lib/menu-list'
@@ -63,6 +64,7 @@ export function PanelSidebar() {
       <SidebarFooter>
         <PanelDropdown />
       </SidebarFooter>
+      <SidebarRail aria-label='Alternar barra lateral' />
     </Sidebar>
   )
 }

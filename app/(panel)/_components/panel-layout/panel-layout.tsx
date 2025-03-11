@@ -1,23 +1,14 @@
-'use client'
-
-import { GridBackground } from '@/components/grid-background'
 import { SidebarProvider } from '@/components/ui/sidebar'
-import { useSidebarToggle } from '@/features/store/use-sidebar-toggle'
-import { useStore } from '@/features/store/use-store'
 import { PanelSidebar } from '@/app/(panel)/_components/panel-sidebar'
+import { cookies } from 'next/headers'
 
 export function PanelLayout({ children }: { children: React.ReactNode }) {
-  const sidebarHook = useStore(useSidebarToggle, (state) => state)
-  if (!sidebarHook) return null
+  const cookieStore = cookies()
+  const defaultOpen = cookieStore.get('sidebar_state')?.value === 'true'
 
   return (
-    <SidebarProvider
-      open={sidebarHook.isOpen}
-      onOpenChange={sidebarHook.setIsOpen}
-    >
-      <GridBackground />
-      <PanelSidebar />  
-
+    <SidebarProvider defaultOpen={defaultOpen}>
+      <PanelSidebar />
       {children}
     </SidebarProvider>
   )

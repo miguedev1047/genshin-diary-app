@@ -1,38 +1,25 @@
-'use client'
-
-import {
-  SidebarInset,
-  SidebarTrigger,
-  useSidebar,
-} from '@/components/ui/sidebar'
 import {
   Breadcrumb,
   BreadcrumbItem,
   BreadcrumbList,
   BreadcrumbPage,
-  BreadcrumbSeparator,
 } from '@/components/ui/breadcrumb'
+import { SidebarInset, SidebarTrigger } from '@/components/ui/sidebar'
 import { Separator } from '@/components/ui/separator'
 import { ContentLayoutProps } from '@/app/(panel)/_components/content-layout/content-layout.type'
 import { PAGE_NAME } from '@/consts/misc'
-import { ChatAI } from '@/app/(panel)/_components/chat-ai'
-import { cn } from '@/lib/utils'
+import { GridBackground } from '@/components/grid-background'
 
 export function ContentLayout(props: ContentLayoutProps) {
   const { title, children } = props
-  const { open, isMobile } = useSidebar()
-
   const CURRENT_YEAR = new Date().getFullYear()
 
   return (
-    <SidebarInset
-      className={cn(
-        'transition-[margin-left] ease-linear duration-200 bg-transparent',
-        open ? 'ml-[--sidebar-width]' : 'ml-[47px]',
-        isMobile && 'ml-0'
-      )}
-    >
-      <header className='flex flex-1 justify-between z-50 items-center sticky top-0 border-b py-5 px-5 bg-background/70 backdrop-blur-2xl'>
+    <SidebarInset>
+      <GridBackground />
+
+
+      <header className='flex flex-1 justify-between z-50 items-center sticky top-0 border-b py-4 px-5 bg-background/70 backdrop-blur-2xl'>
         <nav className='flex items-center gap-2'>
           <SidebarTrigger />
           <Separator
@@ -41,15 +28,12 @@ export function ContentLayout(props: ContentLayoutProps) {
           />
           <Breadcrumb>
             <BreadcrumbList>
-              <BreadcrumbSeparator />
               <BreadcrumbItem>
                 <BreadcrumbPage>{title}</BreadcrumbPage>
               </BreadcrumbItem>
             </BreadcrumbList>
           </Breadcrumb>
-        </nav> 
-
-        <ChatAI />
+        </nav>
       </header>
 
       <div className='min-h-[calc(100svh_-_8rem)] p-8 container mx-auto space-y-5'>
