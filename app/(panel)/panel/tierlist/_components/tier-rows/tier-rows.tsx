@@ -33,9 +33,7 @@ export function TierRows(props: TierRowProps) {
             />
           </article>
 
-          <ul className='flex gap-4'>
-            <TierCharacterList characters={row.characters} />
-          </ul>
+          <TierCharacterList characters={row.characters} />
         </Card>
       </article>
     </li>
