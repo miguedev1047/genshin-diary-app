@@ -26,25 +26,27 @@ import { Star } from 'lucide-react'
 import { FormCard } from '@/app/(panel)/_components/form-card'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useParams, useRouter } from 'next/navigation'
-import { useEffect, useState, useTransition } from 'react'
+import { useEffect, useTransition } from 'react'
 import { useForm } from 'react-hook-form'
 import { createArtifact } from '@/app/(panel)/creator/artifact/_services/create'
-import { TextEditor } from '@/app/(panel)/_components/text-editor'
 import { updateArtifact } from '@/app/(panel)/creator/artifact/_services/update'
-import { useGetArtifact } from '@/features/queries/use-artifacts'
-import { toast } from 'sonner'
 import { ViewImageInput } from '@/app/(panel)/_components/view-image-input'
+import { TiptapEditor } from '@/components/tiptap'
+import { useGetData } from '@/features/providers/data-provider'
+import { toast } from 'sonner'
 
 export function ArtifactForm() {
-  const [key, setKey] = useState(+new Date())
-  const [isPending, startTranstion] = useTransition()
+  const [isPending, startTransition] = useTransition()
   const { back } = useRouter()
 
   const params = useParams<{ id: string }>()
   const ITEM_ID = params?.id
   const IS_EDITING = !!ITEM_ID
 
-  const { data: ARTIFACT } = useGetArtifact(ITEM_ID)
+  const { data } = useGetData()
+  const { artifacts } = data
+
+  const ARTIFACT = artifacts?.find((i) => i.id === ITEM_ID)
 
   const form = useForm<z.infer<typeof ArtifactSchema>>({
     resolver: zodResolver(ArtifactSchema),
@@ -58,19 +60,15 @@ export function ArtifactForm() {
 
   useEffect(() => {
     if (ARTIFACT) {
-      startTranstion(() => {
-        setKey(+new Date())
-
-        form.setValue('name', ARTIFACT.name)
-        form.setValue('bonus_description', ARTIFACT.bonus_description)
-        form.setValue('image_url', ARTIFACT.image_url ?? '')
-        form.setValue('rarity', ARTIFACT.rarity)
-      })
+      form.setValue('name', ARTIFACT.name)
+      form.setValue('bonus_description', ARTIFACT.bonus_description)
+      form.setValue('image_url', ARTIFACT.image_url ?? '')
+      form.setValue('rarity', ARTIFACT.rarity)
     }
   }, [ARTIFACT, form])
 
   const handledSubmit = form.handleSubmit((values) => {
-    startTranstion(async () => {
+    startTransition(async () => {
       if (IS_EDITING) {
         const { status, message } = await updateArtifact(values, ITEM_ID)
 
@@ -206,11 +204,11 @@ export function ArtifactForm() {
               <FormItem>
                 <FormLabel>Descripción</FormLabel>
                 <FormControl>
-                  <TextEditor
-                    key={key}
-                    initialValue={field.value}
+                  <TiptapEditor
+                    content={field.value}
                     onChange={field.onChange}
-                    isLoading={isPending}
+                    disabled={isPending}
+                    placeholder='Descripción del artefacto'
                   />
                 </FormControl>
                 <FormMessage />

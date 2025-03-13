@@ -26,7 +26,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { Star } from 'lucide-react'
 import { createWeapon } from '@/app/(panel)/creator/weapon/_services/create'
 import { FormCard } from '@/app/(panel)/_components/form-card'
-import { TextEditor } from '@/app/(panel)/_components/text-editor'
+import { TiptapEditor } from '@/components/tiptap'
 import { useTransition } from 'react'
 import { useForm } from 'react-hook-form'
 import { useRouter } from 'next/navigation'
@@ -34,7 +34,7 @@ import { toast } from 'sonner'
 import { ViewImageInput } from '@/app/(panel)/_components/view-image-input'
 
 export function WeaponForm() {
-  const [isPending, startTranstion] = useTransition()
+  const [isPending, startTransition] = useTransition()
   const { back } = useRouter()
 
   const form = useForm<z.infer<typeof WeaponSchema>>({
@@ -54,13 +54,13 @@ export function WeaponForm() {
   })
 
   const handleSubmit = form.handleSubmit((values) => {
-    startTranstion(async () => {
+    startTransition(async () => {
       const { status, message } = await createWeapon(values)
 
       if (status === 201) {
         toast.success(message)
         back()
-        
+
         return
       }
 
@@ -325,10 +325,11 @@ export function WeaponForm() {
               <FormItem>
                 <FormLabel>Descripción de la pasiva</FormLabel>
                 <FormControl>
-                  <TextEditor
-                    initialValue={field.value}
+                  <TiptapEditor
+                    content={field.value}
                     onChange={field.onChange}
-                    isLoading={isPending}
+                    disabled={isPending}
+                    placeholder='Descripción del arma'
                   />
                 </FormControl>
                 <FormMessage />

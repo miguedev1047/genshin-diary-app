@@ -33,12 +33,12 @@ import { useTransition } from 'react'
 import { useForm } from 'react-hook-form'
 import { Input } from '@/components/ui/input'
 import { FormCard } from '@/app/(panel)/_components/form-card'
-import { TextEditor } from '@/app/(panel)/_components/text-editor'
+import { TiptapEditor } from '@/components/tiptap'
 import { ViewImageInput } from '@/app/(panel)/_components/view-image-input'
 import { toast } from 'sonner'
 
 export function CharacterForm() {
-  const [isPending, startTranstion] = useTransition()
+  const [isPending, startTransition] = useTransition()
   const { back } = useRouter()
 
   const form = useForm<z.infer<typeof CharacterSchema>>({
@@ -58,7 +58,7 @@ export function CharacterForm() {
   })
 
   const handleSubmit = form.handleSubmit((values) => {
-    startTranstion(async () => {
+    startTransition(async () => {
       const { status, message } = await createCharacter(values)
 
       if (status === 201) {
@@ -362,10 +362,11 @@ export function CharacterForm() {
               <FormItem>
                 <FormLabel>Descripción</FormLabel>
                 <FormControl>
-                  <TextEditor
-                    initialValue={field.value}
+                  <TiptapEditor
+                    content={field.value}
                     onChange={field.onChange}
-                    isLoading={isPending}
+                    disabled={isPending}
+                    placeholder='Escribe una descripción'
                   />
                 </FormControl>
                 <FormMessage />
