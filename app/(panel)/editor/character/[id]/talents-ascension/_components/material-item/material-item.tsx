@@ -38,7 +38,7 @@ export function MaterialItem(props: MaterialItemProps) {
   const { materials } = data
   const MATERIAL = materials?.find((item) => item.id === material_id)
 
-  const [isPending, startTranstion] = useTransition()
+  const [isPending, startTransition] = useTransition()
   const [isOpen, setIsOpen] = useState(false)
   const { refresh } = useRouter()
 
@@ -50,7 +50,7 @@ export function MaterialItem(props: MaterialItemProps) {
   })
 
   const handleSubmit = form.handleSubmit((values) => {
-    startTranstion(async () => {
+    startTransition(async () => {
       const { status, message } = await updateTalentAscensionMaterialQuantity(
         values,
         id

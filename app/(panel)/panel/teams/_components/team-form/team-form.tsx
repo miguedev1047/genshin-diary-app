@@ -29,7 +29,7 @@ const MAX_CHARACTERS = 5
 export function TeamForm(props: TeamFormProps) {
   const { id: TEAM_ID } = props
 
-  const [isPending, startTranstion] = useTransition()
+  const [isPending, startTransition] = useTransition()
   const [isOpen, setIsOpen] = useState(false)
   const { refresh } = useRouter()
 
@@ -69,7 +69,7 @@ export function TeamForm(props: TeamFormProps) {
       )
     }
 
-    startTranstion(async () => {
+    startTransition(async () => {
       if (IS_EDITING) {
         const { status, message } = await updateTeam(values, TEAM_ID)
         if (status === 201) {

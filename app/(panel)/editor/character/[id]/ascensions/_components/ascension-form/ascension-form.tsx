@@ -40,7 +40,7 @@ export function AscensionForm(props: AscensionsFormProps) {
   const { id: ASCENSION_ID } = props
   const { data: CHARACTER } = useGetCharacter()
 
-  const [isPending, startTranstion] = useTransition()
+  const [isPending, startTransition] = useTransition()
   const [isOpen, setIsOpen] = useState(false)
   const { refresh } = useRouter()
 
@@ -78,7 +78,7 @@ export function AscensionForm(props: AscensionsFormProps) {
     const ASCENSION_ITEMS = values.materials.length > MAX_MATERIALS
     if (ASCENSION_ITEMS) return toast.error(ERR_MATERIAL_LIST)
 
-    startTranstion(async () => {
+    startTransition(async () => {
       if (IS_EDITING) {
         const { status, message } = await updateMaterials(
           values,
