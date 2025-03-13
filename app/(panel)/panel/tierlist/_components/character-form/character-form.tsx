@@ -57,7 +57,8 @@ export function CharacterForm(props: CharacterFormProps) {
 
         return
       }
-      toast.success(message)
+      
+      toast.error(message)
     })
   })
 

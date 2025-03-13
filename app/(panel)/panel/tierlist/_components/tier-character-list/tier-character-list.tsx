@@ -3,7 +3,7 @@
 import { TierCharacterListProps } from '@/app/(panel)/panel/tierlist/_components/tier-character-list/tier-character-list.type'
 import { TierCharacterItem } from '@/app/(panel)/panel/tierlist/_components/tier-character-item'
 import { SortableList } from '@/app/(panel)/_components/sortable-list'
-import { updateOrderTierlistCharacters } from '../../_services/update'
+import { updateOrderTierlistCharacters } from '@/app/(panel)/panel/tierlist/_services/update'
 import { useDrag } from '@/features/hooks/use-drag'
 
 export function TierCharacterList(props: TierCharacterListProps) {
