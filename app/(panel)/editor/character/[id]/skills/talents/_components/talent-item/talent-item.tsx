@@ -7,8 +7,8 @@ import { SortableList } from '@/app/(panel)/_components/sortable-list'
 import { getSkillTypeText } from '@/features/utils/character-texts'
 import { SquareBox } from '@/components/square-box'
 import { Badge } from '@/components/ui/badge'
+import { TiptapPreview } from '@/components/tiptap'
 import Image from 'next/image'
-import parse from 'html-react-parser'
 
 export function TalentItem(props: TalentItemProps) {
   const { title, id, description, image_url, type } = props
@@ -45,7 +45,9 @@ export function TalentItem(props: TalentItemProps) {
         </div>
       </CardHeader>
       <Separator />
-      <CardContent className='p-6'>{parse(description)}</CardContent>
+      <CardContent className='p-6'>
+        <TiptapPreview content={description} />
+      </CardContent>
     </Card>
   )
 }

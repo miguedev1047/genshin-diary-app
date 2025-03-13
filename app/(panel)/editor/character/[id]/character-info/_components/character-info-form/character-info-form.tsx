@@ -36,15 +36,15 @@ import { Input } from '@/components/ui/input'
 import { updateCharacter } from '@/app/(panel)/editor/character/[id]/character-info/_services/update'
 import { toast } from 'sonner'
 import { FormSheet } from '@/app/(panel)/_components/form-sheet'
-import { TextEditor } from '@/app/(panel)/_components/text-editor'
 import { Switch } from '@/components/ui/switch'
 import { DEFAULT_IMAGE } from '@/consts/misc'
 import { ViewImageInput } from '@/app/(panel)/_components/view-image-input'
+import { TiptapEditor } from '@/components/tiptap'
 
 export function CharacterInfoForm() {
   const { data: CHARACTER } = useGetCharacter()
 
-  const [isPending, startTranstion] = useTransition()
+  const [isPending, startTransition] = useTransition()
   const [isOpen, setIsOpen] = useState(false)
   const { refresh } = useRouter()
 
@@ -69,7 +69,7 @@ export function CharacterInfoForm() {
   const IS_EDITING = !!CHARACTER
 
   const handleSubmit = form.handleSubmit((values) => {
-    startTranstion(async () => {
+    startTransition(async () => {
       const { status, message } = await updateCharacter(values, CHARACTER?.id)
 
       if (status === 201) {
@@ -375,10 +375,10 @@ export function CharacterInfoForm() {
                 <FormItem>
                   <FormLabel>Descripción</FormLabel>
                   <FormControl>
-                    <TextEditor
-                      initialValue={field.value}
+                    <TiptapEditor
+                      content={field.value}
                       onChange={field.onChange}
-                      isLoading={isPending}
+                      disabled={isPending}
                     />
                   </FormControl>
                   <FormMessage />

@@ -20,10 +20,10 @@ import { createConstellation } from '@/app/(panel)/editor/character/[id]/skills/
 import { updateConstellation } from '@/app/(panel)/editor/character/[id]/skills/constellations/_services/update'
 import { ConstellationFormProps } from '@/app/(panel)/editor/character/[id]/skills/constellations/_components/constellation-form/constellation-form.type'
 import { DEFAULT_IMAGE } from '@/consts/misc'
-import { TextEditor } from '@/app/(panel)/_components/text-editor'
 import { toast } from 'sonner'
 import { ViewImageInput } from '@/app/(panel)/_components/view-image-input'
 import { PasteButtonInput } from '@/app/(panel)/_components/paste-button-input'
+import { TiptapEditor } from '@/components/tiptap'
 
 const MAX_CONSTELLATIONS = 6
 
@@ -169,10 +169,11 @@ export function ConstellationForm(props: ConstellationFormProps) {
               <FormItem>
                 <FormLabel>Descripción</FormLabel>
                 <FormControl>
-                  <TextEditor
-                    initialValue={field.value}
+                  <TiptapEditor
+                    content={field.value}
                     onChange={field.onChange}
-                    isLoading={isPending}
+                    disabled={isPending}
+                    placeholder='Descripción de la constelación'
                   />
                 </FormControl>
                 <FormMessage />

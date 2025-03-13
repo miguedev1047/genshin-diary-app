@@ -14,7 +14,7 @@ import { useEffect, useMemo, useState, useTransition } from 'react'
 import { SkillCharacterSchema } from '@/schemas'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { DEFAULT_IMAGE } from '@/consts/misc'
-import { TextEditor } from '@/app/(panel)/_components/text-editor/text-editor'
+
 import { useGetCharacter } from '@/features/providers/character-provider'
 import { createTalent } from '@/app/(panel)/editor/character/[id]/skills/talents/_services/create'
 import { useRouter } from 'next/navigation'
@@ -24,6 +24,7 @@ import { updateTalent } from '@/app/(panel)/editor/character/[id]/skills/talents
 import { toast } from 'sonner'
 import { ViewImageInput } from '@/app/(panel)/_components/view-image-input'
 import { PasteButtonInput } from '@/app/(panel)/_components/paste-button-input'
+import { TiptapEditor } from '@/components/tiptap'
 
 const MAX_TALENTS = 4
 
@@ -160,10 +161,11 @@ export function TalentForm(props: TalentFormProps) {
               <FormItem>
                 <FormLabel>Descripción</FormLabel>
                 <FormControl>
-                  <TextEditor
-                    initialValue={field.value}
+                  <TiptapEditor
+                    content={field.value}
                     onChange={field.onChange}
-                    isLoading={isPending}
+                    disabled={isPending}
+                    placeholder='Descripción del talento'
                   />
                 </FormControl>
                 <FormMessage />

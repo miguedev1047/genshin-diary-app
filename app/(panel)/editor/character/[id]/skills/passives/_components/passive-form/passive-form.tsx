@@ -14,7 +14,6 @@ import { useEffect, useMemo, useState, useTransition } from 'react'
 import { SkillCharacterSchema } from '@/schemas'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { DEFAULT_IMAGE } from '@/consts/misc'
-import { TextEditor } from '@/app/(panel)/_components/text-editor'
 import { useGetCharacter } from '@/features/providers/character-provider'
 import { useRouter } from 'next/navigation'
 import { FormSheet } from '@/app/(panel)/_components/form-sheet'
@@ -24,6 +23,7 @@ import { updatePassive } from '@/app/(panel)/editor/character/[id]/skills/passiv
 import { toast } from 'sonner'
 import { ViewImageInput } from '@/app/(panel)/_components/view-image-input'
 import { PasteButtonInput } from '@/app/(panel)/_components/paste-button-input'
+import { TiptapEditor } from '@/components/tiptap'
 
 const MAX_PASSIVES = 4
 
@@ -160,10 +160,11 @@ export function PassiveForm(props: PassiveFormProps) {
               <FormItem>
                 <FormLabel>Descripción</FormLabel>
                 <FormControl>
-                  <TextEditor
-                    initialValue={field.value}
+                  <TiptapEditor
+                    content={field.value}
                     onChange={field.onChange}
-                    isLoading={isPending}
+                    disabled={isPending}
+                    placeholder='Descripción de la pasiva'
                   />
                 </FormControl>
                 <FormMessage />
