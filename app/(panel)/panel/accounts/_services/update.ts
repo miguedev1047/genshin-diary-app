@@ -36,7 +36,7 @@ export async function updateAccount(
     })
 
     return { status: 201, message: 'Cambios guardados!' }
-  } catch (error) {
+  } catch {
     return { status: 500, message: 'Ha ocurrido un errro!' }
   }
 }

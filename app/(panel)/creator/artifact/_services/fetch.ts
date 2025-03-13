@@ -14,7 +14,7 @@ export async function getArtifact(name: string) {
     })
 
     return ARTIFACT
-  } catch (error) {
+  } catch {
     return null
   }
 }

@@ -29,7 +29,7 @@ export async function getArtifacts(props: Props) {
 
     const FILTERED_ARTIFACTS = filterArtifacts(ARTIFACTS, { ...props })
     return FILTERED_ARTIFACTS
-  } catch (error) {
+  } catch {
     return null
   }
 }

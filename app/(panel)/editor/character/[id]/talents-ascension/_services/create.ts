@@ -51,7 +51,7 @@ export async function createTalentAscension(
     })
 
     return { status: 201, message: 'Talento añadido.' }
-  } catch (error) {
+  } catch {
     console.log(error)
     return { status: 500, message: 'Ocurrio un error.' }
   }

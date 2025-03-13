@@ -14,7 +14,7 @@ export async function deletePassive(id: string) {
     await db.passivesCharacter.delete({ where: { id } })
 
     return { status: 201, message: 'Pasiva eliminada.' }
-  } catch (error) {
+  } catch {
     return { status: 500, message: 'Ocurrio un error.' }
   }
 }

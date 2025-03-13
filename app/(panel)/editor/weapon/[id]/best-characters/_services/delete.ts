@@ -15,7 +15,7 @@ export async function deleteCharacter(id: string) {
     })
 
     return { status: 201, message: 'Personaje eliminado.' }
-  } catch (error) {
+  } catch {
     return { status: 403, message: 'Ocurrio un error.' }
   }
 }

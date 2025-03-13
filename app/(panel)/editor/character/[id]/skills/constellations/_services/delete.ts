@@ -14,7 +14,7 @@ export async function deleteConstellation(id: string) {
     await db.constellationsCharacter.delete({ where: { id } })
 
     return { status: 201, message: 'Constelación eliminada.' }
-  } catch (error) {
+  } catch {
     return { status: 500, message: 'Ocurrio un error.' }
   }
 }

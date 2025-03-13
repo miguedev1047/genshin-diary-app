@@ -15,7 +15,7 @@ export async function deleteCharacterTier(id: string) {
     })
 
     return { status: 201, message: 'Personaje eliminado!' }
-  } catch (error) {
+  } catch {
     return { status: 500, message: 'Ha ocurrido un error!' }
   }
 }
@@ -32,7 +32,7 @@ export async function deleteTierlist(id: string) {
     })
 
     return { status: 201, message: 'Tierlist eliminada!' }
-  } catch (error) {
+  } catch {
     return { status: 500, message: 'Ha ocurrido un error!' }
   }
 }

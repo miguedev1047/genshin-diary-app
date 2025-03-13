@@ -14,7 +14,7 @@ export async function deleteTalent(id: string) {
     await db.talentsCharacter.delete({ where: { id } })
 
     return { status: 201, message: 'Talento eliminado.' }
-  } catch (error) {
+  } catch {
     return { status: 500, message: 'Ocurrio un error.' }
   }
 }

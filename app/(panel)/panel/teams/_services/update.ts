@@ -44,7 +44,7 @@ export async function updateTeam(
     })
 
     return { status: 201, message: 'Cambios guardados.' }
-  } catch (error) {
+  } catch {
     return { status: 500, message: 'Ocurrio un error.' }
   }
 }
@@ -74,7 +74,7 @@ export async function updateOrderTeams(data: Array<TeamsCharacters>) {
     })
 
     return { status: 201, message: 'Cambios guardados.' }
-  } catch (error) {
+  } catch {
     return { status: 500, message: 'Ocurrio un error.' }
   }
 }
@@ -104,7 +104,7 @@ export async function updateOrderCharacters(data: Array<TeamCharacters>) {
     })
 
     return { status: 201, message: 'Cambios guardados.' }
-  } catch (error) {
+  } catch {
     return { status: 500, message: 'Ocurrio un error.' }
   }
 }
@@ -132,7 +132,7 @@ export async function updateTeamName(
     await db.team.update({ where: { id }, data: { name } })
 
     return { status: 201, message: 'Cambios guardados.' }
-  } catch (error) {
+  } catch {
     return { status: 500, message: 'Ocurrio un error.' }
   }
 }
@@ -154,7 +154,7 @@ export async function updateCharacterConstellation(
     })
 
     return { status: 201, message: 'Cambios guardados.' }
-  } catch (error) {
+  } catch {
     return { status: 500, message: 'Ocurrio un error.' }
   }
 }

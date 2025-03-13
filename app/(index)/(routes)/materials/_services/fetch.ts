@@ -24,7 +24,7 @@ export async function getMaterials(props: Props) {
 
     const FILTERED_MATERIALS = filterMaterials(MATERIALS, { ...props })
     return FILTERED_MATERIALS
-  } catch (error) {
+  } catch {
     return null
   }
 }

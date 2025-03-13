@@ -52,7 +52,7 @@ export async function createWeaponAscension(
     })
 
     return { status: 201, message: 'Ascensión creada.' }
-  } catch (error) {
+  } catch {
     console.log(error)
     return { status: 500, message: 'Ocurrió un error.' }
   }

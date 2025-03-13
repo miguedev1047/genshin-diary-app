@@ -38,7 +38,7 @@ export async function getWeapons(props: Props) {
 
     const FILTERED_WEAPONS = filterWeapons(WEAPONS, { ...props })
     return FILTERED_WEAPONS
-  } catch (error) {
+  } catch {
     return null
   }
 }

@@ -44,7 +44,7 @@ export async function createArtifacts(
     })
 
     return { status: 201, message: 'Artefactos agregados.' }
-  } catch (error) {
+  } catch {
     return { status: 500, message: 'Ocurrio un error.' }
   }
 }

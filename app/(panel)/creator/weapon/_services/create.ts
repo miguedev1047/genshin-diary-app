@@ -57,7 +57,7 @@ export async function createWeapon(data: z.infer<typeof WeaponSchema>) {
 
     revalidatePath('/weapons')
     return { status: 201, message: 'Arma creada.' }
-  } catch (error) {
+  } catch {
     return { status: 500, message: 'Ocurrio un error.' }
   }
 }

@@ -40,7 +40,7 @@ export async function createTierlist(data: z.infer<typeof TierlistSchema>) {
     })
 
     return { status: 201, message: 'Tierlist creada!' }
-  } catch (error) {
+  } catch {
     return { status: 500, message: 'Ha ocurrido un error.' }
   }
 }
@@ -67,7 +67,7 @@ export async function createTierCharacter(
     })
 
     return { status: 201, message: 'Personaje agregado!' }
-  } catch (error) {
+  } catch {
     return { status: 500, message: 'Ha ocurrido un error.' }
   }
 }

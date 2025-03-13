@@ -33,7 +33,7 @@ export async function createBestCharacters(
     })
 
     return { status: 201, message: 'Personaje agregado.' }
-  } catch (error) {
+  } catch {
     return { status: 403, message: 'Ocurrio un error.' }
   }
 }

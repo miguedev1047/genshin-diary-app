@@ -49,7 +49,7 @@ export async function getMaterials(props: Props) {
     const GROUPED_MATERIALS = groupMaterials(FILTERED_MATERIALS)
 
     return GROUPED_MATERIALS
-  } catch (error) {
+  } catch {
     return null
   }
 }

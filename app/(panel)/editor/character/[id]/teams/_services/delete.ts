@@ -14,7 +14,7 @@ export async function deleteTeamCharacter(id: string) {
     await db.teamsCharacter.delete({ where: { id } })
 
     return { status: 201, message: 'Equipo eliminado.' }
-  } catch (error) {
+  } catch {
     return { status: 500, message: 'Ocurrio un error.' }
   }
 }

@@ -54,7 +54,7 @@ export async function updateWeapon(
     })
 
     return { status: 201, message: 'Cambios guardados.' }
-  } catch (error) {
+  } catch {
     return { status: 500, message: 'Ocurrió un error.' }
   }
 }

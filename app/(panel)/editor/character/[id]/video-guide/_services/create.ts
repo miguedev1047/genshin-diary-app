@@ -32,7 +32,7 @@ export async function createVideoGuide(data: z.infer<typeof VideoGuideSchema>) {
     })
 
     return { status: 201, message: 'Video guia agregada.' }
-  } catch (error) {
+  } catch {
     return { status: 500, message: 'Ocurrio un error.' }
   }
 }

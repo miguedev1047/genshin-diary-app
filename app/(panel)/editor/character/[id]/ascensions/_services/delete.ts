@@ -18,7 +18,7 @@ export async function deleteAscension(id: string) {
     })
 
     return { status: 201, message: 'Ascensión eliminada.' }
-  } catch (error) {
+  } catch {
     return { status: 500, message: 'Ocurrio un error.' }
   }
 }

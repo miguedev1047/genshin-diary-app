@@ -12,7 +12,7 @@ export async function GET(request: Request) {
       orderBy: [{ order: 'asc' }, { date_created: 'desc' }],
     })
     return NextResponse.json(TEAMS, { status: 201 })
-  } catch (error) {
+  } catch {
     return NextResponse.json('Internal Server Error', { status: 404 })
   }
 }

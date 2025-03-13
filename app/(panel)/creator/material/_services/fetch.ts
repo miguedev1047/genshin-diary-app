@@ -14,7 +14,7 @@ export async function getMaterial(name: string) {
     })
 
     return MATERIAL
-  } catch (error) {
+  } catch {
     return null
   }
 }

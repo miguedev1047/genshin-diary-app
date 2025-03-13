@@ -35,7 +35,7 @@ export async function updateTierlist(
     })
 
     return { status: 201, message: 'Cambios guardadops!' }
-  } catch (error) {
+  } catch {
     return { status: 500, message: 'Ha ocurrido un error.' }
   }
 }
@@ -68,7 +68,7 @@ export async function updateOrderTierlistCharacters(
     })
 
     return { status: 201, message: 'Cambios guardados.' }
-  } catch (error) {
+  } catch {
     return { status: 500, message: 'Ocurrio un error.' }
   }
 }

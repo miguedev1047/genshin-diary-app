@@ -50,7 +50,7 @@ export async function createAscension(
     })
 
     return { status: 201, message: 'Ascension añadida.' }
-  } catch (error) {
+  } catch {
     return { status: 500, message: 'Ocurrio un error.' }
   }
 }

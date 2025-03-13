@@ -35,7 +35,7 @@ export async function createConstellation(
     })
 
     return { status: 201, message: 'Constelación agregada.' }
-  } catch (error) {
+  } catch {
     return { status: 500, message: 'Ocurrio un error.' }
   }
 }

@@ -33,7 +33,7 @@ export async function createStats(data: z.infer<typeof StatsPrioritySchema>) {
     })
 
     return { status: 201, message: 'Estadisticas agregadas.' }
-  } catch (error) {
+  } catch {
     return { status: 500, message: 'Ocurrio un error.' }
   }
 }

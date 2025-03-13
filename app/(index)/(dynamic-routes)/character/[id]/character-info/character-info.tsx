@@ -20,11 +20,21 @@ import { Badge } from '@/components/ui/badge'
 import { DEFAULT_IMAGE } from '@/consts/misc'
 import { Star } from 'lucide-react'
 import { BlurImage } from '@/components/blur-image'
-import parse from 'html-react-parser'
+import { TiptapPreview } from '@/components/tiptap'
 
 export function CharacterInfo(props: CharacterInfoProps) {
   const { data: CHARACTER } = props
-  const { rarity, attribute, role, weapon, element, region } = CHARACTER
+  const {
+    rarity,
+    attribute,
+    name,
+    role,
+    weapon,
+    element,
+    region,
+    description,
+    images,
+  } = CHARACTER
 
   const STARS = getRarityStars(rarity)
   const ATTRIBUTE = getAttributesText(attribute)
@@ -83,13 +93,15 @@ export function CharacterInfo(props: CharacterInfoProps) {
           <Badge>{ROLE}</Badge>
         </div>
 
-        <div className='tiptap opacity-70'>{parse(CHARACTER.description)}</div>
+        <div className='tiptap opacity-70'>
+          <TiptapPreview content={description} />
+        </div>
       </div>
 
       <figure className='w-[540px] h-[375px] overflow-hidden'>
         <BlurImage
-          src={CHARACTER.images?.splash_art_url ?? DEFAULT_IMAGE}
-          alt={CHARACTER.name}
+          src={images?.splash_art_url ?? DEFAULT_IMAGE}
+          alt={name}
           width={1600}
           height={900}
           className='size-full object-cover'

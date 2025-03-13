@@ -14,7 +14,7 @@ export async function getCharacter(name: string) {
     })
 
     return CHARACTER
-  } catch (error) {
+  } catch {
     return null
   }
 }

@@ -24,7 +24,7 @@ export const login = async (values: z.infer<typeof LoginSchema>) => {
     })
 
     return { message: 'Sesion iniciada!', status: 201 }
-  } catch (error) {
+  } catch {
     if (error instanceof AuthError) {
       switch (error.type) {
         case 'CredentialsSignin':

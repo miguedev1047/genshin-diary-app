@@ -40,7 +40,7 @@ export async function createArtifact(data: z.infer<typeof ArtifactSchema>) {
 
     revalidatePath('/artifacts')
     return { status: 201, message: 'Artefacto creado.' }
-  } catch (error) {
+  } catch {
     return { status: 500, message: 'Ocurrio un error.' }
   }
 }

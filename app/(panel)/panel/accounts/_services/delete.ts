@@ -16,7 +16,7 @@ export async function deleteAccount(id: string) {
     })
 
     return { status: 201, message: 'Cuenta eliminida!' }
-  } catch (error) {
+  } catch {
     return { status: 403, message: 'Ha ocurrido un error!' }
   }
 }

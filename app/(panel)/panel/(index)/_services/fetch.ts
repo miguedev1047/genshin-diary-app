@@ -33,7 +33,7 @@ export async function fetchResumenChart() {
     ]
 
     return CHART_DATA
-  } catch (error) {
+  } catch {
     return null
   }
 }
@@ -93,7 +93,7 @@ export async function fetchElementChart() {
     ]
 
     return CHART_DATA
-  } catch (error) {
+  } catch {
     return null
   }
 }

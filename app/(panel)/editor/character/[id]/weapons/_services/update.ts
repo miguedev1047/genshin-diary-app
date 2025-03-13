@@ -29,7 +29,7 @@ export async function updateWeapons(data: Array<WeaponCharacter>) {
     })
 
     return { status: 201, message: 'Cambios guardados.' }
-  } catch (error) {
+  } catch {
     return { status: 500, message: 'Ocurrio un error.' }
   }
 }

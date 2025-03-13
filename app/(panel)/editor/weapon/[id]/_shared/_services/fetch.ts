@@ -20,7 +20,7 @@ export async function fetchWeapon(id: string) {
     })
 
     return CHARACTER
-  } catch (error) {
+  } catch {
     return null
   }
 }

@@ -41,7 +41,7 @@ export async function createMaterial(data: z.infer<typeof MaterialSchema>) {
 
     revalidatePath('/materials')
     return { status: 201, message: 'Material creado.' }
-  } catch (error) {
+  } catch {
     console.log(error)
     return { status: 500, message: 'Ocurrio un error.' }
   }

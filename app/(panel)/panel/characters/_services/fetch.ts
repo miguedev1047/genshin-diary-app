@@ -39,7 +39,7 @@ export async function getCharacters(props: Props) {
     const FILTERED_CHARACTERS = filterCharacters(CHARACTERS, { ...props })
     return FILTERED_CHARACTERS
     
-  } catch (error) {
+  } catch {
     return null
   }
 }

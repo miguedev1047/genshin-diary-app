@@ -15,7 +15,7 @@ export async function deleteWeaponAscension(id: string) {
     })
 
     return { status: 201, message: 'Ascensión eliminada.' }
-  } catch (error) {
+  } catch {
     return { status: 403, message: 'Ocurrio un error.' }
   }
 }

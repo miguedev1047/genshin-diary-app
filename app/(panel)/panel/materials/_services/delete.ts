@@ -20,7 +20,7 @@ export async function deleteMaterial(material_id: string) {
     })
 
     return { status: 201, message: 'Material eliminado.' }
-  } catch (error) {
+  } catch {
     return { status: 500, message: 'Ocurrio un error.' }
   }
 }

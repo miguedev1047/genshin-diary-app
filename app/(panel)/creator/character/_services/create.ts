@@ -65,7 +65,7 @@ export const createCharacter = async (
 
     revalidatePath('/characters')
     return { status: 201, message: 'Personaje creado.' }
-  } catch (error) {
+  } catch {
     return { status: 500, message: 'Ocurrio un error.' }
   }
 }

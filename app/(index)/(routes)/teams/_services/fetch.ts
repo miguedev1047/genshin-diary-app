@@ -27,7 +27,7 @@ export async function getTeams(props: Props) {
     const FILTERED_TEAMS = filterTeams(TEAMS, { ...props })
 
     return FILTERED_TEAMS as TeamProps
-  } catch (error) {
+  } catch {
     return null
   }
 }
@@ -39,7 +39,7 @@ export async function getCharacterById(character_id: string) {
     })
 
     return CHARACTER as CharacterProps
-  } catch (error) {
+  } catch {
     return null
   }
 }

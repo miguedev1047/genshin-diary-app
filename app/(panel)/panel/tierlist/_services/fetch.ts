@@ -13,7 +13,7 @@ export const getTierList = async () => {
     })
 
     return TIERLISTS
-  } catch (error) {
+  } catch {
     return null
   }
 }

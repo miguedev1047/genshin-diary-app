@@ -35,7 +35,7 @@ export async function getTeams(props: Props) {
     const FILTERED_TEAMS = filterTeams(TEAMS, { ...props })
     return FILTERED_TEAMS
 
-  } catch (error) {
+  } catch {
     return null
   }
 }

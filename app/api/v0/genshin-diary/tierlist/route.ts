@@ -11,7 +11,7 @@ export async function GET(request: Request) {
     })
     
     return NextResponse.json(TIERLIST, { status: 201 })
-  } catch (error) {
+  } catch {
     return NextResponse.json('Internal Server Error', { status: 404 })
   }
 }

@@ -16,7 +16,7 @@ export async function getWeapon(id: string) {
     })
 
     return CHARACTER
-  } catch (error) {
+  } catch {
     return null
   }
 }

@@ -35,7 +35,7 @@ export async function createTalent(
     })
 
     return { status: 201, message: 'Talento agregado.' }
-  } catch (error) {
+  } catch {
     return { status: 500, message: 'Ocurrio un error.' }
   }
 }

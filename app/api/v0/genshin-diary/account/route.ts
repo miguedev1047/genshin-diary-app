@@ -22,7 +22,7 @@ export async function GET(request: Request) {
       orderBy: { name: 'asc' },
     })
     return NextResponse.json(ACCOUNTS, { status: 201 })
-  } catch (error) {
+  } catch {
     return NextResponse.json('Internal Server Error', { status: 404 })
   }
 }

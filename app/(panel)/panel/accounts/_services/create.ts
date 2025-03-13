@@ -34,7 +34,7 @@ export async function createAccount(data: z.infer<typeof AccountSchema>) {
     })
 
     return { status: 201, message: 'Cuenta creada!' }
-  } catch (error) {
+  } catch {
     return { status: 500, message: 'Ha ocurrido un errro!' }
   }
 }

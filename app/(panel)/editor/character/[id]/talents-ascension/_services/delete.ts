@@ -18,7 +18,7 @@ export async function deleteTalentAscension(id: string) {
     })
 
     return { status: 201, message: 'Talento eliminado.' }
-  } catch (error) {
+  } catch {
     return { status: 500, message: 'Ocurrio un error.' }
   }
 }
