@@ -31,9 +31,9 @@ import { useRouter } from 'next/navigation'
 import { useGetWeapon } from '@/features/providers/weapon-provider'
 import { toast } from 'sonner'
 import { FormSheet } from '@/app/(panel)/_components/form-sheet'
-import { TextEditor } from '@/app/(panel)/_components/text-editor'
 import { Star } from 'lucide-react'
 import { ViewImageInput } from '@/app/(panel)/_components/view-image-input'
+import { TiptapEditor } from '@/components/tiptap'
 
 export function WeaponInfoForm() {
   const [isPending, startTransition] = useTransition()
@@ -330,10 +330,11 @@ export function WeaponInfoForm() {
               <FormItem>
                 <FormLabel>Pasiva</FormLabel>
                 <FormControl>
-                  <TextEditor
-                    initialValue={field.value}
+                  <TiptapEditor
+                    content={field.value}
                     onChange={field.onChange}
-                    isLoading={isPending}
+                    disabled={isPending}
+                    placeholder='Descripción de la pasiva'
                   />
                 </FormControl>
               </FormItem>
