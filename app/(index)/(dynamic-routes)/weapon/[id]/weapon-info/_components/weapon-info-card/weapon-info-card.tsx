@@ -9,8 +9,8 @@ import { DEFAULT_IMAGE, NONE } from '@/consts/misc'
 import { WeaponName } from '@/app/(index)/(dynamic-routes)/weapon/[id]/weapon-info/_components/weapon-name'
 import { Badge } from '@/components/ui/badge'
 import { Star } from 'lucide-react'
+import { TiptapPreview } from '@/components/tiptap'
 import Image from 'next/image'
-import parse from 'html-react-parser'
 
 export function WeaponInfoCard(props: WeaponInfoCardProps) {
   const { image_url, name, rarity, passive_description, secondary_stat, type } =
@@ -19,7 +19,7 @@ export function WeaponInfoCard(props: WeaponInfoCardProps) {
   const STARS = getRarityStars(rarity)
   const WEAPON_TYPE = getWeaponText(type)
   const SECONDARY_STAT = getAttributesText(secondary_stat)
- 
+
   return (
     <div className='grid grid-cols-5 w-full gap-4'>
       <div className='col-span-1 flex items-center flex-col gap-4'>
@@ -48,9 +48,9 @@ export function WeaponInfoCard(props: WeaponInfoCardProps) {
         <WeaponName data={props} />
 
         <div className='space-y-4'>
-          <div className='text-pretty text-sm opacity-70 tiptap pr-2'>
-            {parse(passive_description ?? '')}
-          </div>
+          {passive_description && (
+            <TiptapPreview content={passive_description} />
+          )}
 
           <div className='space-x-2'>
             <Badge>{WEAPON_TYPE}</Badge>
