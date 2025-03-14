@@ -1,5 +1,4 @@
 import { CharacterItemProps } from '@/app/(panel)/editor/weapon/[id]/best-characters/_components/character-item/character-item.type'
-import { formattedUrl } from '@/features/utils/formatted-names'
 import { Card } from '@/components/ui/card'
 import { getBorderColorByRarityHover } from '@/features/utils/rarity-color'
 import { AspectRatio } from '@/components/ui/aspect-ratio'
@@ -17,6 +16,7 @@ export function CharacterItem(props: CharacterItemProps) {
 
   const { characters } = data
   const CHARACTER = characters?.find((material) => material.id === character_id)
+  const { name } = CHARACTER!
 
   if (!CHARACTER) return null
 
@@ -31,7 +31,7 @@ export function CharacterItem(props: CharacterItemProps) {
       <Link
         href={URL}
         className={cn(
-          'group/item flex aspect-[2/3] overflow-hidden rounded-[1rem] border bg-background transition relative',
+          'group/item flex aspect-2/3 overflow-hidden rounded-[1rem] border bg-background transition relative',
           RARITY_COLOR
         )}
       >
@@ -43,7 +43,7 @@ export function CharacterItem(props: CharacterItemProps) {
             >
               <Image
                 src={CHARACTER_SPLASH_ART}
-                alt={CHARACTER?.name}
+                alt={name}
                 width={720}
                 height={1080}
                 priority
@@ -52,8 +52,8 @@ export function CharacterItem(props: CharacterItemProps) {
             </AspectRatio>
           )}
 
-          <p className='absolute top-0 uppercase text-xl font-extrabold opacity-50 group-hover/item:opacity-100 z-20 w-full m-3 p-1 line-clamp-1'>
-            {CHARACTER?.name}
+          <p className='writing-vertical absolute top-3 right-1 uppercase text-xl  md:text-2xl font-extrabold opacity-50 group-hover/item:opacity-100 z-20 line-clamp-1'>
+            {name}
           </p>
         </Card>
       </Link>

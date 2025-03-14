@@ -22,6 +22,7 @@ export function CharacterItem(props: CharacterItemProps) {
 
   const { characters } = data
   const CHARACTER = characters?.find((material) => material.id === character_id)
+  const { name } = CHARACTER!
 
   if (!CHARACTER) return null
 
@@ -44,7 +45,7 @@ export function CharacterItem(props: CharacterItemProps) {
               <Image
                 priority
                 src={PROFILE_IMG_URL ?? DEFAULT_IMAGE}
-                alt={CHARACTER.name}
+                alt={name}
                 width={720}
                 height={1080}
                 className='object-cover size-full'
@@ -52,7 +53,7 @@ export function CharacterItem(props: CharacterItemProps) {
             </SquareBox>
           </TooltipTrigger>
           <TooltipContent side='bottom'>
-            <p>{CHARACTER.name}</p>
+            <p>{name}</p>
           </TooltipContent>
         </Tooltip>
       </TooltipProvider>

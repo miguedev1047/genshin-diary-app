@@ -12,6 +12,7 @@ export function CharacterItem(props: CharacterItemProps) {
 
   const { characters: CHARACTERS } = data
   const CHARACTER = CHARACTERS?.find((item) => item.id === character_id)
+  const { name } = CHARACTER!
 
   const DATA = {
     character: CHARACTER,
@@ -34,7 +35,7 @@ export function CharacterItem(props: CharacterItemProps) {
               <ConstellationForm {...DATA} />
             </SquareBox>
 
-            <p className='text-sm text-center'>{CHARACTER?.name}</p>
+            <p className='text-sm text-center'>{name}</p>
           </div>
         </div>
 

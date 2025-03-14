@@ -14,15 +14,16 @@ export function CharacterItem(props: CharacterItemProps) {
   const { images, name, rarity, is_new, element, id } = props
 
   const URL = `/character/${id}`
+  
   const CHARACTER_SPLASH_ART = images?.splash_art_url
   const RARITY_COLOR = getBorderColorByRarityHover(rarity)
-  const ELEMENT_ICON = getElementIcon(element)?.src
+  const ELEMENT_ICON = getElementIcon(element)
 
   return (
     <Link
       href={URL}
       className={cn(
-        'group/item flex aspect-[2/3] overflow-hidden rounded-[1rem] border bg-background transition relative',
+        'group/item flex aspect-2/3 overflow-hidden rounded-[1rem] border bg-background transition relative',
         RARITY_COLOR
       )}
     >
@@ -38,12 +39,12 @@ export function CharacterItem(props: CharacterItemProps) {
               width={720}
               height={1080}
               loading='lazy'
-              className='object-cover w-full h-full transition-all duration-300 ease-in-out dark:[mask-image:linear-gradient(to_bottom,rgba(0,0,0,1),rgba(0,0,0,.1))] group-hover/item:[mask-image:linear-gradient(to_bottom,rgba(0,0,0,1),rgba(0,0,0,1))] group-hover/item:scale-110 group-hover/item:grayscale-0'
+              className='object-cover size-full transition-all duration-300 ease-in-out dark:[mask-image:linear-gradient(to_bottom,rgba(0,0,0,1),rgba(0,0,0,.1))] group-hover/item:[mask-image:linear-gradient(to_bottom,rgba(0,0,0,1),rgba(0,0,0,1))] group-hover/item:scale-110 group-hover/item:grayscale-0'
             />
           </AspectRatio>
         )}
 
-        <p className='absolute top-0 uppercase text-xl font-extrabold opacity-50 group-hover/item:opacity-100 z-20 w-full m-3 p-1 line-clamp-1'>
+        <p className='writing-vertical absolute top-3 right-1 uppercase text-xl  md:text-2xl font-extrabold opacity-50 group-hover/item:opacity-100 z-20 line-clamp-1'>
           {name}
         </p>
 
