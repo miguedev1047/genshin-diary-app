@@ -13,8 +13,8 @@ import { DEFAULT_IMAGE, NONE } from '@/consts/misc'
 import { useGetWeapon } from '@/features/providers/weapon-provider'
 import { SquareBox } from '@/components/square-box'
 import { WeaponName } from '@/app/(panel)/editor/weapon/[id]/weapon-info/_components/weapon-name'
+import { TiptapPreview } from '@/components/tiptap'
 import Image from 'next/image'
-import parse from 'html-react-parser'
 
 export function WeaponInfo() {
   const { data: WEAPON } = useGetWeapon()
@@ -55,9 +55,9 @@ export function WeaponInfo() {
         <WeaponName />
 
         <div className='space-y-4'>
-          <div className='[&>p]:text-pretty text-sm opacity-70 tiptap'>
-            {parse(WEAPON?.passive_description ?? '')}
-          </div>
+          {WEAPON?.passive_description && (
+            <TiptapPreview content={WEAPON.passive_description} />
+          )}
 
           <div className='space-x-2'>
             <Badge>{WEAPON_TYPE}</Badge>

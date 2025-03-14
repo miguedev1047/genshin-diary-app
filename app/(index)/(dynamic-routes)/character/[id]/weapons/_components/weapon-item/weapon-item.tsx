@@ -19,8 +19,8 @@ import { Star } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { Separator } from '@/components/ui/separator'
 import { useGetData } from '@/features/providers/data-provider'
+import { TiptapPreview } from '@/components/tiptap'
 import Image from 'next/image'
-import parse from 'html-react-parser'
 
 export function WeaponItem(props: WeaponItemProps) {
   const { weapon_id } = props
@@ -90,9 +90,7 @@ export function WeaponItem(props: WeaponItemProps) {
 
           <Separator />
 
-          <div className='tiptap opacity-70'>
-            {parse(WEAPON.passive_description)}
-          </div>
+          <TiptapPreview content={WEAPON.passive_description} />
         </article>
       </HoverCardContent>
     </HoverCard>

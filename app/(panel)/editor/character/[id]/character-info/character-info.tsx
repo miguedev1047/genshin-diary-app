@@ -3,6 +3,7 @@
 import {
   getAttributesText,
   getElementIcon,
+  getElementText,
   getRarityStars,
   getRoleText,
   getWeaponText,
@@ -14,7 +15,7 @@ import { DEFAULT_IMAGE } from '@/consts/misc'
 import { useGetCharacter } from '@/features/providers/character-provider'
 import { CharacterInfoForm } from '@/app/(panel)/editor/character/[id]/character-info/_components/character-info-form'
 import { SquareBox } from '@/components/square-box'
-import parse from 'html-react-parser'
+import { TiptapPreview } from '@/components/tiptap'
 import Image from 'next/image'
 
 export function CharacterInfo() {
@@ -24,7 +25,8 @@ export function CharacterInfo() {
   const ATTRIBUTE = getAttributesText(CHARACTER?.attribute)
   const ROLE = getRoleText(CHARACTER?.role)
   const WEAPON = getWeaponText(CHARACTER?.weapon)
-  const ELEMENT = getElementIcon(CHARACTER?.element)
+  const ELEMENT_ICON = getElementIcon(CHARACTER?.element)
+  const ELEMENT_TEXT = getElementText(CHARACTER?.element)
 
   return (
     <div className='col-span-2'>
@@ -64,8 +66,8 @@ export function CharacterInfo() {
 
             <div className='size-12'>
               <Image
-                src={ELEMENT?.src ?? DEFAULT_IMAGE}
-                alt={ELEMENT?.label ?? 'Elemento'}
+                src={ELEMENT_ICON ?? DEFAULT_IMAGE}
+                alt={ELEMENT_TEXT ?? ''}
                 width={128}
                 height={128}
                 className='object-cover size-full'
@@ -74,9 +76,9 @@ export function CharacterInfo() {
           </div>
 
           <div className='space-y-4'>
-            <div className='[&>p]:text-pretty text-sm opacity-70 tiptap'>
-              {parse(CHARACTER?.description ?? '')}
-            </div>
+            {CHARACTER?.description && (
+              <TiptapPreview content={CHARACTER.description} />
+            )}
 
             <div className='space-x-2'>
               <Badge>{ROLE}</Badge>

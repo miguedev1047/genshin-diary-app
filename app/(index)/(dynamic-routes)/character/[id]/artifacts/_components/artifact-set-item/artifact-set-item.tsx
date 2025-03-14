@@ -17,8 +17,8 @@ import { useGetData } from '@/features/providers/data-provider'
 import { Badge } from '@/components/ui/badge'
 import { getRarityStars } from '@/features/utils/character-texts'
 import { Star } from 'lucide-react'
+import { TiptapPreview } from '@/components/tiptap'
 import Image from 'next/image'
-import parse from 'html-react-parser'
 
 export function ArtifactSetItem(props: ArtifactItemProps) {
   const { data: ARTIFACT_DATA, requiredPieces } = props
@@ -79,9 +79,7 @@ export function ArtifactSetItem(props: ArtifactItemProps) {
 
           <Separator />
 
-          <div className='tiptap opacity-70'>
-            {parse(ARTIFACT.bonus_description)}
-          </div>
+          <TiptapPreview content={ARTIFACT.bonus_description} />
         </article>
       </HoverCardContent>
     </HoverCard>

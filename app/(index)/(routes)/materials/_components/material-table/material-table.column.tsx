@@ -4,7 +4,7 @@ import { SquareBox } from '@/components/square-box'
 import { DEFAULT_IMAGE } from '@/consts/misc'
 import { Materials } from '@prisma/client'
 import { ColumnDef } from '@tanstack/react-table'
-import { MaterialDescription } from '@/app/(index)/(routes)/materials/_components/material-description'
+import { TiptapPreview } from '@/components/tiptap'
 import Image from 'next/image'
 
 export const materialColumns: ColumnDef<Materials>[] = [
@@ -42,7 +42,7 @@ export const materialColumns: ColumnDef<Materials>[] = [
     cell: ({ row }) => {
       const { description } = row.original
 
-      return <MaterialDescription description={description} />
+      return <TiptapPreview content={description} />
     },
   },
 ]

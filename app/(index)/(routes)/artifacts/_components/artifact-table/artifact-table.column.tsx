@@ -4,8 +4,8 @@ import { SquareBox } from '@/components/square-box'
 import { DEFAULT_IMAGE } from '@/consts/misc'
 import { Artifacts } from '@prisma/client'
 import { ColumnDef } from '@tanstack/react-table'
+import { TiptapPreview } from '@/components/tiptap'
 import Image from 'next/image'
-import parse from 'html-react-parser'
 
 export const artifactColumns: ColumnDef<Artifacts>[] = [
   {
@@ -42,11 +42,7 @@ export const artifactColumns: ColumnDef<Artifacts>[] = [
     cell: ({ row }) => {
       const { bonus_description } = row.original
 
-      return (
-        <div className='text-pretty opacity-70'>
-          {parse(bonus_description)}
-        </div>
-      )
+      return <TiptapPreview content={bonus_description} />
     },
   },
 ]
