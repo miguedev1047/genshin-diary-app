@@ -1,9 +1,9 @@
-import { NextResponse } from 'next/server'
 import { db } from '@/lib/db'
+import { NextResponse } from 'next/server'
 
 export const dynamic = 'force-dynamic'
 
-export async function GET(request: Request) {
+export async function GET() {
   try {
     const WEAPON = await db.weapons.findMany({
       orderBy: [{ rarity: 'asc' }, { name: 'asc' }, { date_created: 'desc' }],

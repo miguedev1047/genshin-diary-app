@@ -1,13 +1,11 @@
-import { currentRole } from '@/data/auth'
-import { NextResponse } from 'next/server'
 import { db } from '@/lib/db'
+import { isCurrentRole } from '@/data/auth'
+import { NextResponse } from 'next/server'
 
 export const dynamic = 'force-dynamic'
 
-export async function GET(request: Request) {
-  const ROLE = await currentRole()
-
-  if (ROLE === 'USER') {
+export async function GET() {
+  if (await isCurrentRole('USER')) {
     return NextResponse.json({ error: 'No autorizado' }, { status: 401 })
   }
 

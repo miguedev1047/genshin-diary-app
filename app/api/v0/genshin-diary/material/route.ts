@@ -1,9 +1,9 @@
-import { NextRequest, NextResponse } from 'next/server'
 import { db } from '@/lib/db'
+import { NextResponse } from 'next/server'
 
 export const dynamic = 'force-dynamic'
 
-export async function GET(request: NextRequest) {
+export async function GET() {
   try {
     const MATERIALS = await db.materials.findMany({
       orderBy: [{ date_created: 'asc' }, { rarity: 'desc' }, { name: 'asc' }],

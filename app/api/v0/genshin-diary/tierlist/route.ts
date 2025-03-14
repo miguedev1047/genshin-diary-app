@@ -1,9 +1,9 @@
-import { NextResponse } from 'next/server'
 import { db } from '@/lib/db'
+import { NextResponse } from 'next/server'
 
 export const dynamic = 'force-dynamic'
 
-export async function GET(request: Request) {
+export async function GET() {
   try {
     const TIERLIST = await db.tierList.findMany({
       include: { tiers: { include: { characters: true } } },
