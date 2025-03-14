@@ -1,10 +1,10 @@
 'use server'
 
 import { z } from 'zod'
-import { ASCENSION_TALENT } from '@/consts/general'
-import { currentRole } from '@/data/auth'
-import { TalentSchema } from '@/schemas'
 import { db } from '@/lib/db'
+import { ASCENSION_TALENT } from '@/consts/general'
+import { isCurrentRole } from '@/data/auth'
+import { TalentSchema } from '@/schemas'
 
 export async function createTalentAscension(
   data: z.infer<typeof TalentSchema>,
@@ -12,8 +12,7 @@ export async function createTalentAscension(
 ) {
   if (!character_id) return { status: 403, message: 'El personaje no existe.' }
 
-  const ROLE = await currentRole()
-  if (ROLE === 'USER') {
+  if (await isCurrentRole('USER')) {
     return { status: 403, message: 'No tienes permisos.' }
   }
 
@@ -52,7 +51,6 @@ export async function createTalentAscension(
 
     return { status: 201, message: 'Talento añadido.' }
   } catch {
-    console.log(error)
     return { status: 500, message: 'Ocurrio un error.' }
   }
 }

@@ -1,10 +1,10 @@
 'use server'
 
 import { z } from 'zod'
-import { ASCENSION_CHARACTER } from '@/consts/general'
-import { currentRole } from '@/data/auth'
-import { AscensionSchema } from '@/schemas'
 import { db } from '@/lib/db'
+import { ASCENSION_CHARACTER } from '@/consts/general'
+import { isCurrentRole } from '@/data/auth'
+import { AscensionSchema } from '@/schemas'
 
 export async function createAscension(
   data: z.infer<typeof AscensionSchema>,
@@ -12,8 +12,7 @@ export async function createAscension(
 ) {
   if (!character_id) return { status: 403, message: 'El personaje no existe.' }
 
-  const ROLE = await currentRole()
-  if (ROLE === 'USER') {
+  if (await isCurrentRole('USER')) {
     return { status: 403, message: 'No tienes permisos.' }
   }
 

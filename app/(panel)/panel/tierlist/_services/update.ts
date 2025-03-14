@@ -1,19 +1,17 @@
 'use server'
 
 import { z } from 'zod'
-import { currentRole } from '@/data/auth'
-import { TierlistSchema } from '@/schemas'
 import { db } from '@/lib/db'
-import { TeamCharacters, TierCharacter } from '@prisma/client'
+import { isCurrentRole } from '@/data/auth'
+import { TierlistSchema } from '@/schemas'
+import { TierCharacter } from '@prisma/client'
 
 export async function updateTierlist(
   data: z.infer<typeof TierlistSchema>,
   tierlist_id: string
 ) {
-  const ROLE = await currentRole()
-
-  if (ROLE === 'USER') {
-    return { status: 401, message: 'No tienes permisos!' }
+  if (await isCurrentRole('USER')) {
+    return { status: 403, message: 'No tienes permisos.' }
   }
 
   const VALIDATE_FIELDS = TierlistSchema.safeParse(data)
@@ -43,9 +41,7 @@ export async function updateTierlist(
 export async function updateOrderTierlistCharacters(
   data: Array<TierCharacter>
 ) {
-  const ROLE = await currentRole()
-
-  if (ROLE === 'USER') {
+  if (await isCurrentRole('USER')) {
     return { status: 403, message: 'No tienes permisos.' }
   }
 
@@ -59,7 +55,6 @@ export async function updateOrderTierlistCharacters(
       return await db.tierCharacter.update({
         where: {
           id: item.id,
-
         },
         data: {
           order: item.order,

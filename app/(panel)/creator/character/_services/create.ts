@@ -1,18 +1,16 @@
 'use server'
 
 import { z } from 'zod'
-import { currentRole } from '@/data/auth'
-import { CharacterSchema } from '@/schemas'
 import { db } from '@/lib/db'
+import { isCurrentRole } from '@/data/auth'
+import { CharacterSchema } from '@/schemas'
 import { getCharacter } from '@/app/(panel)/creator/character/_services/fetch'
 import { revalidatePath } from 'next/cache'
 
 export const createCharacter = async (
   data: z.infer<typeof CharacterSchema>
 ) => {
-  const ROLE = await currentRole()
-
-  if (ROLE === 'USER') {
+  if (await isCurrentRole('USER')) {
     return { status: 403, message: 'No tienes permisos.' }
   }
 

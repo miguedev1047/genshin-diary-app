@@ -1,15 +1,13 @@
 'use server'
 
-import { currentRole } from '@/data/auth'
-import { TeamsCharacter } from '@prisma/client'
-import { db } from '@/lib/db'
 import { z } from 'zod'
+import { db } from '@/lib/db'
+import { isCurrentRole } from '@/data/auth'
+import { TeamsCharacter } from '@prisma/client'
 import { TeamsCharacterSchema } from '@/schemas'
 
 export async function updateTeamsOrder(data: Array<TeamsCharacter>) {
-  const ROLE = await currentRole()
-
-  if (ROLE === 'USER') {
+  if (await isCurrentRole('USER')) {
     return { status: 403, message: 'No tienes permisos.' }
   }
 
@@ -40,8 +38,7 @@ export async function updateTeamsCharacters(
   data: z.infer<typeof TeamsCharacterSchema>,
   team_id: string
 ) {
-  const ROLE = await currentRole()
-  if (ROLE === 'USER') {
+  if (await isCurrentRole('USER')) {
     return { status: 403, message: 'No tienes permisos.' }
   }
 
@@ -79,9 +76,7 @@ export async function updateTeamsCharacters(
 }
 
 export async function updateTeamCharactersOrder(data: Array<TeamsCharacter>) {
-  const ROLE = await currentRole()
-
-  if (ROLE === 'USER') {
+  if (await isCurrentRole('USER')) {
     return { status: 403, message: 'No tienes permisos.' }
   }
 
@@ -112,9 +107,7 @@ export async function updateCharacterConstellation(
   constellation: number,
   id: string | undefined
 ) {
-  const ROLE = await currentRole()
-
-  if (ROLE === 'USER') {
+  if (await isCurrentRole('USER')) {
     return { status: 403, message: 'No tienes permisos.' }
   }
 

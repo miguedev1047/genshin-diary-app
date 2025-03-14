@@ -1,9 +1,9 @@
 'use server'
 
 import { z } from 'zod'
-import { currentRole } from '@/data/auth'
-import { ArtifactCharacterSchema } from '@/schemas'
 import { db } from '@/lib/db'
+import { isCurrentRole } from '@/data/auth'
+import { ArtifactCharacterSchema } from '@/schemas'
 
 export async function createArtifacts(
   data: z.infer<typeof ArtifactCharacterSchema>,
@@ -13,9 +13,7 @@ export async function createArtifacts(
     return { status: 403, message: 'Este personaje no existe.' }
   }
 
-  const ROLE = await currentRole()
-
-  if (ROLE === 'USER') {
+  if (await isCurrentRole('USER')) {
     return { status: 403, message: 'No tienes permisos.' }
   }
 

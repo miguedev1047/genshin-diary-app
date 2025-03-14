@@ -1,11 +1,10 @@
-import { currentRole } from '@/data/auth'
 import { db } from '@/lib/db'
+import {  isCurrentRole } from '@/data/auth'
 
 export async function getCharacterById(id: string) {
   const CHARACTER_ID = id
 
-  const ROLE = await currentRole()
-  if (ROLE === 'USER') return null
+  if (await isCurrentRole('USER')) return null
 
   try {
     const CHARACTER = await db.characters.findUnique({
@@ -43,8 +42,7 @@ export async function getCharacterById(id: string) {
 }
 
 export async function getCharacters() {
-  const ROLE = await currentRole()
-  if (ROLE === 'USER') return null
+if (await isCurrentRole('USER')) return null
 
   try {
     const CHARACTERS = await db.characters.findMany({
@@ -57,8 +55,7 @@ export async function getCharacters() {
 }
 
 export async function getWeapons() {
-  const ROLE = await currentRole()
-  if (ROLE === 'USER') return null
+if (await isCurrentRole('USER')) return null
 
   try {
     const WEAPONS = await db.weapons.findMany()
@@ -69,8 +66,7 @@ export async function getWeapons() {
 }
 
 export async function getArtifacts() {
-  const ROLE = await currentRole()
-  if (ROLE === 'USER') return null
+if (await isCurrentRole('USER')) return null
 
   try {
     const ARTIFACTS = await db.artifacts.findMany()
@@ -81,8 +77,7 @@ export async function getArtifacts() {
 }
 
 export async function getMaterials() {
-  const ROLE = await currentRole()
-  if (ROLE === 'USER') return null
+if (await isCurrentRole('USER')) return null
 
   try {
     const MATERIALS = await db.materials.findMany()

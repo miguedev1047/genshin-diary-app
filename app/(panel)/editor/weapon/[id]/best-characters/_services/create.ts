@@ -1,9 +1,9 @@
 'use server'
 
 import { z } from 'zod'
-import { currentRole } from '@/data/auth'
-import { CharacterSelectorSchema } from '@/schemas'
 import { db } from '@/lib/db'
+import { isCurrentRole } from '@/data/auth'
+import { CharacterSelectorSchema } from '@/schemas'
 
 export async function createBestCharacters(
   data: z.infer<typeof CharacterSelectorSchema>,
@@ -11,8 +11,9 @@ export async function createBestCharacters(
 ) {
   if (!weapon_id) return { status: 403, message: 'Esta arma no existe.' }
 
-  const ROLE = await currentRole()
-  if (ROLE === 'USER') return { status: 403, message: 'No tienes permisos.' }
+  if (await isCurrentRole('USER')) {
+    return { status: 403, message: 'No tienes permisos.' }
+  }
 
   const VALIDATE_FIELDS = CharacterSelectorSchema.safeParse(data)
   if (!VALIDATE_FIELDS.success) {

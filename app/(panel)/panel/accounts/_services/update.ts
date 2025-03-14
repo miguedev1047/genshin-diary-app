@@ -1,18 +1,16 @@
 'use server'
 
-import { currentRole } from '@/data/auth'
-import { db } from '@/lib/db'
-import { AccountSchema } from '@/schemas'
 import { z } from 'zod'
+import { db } from '@/lib/db'
+import { isCurrentRole } from '@/data/auth'
+import { AccountSchema } from '@/schemas'
 
 export async function updateAccount(
   data: z.infer<typeof AccountSchema>,
   account_id: string
 ) {
-  const ROLE = await currentRole()
-
-  if (ROLE === 'USER') {
-    return { status: 403, message: 'No tiener permisos!' }
+  if (await isCurrentRole('USER')) {
+    return { status: 403, message: 'No tienes permisos.' }
   }
 
   const VALIDATE_FIELDS = AccountSchema.safeParse(data)

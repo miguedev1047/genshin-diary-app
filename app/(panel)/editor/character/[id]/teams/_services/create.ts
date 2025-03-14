@@ -1,9 +1,9 @@
 'use server'
 
 import { z } from 'zod'
-import { currentRole } from '@/data/auth'
-import { TeamsCharacterSchema } from '@/schemas'
 import { db } from '@/lib/db'
+import { isCurrentRole } from '@/data/auth'
+import { TeamsCharacterSchema } from '@/schemas'
 
 export async function createTeams(
   data: z.infer<typeof TeamsCharacterSchema>,
@@ -13,9 +13,7 @@ export async function createTeams(
     return { status: 403, message: 'Este personaje no existe.' }
   }
 
-  const ROLE = await currentRole()
-
-  if (ROLE === 'USER') {
+  if (await isCurrentRole('USER')) {
     return { status: 403, message: 'No tienes permisos.' }
   }
 

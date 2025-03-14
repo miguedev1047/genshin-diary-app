@@ -1,11 +1,10 @@
-import { currentRole } from '@/data/auth'
 import { db } from '@/lib/db'
+import { isCurrentRole } from '@/data/auth'
 
 export async function fetchWeapon(id: string) {
-  const WEAPON_ID = id
+  if (await isCurrentRole('USER')) return null
 
-  const ROLE = await currentRole()
-  if (ROLE === 'USER') return null
+  const WEAPON_ID = id
 
   try {
     const CHARACTER = await db.weapons.findUnique({

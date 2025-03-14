@@ -1,5 +1,5 @@
-import { currentRole } from '@/data/auth'
 import { db } from '@/lib/db'
+import { isCurrentRole } from '@/data/auth'
 import { Artifacts } from '@prisma/client'
 
 type Props = {
@@ -13,14 +13,14 @@ function filterArtifacts(artifacts: Array<Artifacts>, filters: Props) {
     const matches = [
       name ? a.name.toLowerCase().includes(name.toLowerCase()) : true,
     ]
-    https://x.com/HatsuneMiku/status/1879874259113382388
     return matches.every(Boolean)
   })
 }
 
 export async function getArtifacts(props: Props) {
-  const ROLE = await currentRole()
-  if (ROLE === 'USER') return null
+  if (await isCurrentRole('USER')) {
+    return null
+  }
 
   try {
     const ARTIFACTS = await db.artifacts.findMany({

@@ -1,18 +1,16 @@
 'use server'
 
 import { z } from 'zod'
-import { currentRole } from '@/data/auth'
+import { db } from '@/lib/db'
+import { isCurrentRole } from '@/data/auth'
 import { SkillCharacterSchema } from '@/schemas'
 import { TalentsCharacter } from '@prisma/client'
-import { db } from '@/lib/db'
 
 export async function updateTalent(
   data: z.infer<typeof SkillCharacterSchema>,
   talent_id: string
 ) {
-  const ROLE = await currentRole()
-
-  if (ROLE === 'USER') {
+  if (await isCurrentRole('USER')) {
     return { status: 403, message: 'No tienes permisos.' }
   }
 
@@ -41,9 +39,7 @@ export async function updateTalent(
 }
 
 export async function updateTalentOrder(data: Array<TalentsCharacter>) {
-  const ROLE = await currentRole()
-
-  if (ROLE === 'USER') {
+  if (await isCurrentRole('USER')) {
     return { status: 403, message: 'No tienes permisos.' }
   }
 

@@ -1,9 +1,9 @@
 'use server'
 
 import { z } from 'zod'
-import { currentRole } from '@/data/auth'
-import { AscensionSchema, MaterialQuantitySchema } from '@/schemas'
 import { db } from '@/lib/db'
+import { isCurrentRole } from '@/data/auth'
+import { AscensionSchema, MaterialQuantitySchema } from '@/schemas'
 import { ASCENSION_CHARACTER } from '@/consts/general'
 
 export async function updateMaterials(
@@ -13,8 +13,7 @@ export async function updateMaterials(
 ) {
   if (!character_id) return { status: 403, message: 'El personaje no existe.' }
 
-  const ROLE = await currentRole()
-  if (ROLE === 'USER') {
+  if (await isCurrentRole('USER')) {
     return { status: 403, message: 'No tienes permisos.' }
   }
 
@@ -56,9 +55,7 @@ export async function updateMaterialQuantity(
   data: z.infer<typeof MaterialQuantitySchema>,
   material_id: string | undefined
 ) {
-  const ROLE = await currentRole()
-
-  if (ROLE === 'USER') {
+  if (await isCurrentRole('USER')) {
     return { status: 403, message: 'No tienes permisos.' }
   }
 

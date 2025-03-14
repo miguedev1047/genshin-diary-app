@@ -1,15 +1,13 @@
 'use server'
 
+import { z } from 'zod'
 import { db } from '@/lib/db'
-import { currentRole } from '@/data/auth'
+import { isCurrentRole } from '@/data/auth'
 import { ArtifactCharacter } from '@prisma/client'
 import { ArtifactCharacterSchema } from '@/schemas'
-import { z } from 'zod'
 
 export async function updateArtifactsOrder(data: Array<ArtifactCharacter>) {
-  const ROLE = await currentRole()
-
-  if (ROLE === 'USER') {
+  if (await isCurrentRole('USER')) {
     return { status: 403, message: 'No tienes permisos.' }
   }
 
@@ -45,9 +43,7 @@ export async function updateArtifacts(
     return { status: 403, message: 'Este personaje no existe.' }
   }
 
-  const ROLE = await currentRole()
-
-  if (ROLE === 'USER') {
+  if (await isCurrentRole('USER')) {
     return { status: 403, message: 'No tienes permisos.' }
   }
 

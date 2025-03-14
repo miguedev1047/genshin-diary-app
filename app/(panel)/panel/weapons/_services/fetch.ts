@@ -1,5 +1,5 @@
-import { currentRole } from '@/data/auth'
 import { db } from '@/lib/db'
+import { isCurrentRole } from '@/data/auth'
 import { Weapons } from '@prisma/client'
 
 type Props = {
@@ -23,8 +23,9 @@ function filterWeapons(weapons: Array<Weapons>, filters: Props) {
 }
 
 export async function getWeapons(props: Props) {
-  const ROLE = await currentRole()
-  if (ROLE === 'USER') return null
+  if (await isCurrentRole('USER')) {
+    return null
+  }
 
   try {
     const WEAPONS = await db.weapons.findMany({

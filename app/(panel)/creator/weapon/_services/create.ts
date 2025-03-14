@@ -1,16 +1,14 @@
 'use server'
 
 import { z } from 'zod'
-import { currentRole } from '@/data/auth'
-import { WeaponSchema } from '@/schemas'
 import { db } from '@/lib/db'
-import { getWeapon } from './fetch'
+import { isCurrentRole } from '@/data/auth'
+import { WeaponSchema } from '@/schemas'
+import { getWeapon } from '@/app/(panel)/creator/weapon/_services/fetch'
 import { revalidatePath } from 'next/cache'
 
 export async function createWeapon(data: z.infer<typeof WeaponSchema>) {
-  const ROLE = await currentRole()
-
-  if (ROLE === 'USER') {
+  if (await isCurrentRole('USER')) {
     return { status: 403, message: 'No tienes permisos.' }
   }
 

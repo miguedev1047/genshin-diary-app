@@ -1,9 +1,10 @@
-import { currentRole } from '@/data/auth'
 import { db } from '@/lib/db'
+import { isCurrentRole } from '@/data/auth'
 
 export const getTierList = async () => {
-  const ROLE = await currentRole()
-  if (ROLE === 'USER') return null
+  if (await isCurrentRole('USER')) {
+    return null
+  }
 
   try {
     const TIERLISTS = await db.tierList.findMany({

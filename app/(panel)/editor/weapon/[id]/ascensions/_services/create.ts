@@ -1,10 +1,10 @@
 'use server'
 
 import { z } from 'zod'
-import { ASCENSION_WEAPON } from '@/consts/general'
-import { currentRole } from '@/data/auth'
-import { WeaponAscensionSchema } from '@/schemas'
 import { db } from '@/lib/db'
+import { ASCENSION_WEAPON } from '@/consts/general'
+import { isCurrentRole } from '@/data/auth'
+import { WeaponAscensionSchema } from '@/schemas'
 
 export async function createWeaponAscension(
   data: z.infer<typeof WeaponAscensionSchema>,
@@ -12,8 +12,7 @@ export async function createWeaponAscension(
 ) {
   if (!weapon_id) return { status: 400, message: 'Esta arma no existe.' }
 
-  const ROLE = await currentRole()
-  if (ROLE === 'USER') {
+  if (await isCurrentRole('USER')) {
     return { status: 403, message: 'No tienes permisos.' }
   }
 
@@ -53,7 +52,6 @@ export async function createWeaponAscension(
 
     return { status: 201, message: 'Ascensión creada.' }
   } catch {
-    console.log(error)
     return { status: 500, message: 'Ocurrió un error.' }
   }
 }
