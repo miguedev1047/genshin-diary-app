@@ -10,13 +10,13 @@ import { Card } from '@/components/ui/card'
 export function TierList(props: TierlistListProps) {
   const { data: TIERLISTS } = props
 
-  const [DEFAULT_TAB] = TIERLISTS
+  const [DEFAULT_TAB] = TIERLISTS!
 
   if (TIERLISTS && TIERLISTS.length === EMPTY_LIST) {
     return <EmptyList text='No hay tierlists disponibles' />
   }
 
-  const MAPPED_TABS = TIERLISTS.map((tierlist) => (
+  const MAPPED_TABS = TIERLISTS?.map((tierlist) => (
     <TabsTrigger
       key={tierlist.id}
       value={`tab-${tierlist.id}`}
@@ -26,7 +26,7 @@ export function TierList(props: TierlistListProps) {
     </TabsTrigger>
   ))
 
-  const MAPPED_CONTENT = TIERLISTS.map((tierlist) => (
+  const MAPPED_CONTENT = TIERLISTS?.map((tierlist) => (
     <TabsContent
       key={tierlist.id}
       value={`tab-${tierlist.id}`}

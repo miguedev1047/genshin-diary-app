@@ -5,5 +5,5 @@ export type TierlistListProps = {
     Prisma.TierListGetPayload<{
       include: { tiers: { include: { characters: true } } }
     }>
-  >
+  > | null
 }
