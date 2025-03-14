@@ -8,7 +8,7 @@ import { ITEM_FILTERS } from '@/consts/general'
 import { Card } from '@/components/ui/card'
 import { Separator } from '@/components/ui/separator'
 import { QueryToggle } from '@/components/query-toggle'
-import { SearchBar } from '@/components/search-bar'
+import { QuerySearch } from '@/components/query-search'
 import { Button } from '@/components/ui/button'
 import { HeaderProps } from '@/components/headers/_types'
 import { Title } from '@/components/ui/title'
@@ -30,7 +30,7 @@ export function WeaponHeader(props: HeaderProps) {
         </Title>
 
         <div className='flex items-center gap-2'>
-          <SearchBar
+          <QuerySearch
             queryParam='name'
             placeholder='Buscar arma'
             className='w-[350px]'

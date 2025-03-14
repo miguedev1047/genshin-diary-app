@@ -6,7 +6,7 @@ import {
 } from '@/components/ui/tooltip'
 import { Button } from '@/components/ui/button'
 import { HeaderProps } from '@/components/headers/_types'
-import { SearchBar } from '@/components/search-bar'
+import { QuerySearch } from '@/components/query-search'
 import { Plus } from 'lucide-react'
 import { Title } from '@/components/ui/title'
 import Link from 'next/link'
@@ -24,7 +24,7 @@ export function ArtifactHeader(props: HeaderProps) {
       </Title>
 
       <div className='flex items-center gap-2'>
-        <SearchBar
+        <QuerySearch
           queryParam='name'
           placeholder='Buscar artefacto'
           className='w-[350px]'

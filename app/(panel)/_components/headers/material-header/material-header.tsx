@@ -9,7 +9,7 @@ import { MATERIAL_TYPES } from '@/consts/general'
 import { Button } from '@/components/ui/button'
 import { Plus } from 'lucide-react'
 import { QueryToggle } from '@/components/query-toggle'
-import { SearchBar } from '@/components/search-bar'
+import { QuerySearch } from '@/components/query-search'
 import Link from 'next/link'
 
 export function MaterialHeader() {
@@ -19,7 +19,7 @@ export function MaterialHeader() {
         <CardTitle className='uppercase font-extrabold'>Materiales</CardTitle>
 
         <div className='flex items-center gap-2'>
-          <SearchBar
+          <QuerySearch
             queryParam='name'
             placeholder='Buscar material'
             className='w-[350px]'

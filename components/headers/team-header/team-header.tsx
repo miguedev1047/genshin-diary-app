@@ -5,7 +5,7 @@ import {
   TooltipTrigger,
 } from '@/components/ui/tooltip'
 import { TeamForm } from '@/app/(panel)/panel/teams/_components/team-form'
-import { SearchBar } from '@/components/search-bar'
+import { QuerySearch } from '@/components/query-search'
 import { Title } from '@/components/ui/title'
 import { HeaderProps } from '@/components/headers/_types'
 
@@ -22,7 +22,7 @@ export function TeamHeader(props: HeaderProps) {
       </Title>
 
       <div className='flex items-center gap-2'>
-        <SearchBar
+        <QuerySearch
           queryParam='name'
           placeholder='Buscar equipo'
           className='w-[350px]'

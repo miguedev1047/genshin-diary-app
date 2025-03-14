@@ -6,7 +6,7 @@ import {
 } from '@/components/ui/tooltip'
 import { Button } from '@/components/ui/button'
 import { CardTitle } from '@/components/ui/card'
-import { SearchBar } from '@/components/search-bar'
+import { QuerySearch } from '@/components/query-search'
 import { Plus } from 'lucide-react'
 import Link from 'next/link'
 
@@ -16,7 +16,7 @@ export function ArtifactHeader() {
       <CardTitle className='uppercase font-extrabold'>Artefactos</CardTitle>
 
       <div className='flex items-center gap-2'>
-        <SearchBar
+        <QuerySearch
           queryParam='name'
           placeholder='Buscar artefacto'
           className='w-[350px]'

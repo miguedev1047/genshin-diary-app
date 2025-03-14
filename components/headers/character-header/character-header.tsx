@@ -7,7 +7,7 @@ import {
 import { ITEM_FILTERS } from '@/consts/general'
 import { Card } from '@/components/ui/card'
 import { Separator } from '@/components/ui/separator'
-import { SearchBar } from '@/components/search-bar'
+import { QuerySearch } from '@/components/query-search'
 import { QueryToggle } from '@/components/query-toggle'
 import { Title } from '@/components/ui/title'
 import { Button } from '@/components/ui/button'
@@ -30,7 +30,7 @@ export function CharacterHeader(props: HeaderProps) {
         </Title>
 
         <div className='flex items-center gap-2'>
-          <SearchBar
+          <QuerySearch
             queryParam='name'
             placeholder='Buscar personaje'
             className='w-[350px]'
