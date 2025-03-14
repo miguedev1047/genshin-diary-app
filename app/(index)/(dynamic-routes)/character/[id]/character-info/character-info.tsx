@@ -1,6 +1,7 @@
 import {
   getAttributesText,
   getElementIcon,
+  getElementText,
   getRarityStars,
   getRegionText,
   getRoleText,
@@ -21,31 +22,32 @@ import { DEFAULT_IMAGE } from '@/consts/misc'
 import { Star } from 'lucide-react'
 import { BlurImage } from '@/components/blur-image'
 import { TiptapPreview } from '@/components/tiptap'
+import { SquareBox } from '@/components/square-box'
+import Image from 'next/image'
 
 export function CharacterInfo(props: CharacterInfoProps) {
   const { data: CHARACTER } = props
   const {
     rarity,
     attribute,
-    name,
     role,
     weapon,
     element,
     region,
     description,
-    images,
   } = CHARACTER
 
   const STARS = getRarityStars(rarity)
   const ATTRIBUTE = getAttributesText(attribute)
   const ROLE = getRoleText(role)
   const WEAPON = getWeaponText(weapon)
-  const ELEMENT = getElementIcon(element)
+  const ELEMENT_ICON = getElementIcon(element)
+  const ELEMENT_TEXT = getElementText(element)
   const REGION = getRegionText(region)
 
   return (
     <div className='flex items-start justify-between col-span-2'>
-      <div className='space-y-4 w-[540px]'>
+      <div className='space-y-4 w-[640px]'>
         <Breadcrumb className='mb-10'>
           <BreadcrumbList>
             <BreadcrumbItem>
@@ -62,28 +64,44 @@ export function CharacterInfo(props: CharacterInfoProps) {
           </BreadcrumbList>
         </Breadcrumb>
 
-        <div className='space-y-3'>
-          <div className='flex items-center gap-4'>
-            <Title size='3xl'>{CHARACTER.name}</Title>
+        <div className='flex items-center space-x-4'>
+          <SquareBox
+            size='lg'
+            className='bg-secondary'
+          >
+            <Image
+              priority
+              src={CHARACTER?.images?.profile_image_url ?? DEFAULT_IMAGE}
+              alt={CHARACTER?.name ?? 'Personaje'}
+              width={1080}
+              height={1080}
+              className='object-cover size-full'
+            />
+          </SquareBox>
 
-            <figure className='size-8'>
-              <BlurImage
-                width={32}
-                height={32}
-                src={ELEMENT?.src ?? DEFAULT_IMAGE}
-                alt={ELEMENT?.label ?? ''}
-                className='size-full object-cover'
-              />
-            </figure>
+          <div className='space-y-3'>
+            <div className='flex items-center gap-4'>
+              <Title size='3xl'>{CHARACTER.name}</Title>
+
+              <figure className='size-8'>
+                <BlurImage
+                  width={32}
+                  height={32}
+                  src={ELEMENT_ICON ?? DEFAULT_IMAGE}
+                  alt={ELEMENT_TEXT ?? ''}
+                  className='size-full object-cover'
+                />
+              </figure>
+            </div>
+
+            <ul className='flex items-center gap-1'>
+              {STARS.map((_, index) => (
+                <li key={index}>
+                  <Star className='text-amber-500 size-5' />
+                </li>
+              ))}
+            </ul>
           </div>
-
-          <ul className='flex items-center gap-1'>
-            {STARS.map((_, index) => (
-              <li key={index}>
-                <Star className='text-amber-500 size-5' />
-              </li>
-            ))}
-          </ul>
         </div>
 
         <div className='space-x-2'>
@@ -97,16 +115,6 @@ export function CharacterInfo(props: CharacterInfoProps) {
           <TiptapPreview content={description} />
         </div>
       </div>
-
-      <figure className='w-[540px] h-[375px] overflow-hidden'>
-        <BlurImage
-          src={images?.splash_art_url ?? DEFAULT_IMAGE}
-          alt={name}
-          width={1600}
-          height={900}
-          className='size-full object-cover'
-        />
-      </figure>
     </div>
   )
 }
