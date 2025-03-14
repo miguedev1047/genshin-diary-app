@@ -1,6 +1,6 @@
+import { db } from '@/lib/db'
 import { formattedName } from '@/features/utils/formatted-names'
 import { NextResponse } from 'next/server'
-import { db } from '@/lib/db'
 
 export async function GET(
   request: Request,

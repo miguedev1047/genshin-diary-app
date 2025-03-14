@@ -1,6 +1,6 @@
+import { db } from '@/lib/db'
 import { formattedName } from '@/features/utils/formatted-names'
 import { NextResponse } from 'next/server'
-import { db } from '@/lib/db'
 
 export const dynamic = 'force-dynamic'
 
