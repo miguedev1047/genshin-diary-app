@@ -5,8 +5,9 @@ import { useGetCharacter } from '@/features/providers/character-provider'
 import { VideoGuideForm } from '@/app/(panel)/editor/character/[id]/video-guide/_components/video-guide-form'
 import { NONE } from '@/consts/misc'
 import LiteYouTubeEmbed from 'react-lite-youtube-embed'
-import 'react-lite-youtube-embed/dist/LiteYouTubeEmbed.css'
 import Link from 'next/link'
+
+import 'react-lite-youtube-embed/dist/LiteYouTubeEmbed.css'
 
 export function VideoGuide() {
   const { data: CHARACTER } = useGetCharacter()

@@ -1,4 +1,4 @@
-export function getColorByRarity(rarity: string | undefined) {
+export function getTextColorByRarity(rarity: string | undefined) {
   if (!rarity) return 'text-gray-600'
 
   switch (rarity) {

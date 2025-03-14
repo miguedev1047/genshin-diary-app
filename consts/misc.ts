@@ -1,5 +1,5 @@
 export const PAGE_NAME = 'Genshin Diary'
-export const PAGE_VERSION = 'v0.5.6'
+export const PAGE_VERSION = 'v0.6.0'
 
 export const REACT_SCAN = false
 export const DEV_MODE = process.env.NODE_ENV === 'development'

@@ -9,15 +9,15 @@ import { Separator } from '@/components/ui/separator'
 import { ContentLayoutProps } from '@/app/(panel)/_components/content-layout/content-layout.type'
 import { PAGE_NAME } from '@/consts/misc'
 import { GridBackground } from '@/components/grid-background'
+import { ThemeToggle } from '@/components/ui/theme-toggle'
 
 export function ContentLayout(props: ContentLayoutProps) {
   const { title, children } = props
   const CURRENT_YEAR = new Date().getFullYear()
 
   return (
-    <SidebarInset>
+    <SidebarInset className='rounded-2xl overflow-hidden'>
       <GridBackground />
-
 
       <header className='flex flex-1 justify-between z-50 items-center sticky top-0 border-b py-4 px-5 bg-background/70 backdrop-blur-2xl'>
         <nav className='flex items-center gap-2'>
@@ -34,9 +34,11 @@ export function ContentLayout(props: ContentLayoutProps) {
             </BreadcrumbList>
           </Breadcrumb>
         </nav>
+
+        <ThemeToggle/>
       </header>
 
-      <div className='min-h-[calc(100svh_-_8rem)] p-8 container mx-auto space-y-5'>
+      <div className='min-h-[calc(100svh_-_8rem)] p-8 container max-w-[1240px] mx-auto space-y-5'>
         {children}
       </div>
 

@@ -10,6 +10,14 @@ import {
 import { Star1, Star2, Star3, Star4, Star5 } from '@/assets/stars'
 import { Sword, Bow, Catalyst, Claymore, Polearm } from '@/assets/weapon-types'
 
+export const ROLE = [
+  { value: 'DPS', label: 'Main DPS' },
+  { value: 'SUBDPS', label: 'Sub DPS' },
+  { value: 'ENABLER', label: 'Habilitador' },
+  { value: 'SUPPORT', label: 'Soporte' },
+  { value: 'NOT_DETERMINED', label: 'Sin determinar' },
+]
+
 export const ELEMENTS = [
   {
     label: 'Anemo',
@@ -213,13 +221,7 @@ export const ARTIFACTS_STATS = {
   ],
 }
 
-export const ROLE = [
-  { value: 'DPS', label: 'Main DPS' },
-  { value: 'SUBDPS', label: 'Sub DPS' },
-  { value: 'ENABLER', label: 'Habilitador' },
-  { value: 'SUPPORT', label: 'Soporte' },
-  { value: 'NOT_DETERMINED', label: 'Sin determinar' },
-]
+
 
 export const ACCOUNT_ROLE = [
   { value: 'OWNER', label: 'Owner' },

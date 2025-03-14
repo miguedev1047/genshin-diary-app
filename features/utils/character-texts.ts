@@ -38,6 +38,17 @@ export function getRarityText(rarity: string | undefined) {
   return 'Indefinido'
 }
 
+export function getRarityStars(rarity: string | undefined) {
+  const STAR = STARS.find((item) => item.value === rarity)
+
+  if (STAR) {
+    const STAR_NUMBER = STAR.value.split('_')[1]
+    return Array.from({ length: Number(STAR_NUMBER) }, (_, i) => i + 1)
+  }
+
+  return []
+}
+
 export function getAttributesText(attribute: string | undefined) {
   const ATTRIBUTE = ATTRIBUTES.find((item) => item.value === attribute)
   if (ATTRIBUTE) return ATTRIBUTE.label
@@ -45,20 +56,9 @@ export function getAttributesText(attribute: string | undefined) {
   return 'Indefinido'
 }
 
-export function getRarityStars(rarity: string | undefined) {
-  const STAR = STARS.find((item) => item.value === rarity)
-
-  if (STAR) {
-    const [_, STAR_NUMBER] = STAR.value.split('_')
-    return Array.from({ length: Number(STAR_NUMBER) }, (_, i) => i + 1)
-  }
-
-  return []
-}
-
 export function getElementIcon(element: string | undefined) {
   const ELEMENT = ELEMENTS.find((item) => item.value === element)
-  if (ELEMENT) return ELEMENT
+  if (ELEMENT) return ELEMENT.src
 
   return null
 }
@@ -94,11 +94,4 @@ export function getMaterialTypeText(materialType: string | undefined) {
   if (MATERIAL) return MATERIAL.label
 
   return 'Indefinido'
-}
-
-export function getCharacterName(name: string) {
-  return name
-    .split('-')
-    .map((word) => word[0].toUpperCase() + word.slice(1))
-    .join(' ')
 }

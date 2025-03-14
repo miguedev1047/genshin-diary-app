@@ -1,4 +1,9 @@
-import { ArtifactImg, CharacterImg, MaterialImg, WeaponImg } from '@/assets/images'
+import {
+  ArtifactImg,
+  CharacterImg,
+  MaterialImg,
+  WeaponImg,
+} from '@/assets/images'
 import {
   Users2,
   Sword,
@@ -9,7 +14,7 @@ import {
   Lock,
 } from 'lucide-react'
 
-export const SIDEBAR_ROUTES = {
+export const ADMIN_SIDEBAR_ROUTES = {
   sidebar_items: [
     {
       title: 'Personajes',
@@ -49,7 +54,37 @@ export const SIDEBAR_ROUTES = {
   ],
 }
 
-export const PANEL_ROUTES = [
+export const EDITOR_SIDEBAR_ROUTES = {
+  sidebar_items: [
+    {
+      title: 'Personajes',
+      url: '/panel/characters',
+      icon: Users2,
+    },
+    {
+      title: 'Armas',
+      url: '/panel/weapons',
+      icon: Sword,
+    },
+    {
+      title: 'Arterfactos',
+      url: '/panel/artifacts',
+      icon: Hourglass,
+    },
+    {
+      title: 'Materiales',
+      url: '/panel/materials',
+      icon: Box,
+    },
+    {
+      title: 'Equipos',
+      url: '/panel/teams',
+      icon: Group,
+    },
+  ],
+}
+
+export const PANEL_QUICK_LINKS = [
   {
     title: 'Personajes',
     href: '/panel/characters',
@@ -92,9 +127,5 @@ export const HOME_ROUTES = [
   {
     title: 'Equipos',
     href: '/teams',
-  },
-  {
-    title: 'Tier List',
-    href: '/tierlist',
   },
 ]

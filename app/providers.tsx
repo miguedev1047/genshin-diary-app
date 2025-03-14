@@ -14,6 +14,8 @@ export function Providers({ children, ...props }: ThemeProviderProps) {
       <NextThemesProvider
         attribute='class'
         defaultTheme='dark'
+        enableSystem
+        disableTransitionOnChange
         {...props}
       >
         {children}
