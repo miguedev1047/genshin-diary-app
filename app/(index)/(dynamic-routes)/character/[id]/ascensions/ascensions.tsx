@@ -8,7 +8,7 @@ export function Ascensions(props: AscensionsProps) {
   const ASCENSIONS = data.ascensions ?? []
 
   return (
-    <div className='!mt-0 col-span-2'>
+    <div className='mt-0! col-span-2'>
       <ViewCard title='Ascensiones'>
         <DataTable
           data={ASCENSIONS}

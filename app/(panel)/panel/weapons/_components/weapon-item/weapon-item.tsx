@@ -32,7 +32,7 @@ export function WeaponItem(props: WeaponItemProps) {
             <Link
               href={URL}
               className={cn(
-                'group/item flex aspect-[1/1] overflow-hidden rounded-[1rem] border border-muted/30 bg-background transition relative',
+                'group/item flex aspect-1/1 overflow-hidden rounded-[1rem] border border-muted/30 bg-background transition relative',
                 STAR_COLOR
               )}
             >
@@ -61,7 +61,7 @@ export function WeaponItem(props: WeaponItemProps) {
       <DeleteButton
         itemId={id}
         onDelete={deleteWeapon}
-        className='absolute z-40 bottom-2 right-2 size-8 !rounded-md'
+        className='absolute z-40 bottom-2 right-2 size-8 rounded-md!'
       >
         <Trash2 className='size-5' />
       </DeleteButton>

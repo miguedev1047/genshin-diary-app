@@ -18,7 +18,7 @@ export function TierRows(props: TierRowProps) {
         <SquareBox
           size='xl'
           className={cn(
-            'col-span-2 grid place-items-center aspect-[2/3] size-full',
+            'col-span-2 grid place-items-center aspect-2/3 size-full',
             TIER_ROW_COLORS[row.tier_rank as 'SS' | 'S' | 'A' | 'B' | 'C' | 'D']
           )}
         >

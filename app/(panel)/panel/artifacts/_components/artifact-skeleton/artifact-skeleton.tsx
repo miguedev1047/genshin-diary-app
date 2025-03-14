@@ -7,7 +7,7 @@ export function ArtifactSkeleton() {
       {Array.from({ length: 20 }).map((_, index) => (
         <Card
           key={index}
-          className='aspect-[1/1]'
+          className='aspect-1/1'
         >
           <Skeleton className='h-full w-full' />
         </Card>

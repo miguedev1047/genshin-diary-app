@@ -7,7 +7,7 @@ export function CharacterSkeleton() {
     <ul className={GRID_LIST}>
       {Array.from({ length: 12 }).map((_, index) => (
         <Card
-          className='aspect-[2/3] animate-pulse'
+          className='aspect-2/3 animate-pulse'
           key={index}
         >
           <Skeleton className='w-full h-full' />

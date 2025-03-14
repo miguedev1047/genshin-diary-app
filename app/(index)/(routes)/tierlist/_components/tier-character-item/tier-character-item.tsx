@@ -31,7 +31,7 @@ export function TierCharacterItem(props: TierCharacterItemProps) {
     <Link
       href={URL}
       className={cn(
-        'group/item flex aspect-[2/3] size-full overflow-hidden rounded-[1rem] border bg-background transition relative',
+        'group/item flex aspect-2/3 size-full overflow-hidden rounded-[1rem] border bg-background transition relative',
         RARITY_COLOR
       )}
     >

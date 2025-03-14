@@ -4,7 +4,7 @@ import { cn } from '@/lib/utils'
 import React from 'react'
 
 const squareBoxVariants = cva(
-  'bg-accent rounded-lg p-0.5 relative overflow-hidden',
+  'bg-accent rounded-(--radius) p-0.5 relative overflow-hidden',
   {
     variants: {
       size: {
@@ -27,7 +27,7 @@ export const SquareBox = React.forwardRef<
     SquareBoxProps &
     VariantProps<typeof squareBoxVariants>
 >(({ className, size = 'default', ...props }, ref) => {
-  return (  
+  return (
     <div
       ref={ref}
       className={cn(squareBoxVariants({ size }), className)}

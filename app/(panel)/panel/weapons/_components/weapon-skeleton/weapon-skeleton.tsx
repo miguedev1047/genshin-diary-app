@@ -7,7 +7,7 @@ export function WeaponSkeleton() {
       {Array.from({ length: 20 }).map((_, index) => (
         <Card
           key={index}
-          className='aspect-[1/1]'
+          className='aspect-1/1'
         >
           <Skeleton className='w-full h-full' />
         </Card>

@@ -23,7 +23,7 @@ export function WeaponItem(props: WeaponItemProps) {
         <TooltipTrigger asChild>
           <div
             className={cn(
-              'group/item flex aspect-[1/1] overflow-hidden rounded-[1rem] border border-muted/30 bg-background transition relative',
+              'group/item flex aspect-1/1 overflow-hidden rounded-[1rem] border border-muted/30 bg-background transition relative',
               STAR_COLOR
             )}
           >

@@ -47,7 +47,7 @@ export const ascensionWeaponColumns: ColumnDef<Ascension>[] = [
               height={720}
               className='object-contain size-full'
             />
-            <div className='absolute inset-x-0 bottom-0 g-black/70b supports-[backdrop-filter]:bg-background/60 py-1 flex items-center justify-center z-20'>
+            <div className='absolute inset-x-0 bottom-0 g-black/70b supports-backdrop-filter:bg-background/60 py-1 flex items-center justify-center z-20'>
               <p>{FORMATTED_COST}</p>
             </div>
           </SquareBox>
