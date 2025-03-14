@@ -26,7 +26,7 @@ import { Star } from 'lucide-react'
 import { FormCard } from '@/app/(panel)/_components/form-card'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useParams, useRouter } from 'next/navigation'
-import { useEffect, useTransition } from 'react'
+import { useTransition } from 'react'
 import { useForm } from 'react-hook-form'
 import { createArtifact } from '@/app/(panel)/creator/artifact/_services/create'
 import { updateArtifact } from '@/app/(panel)/creator/artifact/_services/update'
@@ -45,27 +45,17 @@ export function ArtifactForm() {
 
   const { data } = useGetData()
   const { artifacts } = data
-
   const ARTIFACT = artifacts?.find((i) => i.id === ITEM_ID)
 
   const form = useForm<z.infer<typeof ArtifactSchema>>({
     resolver: zodResolver(ArtifactSchema),
     defaultValues: {
-      name: '',
-      bonus_description: '',
-      image_url: '',
-      rarity: undefined,
+      name: ARTIFACT?.name || '',
+      bonus_description: ARTIFACT?.bonus_description || '',
+      image_url: ARTIFACT?.image_url || '',
+      rarity: ARTIFACT?.rarity || undefined,
     },
   })
-
-  useEffect(() => {
-    if (ARTIFACT) {
-      form.setValue('name', ARTIFACT.name)
-      form.setValue('bonus_description', ARTIFACT.bonus_description)
-      form.setValue('image_url', ARTIFACT.image_url ?? '')
-      form.setValue('rarity', ARTIFACT.rarity)
-    }
-  }, [ARTIFACT, form])
 
   const handledSubmit = form.handleSubmit((values) => {
     startTransition(async () => {

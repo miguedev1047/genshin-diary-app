@@ -24,7 +24,6 @@ export function HomeCharacters(props: HomeCharactersProps) {
             <CharacterHeader />
           </HeaderWrapper>
         </CardHeader>
-
         <CardContent>
           <CharacterRoutes data={CHARACTERS} />
         </CardContent>

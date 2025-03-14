@@ -25,7 +25,7 @@ export async function generateMetadata(props: PageProps): Promise<Metadata> {
 
   if (!CHARACTER) return { title: `${PAGE_NAME} - Indefinido` }
 
-  const [_, RARITY] = CHARACTER.rarity.split('_')
+  const RARITY = CHARACTER.rarity.split('_')[1]
   const ELEMENT = getElementText(CHARACTER.element)
   const ROLE = getRoleText(CHARACTER.role)
 

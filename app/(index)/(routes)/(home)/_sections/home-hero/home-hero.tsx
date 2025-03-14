@@ -1,5 +1,5 @@
 import { RainbowButton } from '@/components/ui/rainbow-button'
-import AnimatedShinyText from '@/components/ui/animated-shiny-text'
+import { AnimatedShinyText } from '@/components/ui/animated-shiny-text'
 import Link from 'next/link'
 
 export function HomeHero() {
@@ -10,13 +10,13 @@ export function HomeHero() {
           Tu web amigable para guías de Genshin Impact.
         </AnimatedShinyText>
 
-        <p className='animate-fade-in mb-8 -translate-y-4 text-balance text-lg tracking-tight text-gray-400 opacity-0 [--animation-delay:400ms] md:text-xl'>
+        <p className='animate-fade-in mb-8 -translate-y-4 text-balance text-lg tracking-tight opacity-0 [--animation-delay:400ms] md:text-xl'>
           Esta plataforma ofrece guías simples y accesibles sobre los personajes
           de Genshin Impact.
         </p>
 
         <Link
-          href='#characters'
+          href='/characters'
           className='animate-fade-in -translate-y-4 opacity-0 [--animation-delay:600ms]'
         >
           <RainbowButton>Ver personajes</RainbowButton>

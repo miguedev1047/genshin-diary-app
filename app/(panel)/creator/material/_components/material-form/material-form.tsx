@@ -20,7 +20,7 @@ import { MaterialSchema } from '@/schemas'
 import { FormCard } from '@/app/(panel)/_components/form-card'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useParams, useRouter } from 'next/navigation'
-import { useEffect, useTransition } from 'react'
+import { useTransition } from 'react'
 import { useForm } from 'react-hook-form'
 import { Input } from '@/components/ui/input'
 import { Star } from 'lucide-react'
@@ -47,23 +47,13 @@ export function MaterialForm() {
   const form = useForm<z.infer<typeof MaterialSchema>>({
     resolver: zodResolver(MaterialSchema),
     defaultValues: {
-      name: '',
-      description: '',
-      image_url: '',
-      rarity: undefined,
-      type: undefined,
+      name:  MATERIAL?.name || '',
+      description: MATERIAL?.description || '',
+      image_url: MATERIAL?.image_url || '',
+      rarity: MATERIAL?.rarity || undefined,
+      type: MATERIAL?.type || undefined,
     },
   })
-
-  useEffect(() => {
-    if (MATERIAL) {
-      form.setValue('name', MATERIAL.name)
-      form.setValue('description', MATERIAL.description)
-      form.setValue('image_url', MATERIAL.image_url ?? '')
-      form.setValue('rarity', MATERIAL.rarity)
-      form.setValue('type', MATERIAL.type)
-    }
-  }, [MATERIAL, form])
 
   const handleSubmit = form.handleSubmit((values) => {
     startTransition(async () => {

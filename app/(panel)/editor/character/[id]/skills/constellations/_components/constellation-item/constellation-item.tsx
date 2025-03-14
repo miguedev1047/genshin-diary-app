@@ -20,7 +20,7 @@ export function ConstellationItem(props: ConstellationItemProps) {
         <div className='flex items-center gap-4'>
           <div className='flex items-center gap-2'>
             <SortableList.DragHandle />
-            <SquareBox className='bg-main-muted dark:bg-accent p-3'>
+            <SquareBox className='bg-accent-foreground dark:bg-accent p-3'>
               <Image
                 src={image_url!}
                 alt={title}
