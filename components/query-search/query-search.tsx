@@ -2,14 +2,24 @@
 
 import { Input } from '@/components/ui/input'
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
-import { SearchBarProps } from '@/components/search-bar/search-bar.type'
+import { QuerySearchProps } from '@/components/query-search/query-search.type'
 import { useDebouncedCallback } from 'use-debounce'
 import { Search } from 'lucide-react'
+import { Suspense } from 'react'
+import { SpinLoaderInput } from '@/components/spin-loaders'
 import { cn } from '@/lib/utils'
 
 const WAIT_BEFORE_DEBOUNCE = 500
 
-export function SearchBar(props: SearchBarProps) {
+export function QuerySearch(props: QuerySearchProps) {
+  return (
+    <Suspense fallback={<SpinLoaderInput />}>
+      <QueryComponent {...props} />
+    </Suspense>
+  )
+}
+
+function QueryComponent(props: QuerySearchProps) {
   const { queryParam, placeholder, className } = props
 
   const { replace } = useRouter()
