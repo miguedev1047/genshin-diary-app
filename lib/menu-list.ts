@@ -10,7 +10,6 @@ import {
   Box,
   Hourglass,
   Group,
-  Trophy,
   Lock,
 } from 'lucide-react'
 
@@ -40,11 +39,6 @@ export const ADMIN_SIDEBAR_ROUTES = {
       title: 'Equipos',
       url: '/panel/teams',
       icon: Group,
-    },
-    {
-      title: 'Tierlist',
-      url: '/panel/tierlist',
-      icon: Trophy,
     },
     {
       title: 'Cuentas',
