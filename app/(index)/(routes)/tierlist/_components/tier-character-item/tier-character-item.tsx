@@ -25,7 +25,7 @@ export function TierCharacterItem(props: TierCharacterItemProps) {
 
   const CHARACTER_SPLASH_ART = CHARACTER.images?.splash_art_url ?? DEFAULT_IMAGE
   const RARITY_COLOR = getBorderColorByRarityHover(CHARACTER.rarity)
-  const ELEMENT_ICON = getElementIcon(CHARACTER.element)?.src
+  const ELEMENT_ICON = getElementIcon(CHARACTER.element)
 
   return (
     <Link
