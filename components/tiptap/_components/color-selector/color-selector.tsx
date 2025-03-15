@@ -1,13 +1,12 @@
-import { Select, SelectTrigger, SelectValue } from '@/components/ui/select'
-import { useTiptap } from '../../_context'
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from '@/components/ui/popover'
+import { useTiptap } from '@/components/tiptap/_context'
 import { Button } from '@/components/ui/button'
-import { ChevronDown } from 'lucide-react'
 import { ScrollArea } from '@/components/ui/scroll-area'
+import { ChevronDown } from 'lucide-react'
 
 const TEXT_COLORS = [
   {
@@ -120,39 +119,39 @@ export function ColorSelector() {
       </PopoverTrigger>
       <PopoverContent
         sideOffset={5}
-        className='my-1 flex w-48 flex-col overflow-hidden overflow-y-auto border p-2 shadow-xl'
+        className='my-1 flex w-48 flex-col overflow-hidden overflow-y-auto border p-3 shadow-xl'
         align='start'
       >
         <div className='space-y-4'>
           <div className='text-sm font-semibold text-muted-foreground'>
             Colores
           </div>
-          <ScrollArea className='h-64 w-full'>
-            {TEXT_COLORS.map(({ color, name }, index) => (
-              <div
-                key={index}
-                className='cursor-pointer rounded-sm py-1 px-2 hover:bg-muted'
-                onClick={() => {
-                  editor.commands.unsetColor()
-                  name !== 'Default' &&
-                    editor
-                      .chain()
-                      .focus()
-                      .setColor(color || '')
-                      .run()
-                }}
-              >
-                <div className='flex items-center gap-2'>
+          <ScrollArea className='h-auto w-full'>
+            <ul className='grid grid-cols-4 gap-2'>
+              {TEXT_COLORS.map(({ color, name }, index) => (
+                <li
+                  key={index}
+                  className='cursor-pointer p-1 rounded-sm bg-muted grid place-items-center'
+                  onClick={() => {
+                    editor.commands.unsetColor()
+                    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+                    name !== 'Default' &&
+                      editor
+                        .chain()
+                        .focus()
+                        .setColor(color || '')
+                        .run()
+                  }}
+                >
                   <div
-                    className='rounded-sm border px-2 py-px font-medium'
+                    className='font-medium'
                     style={{ color }}
                   >
                     A
                   </div>
-                  <span>{name}</span>
-                </div>
-              </div>
-            ))}
+                </li>
+              ))}
+            </ul>
           </ScrollArea>
         </div>
       </PopoverContent>
