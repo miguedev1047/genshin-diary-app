@@ -6,10 +6,10 @@ import { ColumnDef } from '@tanstack/react-table'
 import { DeleteButton } from '@/app/(panel)/_components/delete-button'
 import { Trash2 } from 'lucide-react'
 import { deleteWeaponAscension } from '@/app/(panel)/editor/weapon/[id]/ascensions/_services/delete'
+import { WeaponAscensionForm } from '@/app/(panel)/editor/weapon/[id]/ascensions/_components/weapon-ascension-form'
 import { MaterialItem } from '@/app/(panel)/editor/weapon/[id]/ascensions/_components/material-item'
 import { SquareBox } from '@/components/square-box'
 import Image from 'next/image'
-import { WeaponAscensionForm } from '../weapon-ascension-form'
 
 type Ascension = Prisma.WeaponAscensionsGetPayload<{
   include: { materials: true }
@@ -21,7 +21,7 @@ export const ascensionWeaponColumns: ColumnDef<Ascension>[] = [
     header: 'Ascensión',
     cell: ({ row }) => {
       const { ascension_level } = row.original
-      const [_, ASCENSION_NUMBER] = ascension_level.split('_')
+      const ASCENSION_NUMBER = ascension_level.split('_')[1]
 
       return <p>Ascensión {ASCENSION_NUMBER}</p>
     },

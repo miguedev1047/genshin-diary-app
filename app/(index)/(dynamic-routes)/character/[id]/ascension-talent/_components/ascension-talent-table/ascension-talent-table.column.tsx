@@ -13,7 +13,7 @@ export const ascensionTalentsColumns: ColumnDef<AscensionTalentProps>[] = [
     header: 'Ascensiones',
     cell: ({ row }) => {
       const { ascension_level } = row.original
-      const [_, LEVEL_NUMBER] = ascension_level.split('_')
+      const LEVEL_NUMBER= ascension_level.split('_')[1]
 
       return <p>Ascensión {LEVEL_NUMBER}</p>
     },

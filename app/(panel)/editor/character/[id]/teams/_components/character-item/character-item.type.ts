@@ -1,3 +1,3 @@
-import { Prisma, TeamsCharacters } from "@prisma/client"
+import { TeamsCharacters } from "@prisma/client"
 
 export type CharacterItemProps = TeamsCharacters

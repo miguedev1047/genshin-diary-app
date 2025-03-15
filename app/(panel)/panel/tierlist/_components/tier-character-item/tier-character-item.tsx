@@ -3,17 +3,15 @@
 import { Card } from '@/components/ui/card'
 import { AspectRatio } from '@/components/ui/aspect-ratio'
 import { getBorderColorByRarityHover } from '@/features/utils/rarity-color'
-import { formattedUrl } from '@/features/utils/formatted-names'
 import { TierCharacterItemProps } from '@/app/(panel)/panel/tierlist/_components/tier-character-item/tier-character-item.type'
 import { deleteCharacterTier } from '@/app/(panel)/panel/tierlist/_services/delete'
 import { DeleteButton } from '@/app/(panel)/_components/delete-button'
+import { SortableList } from '@/app/(panel)/_components/sortable-list'
+import { useRouter } from 'next/navigation'
 import { Trash2 } from 'lucide-react'
 import { useGetData } from '@/features/providers/data-provider'
 import { cn } from '@/lib/utils'
 import Image from 'next/image'
-import Link from 'next/link'
-import { SortableList } from '@/app/(panel)/_components/sortable-list'
-import { useRouter } from 'next/navigation'
 
 export function TierCharacterItem(props: TierCharacterItemProps) {
   const { character_id, id } = props

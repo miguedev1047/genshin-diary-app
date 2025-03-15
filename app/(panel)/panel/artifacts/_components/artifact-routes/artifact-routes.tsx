@@ -1,3 +1,4 @@
+import { ArtifactRoutesProps } from '@/app/(panel)/panel/artifacts/_components/artifact-routes/artifact-route.type'
 import { getArtifacts } from '@/app/(panel)/panel/artifacts/_services/fetch'
 import { ArtifactItem } from '@/app/(panel)/panel/artifacts/_components/artifact-item'
 import { EMPTY_LIST } from '@/consts/misc'

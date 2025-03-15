@@ -1,4 +1,4 @@
-type ArtifactRoutesProps = {
+export type ArtifactRoutesProps = {
     params: {
       name: string
     }

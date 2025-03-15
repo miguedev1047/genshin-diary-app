@@ -1,3 +1,3 @@
-import { Prisma, WeaponBestCharacters } from '@prisma/client'
+import { WeaponBestCharacters } from '@prisma/client'
 
 export type CharacterItemProps = WeaponBestCharacters
