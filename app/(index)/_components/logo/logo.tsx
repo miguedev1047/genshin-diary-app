@@ -6,22 +6,14 @@ import Image from 'next/image'
 import Link from 'next/link'
 import GenshinDarkLogo from '@/public/dark-logo.svg'
 import GenshinLightLogo from '@/public/light-logo.svg'
-import { useEffect, useState } from 'react'
 
 const DarkLogo = GenshinDarkLogo.src
 const LightLogo = GenshinLightLogo.src
 
 export function Logo() {
   const { theme } = useTheme()
-  const [currentTheme, setTheme] = useState(theme)
   
   const CURRENT_LOGO = theme !== 'dark' ? DarkLogo : LightLogo
-
-  useEffect(() => {
-    setTheme(theme)
-  }, [theme])
-
-  console.log(currentTheme)
 
   return (
     <Link

@@ -1,3 +1,4 @@
+import { DISCORD_USER } from '@/consts/misc'
 import { AlertCircle } from 'lucide-react'
 
 export function AlertError() {
@@ -14,7 +15,7 @@ export function AlertError() {
           <div className='flex grow flex-col justify-between gap-2 md:flex-row md:items-center'>
             <p className='text-sm'>
               Si esta guía presenta un error enviame mensaje a mi discord{' '}
-              <span className='font-bold'>koe4202</span>
+              <span className='font-bold'>{DISCORD_USER}</span>
             </p>
           </div>
         </div>

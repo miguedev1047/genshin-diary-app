@@ -1,5 +1,6 @@
 import { BorderBeam } from '@/components/magicui/border-beam'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { DISCORD_USER } from '@/consts/misc'
 
 export default function PrivacePolicyPage() {
   return (
@@ -11,7 +12,7 @@ export default function PrivacePolicyPage() {
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <article className='prose lg:prose-lg mx-auto mb-8 text-muted-foreground'>
+          <article className='prose lg:prose-lg mx-auto mb-8'>
             <p>
               Bienvenido a nuestra página de guías para <em>Genshin Impact</em>.
               Queremos asegurarnos de que comprendas cómo manejamos la
@@ -20,7 +21,7 @@ export default function PrivacePolicyPage() {
               con nuestro sitio.
             </p>
 
-            <h2 className='text-2xl text-primary font-semibold mt-6'>
+            <h2 className='text-2xl font-semibold mt-6'>
               1. Propósito del Sitio
             </h2>
             <p>
@@ -31,7 +32,7 @@ export default function PrivacePolicyPage() {
               independiente y puede contener errores o imprecisiones.
             </p>
 
-            <h2 className='text-2xl text-primary font-semibold mt-6'>
+            <h2 className='text-2xl font-semibold mt-6'>
               2. Exactitud de la Información
             </h2>
             <p>
@@ -41,7 +42,7 @@ export default function PrivacePolicyPage() {
               actualizar el contenido en cualquier momento.
             </p>
 
-            <h2 className='text-2xl text-primary font-semibold mt-6'>
+            <h2 className='text-2xl font-semibold mt-6'>
               3. Consentimiento para el Ingreso de Datos
             </h2>
             <p>
@@ -53,7 +54,7 @@ export default function PrivacePolicyPage() {
               ello.
             </p>
 
-            <h2 className='text-2xl text-primary font-semibold mt-6'>
+            <h2 className='text-2xl font-semibold mt-6'>
               4. Recopilación de Información
             </h2>
             <p>
@@ -64,7 +65,7 @@ export default function PrivacePolicyPage() {
               especificado.
             </p>
 
-            <h2 className='text-2xl text-primary font-semibold mt-6'>
+            <h2 className='text-2xl font-semibold mt-6'>
               5. Responsabilidad por Datos Personales
             </h2>
             <p>
@@ -74,7 +75,7 @@ export default function PrivacePolicyPage() {
               espacios públicos del sitio.
             </p>
 
-            <h2 className='text-2xl text-primary font-semibold mt-6'>
+            <h2 className='text-2xl font-semibold mt-6'>
               6. Propiedad Intelectual
             </h2>
             <p>
@@ -85,7 +86,7 @@ export default function PrivacePolicyPage() {
               HoYoverse.
             </p>
 
-            <h2 className='text-2xl text-primary font-semibold mt-6'>
+            <h2 className='text-2xl font-semibold mt-6'>
               7. Modificaciones a esta Política
             </h2>
             <p>
@@ -96,7 +97,7 @@ export default function PrivacePolicyPage() {
 
             <p className='mt-6'>
               Si tienes preguntas o inquietudes, contactame a mi discord{' '}
-              <span className='font-bold'>koe4202</span>
+              <span className='font-bold'>{DISCORD_USER}</span>
             </p>
           </article>
         </CardContent>
