@@ -13,3 +13,6 @@ export const STALE_MS = 60 * 60 * 3600
 export const GC_MS = 60 * 60 * 3600
 
 export const EMPTY_LIST = 0
+
+export const DISCORD_USER = 'cartethyia2'
+export const CONTACT_EMAIL = 'miguelangeljimenez1047@gmail.com'
