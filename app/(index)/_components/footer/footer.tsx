@@ -5,14 +5,14 @@ export function Footer() {
 
   return (
     <footer className='w-full border shadow-sm'>
-      <div className='max-w-6xl flex flex-col mx-auto p-5 pt-12'>
+      <div className='max-w-7xl flex flex-col mx-auto pb-5 pt-12'>
         <div className='flex flex-wrap justify-between gap-8'>
           <div className='space-y-2'>
             <h2 className='text-2xl font-bold mb-5'>Genshin Diary</h2>
             <p className='text-sm'>
               Tu web amigable para guías de Genshin Impact.
             </p>
-            <p className='text-xs text-gray-400'>
+            <p className='text-xs text-muted-foreground'>
               Este proyecto está hecho con fines educativos
             </p>
           </div>
