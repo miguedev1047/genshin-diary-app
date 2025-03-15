@@ -50,7 +50,7 @@ export default async function EditorCharacterPage(props: PageProps) {
           </BreadcrumbList>
         </Breadcrumb>
 
-        <div>
+        {CHARACTER.is_public && (
           <Button
             variant='link'
             asChild
@@ -63,7 +63,7 @@ export default async function EditorCharacterPage(props: PageProps) {
               <LinkIcon /> <span>Ver personaje</span>
             </Link>
           </Button>
-        </div>
+        )}
       </article>
 
       <CharacterProvider data={CHARACTER}>
