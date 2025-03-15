@@ -42,8 +42,6 @@ export function TiptapEditor(props: TiptapEditorProps) {
     'prose prose-sm sm:prose-base dark:prose-invert focus:outline-hidden max-w-full'
   )
 
-  console.log(content)
-
   const editor = useEditor({
     extensions: [
       StarterKit,
@@ -70,7 +68,6 @@ export function TiptapEditor(props: TiptapEditorProps) {
       onChange?.(sanitizeContent(editor.getHTML()))
     },
     onCreate: ({ editor }) => {
-      console.log(editor.getHTML())
       onChange?.(sanitizeContent(editor.getHTML()))
     },
     editorProps: {

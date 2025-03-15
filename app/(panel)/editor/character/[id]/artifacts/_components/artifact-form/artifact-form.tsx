@@ -61,8 +61,6 @@ export function ArtifactForm(props: ArtifactFormProps) {
   const handleSubmit = form.handleSubmit((values) => {
     const CHARACTER_ID = CHARACTER?.id
 
-    console.log(values.artifacts.length)
-
     const MAX_SETS = values.artifacts.length > MAX_ARTIFACTS_SET_ITEM
     if (MAX_SETS) return toast.error(ERR_ARTIFACT_SET_ITEM)
 
