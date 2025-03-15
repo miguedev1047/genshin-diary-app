@@ -11,7 +11,7 @@ import { useEditor, EditorContent } from '@tiptap/react'
 import { BubbleMenu } from '@/components/tiptap/_components/bubble-menu'
 import { Color } from '@tiptap/extension-color'
 import { TipTapProvider } from '@/components/tiptap/_context'
-import { sanitizeContent } from '@/features/helpers/sanitized-html'
+import { sanitizeEditorContent, sanitizePreviewContent } from '@/features/helpers/sanitized-html'
 import { Skeleton } from '../ui/skeleton'
 
 import StarterKit from '@tiptap/starter-kit'
@@ -63,12 +63,9 @@ export function TiptapEditor(props: TiptapEditorProps) {
     ],
     immediatelyRender: false,
     editable: isEditable,
-    content: sanitizeContent(content),
+    content: sanitizeEditorContent(content),
     onUpdate: ({ editor }) => {
-      onChange?.(sanitizeContent(editor.getHTML()))
-    },
-    onCreate: ({ editor }) => {
-      onChange?.(sanitizeContent(editor.getHTML()))
+      onChange?.(sanitizeEditorContent(editor.getHTML()))
     },
     editorProps: {
       attributes: { class: CLASSES },
@@ -98,12 +95,12 @@ export function TiptapEditor(props: TiptapEditorProps) {
 
 export function TiptapPreview(props: TiptapPreviewProps) {
   const { content } = props
-  const sanitizedContent = sanitizeContent(content)
+  const sanitizedContent = sanitizePreviewContent(content)
 
   return (
     <div
       key={sanitizedContent}
-      className='text-sm text-pretty opacity-75'
+      className='text-sm text-pretty opacity-90 tiptap'
       dangerouslySetInnerHTML={{ __html: sanitizedContent }}
     />
   )
