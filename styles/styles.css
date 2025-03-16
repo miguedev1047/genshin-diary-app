@@ -20,6 +20,10 @@
   --accent-foreground: hsl(0 0% 9%);
   --destructive: hsl(0 84.2% 60.2%);
   --destructive-foreground: hsl(0 0% 98%);
+  --success: hsl(142 70%, 45%);
+  --success-foreground: hsl(0 0% 98%);
+  --warning: hsl(54 91% 95%);
+  --warning-foreground: hsl(37 74% 55%);
   --border: hsl(0 0% 89.8%);
   --input: hsl(0 0% 89.8%);
   --ring: hsl(270 30% 65%);
@@ -64,6 +68,10 @@
   --accent-foreground: hsl(0 0% 98%);
   --destructive: hsl(0 83% 57%);
   --destructive-foreground: hsl(0 0% 98%);
+  --success: hsl(142, 76%, 36%);
+  --success-foreground: hsl(0 0% 98%);
+  --warning: hsl(37, 75%, 11%);
+  --warning-foreground: hsl(37 91% 55%);
   --border: hsl(0 0% 14.9%);
   --input: hsl(0 0% 14.9%);
   --ring: hsl(270 30% 65%);
@@ -73,9 +81,9 @@
   --chart-3: hsl(30 80% 55%);
   --chart-4: hsl(280 65% 60%);
   --chart-5: hsl(340 75% 55%);
-  
+
   --focal-light: #c6c6c6;
-  
+
   --sidebar: hsl(240 5% 7%);
   --sidebar-foreground: hsl(240 4.8% 95.9%);
   --sidebar-primary: hsl(280 65% 60%);
@@ -103,6 +111,10 @@
   --color-accent-foreground: var(--accent-foreground);
   --color-destructive: var(--destructive);
   --color-destructive-foreground: var(--destructive-foreground);
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
+  --color-warning: var(--warning);
+  --color-warning-foreground: var(--warning-foreground);
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
@@ -234,5 +246,5 @@
 
 ::-webkit-scrollbar-thumb {
   @apply bg-accent-foreground;
-  @apply dark:bg-accent
+  @apply dark:bg-accent;
 }
