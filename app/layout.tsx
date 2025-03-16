@@ -10,6 +10,7 @@ import { DataWrapper } from '@/features/providers/data-provider/data.wrapper'
 import NextTopLoader from 'nextjs-toploader'
 
 import '@/styles/styles.css'
+import { ScrollToTopButton } from '@/components/scroll-to-top-button/scroll-to-top-button'
 
 const onest = Onest({ subsets: ['latin'] })
 
@@ -48,6 +49,7 @@ export default function RootLayout({
               />
               <Toaster />
               {children}
+              <ScrollToTopButton />
             </Providers>
           </DataWrapper>
         </AuthWrapper>
