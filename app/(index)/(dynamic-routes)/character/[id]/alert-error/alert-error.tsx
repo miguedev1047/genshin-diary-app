@@ -3,7 +3,7 @@ import { AlertCircle } from 'lucide-react'
 
 export function AlertError() {
   return (
-    <div className='col-span-2 bg-muted px-4 py-3 text-foreground rounded-[1rem]'>
+    <div className='col-span-2 bg-warning px-4 py-3 text-warning-foreground rounded-(--radius)'>
       <div className='flex flex-col justify-between gap-2 md:flex-row'>
         <div className='flex grow gap-3'>
           <AlertCircle
