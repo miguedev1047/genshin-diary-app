@@ -33,7 +33,7 @@ import { Badge } from '@/components/ui/badge'
 import { cn } from '@/lib/utils'
 import { DEFAULT_IMAGE } from '@/consts/misc'
 import { SquareBox } from '@/components/square-box'
-import React, { useEffect, useMemo, useState } from 'react'
+import React, { useEffect, useMemo, useRef, useState } from 'react'
 import Image from 'next/image'
 
 export function DialogMultiSelect(props: DialogMultiSelectProps) {
@@ -69,6 +69,7 @@ export function DialogMultiSelect(props: DialogMultiSelectProps) {
   const [selectedValues, setSelectedValues] = useState<string[]>(defaultValue)
   const [isDialogOpen, setIsDialogOpen] = useState(false)
   const [isAnimating, setIsAnimating] = useState(false)
+  const listItemsRef = useRef<React.ElementRef<typeof CommandList> | null>(null)
 
   useEffect(() => {
     setSelectedValues(defaultValue)
@@ -82,6 +83,12 @@ export function DialogMultiSelect(props: DialogMultiSelectProps) {
       newSelectedValues.pop()
       setSelectedValues(newSelectedValues)
       onValueChange(newSelectedValues)
+    }
+  }
+
+  const handleInputChange = () => {
+    if (listItemsRef.current) {
+      listItemsRef.current.scrollTop = -listItemsRef.current.scrollHeight
     }
   }
 
@@ -192,16 +199,20 @@ export function DialogMultiSelect(props: DialogMultiSelectProps) {
           )}
         </Button>
       </DialogTrigger>
-      <DialogContent aria-describedby={undefined}>
+      <DialogContent
+        aria-describedby='Selector multiple'
+        className='max-w-[720px]'
+      >
         <DialogHeader>
           <DialogTitle>Buscador</DialogTitle>
         </DialogHeader>
         <Command>
           <CommandInput
             placeholder={placeholder}
+            onValueChange={handleInputChange}
             onKeyDown={handleInputKeyDown}
           />
-          <CommandList>
+          <CommandList ref={listItemsRef}>
             <CommandEmpty>No se encontraron resultados.</CommandEmpty>
             <CommandGroup>
               {isLoading ? (
