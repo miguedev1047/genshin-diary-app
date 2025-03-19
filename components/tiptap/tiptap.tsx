@@ -65,7 +65,6 @@ export function TiptapEditor(props: TiptapEditorProps) {
     editable: isEditable,
     content: sanitizeContent(content),
     onUpdate: ({ editor }) => {
-      console.log(sanitizeContent(editor.getHTML()))
       onChange?.(sanitizeContent(editor.getHTML()))
     },
     editorProps: {
