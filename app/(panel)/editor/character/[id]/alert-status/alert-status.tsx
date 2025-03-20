@@ -13,8 +13,8 @@ export function AlertStatus() {
     : 'Actualmente, este personaje no es visible para todos los usuarios. Puedes cambiar esta configuración en la sección de información del personaje.'
 
   const styleStatus = CHARACTER_STATUS
-    ? 'bg-success dark:bg-success/50 text-success-foreground'
-    : 'bg-warning dark:bg-warning/50 text-warning-foreground'
+    ? 'bg-success text-success-foreground'
+    : 'bg-warning text-warning-foreground'
 
   return (
     <div

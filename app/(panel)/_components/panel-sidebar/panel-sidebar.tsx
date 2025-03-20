@@ -9,7 +9,6 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-  SidebarRail,
 } from '@/components/ui/sidebar'
 import { PAGE_NAME, PAGE_VERSION } from '@/consts/misc'
 import { ADMIN_SIDEBAR_ROUTES, EDITOR_SIDEBAR_ROUTES } from '@/lib/menu-list'
@@ -20,7 +19,10 @@ import Link from 'next/link'
 
 export async function PanelSidebar() {
   return (
-    <Sidebar collapsible='icon'>
+    <Sidebar
+      collapsible='icon'
+      variant='inset'
+    >
       <SidebarHeader>
         <SidebarMenu>
           <SidebarMenuItem>
@@ -90,7 +92,6 @@ export async function PanelSidebar() {
       <SidebarFooter>
         <PanelDropdown />
       </SidebarFooter>
-      <SidebarRail aria-label='Alternar barra lateral' />
     </Sidebar>
   )
 }

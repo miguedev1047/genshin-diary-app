@@ -38,7 +38,7 @@ export function ContentLayout(props: ContentLayoutProps) {
         <ThemeToggle/>
       </header>
 
-      <div className='min-h-[calc(100svh_-_8rem)] p-8 container max-w-[1240px] mx-auto space-y-5'>
+      <div className='min-h-[calc(100dvh_-_8rem)] p-8 container max-w-[1240px] mx-auto space-y-5'>
         {children}
       </div>
 
