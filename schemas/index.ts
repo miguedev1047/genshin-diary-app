@@ -98,6 +98,8 @@ export const WeaponSchema = z.object({
   rarity: z.string({ message: 'La rareza es requerida.' }).min(1, {
     message: 'La rareza es requerida.',
   }),
+  is_public: z.boolean().optional(),
+  is_new: z.boolean().optional(),
 })
 
 export const CharacterSelectorSchema = z.object({
