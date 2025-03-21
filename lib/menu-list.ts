@@ -3,7 +3,7 @@ import {
   CharacterImg,
   MaterialImg,
   WeaponImg,
-} from '@/assets/images'
+} from '@/assets/images/_index'
 import {
   Users2,
   Sword,
