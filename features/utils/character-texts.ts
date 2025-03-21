@@ -1,5 +1,8 @@
 import {
   ARTIFACTS_STATS,
+  ASCENSION_WEAPON_FIVE_STARS,
+  ASCENSION_WEAPON_FOUR_STARS,
+  ASCENSION_WEAPON_THREE_STARS,
   ATTRIBUTES,
   ELEMENTS,
   MATERIAL_TYPES,
@@ -94,4 +97,19 @@ export function getMaterialTypeText(materialType: string | undefined) {
   if (MATERIAL) return MATERIAL.label
 
   return 'Indefinido'
+}
+
+export function getAscensionByRarity(rarity: string | undefined) {
+  const RARIRTY = parseInt(rarity?.split('_')[1] || '0')
+
+  switch (RARIRTY) {
+    case 5:
+      return ASCENSION_WEAPON_FIVE_STARS
+    case 4:
+      return ASCENSION_WEAPON_FOUR_STARS
+    case 3:
+      return ASCENSION_WEAPON_THREE_STARS
+    default:
+      return null
+  }
 }
