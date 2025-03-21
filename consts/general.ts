@@ -221,8 +221,6 @@ export const ARTIFACTS_STATS = {
   ],
 }
 
-
-
 export const ACCOUNT_ROLE = [
   { value: 'OWNER', label: 'Owner' },
   { value: 'ADMIN', label: 'Administrador' },
@@ -352,13 +350,139 @@ export const ASCENSION_TALENT = [
   },
 ]
 
-export const ASCENSION_WEAPON = [
-  { ascension_level: 'ASCENSION_1', cost: 20000, level: '20-40', order: 1 },
-  { ascension_level: 'ASCENSION_2', cost: 40000, level: '40-50', order: 2 },
-  { ascension_level: 'ASCENSION_3', cost: 60000, level: '50-60', order: 3 },
-  { ascension_level: 'ASCENSION_4', cost: 80000, level: '60-70', order: 4 },
-  { ascension_level: 'ASCENSION_5', cost: 100000, level: '70-80', order: 5 },
-  { ascension_level: 'ASCENSION_6', cost: 120000, level: '80-90', order: 6 },
+export const ASCENSION_WEAPON_FIVE_STARS = [
+  {
+    ascension_level: 'ASCENSION_1',
+    cost: 10000,
+    level: '20-40',
+    order: 1,
+    materialQuantities: [5, 5, 3],
+  },
+  {
+    ascension_level: 'ASCENSION_2',
+    cost: 20000,
+    level: '40-50',
+    order: 2,
+    materialQuantities: [5, 18, 12],
+  },
+  {
+    ascension_level: 'ASCENSION_3',
+    cost: 30000,
+    level: '50-60',
+    order: 3,
+    materialQuantities: [9, 9, 9],
+  },
+  {
+    ascension_level: 'ASCENSION_4',
+    cost: 45000,
+    level: '60-70',
+    order: 4,
+    materialQuantities: [5, 18, 14],
+  },
+  {
+    ascension_level: 'ASCENSION_5',
+    cost: 55000,
+    level: '70-80',
+    order: 5,
+    materialQuantities: [9, 14, 9],
+  },
+  {
+    ascension_level: 'ASCENSION_6',
+    cost: 65000,
+    level: '80-90',
+    order: 6,
+    materialQuantities: [6, 27, 18],
+  },
+]
+
+export const ASCENSION_WEAPON_FOUR_STARS = [
+  {
+    ascension_level: 'ASCENSION_1',
+    cost: 5000,
+    level: '20-40',
+    order: 1,
+    materialQuantities: [3, 3, 2],
+  },
+  {
+    ascension_level: 'ASCENSION_2',
+    cost: 15000,
+    level: '40-50',
+    order: 2,
+    materialQuantities: [3, 12, 8],
+  },
+  {
+    ascension_level: 'ASCENSION_3',
+    cost: 20000,
+    level: '50-60',
+    order: 3,
+    materialQuantities: [6, 6, 6],
+  },
+  {
+    ascension_level: 'ASCENSION_4',
+    cost: 30000,
+    level: '60-70',
+    order: 4,
+    materialQuantities: [3, 12, 9],
+  },
+  {
+    ascension_level: 'ASCENSION_5',
+    cost: 35000,
+    level: '70-80',
+    order: 5,
+    materialQuantities: [6, 9, 6],
+  },
+  {
+    ascension_level: 'ASCENSION_6',
+    cost: 45000,
+    level: '80-90',
+    order: 6,
+    materialQuantities: [4, 18, 12],
+  },
+]
+
+export const ASCENSION_WEAPON_THREE_STARS = [
+  {
+    ascension_level: 'ASCENSION_1',
+    cost: 5000,
+    level: '20-40',
+    order: 1,
+    materialQuantities: [2, 2, 1],
+  },
+  {
+    ascension_level: 'ASCENSION_2',
+    cost: 10000,
+    level: '40-50',
+    order: 2,
+    materialQuantities: [2, 8, 3],
+  },
+  {
+    ascension_level: 'ASCENSION_3',
+    cost: 15000,
+    level: '50-60',
+    order: 3,
+    materialQuantities: [4, 4, 4],
+  },
+  {
+    ascension_level: 'ASCENSION_4',
+    cost: 20000,
+    level: '60-70',
+    order: 4,
+    materialQuantities: [2, 8, 6],
+  },
+  {
+    ascension_level: 'ASCENSION_5',
+    cost: 25000,
+    level: '70-80',
+    order: 5,
+    materialQuantities: [4, 6, 4],
+  },
+  {
+    ascension_level: 'ASCENSION_6',
+    cost: 30000,
+    level: '80-90',
+    order: 6,
+    materialQuantities: [34, 12, 8],
+  },
 ]
 
 export const MATERIAL_TYPES = [
