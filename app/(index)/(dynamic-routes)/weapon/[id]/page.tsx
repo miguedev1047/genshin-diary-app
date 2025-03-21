@@ -15,7 +15,8 @@ export async function generateMetadata(props: PageProps) {
   const WEAPON_ID = params.id
   const WEAPON = await getWeapon(WEAPON_ID)
 
-  if (!WEAPON) return { title: `${PAGE_NAME} - Indefinido` }
+  const IS_PUBLIC = WEAPON?.is_public
+  if (!WEAPON || !IS_PUBLIC) return { title: `${PAGE_NAME} - Indefinido` }
 
   return {
     title: `${PAGE_NAME} - ${WEAPON.name}`,
@@ -29,7 +30,8 @@ export default async function WeaponPage(props: PageProps) {
   const WEAPON_ID = params.id
   const WEAPON = await getWeapon(WEAPON_ID)
 
-  if (!WEAPON) return redirect('/')
+  const IS_PUBLIC = WEAPON?.is_public
+  if (!WEAPON || !IS_PUBLIC) return redirect('/')
 
   return (
     <BlurFade delay={0.2}>

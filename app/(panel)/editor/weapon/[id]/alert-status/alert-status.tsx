@@ -1,16 +1,16 @@
 'use client'
 
-import { useGetCharacter } from '@/features/providers/character-provider'
+import { useGetWeapon } from '@/features/providers/weapon-provider'
 import { cn } from '@/lib/utils'
 import { Eclipse } from 'lucide-react'
 
 export function AlertStatus() {
-  const { data: CHARACTER } = useGetCharacter()
-  const CHARACTER_STATUS = CHARACTER?.is_public
+  const { data: WEAPON } = useGetWeapon()
+  const CHARACTER_STATUS = WEAPON?.is_public
 
   const message = CHARACTER_STATUS
-    ? 'El personaje ahora es visible para todos los usuarios. Puedes modificar esta configuración en su información.'
-    : 'Actualmente, este personaje no es visible para todos los usuarios. Puedes cambiar esta configuración en la sección de información del personaje.'
+    ? 'El arma ahora es visible para todos los usuarios. Puedes modificar esta configuración en su información.'
+    : 'Actualmente, esta arma no es visible para todos los usuarios. Puedes cambiar esta configuración en la sección de información del arma.'
 
   const styleStatus = CHARACTER_STATUS
     ? 'bg-success dark:bg-success/50 text-success-foreground'
