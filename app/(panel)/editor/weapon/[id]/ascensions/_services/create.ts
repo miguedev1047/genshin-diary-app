@@ -2,13 +2,13 @@
 
 import { z } from 'zod'
 import { db } from '@/lib/db'
-import { ASCENSION_WEAPON } from '@/consts/general'
 import { isCurrentRole } from '@/data/auth'
 import { WeaponAscensionSchema } from '@/schemas'
+import { getAscensionByRarity } from '@/features/utils/character-texts'
 
 export async function createWeaponAscension(
   data: z.infer<typeof WeaponAscensionSchema>,
-  weapon_id: string | undefined,
+  weapon_id: string | undefined
 ) {
   if (!weapon_id) return { status: 400, message: 'Esta arma no existe.' }
 
@@ -22,9 +22,15 @@ export async function createWeaponAscension(
     return { status: 400, message: 'Campos inválidos.' }
   }
 
+  const WEAPON = await db.weapons.findUnique({ where: { id: weapon_id } })
+
+  if (!WEAPON) {
+    return { status: 403, message: 'El arma no existe.' }
+  }
+
   const { ascension_level, materials } = VALIDATE_FIELDS.data
 
-  const ASCENSION = ASCENSION_WEAPON.find(
+  const ASCENSION = getAscensionByRarity(WEAPON?.rarity)?.find(
     (i) => i.ascension_level === ascension_level
   )
 
@@ -32,8 +38,9 @@ export async function createWeaponAscension(
     return { status: 400, message: 'Esta ascensión no existe.' }
   }
 
-  const MATERIALS = materials.map((material) => ({
+  const MATERIALS = materials.map((material, index) => ({
     material_id: material,
+    quantity: ASCENSION.materialQuantities[index] ?? 0,
   }))
 
   try {

@@ -20,18 +20,18 @@ import { z } from 'zod'
 import { ASCENSION_LEVEL } from '@/consts/general'
 import { WeaponAscensionSchema } from '@/schemas'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { MaterialSelector } from '@/app/(panel)/editor/weapon/[id]/ascensions/_components/material-selector'
 import { useEffect, useMemo, useState, useTransition } from 'react'
 import { useForm } from 'react-hook-form'
 import { createWeaponAscension } from '@/app/(panel)/editor/weapon/[id]/ascensions/_services/create'
 import { useGetWeapon } from '@/features/providers/weapon-provider'
 import { FormSheet } from '@/app/(panel)/_components/form-sheet'
 import { useRouter } from 'next/navigation'
+import { WeaponAscensionFormProps } from '@/app/(panel)/editor/weapon/[id]/ascensions/_components/weapon-ascension-form/ascension-form.type'
+import { updateWeaponAscensionMaterials } from '@/app/(panel)/editor/weapon/[id]/ascensions/_services/update'
+import { MaterialWeaponSelector } from '@/app/(panel)/_components/dialog-selectors/material-weapon-selector'
 import { toast } from 'sonner'
-import { WeaponAscensionFormProps } from './ascension-form.type'
-import { updateWeaponAscensionMaterials } from '../../_services/update'
 
-const MAX_MATERIALS = 4
+const MAX_MATERIALS = 3
 
 const ERR_MATERIAL_LIST = `No puedes añadir mas de ${MAX_MATERIALS} materiales!`
 
@@ -175,7 +175,7 @@ export function WeaponAscensionForm(props: WeaponAscensionFormProps) {
               <FormItem>
                 <FormLabel>Materiales</FormLabel>
                 <FormControl>
-                  <MaterialSelector {...field} />
+                  <MaterialWeaponSelector {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>

@@ -6,7 +6,7 @@ import { ColumnDef } from '@tanstack/react-table'
 import { DeleteButton } from '@/app/(panel)/_components/delete-button'
 import { Trash2 } from 'lucide-react'
 import { deleteWeaponAscension } from '@/app/(panel)/editor/weapon/[id]/ascensions/_services/delete'
-import { WeaponAscensionForm } from '@/app/(panel)/editor/weapon/[id]/ascensions/_components/weapon-ascension-form'
+import { WeaponAscensionForm as WeaponAscensionEditor } from '@/app/(panel)/editor/weapon/[id]/ascensions/_components/weapon-ascension-form'
 import { MaterialItem } from '@/app/(panel)/editor/weapon/[id]/ascensions/_components/material-item'
 import { SquareBox } from '@/components/square-box'
 import Image from 'next/image'
@@ -90,7 +90,7 @@ export const ascensionWeaponColumns: ColumnDef<Ascension>[] = [
 
       return (
         <div className='flex items-center gap-2'>
-          <WeaponAscensionForm id={id} />
+          <WeaponAscensionEditor id={id} />
 
           <DeleteButton
             itemId={id}
