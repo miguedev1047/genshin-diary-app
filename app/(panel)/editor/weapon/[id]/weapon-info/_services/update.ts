@@ -30,6 +30,8 @@ export async function updateWeapon(
     passive_description,
     type,
     rarity,
+    is_new,
+    is_public,
   } = data
 
   try {
@@ -48,6 +50,8 @@ export async function updateWeapon(
         secondary_stat,
         type,
         rarity,
+        is_new,
+        is_public,
       },
     })
 

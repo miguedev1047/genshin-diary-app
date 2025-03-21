@@ -32,7 +32,7 @@ import { Input } from '@/components/ui/input'
 import Image from 'next/image'
 
 export function MaterialItem(props: MaterialItemProps) {
-  const { material_id, quantity } = props
+  const { material_id, quantity, id } = props
   const { data } = useGetData()
 
   const { materials } = data
@@ -53,7 +53,7 @@ export function MaterialItem(props: MaterialItemProps) {
     startTransition(async () => {
       const { status, message } = await updateWeaponAscensionMaterialQuantity(
         values,
-        material_id
+        id
       )
 
       if (status === 201) {

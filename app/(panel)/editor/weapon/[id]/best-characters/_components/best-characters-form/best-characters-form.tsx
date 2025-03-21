@@ -20,7 +20,7 @@ import { FormSheet } from '@/app/(panel)/_components/form-sheet'
 import { useRouter } from 'next/navigation'
 import { toast } from 'sonner'
 
-const MAX_CHARACTERS = 6
+const MAX_CHARACTERS = 16
 
 export function BestCharactersForm() {
   const [isPending, startTransition] = useTransition()

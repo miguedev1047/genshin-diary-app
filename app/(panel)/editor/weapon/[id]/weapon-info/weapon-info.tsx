@@ -26,13 +26,13 @@ export function WeaponInfo() {
   return (
     <EditorCard
       title='Información del arma'
-      className='grid grid-cols-5 gap-4'
+      className='grid grid-cols-5 w-full gap-4'
       renderForm={<WeaponInfoForm />}
     >
       <div className='col-span-1 flex items-center flex-col gap-4'>
         <SquareBox
           size='full'
-          className='aspect-square bg-secondary'
+          className='aspect-square bg-secondary size-[200px]'
         >
           <Image
             priority

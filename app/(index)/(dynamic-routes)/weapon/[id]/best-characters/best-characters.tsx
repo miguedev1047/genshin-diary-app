@@ -12,7 +12,7 @@ export function BestCharacter(props: BestCharacterProps) {
       <div className='col-span-2'>
         <ViewCard title='Mejores personajes'>
           <Title className='text-center py-20 text-2xl opacity-70 font-extrabold uppercase'>
-            No hay elementos para mostrar
+            Arma sin sinergias
           </Title>
         </ViewCard>
       </div>
