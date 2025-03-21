@@ -75,6 +75,8 @@ model Weapons {
   max_secondary_stat_base Float   @default(0)
   min_secondary_stat_base Float   @default(0)
   passive_description     String
+  is_public               Boolean? @default(false)
+  is_new                  Boolean? @default(false)
 
   date_created DateTime @default(now())
   date_updated DateTime @updatedAt
