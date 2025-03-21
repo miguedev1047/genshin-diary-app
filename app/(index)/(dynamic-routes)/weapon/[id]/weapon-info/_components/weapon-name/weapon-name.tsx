@@ -10,12 +10,13 @@ export function WeaponName(props: WeaponNameProps) {
   const [isMaxView, setIsMaxView] = useState(false)
 
   const SECONDARY_STAT = getAttributesText(WEAPON?.secondary_stat)
+  const IS_ELEM_MASTERY = WEAPON?.secondary_stat !== 'ELEMENTAL_MASTERY'
 
   const ATTACK_BASE = isMaxView
     ? WEAPON?.max_base_attack
     : WEAPON?.min_base_attack
 
-  const SECONDARY_BASE_STAT = isMaxView
+  const SECONDARY_STAT_BASE = isMaxView
     ? WEAPON?.max_secondary_stat_base
     : WEAPON?.min_secondary_stat_base
 
@@ -25,6 +26,22 @@ export function WeaponName(props: WeaponNameProps) {
         <h2 className='text-[40px] text-balance font-extrabold uppercase leading-none '>
           {WEAPON?.name}
         </h2>
+      </div>
+
+      <div className='flex justify-between'>
+        <div className='space-y-2'>
+          <h2 className='text-xl leading-none'>
+            ATQ Base: <span className='font-bold'>{ATTACK_BASE}</span>
+          </h2>
+
+          <h2 className='text-xl leading-none'>
+            {SECONDARY_STAT}:{' '}
+            <span className='font-bold'>
+              {SECONDARY_STAT_BASE}
+              {IS_ELEM_MASTERY && '%'}
+            </span>
+          </h2>
+        </div>
 
         <div className='flex items-center gap-2'>
           <p className='text-center'>
@@ -36,15 +53,6 @@ export function WeaponName(props: WeaponNameProps) {
           />
         </div>
       </div>
-
-      <h2 className='text-xl leading-none'>
-        ATQ Base: <span className='font-bold'>{ATTACK_BASE}</span>
-      </h2>
-
-      <h2 className='text-xl leading-none'>
-        {SECONDARY_STAT}:{' '}
-        <span className='font-bold'>{SECONDARY_BASE_STAT}%</span>
-      </h2>
     </div>
   )
 }

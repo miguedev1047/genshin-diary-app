@@ -26,6 +26,22 @@ export function WeaponName() {
         <h2 className='text-[40px] text-balance font-extrabold uppercase leading-none '>
           {WEAPON?.name}
         </h2>
+      </div>
+
+      <div className='flex justify-between'>
+        <div className='space-y-2'>
+          <h2 className='text-xl leading-none'>
+            ATQ Base: <span className='font-bold'>{ATTACK_BASE}</span>
+          </h2>
+
+          <h2 className='text-xl leading-none'>
+            {SECONDARY_STAT}:{' '}
+            <span className='font-bold'>
+              {SECONDARY_STAT_BASE}
+              {IS_ELEM_MASTERY && '%'}
+            </span>
+          </h2>
+        </div>
 
         <div className='flex items-center gap-2'>
           <p className='text-center'>
@@ -37,17 +53,6 @@ export function WeaponName() {
           />
         </div>
       </div>
-
-      <h2 className='text-xl leading-none'>
-        ATQ Base: <span className='font-bold'>{ATTACK_BASE}</span>
-      </h2>
-
-      <h2 className='text-xl leading-none'>
-        {SECONDARY_STAT}:{' '}
-        <span className='font-bold'>
-          {SECONDARY_STAT_BASE}{IS_ELEM_MASTERY && '%'}
-        </span> 
-      </h2>
     </div>
   )
 }
