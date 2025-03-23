@@ -63,7 +63,7 @@ export function Android({
           href={src}
           width="360"
           height="800"
-          className="size-full object-cover"
+          className="size-full object-contain"
           preserveAspectRatio="xMidYMid slice"
           clipPath="url(#clip0_514_20855)"
         />
@@ -76,7 +76,7 @@ export function Android({
           preserveAspectRatio="xMidYMid slice"
         >
           <video
-            className="size-full object-cover"
+            className="size-full object-contain"
             src={videoSrc}
             autoPlay
             loop

@@ -1,7 +1,7 @@
 'use client'
 
 import { Logo } from '@/app/(index)/_components/logo'
-import { DesktopThumbnail } from '@/assets/images/_index'
+import { DesktopThumbnail, MobileThumbnail } from '@/assets/images/_index'
 import { FocalLight } from '@/components/focal-light'
 import { Android } from '@/components/ui/android'
 import { AnimatedShinyText } from '@/components/ui/animated-shiny-text'
@@ -79,7 +79,7 @@ export function HomeHero() {
           <div className='w-full mt-10 md:mt-20 px-4 md:px-8 z-20 overflow-clip'>
             <Android
               className='size-full block xs:hidden '
-              src={DesktopThumbnail.src}
+              src={MobileThumbnail.src}
             />
 
             <Safari
