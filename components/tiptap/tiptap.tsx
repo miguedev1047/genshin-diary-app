@@ -94,13 +94,13 @@ export function TiptapEditor(props: TiptapEditorProps) {
 }
 
 export function TiptapPreview(props: TiptapPreviewProps) {
-  const { content } = props
+  const { content, className } = props
   const sanitizedContent = sanitizeContent(content)
 
   return (
     <div
       key={sanitizedContent}
-      className='text-sm text-pretty opacity-90 tiptap'
+      className={cn('text-sm text-pretty opacity-90 tiptap', className)}
       dangerouslySetInnerHTML={{ __html: sanitizedContent }}
     />
   )

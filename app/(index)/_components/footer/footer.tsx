@@ -4,7 +4,7 @@ export function Footer() {
   const YEAR = new Date().getFullYear()
 
   return (
-    <footer className='w-full border shadow-sm'>
+    <footer className='w-full border-t shadow-sm px-2 md:px-16 max-md:hidden'>
       <div className='max-w-7xl flex flex-col mx-auto pb-5 pt-12'>
         <div className='flex flex-wrap justify-between gap-8'>
           <div className='space-y-2'>
@@ -56,8 +56,8 @@ export function Footer() {
           </div>
         </div>
 
-        <div className='mt-8 pt-8 flex flex-col md:flex-row justify-between items-center'>
-          <div className='flex flex-col items-center md:items-start'>
+        <div className='mt-8 pt-8 flex flex-col md:flex-row justify-between items-start md:items-center'>
+          <div className='flex flex-col items-start md:items-center'>
             <p className='text-sm'>{YEAR} Genshin Diary.</p>
             <p className='text-xs mt-1'>
               Developed by{' '}

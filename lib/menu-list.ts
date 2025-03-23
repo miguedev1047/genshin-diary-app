@@ -103,6 +103,10 @@ export const PANEL_QUICK_LINKS = [
 
 export const HOME_ROUTES = [
   {
+    title: 'Inicio',
+    href: '/',
+  },
+  {
     title: 'Personajes',
     href: '/characters',
   },

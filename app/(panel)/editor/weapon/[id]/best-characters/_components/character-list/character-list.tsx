@@ -2,7 +2,7 @@
 
 import { useGetWeapon } from '@/features/providers/weapon-provider'
 import { CharacterItem } from '@/app/(panel)/editor/weapon/[id]/best-characters/_components/character-item/character-item'
-import { GRID_LIST } from '@/consts/classes'
+import { GENERAL_GRID_LIST } from '@/consts/classes'
 
 export function CharacterList() {
   const { data: WEAPON } = useGetWeapon()
@@ -27,5 +27,5 @@ export function CharacterList() {
     </li>
   ))
 
-  return <ul className={GRID_LIST}>{MAPPED_BEST_CHARACTERS}</ul>
+  return <ul className={GENERAL_GRID_LIST}>{MAPPED_BEST_CHARACTERS}</ul>
 }

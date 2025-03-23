@@ -12,12 +12,12 @@ export function TeamItem(props: TeamItemProps) {
   ))
 
   return (
-    <Card>
-      <CardHeader>
+    <Card className='select-none'>
+      <CardHeader className='max-md:p-2'>
         <CardTitle className='text-lg'>{name}</CardTitle>
       </CardHeader>
-      <CardContent>
-        <ul className='grid grid-cols-4 gap-4'>{MAPPED_CHARACTERS}</ul>
+      <CardContent className='max-md:px-2 max-md:pb-2'>
+        <ul className='grid grid-cols-4 gap-2 md:gap-4'>{MAPPED_CHARACTERS}</ul>
       </CardContent>
     </Card>
   )

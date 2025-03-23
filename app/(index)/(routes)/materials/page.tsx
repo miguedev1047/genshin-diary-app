@@ -3,9 +3,8 @@ import { MaterialHeader } from '@/components/headers/material-header'
 import { BorderBeam } from '@/components/magicui/border-beam'
 import { Card, CardContent, CardHeader } from '@/components/ui/card'
 import { PageProps } from '@/app/(index)/(routes)/materials/_types'
-import { materialColumns } from '@/app/(index)/(routes)/materials/_components/material-table'
 import { getMaterials } from '@/app/(index)/(routes)/materials/_services/fetch'
-import { MaterialTable } from '@/app/(index)/(routes)/materials/_components/material-table/material-table'
+import { MaterialList } from '@/app/(index)/(routes)/materials/_components/material-list'
 
 export default async function MaterialPage(props: PageProps) {
   const { searchParams: PARAMS } = props
@@ -13,19 +12,16 @@ export default async function MaterialPage(props: PageProps) {
 
   return (
     <section className='relative'>
-      <Card className='relative overflow-clip'>
-        <CardHeader>
+      <Card className='max-md:overflow-visible overflow-hidden max-md:border-0 max-md:border-none'>
+        <CardHeader className='space-y-4 max-md:p-0'>
           <HeaderWrapper>
             <MaterialHeader />
           </HeaderWrapper>
         </CardHeader>
-        <CardContent>
-          <MaterialTable
-            data={MATERIALS ?? []}
-            columns={materialColumns}
-          />
+        <CardContent className='max-md:p-0'>
+          <MaterialList data={MATERIALS ?? []} />
         </CardContent>
-        <BorderBeam />
+        <BorderBeam className='max-md:hidden' />
       </Card>
     </section>
   )

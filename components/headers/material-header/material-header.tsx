@@ -4,6 +4,12 @@ import {
   Tooltip,
   TooltipContent,
 } from '@/components/ui/tooltip'
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from '@/components/ui/accordion'
 import { MATERIAL_TYPES } from '@/consts/general'
 import { Button } from '@/components/ui/button'
 import { Plus } from 'lucide-react'
@@ -18,7 +24,7 @@ export function MaterialHeader(props: HeaderProps) {
 
   return (
     <>
-      <div className='flex items-center justify-between gap-4 flex-wrap'>
+      <div className='flex flex-wrap items-center justify-between w-full gap-2'>
         <Title
           size='2xl'
           className='font-extrabold uppercase'
@@ -26,15 +32,14 @@ export function MaterialHeader(props: HeaderProps) {
           Materiales
         </Title>
 
-        <div className='flex items-center gap-2'>
-          <QuerySearch
-            queryParam='name'
-            placeholder='Buscar material'
-            className='w-[350px]'
-          />
+        <TooltipProvider>
+          <div className='flex items-center gap-2 max-md:hidden'>
+            <QuerySearch
+              queryParam='name'
+              placeholder='Buscar material'
+            />
 
-          {isCreator && (
-            <TooltipProvider>
+            {isCreator && (
               <Tooltip>
                 <TooltipTrigger asChild>
                   <Button
@@ -50,22 +55,74 @@ export function MaterialHeader(props: HeaderProps) {
                   <p>Crear material</p>
                 </TooltipContent>
               </Tooltip>
-            </TooltipProvider>
-          )}
-        </div>
+            )}
+          </div>
+
+          <div className='flex items-center gap-2 md:hidden w-full'>
+            <QuerySearch
+              queryParam='name'
+              placeholder='Buscar material'
+            />
+
+            {isCreator && (
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Button
+                    size='icon'
+                    asChild
+                  >
+                    <Link href='/creator/material'>
+                      <Plus />
+                    </Link>
+                  </Button>
+                </TooltipTrigger>
+                <TooltipContent side='bottom'>
+                  <p>Crear material</p>
+                </TooltipContent>
+              </Tooltip>
+            )}
+          </div>
+        </TooltipProvider>
       </div>
-      <ul className='grid sm:grid-cols-2 lg:grid-cols-4 gap-4'>
-        {MATERIAL_TYPES.map((filter) => (
-          <QueryToggle
-            key={filter.value}
-            queryKey='type'
-            queryValue={filter.value}
-            className='w-full'
-          >
-            {filter.label}
-          </QueryToggle>
-        ))}
-      </ul>
+
+      <Accordion
+        type='single'
+        collapsible
+        className='w-full space-y-2'
+      >
+        <AccordionItem
+          value='1'
+          className='bg-background has-focus-visible:border-ring has-focus-visible:ring-ring/50 rounded-md border px-4 py-1 outline-none last:border-b has-focus-visible:ring-[3px]'
+        >
+          <AccordionTrigger className='py-2 font-bold leading-6 hover:no-underline focus-visible:ring-0'>
+            Ver filtros
+          </AccordionTrigger>
+          <AccordionContent>
+            <div className='mt-4 flex flex-col space-y-3'>
+              <div className='space-y-3'>
+                <Title
+                  size='sm'
+                  className='font-bold'
+                >
+                  Filtro de tipo
+                </Title>
+                <ul className='grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 w-full'>
+                  {MATERIAL_TYPES.map((filter) => (
+                    <QueryToggle
+                      key={filter.value}
+                      queryKey='type'
+                      queryValue={filter.value}
+                      className='w-full'
+                    >
+                      {filter.label}
+                    </QueryToggle>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </AccordionContent>
+        </AccordionItem>
+      </Accordion>
     </>
   )
 }

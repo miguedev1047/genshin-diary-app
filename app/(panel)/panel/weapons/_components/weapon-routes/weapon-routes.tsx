@@ -3,6 +3,7 @@ import { getWeapons } from '@/app/(panel)/panel/weapons/_services/fetch'
 import { WeaponItem } from '@/app/(panel)/panel/weapons/_components/weapon-item'
 import { EmptyList } from '@/components/empty-list'
 import { EMPTY_LIST } from '@/consts/misc'
+import { ITEMS_GRID_LIST } from '@/consts/classes'
 
 export async function WeaponRoutes(props: WeaponRoutesProps) {
   const { params: PARAMS } = props
@@ -21,9 +22,5 @@ export async function WeaponRoutes(props: WeaponRoutesProps) {
     </li>
   ))
 
-  return (
-    <ul className='grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 xl:grid-cols-10 gap-5'>
-      {MAPPED_WEAPONS}
-    </ul>
-  )
+  return <ul className={ITEMS_GRID_LIST}>{MAPPED_WEAPONS}</ul>
 }

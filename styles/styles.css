@@ -142,6 +142,8 @@
   --animate-fade-up: fade-up 1s ease forwards;
   --animate-border-beam: border-beam calc(var(--duration) * 1s) infinite linear;
   --animate-shiny-text: shiny-text 8s infinite;
+  --animate-accordion-down: accordion-down 0.2s ease-in-out;
+  --animate-accordion-up: accordion-up 0.2s ease-in-out;
 
   @keyframes rainbow {
     0% {
@@ -149,6 +151,24 @@
     }
     100% {
       background-position: 200%;
+    }
+  }
+
+  @keyframes accordion-down {
+    0% {
+      height: 0;
+    }
+    100% {
+      height: var(--radix-accordion-content-height);
+    }
+  }
+
+  @keyframes accordion-up {
+    0% {
+      height: var(--radix-accordion-content-height);
+    }
+    100% {
+      height: 0;
     }
   }
 

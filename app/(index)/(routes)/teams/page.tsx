@@ -1,36 +1,29 @@
 import { HeaderWrapper } from '@/components/header-wrapper'
 import { TeamHeader } from '@/components/headers/team-header'
 import { Card, CardContent, CardHeader } from '@/components/ui/card'
-import { PageProps } from './_types'
-import { getTeams } from './_services/fetch'
-import { TeamItem } from './_components/team-item'
+import { PageProps } from '@/app/(index)/(routes)/teams/_types'
+import { getTeams } from '@/app/(index)/(routes)/teams/_services/fetch'
 import { redirect } from 'next/navigation'
 import { BorderBeam } from '@/components/magicui/border-beam'
+import { TeamList } from '@/app/(index)/(routes)/teams/_components/team-list'
 
 export default async function TeamPage(props: PageProps) {
   const { searchParams: PARAMS } = props
   const TEAMS = await getTeams(PARAMS)
-
   if (!TEAMS) return redirect('/')
-
-  const MAPPED_TEAMS = TEAMS.map((team) => (
-    <li key={team.id}>
-      <TeamItem {...team} />
-    </li>
-  ))
 
   return (
     <section className='relative'>
-      <Card className='relative overflow-hidden'>
-        <CardHeader>
+      <Card className='max-md:overflow-visible overflow-hidden max-md:border-0 max-md:border-none'>
+        <CardHeader className='space-y-4 max-md:p-0'>
           <HeaderWrapper>
             <TeamHeader />
           </HeaderWrapper>
         </CardHeader>
-        <CardContent>
-          <ul className='grid md:grid-cols-2 gap-4'>{MAPPED_TEAMS}</ul>
+        <CardContent className='max-md:p-0'>
+          <TeamList data={TEAMS ?? []} />
         </CardContent>
-        <BorderBeam />
+        <BorderBeam className='max-md:hidden' />
       </Card>
     </section>
   )

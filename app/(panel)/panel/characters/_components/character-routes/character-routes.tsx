@@ -1,4 +1,4 @@
-import { GRID_LIST } from '@/consts/classes'
+import { CHARACTER_GRID_LIST } from '@/consts/classes'
 import { getCharacters } from '@/app/(panel)/panel/characters/_services/fetch'
 import { CharacterItem } from '@/app/(panel)/panel/characters/_components/character-item'
 import { CharacterRoutesProps } from '@/app/(panel)/panel/characters/_components/character-routes/character-routes.type'
@@ -19,5 +19,5 @@ export async function CharacterRoutes(props: CharacterRoutesProps) {
     </li>
   ))
 
-  return <ul className={GRID_LIST}>{MAPPED_CHARACTERS}</ul>
+  return <ul className={CHARACTER_GRID_LIST}>{MAPPED_CHARACTERS}</ul>
 }

@@ -19,7 +19,7 @@ export function MaterialItem(props: MaterialItemProps) {
   const { name, rarity, image_url, id } = props
 
   const MATERIAL_IMAGE = image_url
-  const STAR_COLOR = getBorderColorByRarityHover(rarity)
+  const RARITY_COLOR = getBorderColorByRarityHover(rarity)
 
   return (
     <>
@@ -30,7 +30,7 @@ export function MaterialItem(props: MaterialItemProps) {
               href={`/editor/material/${id}`}
               className={cn(
                 'group/item flex aspect-1/1 overflow-hidden rounded-[1rem] border border-muted/30 bg-background transition relative',
-                STAR_COLOR
+                RARITY_COLOR
               )}
             >
               <Card className='size-full'>

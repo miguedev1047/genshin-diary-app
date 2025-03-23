@@ -4,7 +4,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from '@/components/ui/tooltip'
-import { Navbar } from '@/app/(index)/_components/navbar'
+import { DesktopNavbar, MobileNavbar } from '@/app/(index)/_components/navbar'
 import { Logo } from '@/app/(index)/_components/logo'
 import { Button } from '@/components/ui/button'
 import { auth } from '@/auth'
@@ -15,25 +15,23 @@ import Link from 'next/link'
 export function Header() {
   return (
     <>
-      <header className='sticky top-0 w-full bg-background/95 shadow-sm border-b backdrop-blur-sm supports-backdrop-filter:bg-background/60 px-16 z-40'>
+      <header className='fixed md:sticky bottom-0 md:top-0 w-full bg-background/95 shadow-sm border-t md:border-b backdrop-blur-sm supports-backdrop-filter:bg-background/60 px-2 md:px-16 z-40'>
         <div className='max-w-7xl mx-auto flex h-16 items-center justify-between'>
-          <nav className='flex grow basis-0'>
+          <nav className='flex grow basis-0 max-md:hidden'>
             <Logo />
           </nav>
 
-          <Navbar />
+          <DesktopNavbar />
 
-          <nav className='flex grow basis-0 justify-end'>
+          <nav className='flex grow basis-0 justify-start md:justify-end'>
             <div className='flex items-center gap-1'>
-              <PanelButton />
+              <MobileNavbar />
               <ThemeToggle />
+              <PanelButton />
             </div>
           </nav>
         </div>
       </header>
-      <div className='fixed bottom-8 left-8'>
-        
-      </div>
     </>
   )
 }

@@ -5,7 +5,7 @@ import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 import { QuerySearchProps } from '@/components/query-search/query-search.type'
 import { useDebouncedCallback } from 'use-debounce'
 import { Search } from 'lucide-react'
-import { Suspense } from 'react'
+import { Suspense, useId } from 'react'
 import { SpinLoaderInput } from '@/components/spin-loaders'
 import { cn } from '@/lib/utils'
 
@@ -25,6 +25,7 @@ function QueryComponent(props: QuerySearchProps) {
   const { replace } = useRouter()
   const pathname = usePathname()
   const params = useSearchParams()
+  const id = useId()
 
   const searchParams = new URLSearchParams(params)
 
@@ -38,10 +39,10 @@ function QueryComponent(props: QuerySearchProps) {
   }, WAIT_BEFORE_DEBOUNCE)
 
   return (
-    <div className='relative'>
+    <div className='relative w-full lg:w-80'>
       <Input
-        id='input-26'
-        className={cn('peer pe-9 ps-9 max-w-[320px]', className)}
+        id={`INPUT-${id}`}
+        className={cn('pe-9 ps-9 peer !w-full', className)}
         defaultValue={searchParams.get(queryParam)?.toString()}
         onChange={(e) => handleSearch(e.target.value)}
         placeholder={placeholder}

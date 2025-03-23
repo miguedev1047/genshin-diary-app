@@ -22,7 +22,7 @@ export function ArtifactItem(props: ArtifactItemProps) {
   const URL = `/editor/artifact/${ARTIFACT}`
 
   const ARTIFACT_IMAGE = image_url
-  const STAR_COLOR = getBorderColorByRarityHover(rarity)
+  const RARITY_COLOR = getBorderColorByRarityHover(rarity)
 
   return (
     <>
@@ -33,7 +33,7 @@ export function ArtifactItem(props: ArtifactItemProps) {
               href={URL}
               className={cn(
                 'group/item flex aspect-1/1 overflow-hidden rounded-[1rem] border border-muted/30 bg-background transition relative',
-                STAR_COLOR
+                RARITY_COLOR
               )}
             >
               <Card className='size-full'>

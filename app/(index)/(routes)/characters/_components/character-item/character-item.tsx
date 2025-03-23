@@ -23,7 +23,7 @@ export function CharacterItem(props: CharacterItemProps) {
     <Link
       href={URL}
       className={cn(
-        'group/item flex aspect-2/3 overflow-hidden rounded-[1rem] border bg-background transition relative',
+        'group/item flex aspect-2/3 overflow-hidden rounded-[1rem] border bg-background transition relative select-none',
         RARITY_COLOR
       )}
     >

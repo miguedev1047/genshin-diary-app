@@ -4,6 +4,7 @@ import { MaterialItem } from '@/app/(panel)/panel/materials/_components/material
 import { getMaterialTypeText } from '@/features/utils/character-texts'
 import { EmptyList } from '@/components/empty-list'
 import { EMPTY_LIST } from '@/consts/misc'
+import { ITEMS_GRID_LIST } from '@/consts/classes'
 
 export async function MaterialRoutes(props: MaterialRoutesProps) {
   const { params: PARAMS } = props
@@ -31,7 +32,7 @@ export async function MaterialRoutes(props: MaterialRoutesProps) {
         className='space-y-4'
       >
         <h2 className='uppercase font-extrabold text-xl'>{CATEGORY_NAME}</h2>
-        <ul className='grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 xl:grid-cols-10 gap-5'>
+        <ul className={ITEMS_GRID_LIST}>
           {MAPPED_MATERIALS}
         </ul>
       </li>

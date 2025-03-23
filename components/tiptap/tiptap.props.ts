@@ -12,4 +12,5 @@ export type TiptapEditorProps = {
 
 export type TiptapPreviewProps = {
   content: string
+  className?: string
 }

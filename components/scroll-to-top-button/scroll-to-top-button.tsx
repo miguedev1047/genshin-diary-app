@@ -29,7 +29,7 @@ export function ScrollToTopButton(props: ScrollToTopButtonProps) {
         variant='secondary'
         className={cn(
           DEV_MODE ? 'right-20' : 'right-8',
-          'fixed bottom-8 z-50 rounded-full shadow-md transition-all duration-300',
+          'fixed bottom-20 md:bottom-8 z-50 rounded-full shadow-md transition-all duration-300',
           showButton
             ? 'opacity-100 translate-y-0'
             : 'opacity-0 translate-y-10 pointer-events-none',

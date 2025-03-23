@@ -8,7 +8,7 @@ export function Logo() {
     <article className='flex gap-3'>
       <Link
         href={'/'}
-        className='w-[132px] h-auto'
+        className='w-[100px] md:w-[132px] h-auto'
       >
         <svg
           width='979'
@@ -70,7 +70,7 @@ export function Logo() {
       </Link>
 
       <div>
-        <Badge>Beta</Badge>
+        <Badge className='max-md:text-xs'>Beta</Badge>
       </div>
     </article>
   )
