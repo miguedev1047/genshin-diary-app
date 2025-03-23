@@ -4,10 +4,11 @@ import { Logo } from '@/app/(index)/_components/logo'
 import { DesktopThumbnail } from '@/assets/images/_index'
 import { FocalLight } from '@/components/focal-light'
 import { BorderBeam } from '@/components/magicui/border-beam'
+import { Android } from '@/components/ui/android'
 import { AnimatedShinyText } from '@/components/ui/animated-shiny-text'
 import { RainbowButton } from '@/components/ui/rainbow-button'
+import { Safari } from '@/components/ui/safari'
 import { motion } from 'framer-motion'
-import Image from 'next/image'
 import Link from 'next/link'
 
 export function HomeHero() {
@@ -73,10 +74,22 @@ export function HomeHero() {
           </Link>
         </motion.div>
 
-        <div className='relative max-xs:hidden'>
+        <div className='relative flex justify-center'>
           <FocalLight />
 
-          <motion.div
+          <div className='w-full mt-10 md:mt-20 px-4 md:px-8 z-20 overflow-clip'>
+            <Android
+              className='size-full block xs:hidden '
+              src={DesktopThumbnail.src}
+            />
+
+            <Safari
+              className='size-full hidden xs:block'
+              imageSrc={DesktopThumbnail.src}
+            />
+          </div>
+
+          {/* <motion.div
             initial={{
               opacity: 0,
               y: 10,
@@ -91,7 +104,7 @@ export function HomeHero() {
             }}
             className='relative overflow-clip z-10 mt-10 md:mt-20 rounded-3xl border border-neutral-200 bg-neutral-100 p-2 md:p-4 shadow-md dark:border-neutral-800 dark:bg-neutral-900'
           >
-            <BorderBeam />
+            
 
             <div className='w-full overflow-hidden rounded-xl border border-gray-300 dark:border-gray-700'>
               <Image
@@ -102,7 +115,7 @@ export function HomeHero() {
                 width={1000}
               />
             </div>
-          </motion.div>
+          </motion.div> */}
         </div>
       </div>
     </section>
