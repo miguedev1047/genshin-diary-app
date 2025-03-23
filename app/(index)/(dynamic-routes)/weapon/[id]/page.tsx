@@ -35,7 +35,7 @@ export default async function WeaponPage(props: PageProps) {
 
   return (
     <BlurFade delay={0.2}>
-      <section className='space-y-8 md:space-y-16 gap-2 md:gap-x-4 grid grid-cols-2 relative'>
+      <section className='space-y-8 md:space-y-16 gap-2 md:gap-x-4 grid grid-cols-2 relative pb-24'>
         <ScrollToTop />
         <WeaponInfo data={WEAPON} />
         <BestCharacter data={WEAPON} />
