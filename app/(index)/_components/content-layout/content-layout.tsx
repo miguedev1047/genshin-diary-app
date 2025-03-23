@@ -11,7 +11,7 @@ export function ContentLayout(props: ContentLayoutProps) {
       {particles && <ParticlesBackground />}
 
       <Header />
-      <main className='pt-4 md:py-12 lg:py-20 px-4 container max-w-[1240px] h-full min-h-dvh mx-auto relative z-20'>
+      <main className='pt-16 md:py-12 lg:py-20 px-4 container max-w-[1240px] h-full min-h-dvh mx-auto relative z-20'>
         {children}
       </main>
       <Footer />
