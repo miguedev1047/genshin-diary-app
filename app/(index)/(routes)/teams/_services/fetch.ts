@@ -1,5 +1,5 @@
 import { db } from '@/lib/db'
-import { Prisma, Team } from '@prisma/client'
+import { Prisma } from '@prisma/client'
 
 type Props = {
   name: string

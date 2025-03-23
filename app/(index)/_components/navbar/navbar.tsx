@@ -8,18 +8,17 @@ import {
   NavigationMenuList,
   navigationMenuTriggerStyle,
 } from '@/components/ui/navigation-menu'
-import { HOME_ROUTES } from '@/lib/menu-list'
-import Link from 'next/link'
-import { Menu } from 'lucide-react'
-import { Button } from '@/components/ui/button'
 import {
   Sheet,
   SheetContent,
   SheetHeader,
-  SheetTitle,
   SheetTrigger,
 } from '@/components/ui/sheet'
-import { Logo } from '../logo'
+import { HOME_ROUTES } from '@/lib/menu-list'
+import { Menu } from 'lucide-react'
+import { Button } from '@/components/ui/button'
+import { Logo } from '@/app/(index)/_components/logo'
+import Link from 'next/link'
 
 export function DesktopNavbar() {
   return (
