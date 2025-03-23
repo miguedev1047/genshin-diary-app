@@ -4,7 +4,7 @@ import { DISCORD_USER } from '@/consts/misc'
 
 export default function PrivacePolicyPage() {
   return (
-    <section className='relative'>
+    <section className='relative pb-24'>
       <Card className='relative overflow-clip'>
         <CardHeader>
           <CardTitle className='text-3xl font-bold text-center'>

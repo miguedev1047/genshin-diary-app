@@ -13,7 +13,7 @@ export default async function WeaponPage(props: PageProps) {
   if (!WEAPONS) return redirect('/weapons')
 
   return (
-    <section className='relative'>
+    <section className='relative pb-24'>
       <Card className='max-md:overflow-visible overflow-hidden max-md:border-0 max-md:border-none'>
         <CardHeader className='space-y-4 max-md:p-0'>
           <HeaderWrapper>

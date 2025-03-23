@@ -65,16 +65,25 @@ export function MobileNavbar() {
           <Logo />
         </SheetHeader>
 
-        <ul className='flex flex-col gap-1 mt-2'>
-          {HOME_ROUTES.map(({ title, href }) => (
-            <li
-              key={href}
-              className='w-full p-2 hover:bg-accent rounded-(--radius)'
-            >
-              <Link href={href}>{title}</Link>
-            </li>
-          ))}
-        </ul>
+        <div className='flex flex-col justify-between h-[calc(100%-3rem)] '>
+          <ul className='flex flex-col gap-1 mt-2'>
+            {HOME_ROUTES.map(({ title, href }) => (
+              <li
+                key={href}
+                className='w-full p-2 hover:bg-accent rounded-(--radius)'
+              >
+                <Link href={href}>{title}</Link>
+              </li>
+            ))}
+          </ul>
+
+          <Link
+            href='/privace-policy'
+            className='w-full p-2 hover:bg-accent rounded-(--radius)'
+          >
+            Política de privacidad
+          </Link>
+        </div>
       </SheetContent>
     </Sheet>
   )
