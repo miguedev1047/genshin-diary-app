@@ -73,7 +73,7 @@ export function HomeHero() {
           </Link>
         </motion.div>
 
-        <div className='relative max-sm:hidden'>
+        <div className='relative max-xs:hidden'>
           <FocalLight />
 
           <motion.div
