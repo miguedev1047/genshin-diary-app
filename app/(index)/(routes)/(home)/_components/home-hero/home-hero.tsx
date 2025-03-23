@@ -83,38 +83,11 @@ export function HomeHero() {
             />
 
             <Safari
+              url='https://genshin-impact-guide.vercel.app/characters'
               className='size-full hidden xs:block'
               imageSrc={DesktopThumbnail.src}
             />
           </div>
-
-          {/* <motion.div
-            initial={{
-              opacity: 0,
-              y: 10,
-            }}
-            animate={{
-              opacity: 1,
-              y: 0,
-            }}
-            transition={{
-              duration: 0.3,
-              delay: 1.2,
-            }}
-            className='relative overflow-clip z-10 mt-10 md:mt-20 rounded-3xl border border-neutral-200 bg-neutral-100 p-2 md:p-4 shadow-md dark:border-neutral-800 dark:bg-neutral-900'
-          >
-            
-
-            <div className='w-full overflow-hidden rounded-xl border border-gray-300 dark:border-gray-700'>
-              <Image
-                src={DesktopThumbnail.src}
-                alt='Landing page preview'
-                className='aspect-[16/9] h-auto w-full object-cover'
-                height={1000}
-                width={1000}
-              />
-            </div>
-          </motion.div> */}
         </div>
       </div>
     </section>
