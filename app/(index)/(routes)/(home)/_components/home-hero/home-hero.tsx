@@ -3,16 +3,15 @@
 import { Logo } from '@/app/(index)/_components/logo'
 import { DesktopThumbnail, MobileThumbnail } from '@/assets/images/_index'
 import { FocalLight } from '@/components/focal-light'
-import { Android } from '@/components/ui/android'
 import { AnimatedShinyText } from '@/components/ui/animated-shiny-text'
 import { RainbowButton } from '@/components/ui/rainbow-button'
-import { Safari } from '@/components/ui/safari'
 import { motion } from 'framer-motion'
+import Image from 'next/image'
 import Link from 'next/link'
 
 export function HomeHero() {
   return (
-    <section className='relative mx-auto my-10 max-w-7xl grid place-items-center space-y-6'>
+    <section className='relative mx-auto my-10 max-w-7xl grid place-items-center space-y-6 pb-16'>
       <article className='block lg:hidden'>
         <Logo className='w-full max-w-[320px]' />
       </article>
@@ -76,18 +75,23 @@ export function HomeHero() {
         <div className='relative flex justify-center'>
           <FocalLight />
 
-          <div className='w-full mt-10 md:mt-20 px-4 md:px-8 z-20 overflow-clip'>
-            <Android
-              className='size-full block xs:hidden '
+          <figure className='w-full mt-8 md:mt-20 px-4 md:px-8 z-20 overflow-clip select-none pointer-events-none'>
+            <Image
+              width={1980}
+              height={1080}
               src={MobileThumbnail.src}
+              alt='Mobile Mockup'
+              className='size-full object-contain block xs:hidden '
             />
 
-            <Safari
-              url='https://genshin-diary.vercel.app/characters'
-              className='size-full hidden xs:block'
-              imageSrc={DesktopThumbnail.src}
+            <Image
+              width={1980}
+              height={1080}
+              src={DesktopThumbnail.src}
+              alt='Desktop Mockup'
+              className='size-full object-contain hidden xs:block'
             />
-          </div>
+          </figure>
         </div>
       </div>
     </section>
