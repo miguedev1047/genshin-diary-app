@@ -3,7 +3,6 @@
 import { Logo } from '@/app/(index)/_components/logo'
 import { DesktopThumbnail } from '@/assets/images/_index'
 import { FocalLight } from '@/components/focal-light'
-import { BorderBeam } from '@/components/magicui/border-beam'
 import { Android } from '@/components/ui/android'
 import { AnimatedShinyText } from '@/components/ui/animated-shiny-text'
 import { RainbowButton } from '@/components/ui/rainbow-button'
