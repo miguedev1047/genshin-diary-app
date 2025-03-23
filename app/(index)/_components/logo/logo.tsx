@@ -1,14 +1,18 @@
 'use client'
 
 import { Badge } from '@/components/ui/badge'
+import { LogoProps } from './logo.type'
+import { cn } from '@/lib/utils'
 import Link from 'next/link'
 
-export function Logo() {
+export function Logo(props: LogoProps) {
+  const { className, beta = false } = props
+
   return (
     <article className='flex gap-3'>
       <Link
         href={'/'}
-        className='w-[100px] md:w-[132px] h-auto'
+        className={cn('w-[100px] md:w-[132px] h-auto', className)}
       >
         <svg
           width='979'
@@ -69,9 +73,11 @@ export function Logo() {
         </svg>
       </Link>
 
-      <div>
-        <Badge className='max-md:text-xs'>Beta</Badge>
-      </div>
+      {beta && (
+        <div>
+          <Badge className='max-md:text-xs'>Beta</Badge>
+        </div>
+      )}
     </article>
   )
 }

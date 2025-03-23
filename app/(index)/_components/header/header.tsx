@@ -15,10 +15,10 @@ import Link from 'next/link'
 export function Header() {
   return (
     <>
-      <header className='fixed md:sticky bottom-0 md:top-0 w-full bg-background/95 shadow-sm border-t md:border-b backdrop-blur-sm supports-backdrop-filter:bg-background/60 px-2 md:px-16 z-40'>
+      <header className='fixed md:sticky bottom-0 md:top-0 w-full bg-background/95 shadow-sm border-t md:border-b backdrop-blur-sm supports-backdrop-filter:bg-background/60 px-2 md:px-12 z-40'>
         <div className='max-w-7xl mx-auto flex h-16 items-center justify-between'>
-          <nav className='flex grow basis-0 max-md:hidden'>
-            <Logo />
+          <nav className='flex grow basis-0 max-lg:hidden'>
+            <Logo beta />
           </nav>
 
           <DesktopNavbar />

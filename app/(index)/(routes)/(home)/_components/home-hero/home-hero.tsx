@@ -1,5 +1,6 @@
 'use client'
 
+import { Logo } from '@/app/(index)/_components/logo'
 import { DesktopThumbnail } from '@/assets/images/_index'
 import { FocalLight } from '@/components/focal-light'
 import { BorderBeam } from '@/components/magicui/border-beam'
@@ -11,7 +12,10 @@ import Link from 'next/link'
 
 export function HomeHero() {
   return (
-    <section className='relative mx-auto my-10 max-w-7xl grid place-items-center'>
+    <section className='relative mx-auto my-10 max-w-7xl grid place-items-center space-y-6'>
+      <article className='block lg:hidden'>
+        <Logo className='w-full max-w-[320px]' />
+      </article>
       <div className='md:py-20'>
         <AnimatedShinyText className='relative z-10 mx-auto max-w-4xl text-center text-2xl font-bold text-slate-700 md:text-4xl lg:text-7xl dark:text-slate-300'>
           {'Tu web amigable para guías de Genshin Impact'

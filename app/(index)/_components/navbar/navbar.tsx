@@ -22,7 +22,7 @@ import Link from 'next/link'
 
 export function DesktopNavbar() {
   return (
-    <NavigationMenu className='hidden xl:block sm:hidden'>
+    <NavigationMenu className='hidden md:block'>
       <NavigationMenuList>
         {HOME_ROUTES.map(({ title, href }) => (
           <NavigationMenuItem
@@ -62,7 +62,7 @@ export function MobileNavbar() {
         className='max-w-[275px]'
       >
         <SheetHeader>
-          <Logo />
+          <Logo beta />
         </SheetHeader>
 
         <div className='flex flex-col justify-between h-[calc(100%-3rem)] '>
