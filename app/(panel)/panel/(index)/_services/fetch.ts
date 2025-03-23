@@ -2,7 +2,7 @@ import { db } from '@/lib/db'
 
 export async function fetchResumenChart() {
   try {
-    const res = await Promise.all([
+    const [CHARACTERS, WEAPONS, ARTIFACTS, MATERIALS] = await Promise.all([
       db.characters.findMany(),
       db.weapons.findMany(),
       db.artifacts.findMany(),
@@ -12,28 +12,28 @@ export async function fetchResumenChart() {
     const CHART_DATA = [
       {
         label: 'characters',
-        total: res[0]?.length ?? 0,
+        total: CHARACTERS?.length ?? 0,
         fill: 'var(--color-characters)',
       },
       {
         label: 'weapons',
-        total: res[1]?.length ?? 0,
+        total: WEAPONS?.length ?? 0,
         fill: 'var(--color-weapons)',
       },
       {
         label: 'artifacts',
-        total: res[2]?.length ?? 0,
+        total: ARTIFACTS?.length ?? 0,
         fill: 'var(--color-artifacts)',
       },
       {
         label: 'materials',
-        total: res[3]?.length ?? 0,
+        total: MATERIALS?.length ?? 0,
         fill: 'var(--color-materials)',
       },
     ]
 
     return CHART_DATA
-  } catch (error) {
+  } catch {
     return null
   }
 }
@@ -93,7 +93,7 @@ export async function fetchElementChart() {
     ]
 
     return CHART_DATA
-  } catch (error) {
+  } catch {
     return null
   }
 }

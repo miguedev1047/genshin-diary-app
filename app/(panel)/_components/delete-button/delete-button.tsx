@@ -17,47 +17,24 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from '@/components/ui/alert-dialog'
-import {
-  DeleteButtonProps,
-  UseDeleteProps,
-} from '@/app/(panel)/_components/delete-button/delete-button.type'
+import { DeleteButtonProps } from '@/app/(panel)/_components/delete-button/delete-button.type'
 import { Button } from '@/components/ui/button'
-import { useTransition } from 'react'
-import { useRouter } from 'next/navigation'
-import { toast } from 'sonner'
+import { useAuth } from '@/features/providers/auth-provider'
+import { useDelete } from '@/app/(panel)/_components/delete-button/delete-button.hook'
 import { cn } from '@/lib/utils'
-
-function useDelete(props: UseDeleteProps) {
-  const { itemId, onDelete } = props
-
-  const [isPending, startTransition] = useTransition()
-  const { refresh } = useRouter()
-
-  function onDeleteItem() {
-    startTransition(async () => {
-      const { message, status } = await onDelete(itemId)
-
-      if (status === 201) {
-        toast.success(message)
-        refresh()
-
-        return
-      }
-
-      toast.error(message)
-    })
-  }
-
-  return { onDeleteItem, isPending }
-}
 
 export function DeleteButton(props: DeleteButtonProps) {
   const { children, className, itemId, disabled, onDelete } = props
+
+  const { user } = useAuth()
 
   const { isPending, onDeleteItem } = useDelete({
     itemId,
     onDelete,
   })
+
+  const ROLE = user?.role
+  if (ROLE === 'EDITOR') return null
 
   return (
     <TooltipProvider>

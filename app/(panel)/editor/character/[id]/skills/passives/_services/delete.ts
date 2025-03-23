@@ -1,10 +1,10 @@
-import { currentRole } from '@/data/auth'
+'use server'
+
 import { db } from '@/lib/db'
+import { isCurrentRole } from '@/data/auth'
 
 export async function deletePassive(id: string) {
-  const ROLE = await currentRole()
-
-  if (ROLE === 'USER') {
+  if (await isCurrentRole('USER')) {
     return { status: 403, message: 'No tienes permisos.' }
   }
 
@@ -12,7 +12,7 @@ export async function deletePassive(id: string) {
     await db.passivesCharacter.delete({ where: { id } })
 
     return { status: 201, message: 'Pasiva eliminada.' }
-  } catch (error) {
+  } catch {
     return { status: 500, message: 'Ocurrio un error.' }
   }
 }

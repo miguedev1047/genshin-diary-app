@@ -1,13 +1,14 @@
 'use server'
 
-import { currentRole } from '@/data/auth'
 import { db } from '@/lib/db'
+import { isCurrentRole } from '@/data/auth'
 
 export async function deleteCharacter(id: string) {
   if (!id) return { status: 403, message: 'Este personaje no existe.' }
 
-  const ROLE = await currentRole()
-  if (ROLE === 'USER') return { status: 403, message: 'No tienes permisos.' }
+  if (await isCurrentRole('USER')) {
+    return { status: 403, message: 'No tienes permisos.' }
+  }
 
   try {
     await db.weaponBestCharacters.delete({
@@ -15,7 +16,7 @@ export async function deleteCharacter(id: string) {
     })
 
     return { status: 201, message: 'Personaje eliminado.' }
-  } catch (error) {
+  } catch {
     return { status: 403, message: 'Ocurrio un error.' }
   }
 }

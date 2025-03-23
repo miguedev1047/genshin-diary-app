@@ -1,24 +1,27 @@
 import { CharacterItemProps } from '@/app/(panel)/editor/weapon/[id]/best-characters/_components/character-item/character-item.type'
-import { useGetCharacter } from '@/features/queries/panel/use-characters'
-import { Skeleton } from '@/components/ui/skeleton'
-import { formattedUrl } from '@/features/utils/formatted-names'
 import { Card } from '@/components/ui/card'
 import { getBorderColorByRarityHover } from '@/features/utils/rarity-color'
 import { AspectRatio } from '@/components/ui/aspect-ratio'
 import { deleteCharacter } from '@/app/(panel)/editor/weapon/[id]/best-characters/_services/delete'
 import { DeleteButton } from '@/app/(panel)/_components/delete-button'
 import { Trash2 } from 'lucide-react'
+import { useGetData } from '@/features/providers/data-provider'
 import { cn } from '@/lib/utils'
 import Image from 'next/image'
 import Link from 'next/link'
 
 export function CharacterItem(props: CharacterItemProps) {
   const { character_id, id } = props
+  const { data } = useGetData()
 
-  const { data: CHARACTER } = useGetCharacter(character_id)
+  const { characters } = data
+  const CHARACTER = characters?.find((material) => material.id === character_id)
+  const { name } = CHARACTER!
 
-  const FORMATTED_NAME = formattedUrl(CHARACTER?.name)
-  const URL = `/editor/character/${FORMATTED_NAME}`
+  if (!CHARACTER) return null
+
+  const CHARACTER_ID = CHARACTER.id
+  const URL = `/editor/character/${CHARACTER_ID}`
 
   const CHARACTER_SPLASH_ART = CHARACTER?.images?.splash_art_url
   const RARITY_COLOR = getBorderColorByRarityHover(CHARACTER?.rarity)
@@ -28,7 +31,7 @@ export function CharacterItem(props: CharacterItemProps) {
       <Link
         href={URL}
         className={cn(
-          'group/item flex aspect-[2/3] overflow-hidden rounded-[1rem] border bg-background transition relative',
+          'group/item flex aspect-2/3 overflow-hidden rounded-[1rem] border bg-background transition relative',
           RARITY_COLOR
         )}
       >
@@ -40,7 +43,7 @@ export function CharacterItem(props: CharacterItemProps) {
             >
               <Image
                 src={CHARACTER_SPLASH_ART}
-                alt={CHARACTER?.name}
+                alt={name}
                 width={720}
                 height={1080}
                 priority
@@ -49,8 +52,8 @@ export function CharacterItem(props: CharacterItemProps) {
             </AspectRatio>
           )}
 
-          <p className='absolute top-0 uppercase text-xl font-extrabold opacity-50 group-hover/item:opacity-100 z-20 w-full m-3 p-1 line-clamp-1'>
-            {CHARACTER?.name}
+          <p className='writing-vertical absolute top-3 right-1 uppercase text-xl  md:text-2xl font-extrabold opacity-50 group-hover/item:opacity-100 z-20 line-clamp-1'>
+            {name}
           </p>
         </Card>
       </Link>

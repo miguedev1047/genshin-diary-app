@@ -2,6 +2,6 @@ import { Prisma } from '@prisma/client'
 
 export type ArtifactsProps = {
   data: Prisma.CharactersGetPayload<{
-    include: { artifacts: true }
+    include: { artifacts: { include: { artifact_set: true } } }
   }>
 }

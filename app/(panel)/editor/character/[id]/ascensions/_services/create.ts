@@ -1,10 +1,10 @@
 'use server'
 
 import { z } from 'zod'
-import { ASCENSION_CHARACTER } from '@/consts/general'
-import { currentRole } from '@/data/auth'
-import { AscensionSchema } from '@/schemas'
 import { db } from '@/lib/db'
+import { ASCENSION_CHARACTER } from '@/consts/general'
+import { isCurrentRole } from '@/data/auth'
+import { AscensionSchema } from '@/schemas'
 
 export async function createAscension(
   data: z.infer<typeof AscensionSchema>,
@@ -12,12 +12,12 @@ export async function createAscension(
 ) {
   if (!character_id) return { status: 403, message: 'El personaje no existe.' }
 
-  const ROLE = await currentRole()
-  if (ROLE === 'USER') {
+  if (await isCurrentRole('USER')) {
     return { status: 403, message: 'No tienes permisos.' }
   }
 
   const VALIDATE_FIELDS = AscensionSchema.safeParse(data)
+
   if (!VALIDATE_FIELDS.success) {
     return { status: 403, message: 'Campos invalidos.' }
   }
@@ -28,30 +28,28 @@ export async function createAscension(
     (item) => item.ascension === ascension_level
   )!
 
+  const MATERIALS = materials.map((material, index) => ({
+    character_id,
+    material_id: material,
+    quantity: SELECTED_ASCENSION.materialQuatities[index] ?? 0,
+  }))
+
   try {
-    const ASCENSION = await db.ascensionCharacter.create({
+    await db.ascensionCharacter.create({
       data: {
         character_id,
         ascension_level: SELECTED_ASCENSION?.ascension,
         order: SELECTED_ASCENSION?.order,
         cost: SELECTED_ASCENSION?.cost,
         level: SELECTED_ASCENSION?.level,
+        materials: {
+          createMany: { data: MATERIALS },
+        },
       },
     })
 
-    const MATERIALS = materials.map((material) => ({
-      character_id,
-      material_id: material,
-      ascension_id: ASCENSION.id,
-      id: crypto.randomUUID()
-    }))
-
-    await db.materialAscension.createMany({
-      data: MATERIALS,
-    })
-
     return { status: 201, message: 'Ascension añadida.' }
-  } catch (error) {
+  } catch {
     return { status: 500, message: 'Ocurrio un error.' }
   }
 }

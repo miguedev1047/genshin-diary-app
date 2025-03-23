@@ -1,11 +1,10 @@
-import { currentRole } from '@/data/auth'
 import { db } from '@/lib/db'
+import {  isCurrentRole } from '@/data/auth'
 
-export async function getCharacterByName(id: string) {
+export async function getCharacterById(id: string) {
   const CHARACTER_ID = id
 
-  const ROLE = await currentRole()
-  if (ROLE === 'USER') return null
+  if (await isCurrentRole('USER')) return null
 
   try {
     const CHARACTER = await db.characters.findUnique({
@@ -13,10 +12,12 @@ export async function getCharacterByName(id: string) {
         id: CHARACTER_ID,
       },
       include: {
-        artifacts: { orderBy: { order: 'asc' } },
+        artifacts: {
+          orderBy: { order: 'asc' },
+          include: { artifact_set: { orderBy: { order: 'asc' } } },
+        },
         ascensions: { orderBy: { level: 'asc' }, include: { materials: true } },
         images: true,
-        materials: true,
         stats_priority: true,
         video_guide: true,
         weapons: { orderBy: { order: 'asc' } },
@@ -35,7 +36,53 @@ export async function getCharacterByName(id: string) {
     })
 
     return CHARACTER
-  } catch (error) {
+  } catch {
+    return null
+  }
+}
+
+export async function getCharacters() {
+if (await isCurrentRole('USER')) return null
+
+  try {
+    const CHARACTERS = await db.characters.findMany({
+      include: { images: true },
+    })
+    return CHARACTERS
+  } catch {
+    return null
+  }
+}
+
+export async function getWeapons() {
+if (await isCurrentRole('USER')) return null
+
+  try {
+    const WEAPONS = await db.weapons.findMany()
+    return WEAPONS
+  } catch {
+    return null
+  }
+}
+
+export async function getArtifacts() {
+if (await isCurrentRole('USER')) return null
+
+  try {
+    const ARTIFACTS = await db.artifacts.findMany()
+    return ARTIFACTS
+  } catch {
+    return null
+  }
+}
+
+export async function getMaterials() {
+if (await isCurrentRole('USER')) return null
+
+  try {
+    const MATERIALS = await db.materials.findMany()
+    return MATERIALS
+  } catch {
     return null
   }
 }

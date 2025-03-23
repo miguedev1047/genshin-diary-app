@@ -1,12 +1,11 @@
 'use server'
 
-import { currentRole } from '@/data/auth'
 import { db } from '@/lib/db'
+import { isCurrentRole } from '@/data/auth'
 
 export async function deleteCharacterTier(id: string) {
-  const ROLE = await currentRole()
-  if (ROLE === 'USER') {
-    return { status: 403, message: 'No tienes permisos!' }
+  if (await isCurrentRole('USER')) {
+    return { status: 403, message: 'No tienes permisos.' }
   }
 
   try {
@@ -15,15 +14,14 @@ export async function deleteCharacterTier(id: string) {
     })
 
     return { status: 201, message: 'Personaje eliminado!' }
-  } catch (error) {
+  } catch {
     return { status: 500, message: 'Ha ocurrido un error!' }
   }
 }
 
 export async function deleteTierlist(id: string) {
-  const ROLE = await currentRole()
-  if (ROLE === 'USER') {
-    return { status: 403, message: 'No tienes permisos!' }
+  if (await isCurrentRole('USER')) {
+    return { status: 403, message: 'No tienes permisos.' }
   }
 
   try {
@@ -32,7 +30,7 @@ export async function deleteTierlist(id: string) {
     })
 
     return { status: 201, message: 'Tierlist eliminada!' }
-  } catch (error) {
+  } catch {
     return { status: 500, message: 'Ha ocurrido un error!' }
   }
 }

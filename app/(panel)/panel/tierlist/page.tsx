@@ -7,7 +7,6 @@ import { TierlistHeader } from '@/components/headers/tierlist-header'
 
 export default async function PanelTierlistPage() {
   const TIERLISTS = await getTierList()
-  if (!TIERLISTS) return null
 
   return (
     <ContentLayout title='Tierlist'>

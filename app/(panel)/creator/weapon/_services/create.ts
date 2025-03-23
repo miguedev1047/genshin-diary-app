@@ -1,15 +1,14 @@
 'use server'
 
 import { z } from 'zod'
-import { currentRole } from '@/data/auth'
-import { WeaponSchema } from '@/schemas'
 import { db } from '@/lib/db'
-import { getWeapon } from './fetch'
+import { isCurrentRole } from '@/data/auth'
+import { WeaponSchema } from '@/schemas'
+import { getWeapon } from '@/app/(panel)/creator/weapon/_services/fetch'
+import { revalidatePath } from 'next/cache'
 
 export async function createWeapon(data: z.infer<typeof WeaponSchema>) {
-  const ROLE = await currentRole()
-
-  if (ROLE === 'USER') {
+  if (await isCurrentRole('USER')) {
     return { status: 403, message: 'No tienes permisos.' }
   }
 
@@ -48,15 +47,15 @@ export async function createWeapon(data: z.infer<typeof WeaponSchema>) {
         rarity,
         type,
         max_base_attack: parseInt(max_base_attack),
-        max_secondary_stat_base: parseInt(max_secondary_stat_base),
-        min_base_attack: Number(min_base_attack),
+        min_base_attack: parseInt(min_base_attack),
+        max_secondary_stat_base: Number(max_secondary_stat_base),
         min_secondary_stat_base: Number(min_secondary_stat_base),
       },
     })
 
+    revalidatePath('/weapons')
     return { status: 201, message: 'Arma creada.' }
-  } catch (error) {
-    console.log(error)
+  } catch {
     return { status: 500, message: 'Ocurrio un error.' }
   }
 }

@@ -1,9 +1,9 @@
 'use server'
 
 import { z } from 'zod'
-import { currentRole } from '@/data/auth'
-import { WeaponCharacterSchema } from '@/schemas'
 import { db } from '@/lib/db'
+import { isCurrentRole } from '@/data/auth'
+import { WeaponCharacterSchema } from '@/schemas'
 
 export async function createWeapons(
   data: z.infer<typeof WeaponCharacterSchema>,
@@ -13,9 +13,7 @@ export async function createWeapons(
     return { status: 403, message: 'Este personaje no existe.' }
   }
 
-  const ROLE = await currentRole()
-
-  if (ROLE === 'USER') {
+  if (await isCurrentRole('USER')) {
     return { status: 403, message: 'No tienes permisos.' }
   }
 
@@ -40,7 +38,7 @@ export async function createWeapons(
     })
 
     return { status: 201, message: 'Armas agregadas.' }
-  } catch (error) {
+  } catch {
     return { status: 500, message: 'Ocurrio un error.' }
   }
 }

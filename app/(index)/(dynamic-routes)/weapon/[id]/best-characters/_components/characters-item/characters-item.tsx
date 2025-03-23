@@ -3,37 +3,35 @@
 import { getBorderColorByRarityHover } from '@/features/utils/rarity-color'
 import { CharacterItemProps } from '@/app/(index)/(dynamic-routes)/weapon/[id]/best-characters/_components/characters-item/characters-item.type'
 import { getElementIcon } from '@/features/utils/character-texts'
-import { SpinAspectRatio } from '@/components/spin-loaders'
-import { useGetCharacter } from '@/features/queries/index/use-characters'
 import { cn } from '@/lib/utils'
 import { Card } from '@/components/ui/card'
 import { AspectRatio } from '@/components/ui/aspect-ratio'
 import { SquareBox } from '@/components/square-box'
 import { DEFAULT_IMAGE } from '@/consts/misc'
+import { useGetData } from '@/features/providers/data-provider'
 import Link from 'next/link'
 import Image from 'next/image'
 
 export function CharacterItem(props: CharacterItemProps) {
   const { character_id } = props
+  const { data } = useGetData()
 
-  const { data: CHARACTER, status } = useGetCharacter(character_id)
-
-  if (status === 'pending') return <SpinAspectRatio />
-  if (status === 'error') return <SpinAspectRatio />
+  const { characters } = data
+  const CHARACTER = characters?.find((material) => material.id === character_id)
 
   if (!CHARACTER) return null
 
   const URL = `/character/${character_id}`
 
-  const CHARACTER_SPLASH_ART = CHARACTER.images?.splash_art_url
+  const CHARACTER_SPLASH_ART = CHARACTER.images?.splash_art_url ?? DEFAULT_IMAGE
   const RARITY_COLOR = getBorderColorByRarityHover(CHARACTER.rarity)
-  const ELEMENT_ICON = getElementIcon(CHARACTER.element)?.src
+  const ELEMENT_ICON = getElementIcon(CHARACTER.element)
 
   return (
     <Link
       href={URL}
       className={cn(
-        'group/item flex aspect-[2/3] size-full overflow-hidden rounded-[1rem] border bg-background transition relative',
+        'group/item flex aspect-2/3 size-full overflow-hidden rounded-[1rem] border bg-background transition relative',
         RARITY_COLOR
       )}
     >

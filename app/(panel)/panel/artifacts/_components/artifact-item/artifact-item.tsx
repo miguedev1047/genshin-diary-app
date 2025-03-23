@@ -22,7 +22,7 @@ export function ArtifactItem(props: ArtifactItemProps) {
   const URL = `/editor/artifact/${ARTIFACT}`
 
   const ARTIFACT_IMAGE = image_url
-  const STAR_COLOR = getBorderColorByRarityHover(rarity)
+  const RARITY_COLOR = getBorderColorByRarityHover(rarity)
 
   return (
     <>
@@ -32,23 +32,20 @@ export function ArtifactItem(props: ArtifactItemProps) {
             <Link
               href={URL}
               className={cn(
-                'group/item flex aspect-[1/1] overflow-hidden rounded-[1rem] border border-muted/30 bg-background transition relative',
-                STAR_COLOR
+                'group/item flex aspect-1/1 overflow-hidden rounded-[1rem] border border-muted/30 bg-background transition relative',
+                RARITY_COLOR
               )}
             >
               <Card className='size-full'>
                 {ARTIFACT_IMAGE && (
-                  <AspectRatio
-                    ratio={1 / 1}
-                    className='p-8'
-                  >
+                  <AspectRatio ratio={1 / 1}>
                     <Image
                       src={ARTIFACT_IMAGE!}
                       alt={name}
-                      width={720}
+                      width={1080}
                       height={1080}
                       priority
-                      className='object-cover w-full h-full transition-all duration-300 ease-in-out [mask-image:linear-gradient(to_bottom,rgba(0,0,0,1),rgba(0,0,0,.1))] group-hover/item:[mask-image:linear-gradient(to_bottom,rgba(0,0,0,1),rgba(0,0,0,1))] group-hover/item:scale-110 group-hover/item:grayscale-0'
+                      className='object-contain w-full h-full transition-all duration-300 ease-in-out [mask-image:linear-gradient(to_bottom,rgba(0,0,0,1),rgba(0,0,0,.1))] group-hover/item:[mask-image:linear-gradient(to_bottom,rgba(0,0,0,1),rgba(0,0,0,1))] group-hover/item:scale-110 group-hover/item:grayscale-0'
                     />
                   </AspectRatio>
                 )}
@@ -64,9 +61,9 @@ export function ArtifactItem(props: ArtifactItemProps) {
       <DeleteButton
         itemId={id}
         onDelete={deleteArtifact}
-        className='absolute z-40 bottom-3 right-3'
+        className='absolute z-40 bottom-2 right-2 size-8 rounded-md!'
       >
-        <Trash2 />
+        <Trash2 className='size-5' />
       </DeleteButton>
     </>
   )

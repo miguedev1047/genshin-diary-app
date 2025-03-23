@@ -1,12 +1,10 @@
 'use server'
 
-import { currentRole } from '@/data/auth'
 import { db } from '@/lib/db'
+import { isCurrentRole } from '@/data/auth'
 
 export async function deleteTeam(id: string) {
-  const ROLE = await currentRole()
-
-  if (ROLE === 'USER') {
+  if (await isCurrentRole('USER')) {
     return { status: 403, message: 'No tienes permisos.' }
   }
 
@@ -14,7 +12,7 @@ export async function deleteTeam(id: string) {
     await db.team.delete({ where: { id } })
 
     return { status: 201, message: 'Equipo eliminado.' }
-  } catch (error) {
+  } catch {
     return { status: 500, message: 'Ocurrio un error.' }
   }
 }

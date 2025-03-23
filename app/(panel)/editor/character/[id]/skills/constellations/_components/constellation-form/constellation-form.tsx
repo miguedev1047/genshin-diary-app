@@ -8,46 +8,42 @@ import {
   FormLabel,
   FormMessage,
 } from '@/components/ui/form'
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectLabel,
-  SelectSeparator,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select'
 import { z } from 'zod'
 import { FormSheet } from '@/app/(panel)/_components/form-sheet'
-import { useEffect, useState, useTransition } from 'react'
+import { useEffect, useMemo, useState, useTransition } from 'react'
 import { useForm } from 'react-hook-form'
-import { useGetCharacter } from '@/app/(panel)/editor/character/[id]/provider'
+import { useGetCharacter } from '@/features/providers/character-provider'
 import { useRouter } from 'next/navigation'
 import { SkillCharacterSchema } from '@/schemas'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { getConstellation } from '@/app/(panel)/editor/character/[id]/skills/constellations/_services/fetch'
 import { createConstellation } from '@/app/(panel)/editor/character/[id]/skills/constellations/_services/create'
 import { updateConstellation } from '@/app/(panel)/editor/character/[id]/skills/constellations/_services/update'
 import { ConstellationFormProps } from '@/app/(panel)/editor/character/[id]/skills/constellations/_components/constellation-form/constellation-form.type'
-import { SKILL_TYPE } from '@/consts/general'
 import { DEFAULT_IMAGE } from '@/consts/misc'
-import { TextEditor } from '@/app/(panel)/_components/text-editor'
-import { Input } from '@/components/ui/input'
 import { toast } from 'sonner'
+import { ViewImageInput } from '@/app/(panel)/_components/view-image-input'
+import { PasteButtonInput } from '@/app/(panel)/_components/paste-button-input'
+import { TiptapEditor } from '@/components/tiptap'
 
-const MAX_ITEMS = 6
+const MAX_CONSTELLATIONS = 6
+
+const ERR_CONSTELLATION_LIST = `No puedes añadir más de ${MAX_CONSTELLATIONS} constelaciones.`
 
 export function ConstellationForm(props: ConstellationFormProps) {
-  const { id } = props
+  const { id: CONSTELLATION_ID } = props
 
   const { data: CHARACTER } = useGetCharacter()
   const [isOpen, setIsOpen] = useState(false)
+
   const [isPending, startTransition] = useTransition()
   const { refresh } = useRouter()
 
-  const MAX_CONSTELLATIONS = (CHARACTER?.passives.length ?? 0) >= MAX_ITEMS
-  const IS_EDITING = !!id
+  const CONSTELLATIONS = useMemo(
+    () => CHARACTER?.constellations ?? [],
+    [CHARACTER]
+  )
+
+  const IS_EDITING = !!CONSTELLATION_ID
 
   const form = useForm<z.infer<typeof SkillCharacterSchema>>({
     resolver: zodResolver(SkillCharacterSchema),
@@ -56,28 +52,31 @@ export function ConstellationForm(props: ConstellationFormProps) {
       title: '',
       description: '',
       image_url: '',
-      type: undefined,
+      type: 'CONSTELLATION',
     },
   })
 
   useEffect(() => {
-    if (IS_EDITING) {
-      startTransition(async () => {
-        const DATA = await getConstellation(id)
-        if (!DATA) return
+    if (IS_EDITING && isOpen) {
+      const CONSTELLATION = CONSTELLATIONS?.find(
+        (i) => i.id === CONSTELLATION_ID
+      )
+      if (!CONSTELLATION) return
 
-        form.setValue('title', DATA.title)
-        form.setValue('description', DATA.description)
-        form.setValue('image_url', DATA.image_url ?? DEFAULT_IMAGE)
-        form.setValue('type', DATA.type)
-      })
+      form.setValue('title', CONSTELLATION.title)
+      form.setValue('description', CONSTELLATION.description)
+      form.setValue('image_url', CONSTELLATION.image_url ?? DEFAULT_IMAGE)
+      form.setValue('type', CONSTELLATION.type)
     }
-  }, [id, form, IS_EDITING])
+  }, [form, CONSTELLATION_ID, IS_EDITING, CONSTELLATIONS, isOpen])
 
   const handleSubmit = form.handleSubmit((values) => {
     startTransition(async () => {
       if (IS_EDITING) {
-        const { status, message } = await updateConstellation(values, id)
+        const { status, message } = await updateConstellation(
+          values,
+          CONSTELLATION_ID
+        )
 
         if (status === 201) {
           toast.success(message)
@@ -91,8 +90,9 @@ export function ConstellationForm(props: ConstellationFormProps) {
         return
       }
 
-      if (MAX_CONSTELLATIONS) {
-        toast.error(`No puedes añadir más de ${MAX_ITEMS} constelaciones.`)
+      const MAX_ITEMS = CONSTELLATIONS.length >= MAX_CONSTELLATIONS
+      if (MAX_ITEMS) {
+        toast.error(ERR_CONSTELLATION_LIST)
         return
       }
 
@@ -133,7 +133,7 @@ export function ConstellationForm(props: ConstellationFormProps) {
               <FormItem>
                 <FormLabel>Nombre</FormLabel>
                 <FormControl>
-                  <Input
+                  <PasteButtonInput
                     placeholder='Nombre de la constelación'
                     disabled={isPending}
                     {...field}
@@ -151,7 +151,7 @@ export function ConstellationForm(props: ConstellationFormProps) {
               <FormItem>
                 <FormLabel>URL de la imagen</FormLabel>
                 <FormControl>
-                  <Input
+                  <ViewImageInput
                     placeholder='URL de la imagen'
                     disabled={isPending}
                     {...field}
@@ -164,50 +164,16 @@ export function ConstellationForm(props: ConstellationFormProps) {
 
           <FormField
             control={form.control}
-            name='type'
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Tipo</FormLabel>
-                <Select
-                  value={field.value}
-                  onValueChange={field.onChange}
-                  disabled={isPending}
-                >
-                  <FormControl>
-                    <SelectTrigger>
-                      <SelectValue placeholder='Tipo de habilidad' />
-                    </SelectTrigger>
-                  </FormControl>
-                  <SelectContent>
-                    <SelectGroup>
-                      <SelectLabel>Tipo</SelectLabel>
-                      <SelectSeparator />
-                      {SKILL_TYPE.map(({ value, label }) => (
-                        <SelectItem
-                          value={value}
-                          key={value}
-                        >
-                          {label}
-                        </SelectItem>
-                      ))}
-                    </SelectGroup>
-                  </SelectContent>
-                </Select>
-              </FormItem>
-            )}
-          />
-
-          <FormField
-            control={form.control}
             name='description'
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Descripción</FormLabel>
                 <FormControl>
-                  <TextEditor
-                    initialValue={field.value}
+                  <TiptapEditor
+                    content={field.value}
                     onChange={field.onChange}
-                    isLoading={isPending}
+                    disabled={isPending}
+                    placeholder='Descripción de la constelación'
                   />
                 </FormControl>
                 <FormMessage />

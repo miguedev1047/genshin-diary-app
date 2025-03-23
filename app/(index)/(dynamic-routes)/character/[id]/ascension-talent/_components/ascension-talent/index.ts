@@ -1,1 +1,0 @@
-export * from './ascension-talent.column'

@@ -32,7 +32,8 @@ import { Separator } from '@/components/ui/separator'
 import { Badge } from '@/components/ui/badge'
 import { cn } from '@/lib/utils'
 import { DEFAULT_IMAGE } from '@/consts/misc'
-import React, { useEffect, useState } from 'react'
+import { SquareBox } from '@/components/square-box'
+import React, { useEffect, useMemo, useRef, useState } from 'react'
 import Image from 'next/image'
 
 export function DialogMultiSelect(props: DialogMultiSelectProps) {
@@ -49,17 +50,26 @@ export function DialogMultiSelect(props: DialogMultiSelectProps) {
     maxCount = 3,
   } = props
 
-  const OPTIONS = items?.map((item) => {
-    return {
-      label: item.name,
-      value: item.id,
-      src: item.image_url || item.images?.splash_art_url || DEFAULT_IMAGE,
-    }
-  })
+  const OPTIONS = useMemo(
+    () =>
+      items?.map((item) => {
+        return {
+          label: item.name,
+          value: item.id,
+          src:
+            item.images?.profile_image_url ||
+            item.images?.splash_art_url ||
+            item.image_url ||
+            DEFAULT_IMAGE,
+        }
+      }),
+    [items]
+  )
 
   const [selectedValues, setSelectedValues] = useState<string[]>(defaultValue)
   const [isDialogOpen, setIsDialogOpen] = useState(false)
   const [isAnimating, setIsAnimating] = useState(false)
+  const listItemsRef = useRef<React.ElementRef<typeof CommandList> | null>(null)
 
   useEffect(() => {
     setSelectedValues(defaultValue)
@@ -73,6 +83,12 @@ export function DialogMultiSelect(props: DialogMultiSelectProps) {
       newSelectedValues.pop()
       setSelectedValues(newSelectedValues)
       onValueChange(newSelectedValues)
+    }
+  }
+
+  const handleInputChange = () => {
+    if (listItemsRef.current) {
+      listItemsRef.current.scrollTop = -listItemsRef.current.scrollHeight
     }
   }
 
@@ -183,16 +199,20 @@ export function DialogMultiSelect(props: DialogMultiSelectProps) {
           )}
         </Button>
       </DialogTrigger>
-      <DialogContent aria-describedby={undefined}>
+      <DialogContent
+        aria-describedby='Selector multiple'
+        className='max-w-[720px]'
+      >
         <DialogHeader>
           <DialogTitle>Buscador</DialogTitle>
         </DialogHeader>
         <Command>
           <CommandInput
             placeholder={placeholder}
+            onValueChange={handleInputChange}
             onKeyDown={handleInputKeyDown}
           />
-          <CommandList>
+          <CommandList ref={listItemsRef}>
             <CommandEmpty>No se encontraron resultados.</CommandEmpty>
             <CommandGroup>
               {isLoading ? (
@@ -215,16 +235,19 @@ export function DialogMultiSelect(props: DialogMultiSelectProps) {
                         >
                           <div className='flex items-center gap-2'>
                             {option.src && (
-                              <figure className='size-14 aspect-square p-1 rounded-md bg-secondary overflow-hidden'>
+                              <SquareBox
+                                size='sm'
+                                className='bg-secondary overflow-hidden'
+                              >
                                 <Image
                                   src={option.src}
                                   alt={option.label}
                                   width={720}
                                   height={720}
                                   priority
-                                  className='size-full object-cover'
+                                  className='size-full object-contain'
                                 />
-                              </figure>
+                              </SquareBox>
                             )}
                             <span>{option.label}</span>
                           </div>

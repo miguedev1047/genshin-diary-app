@@ -10,55 +10,88 @@ import {
 } from '@/components/ui/form'
 import { z } from 'zod'
 import { useForm } from 'react-hook-form'
-import { Suspense, useState, useTransition } from 'react'
+import { useEffect, useMemo, useState, useTransition } from 'react'
 import { TeamsCharacterSchema } from '@/schemas'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Input } from '@/components/ui/input'
-import { CharacterSelector } from '@/app/(panel)/editor/character/[id]/teams/_components/character-selector'
 import { createTeams } from '@/app/(panel)/editor/character/[id]/teams/_services/create'
-import { useGetCharacter } from '@/app/(panel)/editor/character/[id]/provider'
+import { useGetCharacter } from '@/features/providers/character-provider'
 import { FormSheet } from '@/app/(panel)/_components/form-sheet'
 import { useRouter } from 'next/navigation'
+import { updateTeamsCharacters } from '@/app/(panel)/editor/character/[id]/teams/_services/update'
+import { TeamFormProps } from '@/app/(panel)/editor/character/[id]/teams/_components/team-form/team-form.type'
+import { CharacterSelector } from '@/app/(panel)/_components/dialog-selectors/character-selector'
 import { toast } from 'sonner'
-import { SpinLoaderInput } from '@/components/spin-loaders'
+import { NONE } from '@/consts/misc'
 
 const MAX_TEAMS = 4
 const MAX_CHARACTERS = 4
 
-export function TeamForm() {
+const ERR_TEAM_LIST = `No puedes añadir más de ${MAX_TEAMS} equipos.`
+const ERR_CHARACTER_LIST = `No puedes añadir más de ${MAX_CHARACTERS} personajes a un equipo.`
+
+export function TeamForm(props: TeamFormProps) {
+  const { id: TEAM_ID } = props
   const { data: CHARACTER } = useGetCharacter()
 
   const { refresh } = useRouter()
   const [isOpen, setIsOpen] = useState(false)
   const [isPending, startTransition] = useTransition()
 
-  const TEAMS = CHARACTER?.teams ?? []
+  const TEAMS = useMemo(() => CHARACTER?.teams ?? [], [CHARACTER])
+  const IS_EDITING = !!TEAM_ID
+  const TEAM_NAME = `Equipo de ${CHARACTER?.name}`
 
   const form = useForm<z.infer<typeof TeamsCharacterSchema>>({
     resolver: zodResolver(TeamsCharacterSchema),
     defaultValues: {
-      name: '',
+      name: TEAM_NAME,
       characters: [],
     },
   })
 
+  useEffect(() => {
+    if (IS_EDITING && isOpen) {
+      const TEAM = TEAMS.find((i) => i.id === TEAM_ID)
+      const CHARACTERS = TEAM?.characters.map((i) => i.character_id)
+
+      if (!TEAM && !CHARACTERS) return
+
+      form.setValue('name', TEAM?.name ?? NONE)
+      form.setValue('characters', CHARACTERS as never)
+      return
+    }
+  }, [form, IS_EDITING, TEAM_ID, TEAMS, isOpen])
+
   const handleSubmit = form.handleSubmit((values) => {
-    const MAX_CHARACTER_ITEMS = values.characters.length > MAX_CHARACTERS
+    const CHARACTER_ID = CHARACTER?.id
 
-    if (MAX_CHARACTER_ITEMS) {
-      return toast.error(
-        `No puedes añadir más de ${MAX_CHARACTERS} personajes a un equipo.`
-      )
-    }
-
-    const MAX_TEAM_ITEMS = TEAMS.length >= MAX_TEAMS
-
-    if (MAX_TEAM_ITEMS) {
-      return toast.error(`No puedes añadir más de ${MAX_TEAMS} equipos.`)
-    }
+    const CHARACTER_ITEMS = values.characters.length > MAX_CHARACTERS
+    if (CHARACTER_ITEMS) return toast.error(ERR_CHARACTER_LIST)
 
     startTransition(async () => {
-      const { message, status } = await createTeams(values, CHARACTER?.id)
+      if (IS_EDITING) {
+        const { status, message } = await updateTeamsCharacters(values, TEAM_ID)
+
+        if (status === 201) {
+          toast.success(message)
+          setIsOpen(false)
+          refresh()
+
+          return
+        }
+
+        toast.error(message)
+        return
+      }
+
+      const TEAM_ITEMS = TEAMS.length > MAX_TEAMS
+      if (TEAM_ITEMS) {
+        toast.error(ERR_TEAM_LIST)
+        return
+      }
+
+      const { message, status } = await createTeams(values, CHARACTER_ID)
 
       if (status === 201) {
         toast.success(message)
@@ -79,6 +112,7 @@ export function TeamForm() {
       isOpen={isOpen}
       onOpenChange={setIsOpen}
       isLoading={isPending}
+      isEditing={IS_EDITING}
       formId='team-form'
     >
       <Form {...form}>
@@ -112,12 +146,7 @@ export function TeamForm() {
               <FormItem>
                 <FormLabel>Personajes</FormLabel>
                 <FormControl>
-                  <Suspense fallback={<SpinLoaderInput />}>
-                    <CharacterSelector
-                      disabled={isPending}
-                      {...field}
-                    />
-                  </Suspense>
+                  <CharacterSelector {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>

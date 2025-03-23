@@ -1,17 +1,15 @@
 'use server'
 
 import { z } from 'zod'
-import { currentRole } from '@/data/auth'
-import { StatsPrioritySchema } from '@/schemas'
 import { db } from '@/lib/db'
+import { isCurrentRole } from '@/data/auth'
+import { StatsPrioritySchema } from '@/schemas'
 
 export async function updateStats(
   data: z.infer<typeof StatsPrioritySchema>,
   id: string | undefined
 ) {
-  const ROLE = await currentRole()
-
-  if (ROLE === 'USER') {
+  if (await isCurrentRole('USER')) {
     return { status: 403, message: 'No tienes permisos.' }
   }
 
@@ -36,7 +34,7 @@ export async function updateStats(
     })
 
     return { status: 201, message: 'Cambios guardados.' }
-  } catch (error) {
+  } catch {
     return { status: 500, message: 'Ocurrió un error.' }
   }
 }

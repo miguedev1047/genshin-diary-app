@@ -1,9 +1,9 @@
 'use server'
 
 import { z } from 'zod'
-import { currentRole } from '@/data/auth'
-import { ArtifactCharacterSchema } from '@/schemas'
 import { db } from '@/lib/db'
+import { isCurrentRole } from '@/data/auth'
+import { ArtifactCharacterSchema } from '@/schemas'
 
 export async function createArtifacts(
   data: z.infer<typeof ArtifactCharacterSchema>,
@@ -13,9 +13,7 @@ export async function createArtifacts(
     return { status: 403, message: 'Este personaje no existe.' }
   }
 
-  const ROLE = await currentRole()
-
-  if (ROLE === 'USER') {
+  if (await isCurrentRole('USER')) {
     return { status: 403, message: 'No tienes permisos.' }
   }
 
@@ -27,20 +25,24 @@ export async function createArtifacts(
 
   const { artifacts } = VALIDATE_FIELDS.data
 
-  const ITEMS = artifacts.map((item, index) => ({
-    artifact_id: item,
+  const ARTIFACTS = artifacts.map((artifact, index) => ({
+    order: index + 1,
     character_id,
-    order: index++ + 1,
-    id: crypto.randomUUID()
+    artifact_id: artifact,
   }))
 
   try {
-    await db.artifactCharacter.createMany({
-      data: ITEMS,
+    await db.artifactCharacter.create({
+      data: {
+        character_id,
+        artifact_set: {
+          createMany: { data: ARTIFACTS },
+        },
+      },
     })
 
     return { status: 201, message: 'Artefactos agregados.' }
-  } catch (error) {
+  } catch {
     return { status: 500, message: 'Ocurrio un error.' }
   }
 }

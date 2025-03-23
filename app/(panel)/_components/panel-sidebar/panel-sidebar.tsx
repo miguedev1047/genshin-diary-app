@@ -11,14 +11,18 @@ import {
   SidebarMenuItem,
 } from '@/components/ui/sidebar'
 import { PAGE_NAME, PAGE_VERSION } from '@/consts/misc'
-import { SIDEBAR_ROUTES } from '@/lib/menu-list'
+import { ADMIN_SIDEBAR_ROUTES, EDITOR_SIDEBAR_ROUTES } from '@/lib/menu-list'
 import { GalleryVerticalEnd } from 'lucide-react'
 import { PanelDropdown } from '@/app/(panel)/_components/panel-dropdown'
+import { isCurrentRole } from '@/data/auth'
 import Link from 'next/link'
 
-export function PanelSidebar() {
+export async function PanelSidebar() {
   return (
-    <Sidebar collapsible='icon' className='z-[999]'>
+    <Sidebar
+      collapsible='icon'
+      variant='inset'
+    >
       <SidebarHeader>
         <SidebarMenu>
           <SidebarMenuItem>
@@ -46,16 +50,41 @@ export function PanelSidebar() {
           <SidebarGroupLabel>Administrar</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
-              {SIDEBAR_ROUTES.sidebar_items.map((item) => (
-                <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton asChild>
-                    <Link href={item.url}>
-                      <item.icon />
-                      <span>{item.title}</span>
-                    </Link>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
-              ))}
+              {(await isCurrentRole('OWNER')) &&
+                ADMIN_SIDEBAR_ROUTES.sidebar_items.map((item) => (
+                  <SidebarMenuItem key={item.title}>
+                    <SidebarMenuButton asChild>
+                      <Link href={item.url}>
+                        <item.icon />
+                        <span>{item.title}</span>
+                      </Link>
+                    </SidebarMenuButton>
+                  </SidebarMenuItem>
+                ))}
+
+              {(await isCurrentRole('ADMIN')) &&
+                ADMIN_SIDEBAR_ROUTES.sidebar_items.map((item) => (
+                  <SidebarMenuItem key={item.title}>
+                    <SidebarMenuButton asChild>
+                      <Link href={item.url}>
+                        <item.icon />
+                        <span>{item.title}</span>
+                      </Link>
+                    </SidebarMenuButton>
+                  </SidebarMenuItem>
+                ))}
+
+              {(await isCurrentRole('EDITOR')) &&
+                EDITOR_SIDEBAR_ROUTES.sidebar_items.map((item) => (
+                  <SidebarMenuItem key={item.title}>
+                    <SidebarMenuButton asChild>
+                      <Link href={item.url}>
+                        <item.icon />
+                        <span>{item.title}</span>
+                      </Link>
+                    </SidebarMenuButton>
+                  </SidebarMenuItem>
+                ))}
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>

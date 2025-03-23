@@ -7,7 +7,6 @@ import {
 import { Card } from '@/components/ui/card'
 import { AspectRatio } from '@/components/ui/aspect-ratio'
 import { WeaponItemProps } from '@/app/(panel)/panel/weapons/_components/weapon-item/weapon-item.type'
-import { formattedUrl } from '@/features/utils/formatted-names'
 import { getBorderColorByRarityHover } from '@/features/utils/rarity-color'
 import { deleteWeapon } from '@/app/(panel)/panel/weapons/_services/delete'
 import { DeleteButton } from '@/app/(panel)/_components/delete-button'
@@ -23,7 +22,7 @@ export function WeaponItem(props: WeaponItemProps) {
   const URL = `/editor/weapon/${WEAPON_ID}`
 
   const WEAPON_IMAGE = image_url
-  const STAR_COLOR = getBorderColorByRarityHover(rarity)
+  const RARITY_COLOR = getBorderColorByRarityHover(rarity)
 
   return (
     <>
@@ -33,8 +32,8 @@ export function WeaponItem(props: WeaponItemProps) {
             <Link
               href={URL}
               className={cn(
-                'group/item flex aspect-[1/1] overflow-hidden rounded-[1rem] border border-muted/30 bg-background transition relative',
-                STAR_COLOR
+                'group/item flex aspect-1/1 overflow-hidden rounded-[1rem] border border-muted/30 bg-background transition relative',
+                RARITY_COLOR
               )}
             >
               <Card className='size-full transition duration-200 ease-in-out'>
@@ -46,7 +45,7 @@ export function WeaponItem(props: WeaponItemProps) {
                       width={720}
                       height={1080}
                       priority
-                      className='object-cover w-full h-full transition-all duration-300 ease-in-out [mask-image:linear-gradient(to_bottom,rgba(0,0,0,1),rgba(0,0,0,.1))] group-hover/item:[mask-image:linear-gradient(to_bottom,rgba(0,0,0,1),rgba(0,0,0,1))] group-hover/item:scale-110 group-hover/item:grayscale-0'
+                      className='object-contain w-full h-full transition-all duration-300 ease-in-out [mask-image:linear-gradient(to_bottom,rgba(0,0,0,1),rgba(0,0,0,.1))] group-hover/item:[mask-image:linear-gradient(to_bottom,rgba(0,0,0,1),rgba(0,0,0,1))] group-hover/item:scale-110 group-hover/item:grayscale-0'
                     />
                   </AspectRatio>
                 )}
@@ -62,9 +61,9 @@ export function WeaponItem(props: WeaponItemProps) {
       <DeleteButton
         itemId={id}
         onDelete={deleteWeapon}
-        className='absolute z-40 bottom-3 right-3'
+        className='absolute z-40 bottom-2 right-2 size-8 rounded-md!'
       >
-        <Trash2 />
+        <Trash2 className='size-5' />
       </DeleteButton>
     </>
   )

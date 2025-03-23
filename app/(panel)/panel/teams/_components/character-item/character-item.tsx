@@ -1,14 +1,18 @@
 import { CharacterItemProps } from '@/app/(panel)/panel/teams/_components/character-item/character-item.type'
-import { useGetCharacter } from '@/features/queries/panel/use-characters'
 import { Card, CardContent } from '@/components/ui/card'
 import { SquareBox } from '@/components/square-box'
 import { ConstellationForm } from '@/app/(panel)/panel/teams/_components/constellation-form'
 import { SortableList } from '@/app/(panel)/_components/sortable-list'
+import { useGetData } from '@/features/providers/data-provider'
 import { Badge } from '@/components/ui/badge'
 
 export function CharacterItem(props: CharacterItemProps) {
   const { character_id, constellation, id, team_id } = props
-  const { data: CHARACTER } = useGetCharacter(character_id)
+  const { data } = useGetData()
+
+  const { characters: CHARACTERS } = data
+  const CHARACTER = CHARACTERS?.find((item) => item.id === character_id)
+  const { name } = CHARACTER!
 
   const DATA = {
     character: CHARACTER,
@@ -31,7 +35,7 @@ export function CharacterItem(props: CharacterItemProps) {
               <ConstellationForm {...DATA} />
             </SquareBox>
 
-            <p className='text-sm text-center'>{CHARACTER?.name}</p>
+            <p className='text-sm text-center'>{name}</p>
           </div>
         </div>
 

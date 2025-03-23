@@ -17,7 +17,7 @@ import {
 } from '@/components/ui/select'
 
 import { z } from 'zod'
-import { useGetCharacter } from '@/app/(panel)/editor/character/[id]/provider'
+import { useGetCharacter } from '@/features/providers/character-provider'
 import { useState, useTransition } from 'react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -106,6 +106,7 @@ export function StatsPriorityForm() {
                 <Select
                   value={field.value}
                   onValueChange={field.onChange}
+                  disabled={isPending}
                 >
                   <FormControl>
                     <SelectTrigger>
@@ -137,6 +138,7 @@ export function StatsPriorityForm() {
                 <Select
                   value={field.value}
                   onValueChange={field.onChange}
+                  disabled={isPending}
                 >
                   <FormControl>
                     <SelectTrigger>
@@ -168,6 +170,7 @@ export function StatsPriorityForm() {
                 <Select
                   value={field.value}
                   onValueChange={field.onChange}
+                  disabled={isPending}
                 >
                   <FormControl>
                     <SelectTrigger>

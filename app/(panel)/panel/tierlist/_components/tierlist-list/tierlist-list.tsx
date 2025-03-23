@@ -1,16 +1,22 @@
 import type { TierList } from '@prisma/client'
 import { TierlistListProps } from '@/app/(panel)/panel/tierlist/_components/tierlist-list/tierlist-list.type'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
-import { Card } from '@/components/ui/card'
 import { TierRows } from '@/app/(panel)/panel/tierlist/_components/tier-rows'
 import { TierActions } from '@/app/(panel)/panel/tierlist/_components/tier-actions'
+import { EmptyList } from '@/components/empty-list'
+import { EMPTY_LIST } from '@/consts/misc'
+import { Card } from '@/components/ui/card'
 
 export function TierList(props: TierlistListProps) {
   const { data: TIERLISTS } = props
 
-  const [DEFAULT_TAB] = TIERLISTS
+  const [DEFAULT_TAB] = TIERLISTS!
 
-  const MAPPED_TABS = TIERLISTS.map((tierlist) => (
+  if (TIERLISTS && TIERLISTS.length === EMPTY_LIST) {
+    return <EmptyList text='No hay tierlists disponibles' />
+  }
+
+  const MAPPED_TABS = TIERLISTS?.map((tierlist) => (
     <TabsTrigger
       key={tierlist.id}
       value={`tab-${tierlist.id}`}
@@ -20,7 +26,7 @@ export function TierList(props: TierlistListProps) {
     </TabsTrigger>
   ))
 
-  const MAPPED_CONTENT = TIERLISTS.map((tierlist) => (
+  const MAPPED_CONTENT = TIERLISTS?.map((tierlist) => (
     <TabsContent
       key={tierlist.id}
       value={`tab-${tierlist.id}`}

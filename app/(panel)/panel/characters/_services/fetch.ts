@@ -1,5 +1,5 @@
-import { currentRole } from '@/data/auth'
 import { db } from '@/lib/db'
+import { isCurrentRole } from '@/data/auth'
 import { Prisma } from '@prisma/client'
 
 type Props = {
@@ -27,8 +27,9 @@ function filterCharacters(characters: Array<CharacterProps>, filters: Props) {
 }
 
 export async function getCharacters(props: Props) {
-  const ROLE = await currentRole()
-  if (ROLE === 'USER') return null
+  if (await isCurrentRole('USER')) {
+    return null
+  }
 
   try {
     const CHARACTERS = await db.characters.findMany({
@@ -39,7 +40,7 @@ export async function getCharacters(props: Props) {
     const FILTERED_CHARACTERS = filterCharacters(CHARACTERS, { ...props })
     return FILTERED_CHARACTERS
     
-  } catch (error) {
+  } catch {
     return null
   }
 }

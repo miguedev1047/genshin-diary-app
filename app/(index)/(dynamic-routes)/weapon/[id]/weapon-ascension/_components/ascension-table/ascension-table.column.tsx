@@ -3,17 +3,17 @@
 import { MoraImg } from '@/assets/game'
 import { ColumnDef } from '@tanstack/react-table'
 import { SquareBox } from '@/components/square-box'
-import { Ascension } from '@/app/(index)/(dynamic-routes)/weapon/[id]/weapon-ascension/_components/ascension-table/ascension-table.type'
+import { AscensionProps } from '@/app/(index)/(dynamic-routes)/weapon/[id]/weapon-ascension/_components/ascension-table/ascension-table.type'
 import { MaterialItem } from '@/app/(index)/(dynamic-routes)/weapon/[id]/weapon-ascension/_components/material-item'
 import Image from 'next/image'
 
-export const ascensionColumns: ColumnDef<Ascension>[] = [
+export const ascensionColumns: ColumnDef<AscensionProps>[] = [
   {
     accessorKey: 'ascension',
     header: 'Ascensión',
     cell: ({ row }) => {
       const { ascension_level } = row.original
-      const [_, ASCENSION_NUMBER] = ascension_level.split('_')
+      const ASCENSION_NUMBER = ascension_level.split('_')[1]
 
       return <p>Ascensión {ASCENSION_NUMBER}</p>
     },
@@ -48,7 +48,7 @@ export const ascensionColumns: ColumnDef<Ascension>[] = [
               height={720}
               className='object-contain size-full'
             />
-            <div className='absolute inset-x-0 bottom-0 g-black/70b supports-[backdrop-filter]:bg-background/60 py-1 flex items-center justify-center z-20'>
+            <div className='absolute inset-x-0 bottom-0 g-black/70b supports-backdrop-filter:bg-background/60 py-1 flex items-center justify-center z-20'>
               <p>{FORMATTED_COST}</p>
             </div>
           </SquareBox>

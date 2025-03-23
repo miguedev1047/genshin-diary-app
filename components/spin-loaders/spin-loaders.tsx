@@ -34,9 +34,9 @@ export function SpinLoaderSquareCard(props: SpinLoaderSquareCardProps) {
   )
 }
 
-export function SpinAspectRatio() {
+export function SpinLoaderAspectRatio() {
   return (
-    <Card className='size-full aspect-[2/3] grid place-items-center'>
+    <Card className='size-full aspect-2/3 grid place-items-center'>
       <Loader className='animate-spin' />
     </Card>
   )

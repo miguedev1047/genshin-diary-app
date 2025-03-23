@@ -38,7 +38,6 @@ model Characters {
   video_guide       VideoGuideCharacter?
   weapons           WeaponCharacter[]
   artifacts         ArtifactCharacter[]
-  materials         MaterialCharacter[]
   stats_priority    StatsPriorityCharacter?
   ascensions        AscensionCharacter[]
   talents_ascension TalentsAscensionCharacter[]
@@ -76,6 +75,8 @@ model Weapons {
   max_secondary_stat_base Float   @default(0)
   min_secondary_stat_base Float   @default(0)
   passive_description     String
+  is_public               Boolean? @default(false)
+  is_new                  Boolean? @default(false)
 
   date_created DateTime @default(now())
   date_updated DateTime @updatedAt
@@ -114,9 +115,9 @@ model WeaponAscensions {
 model WeaponAscensionMaterials {
   id           String @id @default(uuid())
   ascension_id String
+  material_id  String
 
-  material_id String
-  quantity    Int    @default(0)
+  quantity Int @default(0)
 
   date_created DateTime @default(now())
   date_updated DateTime @updatedAt
@@ -127,8 +128,9 @@ model WeaponAscensionMaterials {
 model WeaponCharacter {
   id           String @id @unique @default(uuid())
   character_id String
-  weapon_id    String
-  order        Int    @default(0)
+
+  weapon_id String
+  order     Int    @default(0)
 
   date_created DateTime @default(now())
   date_updated DateTime @updatedAt
@@ -152,13 +154,28 @@ model Artifacts {
 model ArtifactCharacter {
   id           String @id @unique @default(uuid())
   character_id String
-  artifact_id  String
-  order        Int    @default(0)
+
+  order Int @default(0)
 
   date_created DateTime @default(now())
   date_updated DateTime @updatedAt
 
-  character Characters @relation(fields: [character_id], references: [id], onDelete: Cascade)
+  character    Characters             @relation(fields: [character_id], references: [id], onDelete: Cascade)
+  artifact_set ArtifactCharacterSet[]
+}
+
+model ArtifactCharacterSet {
+  id              String @id @unique @default(uuid())
+  artifact_set_id String
+  character_id    String
+
+  artifact_id String
+  order       Int    @default(0)
+
+  date_created DateTime @default(now())
+  date_updated DateTime @updatedAt
+
+  artifacts ArtifactCharacter @relation(fields: [artifact_set_id], references: [id], onDelete: Cascade)
 }
 
 // <----- ------>
@@ -173,17 +190,6 @@ model Materials {
 
   date_created DateTime @default(now())
   date_updated DateTime @updatedAt
-}
-
-model MaterialCharacter {
-  id           String @id @unique @default(uuid())
-  character_id String
-  material_id  String
-
-  date_created DateTime @default(now())
-  date_updated DateTime @updatedAt
-
-  character Characters @relation(fields: [character_id], references: [id], onDelete: Cascade)
 }
 
 // <----- ------>
@@ -223,6 +229,7 @@ model TalentsAscensionCharacter {
 model TalentsAscensionCharacterMaterial {
   id           String @id @unique @default(uuid())
   ascension_id String
+  character_id String
 
   material_id String
   quantity    Int    @default(0)
@@ -254,11 +261,11 @@ model AscensionCharacter {
 model MaterialAscension {
   id           String @id @unique @default(uuid())
   ascension_id String
-  material_id  String
   character_id String
 
-  order    Int @default(0)
-  quantity Int @default(0)
+  material_id String
+  order       Int    @default(0)
+  quantity    Int    @default(0)
 
   date_created DateTime @default(now())
   date_updated DateTime @updatedAt
@@ -300,12 +307,12 @@ model TeamsCharacter {
 }
 
 model TeamsCharacters {
-  id      String @id @unique @default(uuid())
-  team_id String
+  id           String @id @unique @default(uuid())
+  team_id      String
+  character_id String
 
-  character_id  String
-  order         Int    @default(0)
-  constellation Int    @default(0)
+  order         Int @default(0)
+  constellation Int @default(0)
 
   date_created DateTime @default(now())
   date_updated DateTime @updatedAt

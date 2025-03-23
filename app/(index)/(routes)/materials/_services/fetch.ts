@@ -3,6 +3,10 @@ import { db } from '@/lib/db'
 
 type Props = { name: string; type: string }
 
+type MaterialProps = {
+  [key: string]: { category: string; materials: Array<Materials> }
+}
+
 function filterMaterials(materials: Array<Materials>, filters: Props) {
   const { name, type } = filters
 
@@ -16,16 +20,32 @@ function filterMaterials(materials: Array<Materials>, filters: Props) {
   })
 }
 
+function groupMaterials(materials: Array<Materials>) {
+  return Object.values(
+    materials.reduce((acc, material) => {
+      if (!acc[material.type]) {
+        acc[material.type] = {
+          category: material.type,
+          materials: [],
+        }
+      }
+      acc[material.type].materials.push(material)
+      return acc
+    }, {} as MaterialProps)
+  )
+}
+
 export async function getMaterials(props: Props) {
   try {
     const MATERIALS = await db.materials.findMany({
-      orderBy: [{ rarity: 'asc' }, { name: 'asc' }, { date_created: 'desc' }],
+      orderBy: [{ date_created: 'desc' }, { rarity: 'desc' }, { name: 'asc' }],
     })
 
     const FILTERED_MATERIALS = filterMaterials(MATERIALS, { ...props })
+    const GROUPED_MATERIALS = groupMaterials(FILTERED_MATERIALS)
 
-    return FILTERED_MATERIALS
-  } catch (error) {
+    return GROUPED_MATERIALS
+  } catch {
     return null
   }
 }

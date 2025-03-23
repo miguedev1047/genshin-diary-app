@@ -1,17 +1,16 @@
 'use server'
 
 import { z } from 'zod'
-import { ArtifactSchema } from '@/schemas'
-import { currentRole } from '@/data/auth'
 import { db } from '@/lib/db'
+import { ArtifactSchema } from '@/schemas'
+import { isCurrentRole } from '@/data/auth'
+import { revalidatePath } from 'next/cache'
 
 export async function updateArtifact(
   data: z.infer<typeof ArtifactSchema>,
   artifact_id: string
 ) {
-  const ROLE = await currentRole()
-
-  if (ROLE === 'USER') {
+  if (await isCurrentRole('USER')) {
     return { status: 403, message: 'No tienes permisos.' }
   }
 
@@ -34,8 +33,9 @@ export async function updateArtifact(
       },
     })
 
+    revalidatePath('/artifacts')
     return { status: 201, message: 'Cambios guardados.' }
-  } catch (error) {
+  } catch {
     return { status: 500, message: 'Ocurrio un error.' }
   }
 }

@@ -7,8 +7,8 @@ import { PassiveForm as EditPassive } from '@/app/(panel)/editor/character/[id]/
 import { PassiveDelete as DeletePassive } from '@/app/(panel)/editor/character/[id]/skills/passives/_components/passive-delete'
 import { getSkillTypeText } from '@/features/utils/character-texts'
 import { SquareBox } from '@/components/square-box'
+import { TiptapPreview } from '@/components/tiptap'
 import Image from 'next/image'
-import parse from 'html-react-parser'
 
 export function PassiveItem(props: PassiveItemProps) {
   const { title, id, description, image_url, type } = props
@@ -20,7 +20,7 @@ export function PassiveItem(props: PassiveItemProps) {
         <div className='flex items-center gap-4'>
           <div className='flex items-center gap-2'>
             <SortableList.DragHandle />
-            <SquareBox className='bg-main-muted dark:bg-accent p-3'>
+            <SquareBox className='bg-accent-foreground dark:bg-accent p-3'>
               <Image
                 src={image_url!}
                 alt={title}
@@ -45,7 +45,9 @@ export function PassiveItem(props: PassiveItemProps) {
         </div>
       </CardHeader>
       <Separator />
-      <CardContent className='p-6'>{parse(description)}</CardContent>
+      <CardContent className='p-6'>
+       <TiptapPreview content={description} />
+      </CardContent>
     </Card>
   )
 }

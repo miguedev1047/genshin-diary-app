@@ -1,17 +1,16 @@
 'use server'
 
 import { z } from 'zod'
-import { currentRole } from '@/data/auth'
-import { MaterialSchema } from '@/schemas'
 import { db } from '@/lib/db'
+import { isCurrentRole } from '@/data/auth'
+import { MaterialSchema } from '@/schemas'
+import { revalidatePath } from 'next/cache'
 
 export async function updateMaterial(
   data: z.infer<typeof MaterialSchema>,
   material_id: string
 ) {
-  const ROLE = await currentRole()
-
-  if (ROLE === 'USER') {
+  if (await isCurrentRole('USER')) {
     return { status: 403, message: 'No tienes permisos.' }
   }
 
@@ -35,8 +34,9 @@ export async function updateMaterial(
       },
     })
 
+    revalidatePath('/materials')
     return { status: 201, message: 'Cambios guardados.' }
-  } catch (error) {
+  } catch {
     return { status: 500, message: 'Ocurrio un error.' }
   }
 }

@@ -1,5 +1,5 @@
-import GridPattern from '@/components/magicui/grid-pattern'
 import { cn } from '@/lib/utils'
+import GridPattern from '@/components/magicui/grid-pattern'
 
 export function GridBackground() {
   return (
@@ -8,7 +8,7 @@ export function GridBackground() {
       y={-1}
       strokeDasharray={'4 4'}
       className={cn(
-        '[mask-image:radial-gradient(1280px_circle_at_center,white,transparent)] fixed inset-0 z-0'
+        'opacity-40 inset-0 absolute size-full pointer-events-none'
       )}
     />
   )

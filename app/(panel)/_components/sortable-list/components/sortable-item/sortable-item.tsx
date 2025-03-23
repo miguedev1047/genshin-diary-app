@@ -21,6 +21,26 @@ interface Context {
   ref(node: HTMLElement | null): void
 }
 
+interface DrageHandlerProps {
+  variant?:
+    | 'default'
+    | 'destructive'
+    | 'outline'
+    | 'secondary'
+    | 'ghost'
+    | 'transparent'
+    | 'link'
+    | 'expandIcon'
+    | 'ringHover'
+    | 'shine'
+    | 'gooeyRight'
+    | 'gooeyLeft'
+    | 'linkHover1'
+    | 'linkHover2'
+    | null
+    | undefined
+}
+
 const SortableItemContext = createContext<Context>({
   attributes: {},
   listeners: undefined,
@@ -62,15 +82,16 @@ export function SortableItem({ children, id }: PropsWithChildren<Props>) {
       </li>
     </SortableItemContext.Provider>
   )
-} 
+}
 
-export function DragHandle() {
+export function DragHandle(props: DrageHandlerProps) {
+  const { variant = 'ghost' } = props
   const { attributes, listeners, ref } = useContext(SortableItemContext)
 
   return (
     <Button
       size='icon'
-      variant='ghost'
+      variant={variant}
       {...attributes}
       {...listeners}
       ref={ref}

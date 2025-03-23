@@ -64,6 +64,7 @@ export function SortableList<T extends BaseItem>(props: Props<T>) {
             <React.Fragment key={item.id}>{renderItem(item)}</React.Fragment>
           ))}
         </ul>
+
         {items?.length === NO_ITEMS && (
           <h2 className='col-span-2 text-2xl text-center font-bold uppercase opacity-70 py-20'>
             No hay elementos para mostrar

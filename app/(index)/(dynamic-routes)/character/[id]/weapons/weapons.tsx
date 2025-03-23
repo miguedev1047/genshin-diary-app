@@ -24,8 +24,8 @@ export function Weapons(props: WeaponsProps) {
   ))
 
   return (
-    <div className='col-span-1'>
-      <ViewCard title='Mejores armas'>
+    <div className='col-span-2'>
+      <ViewCard title='Mejores armas' helper>
         <ul className='grid gap-4'>{MAPPED_WEAPONS}</ul>
       </ViewCard>
     </div>

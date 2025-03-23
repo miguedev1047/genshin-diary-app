@@ -1,17 +1,15 @@
 'use server'
 
 import { z } from 'zod'
-import { currentRole } from '@/data/auth'
-import { CharacterSchema } from '@/schemas'
 import { db } from '@/lib/db'
+import { isCurrentRole } from '@/data/auth'
+import { CharacterSchema } from '@/schemas'
 
 export async function updateCharacter(
   data: z.infer<typeof CharacterSchema>,
   character_id: string | undefined
 ) {
-  const ROLE = await currentRole()
-
-  if (ROLE === 'USER') {
+  if (await isCurrentRole('USER')) {
     return { status: 403, message: 'No tienes permisos.' }
   }
 
@@ -62,7 +60,7 @@ export async function updateCharacter(
     })
 
     return { status: 201, message: 'Cambios guardados.' }
-  } catch (error) {
+  } catch {
     return { status: 500, message: 'Ocurrio un error.' }
   }
 }

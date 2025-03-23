@@ -1,6 +1,6 @@
-import { currentRole } from '@/data/auth'
-import { Materials } from '@prisma/client'
 import { db } from '@/lib/db'
+import { isCurrentRole } from '@/data/auth'
+import { Materials } from '@prisma/client'
 
 type Props = { name: string; type: string }
 
@@ -37,19 +37,20 @@ function groupMaterials(materials: Array<Materials>) {
 }
 
 export async function getMaterials(props: Props) {
-  const ROLE = await currentRole()
-  if (ROLE === 'USER') return null
+  if (await isCurrentRole('USER')) {
+    return null
+  }
 
   try {
     const MATERIALS = await db.materials.findMany({
-      orderBy: [{ rarity: 'asc' }, { name: 'asc' }, { date_created: 'desc' }],
+      orderBy: [{ date_created: 'desc' }, { rarity: 'desc' }, { name: 'asc' }],
     })
 
     const FILTERED_MATERIALS = filterMaterials(MATERIALS, { ...props })
     const GROUPED_MATERIALS = groupMaterials(FILTERED_MATERIALS)
 
     return GROUPED_MATERIALS
-  } catch (error) {
+  } catch {
     return null
   }
 }

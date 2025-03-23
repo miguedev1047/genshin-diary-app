@@ -2,20 +2,25 @@ import { StatsPriorityCardProps } from '@/app/(index)/(dynamic-routes)/character
 import { ViewCard } from '@/app/(index)/_components/view-card'
 import { Card, CardContent } from '@/components/ui/card'
 import { Title } from '@/components/ui/title'
-import { Crown, Hourglass,  Wine } from 'lucide-react'
+import { getStatPriorityText } from '@/features/utils/character-texts'
+import { Crown, Hourglass, Wine } from 'lucide-react'
 
 export function StatePriorityCard(props: StatsPriorityCardProps) {
   const { circlet_stat, globet_stat, sand_stat, order_priority } = props
 
+  const SANDS = getStatPriorityText('sands', sand_stat)
+  const GLOBET = getStatPriorityText('globet', globet_stat)
+  const CIRCLET = getStatPriorityText('circlet', circlet_stat)
+
   return (
     <ViewCard title='Mejores estadisticas'>
-      <article className='grid grid-cols-1 lg:grid-cols-3 gap-5'>
+      <article className='grid grid-cols-1 lg:grid-cols-3 gap-3 md:p-5 '>
         <Card>
-          <CardContent className='p-5'>
+          <CardContent className='p-3 md:p-5'>
             <Title className='flex items-center justify-between gap-2'>
-              <article>
+              <article className='text-sm md:text-base'>
                 <span>Reloj: </span>
-                <span className='font-extrabold'>{sand_stat}</span>
+                <span className='font-extrabold'>{SANDS}</span>
               </article>
               <Hourglass />
             </Title>
@@ -23,11 +28,11 @@ export function StatePriorityCard(props: StatsPriorityCardProps) {
         </Card>
 
         <Card>
-          <CardContent className='p-5'>
+          <CardContent className='p-3 md:p-5'>
             <Title className='flex items-center justify-between gap-2'>
-              <article>
+              <article className='text-sm md:text-base'>
                 <span>Copa: </span>
-                <span className='font-extrabold'>{globet_stat}</span>
+                <span className='font-extrabold'>{GLOBET}</span>
               </article>
               <Wine />
             </Title>
@@ -35,11 +40,11 @@ export function StatePriorityCard(props: StatsPriorityCardProps) {
         </Card>
 
         <Card>
-          <CardContent className='p-5'>
+          <CardContent className='p-3 md:p-5'>
             <Title className='flex items-center justify-between gap-2'>
-              <article>
+              <article className='text-sm md:text-base'>
                 <span>Corona: </span>
-                <span className='font-extrabold'>{circlet_stat}</span>
+                <span className='font-extrabold'>{CIRCLET}</span>
               </article>
               <Crown />
             </Title>
@@ -47,10 +52,12 @@ export function StatePriorityCard(props: StatsPriorityCardProps) {
         </Card>
 
         <Card className='col-span-1 lg:col-span-3'>
-          <CardContent className='p-5 text-center'>
+          <CardContent className='p-3 md:p-5 text-start'>
             <Title>
-              Estadisticas secundarias:{' '}
-              <span className='font-extrabold'>{order_priority}</span>
+              <article className='text-sm md:text-base'>
+                <span>Orden de prioridad: </span>
+                <span className='font-extrabold'>{order_priority}</span>
+              </article>
             </Title>
           </CardContent>
         </Card>

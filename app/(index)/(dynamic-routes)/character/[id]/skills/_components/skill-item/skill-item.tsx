@@ -4,8 +4,8 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { SquareBox } from '@/components/square-box'
 import { Badge } from '@/components/ui/badge'
 import { Separator } from '@/components/ui/separator'
+import { TiptapPreview } from '@/components/tiptap'
 import Image from 'next/image'
-import parse from 'html-react-parser'
 
 export function SkillItem(props: SkillItemProps) {
   const { title, type, image_url, description } = props
@@ -13,10 +13,10 @@ export function SkillItem(props: SkillItemProps) {
 
   return (
     <Card>
-      <CardHeader>
+      <CardHeader className='max-md:p-3'>
         <div className='flex items-center gap-4'>
           <div className='flex items-center gap-2'>
-            <SquareBox className='bg-main-muted dark:bg-accent p-3'>
+            <SquareBox className='bg-accent-foreground dark:bg-accent p-3'>
               <Image
                 src={image_url!}
                 alt={title}
@@ -28,13 +28,15 @@ export function SkillItem(props: SkillItemProps) {
           </div>
 
           <div className='w-full space-y-2'>
-            <CardTitle>{title}</CardTitle>
+            <CardTitle className='text-base md:text-lg'>{title}</CardTitle>
             <Badge>{SKILL_TYPE}</Badge>
           </div>
         </div>
       </CardHeader>
       <Separator />
-      <CardContent className='p-6'>{parse(description)}</CardContent>
+      <CardContent className='p-3 md:p-6'>
+        <TiptapPreview content={description} />
+      </CardContent>
     </Card>
   )
 }

@@ -1,10 +1,10 @@
 'use server'
 
 import { z } from 'zod'
-import { ASCENSION_TALENT } from '@/consts/general'
-import { currentRole } from '@/data/auth'
-import { TalentSchema } from '@/schemas'
 import { db } from '@/lib/db'
+import { ASCENSION_TALENT } from '@/consts/general'
+import { isCurrentRole } from '@/data/auth'
+import { TalentSchema } from '@/schemas'
 
 export async function createTalentAscension(
   data: z.infer<typeof TalentSchema>,
@@ -12,8 +12,7 @@ export async function createTalentAscension(
 ) {
   if (!character_id) return { status: 403, message: 'El personaje no existe.' }
 
-  const ROLE = await currentRole()
-  if (ROLE === 'USER') {
+  if (await isCurrentRole('USER')) {
     return { status: 403, message: 'No tienes permisos.' }
   }
 
@@ -28,30 +27,30 @@ export async function createTalentAscension(
     (item) => item.ascension === talent_level
   )!
 
+  const MATERIALS = materials.map((material, index) => ({
+    character_id,
+    material_id: material,
+    quantity: SELECTED_LEVEL.materialQuatities[index] ?? 0,
+  }))
+
   try {
-    const LEVEL = await db.talentsAscensionCharacter.create({
+    await db.talentsAscensionCharacter.create({
       data: {
         character_id,
         ascension_level: SELECTED_LEVEL?.ascension,
         order: SELECTED_LEVEL?.order,
         cost: SELECTED_LEVEL?.cost,
         level: SELECTED_LEVEL?.level,
+        materials: {
+          createMany: {
+            data: MATERIALS,
+          },
+        },
       },
     })
 
-    const MATERIALS = materials.map((material) => ({
-      material_id: material,
-      ascension_id: LEVEL.id,
-      id: crypto.randomUUID()
-    }))
-
-    await db.talentsAscensionCharacterMaterial.createMany({
-      data: MATERIALS,
-    })
-
     return { status: 201, message: 'Talento añadido.' }
-  } catch (error) {
-    console.log(error)
+  } catch {
     return { status: 500, message: 'Ocurrio un error.' }
   }
 }

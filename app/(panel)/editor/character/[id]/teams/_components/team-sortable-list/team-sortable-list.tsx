@@ -1,8 +1,8 @@
 'use client'
 
 import { SortableList } from '@/app/(panel)/_components/sortable-list'
-import { useGetCharacter } from '@/app/(panel)/editor/character/[id]/provider'
-import { updateTeams } from '@/app/(panel)/editor/character/[id]/teams/_services/update'
+import { useGetCharacter } from '@/features/providers/character-provider'
+import { updateTeamsOrder } from '@/app/(panel)/editor/character/[id]/teams/_services/update'
 import { TeamItem } from '@/app/(panel)/editor/character/[id]/teams/_components/team-item'
 import { useDrag } from '@/features/hooks/use-drag'
 
@@ -10,9 +10,9 @@ export function TeamSortableList() {
   const { data: CHARACTER } = useGetCharacter()
   const TEAMS = CHARACTER?.teams ?? []
 
-  const { orderedItems, handleDragEnd } = useDrag({
+  const { orderedItems, handleDragEnd } = useDrag({ 
     items: TEAMS,
-    updateFn: updateTeams,
+    updateFn: updateTeamsOrder,
   })
 
   return (

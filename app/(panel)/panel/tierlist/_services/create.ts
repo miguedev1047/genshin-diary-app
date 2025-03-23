@@ -1,9 +1,9 @@
 'use server'
 
 import { z } from 'zod'
-import { currentRole } from '@/data/auth'
-import { TierlistSchema } from '@/schemas'
 import { db } from '@/lib/db'
+import { isCurrentRole } from '@/data/auth'
+import { TierlistSchema } from '@/schemas'
 
 const TIERS = [
   { tier_rank: 'D' },
@@ -11,12 +11,12 @@ const TIERS = [
   { tier_rank: 'B' },
   { tier_rank: 'A' },
   { tier_rank: 'S' },
+  { tier_rank: 'SS' },
 ]
 
 export async function createTierlist(data: z.infer<typeof TierlistSchema>) {
-  const ROLE = await currentRole()
-  if (ROLE === 'USER') {
-    return { status: 401, message: 'No tienes permisos' }
+  if (await isCurrentRole('USER')) {
+    return { status: 403, message: 'No tienes permisos.' }
   }
 
   const VALIDATE_FIELDS = TierlistSchema.safeParse(data)
@@ -39,7 +39,7 @@ export async function createTierlist(data: z.infer<typeof TierlistSchema>) {
     })
 
     return { status: 201, message: 'Tierlist creada!' }
-  } catch (error) {
+  } catch {
     return { status: 500, message: 'Ha ocurrido un error.' }
   }
 }
@@ -50,9 +50,8 @@ export async function createTierCharacter(
   },
   tier_id: string
 ) {
-  const ROLE = await currentRole()
-  if (ROLE === 'USER') {
-    return { status: 401, message: 'No tienes permisos' }
+  if (await isCurrentRole('USER')) {
+    return { status: 403, message: 'No tienes permisos.' }
   }
 
   const CHARACTERS = data.characters.map((character) => ({
@@ -66,7 +65,7 @@ export async function createTierCharacter(
     })
 
     return { status: 201, message: 'Personaje agregado!' }
-  } catch (error) {
+  } catch {
     return { status: 500, message: 'Ha ocurrido un error.' }
   }
 }

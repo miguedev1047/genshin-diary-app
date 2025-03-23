@@ -1,12 +1,14 @@
 import { db } from '@/lib/db'
-import { Team } from '@prisma/client'
-import { TeamProps, CharacterProps } from '@/app/(index)/(routes)/teams/_types'
+import { Prisma } from '@prisma/client'
 
 type Props = {
   name: string
 }
 
-function filterTeams(teams: Array<Team>, filters: Props) {
+function filterTeams(
+  teams: Array<Prisma.TeamGetPayload<{ include: { characters: true } }>>,
+  filters: Props
+) {
   const { name } = filters
 
   return teams.filter((t) => {
@@ -26,20 +28,8 @@ export async function getTeams(props: Props) {
 
     const FILTERED_TEAMS = filterTeams(TEAMS, { ...props })
 
-    return FILTERED_TEAMS as TeamProps
-  } catch (error) {
-    return null
-  }
-}
-
-export async function getCharacterById(character_id: string) {
-  try {
-    const CHARACTER = await db.characters.findUnique({
-      where: { id: character_id },
-    })
-
-    return CHARACTER as CharacterProps
-  } catch (error) {
+    return FILTERED_TEAMS
+  } catch {
     return null
   }
 }

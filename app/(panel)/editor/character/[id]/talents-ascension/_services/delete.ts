@@ -1,12 +1,10 @@
 'use server'
 
-import { currentRole } from '@/data/auth'
 import { db } from '@/lib/db'
+import { isCurrentRole } from '@/data/auth'
 
 export async function deleteTalentAscension(id: string) {
-  const ROLE = await currentRole()
-
-  if (ROLE === 'USER') {
+  if (await isCurrentRole('USER')) {
     return { status: 403, message: 'No tienes permisos.' }
   }
 
@@ -18,7 +16,7 @@ export async function deleteTalentAscension(id: string) {
     })
 
     return { status: 201, message: 'Talento eliminado.' }
-  } catch (error) {
+  } catch {
     return { status: 500, message: 'Ocurrio un error.' }
   }
 }

@@ -27,9 +27,8 @@ export function ConstellationForm(props: ConstellationFormProps) {
   const { data: CHARACTER, itemId, constellation } = props
 
   const [isPending, startTransition] = useTransition()
-  const [isOpen, setIsOpen] = useState(false)
-
   const { refresh } = useRouter()
+  const [isOpen, setIsOpen] = useState(false)
 
   const handleChangeState = (value: string) => {
     startTransition(async () => {
@@ -56,16 +55,13 @@ export function ConstellationForm(props: ConstellationFormProps) {
       onOpenChange={setIsOpen}
     >
       <PopoverTrigger asChild>
-        <SquareBox
-          size='sm'
-          className='hover:scale-110 transition-transform ease-in-out duration-200 cursor-pointer'
-        >
+        <SquareBox className='hover:scale-110 transition-transform ease-in-out duration-200 cursor-pointer'>
           <Image
             src={CHARACTER?.images?.profile_image_url ?? DEFAULT_IMAGE}
             alt={CHARACTER?.name ?? 'Character Image'}
             width={1080}
             height={1080}
-            className='object-cover size-full'
+            className='object-contain size-full'
           />
         </SquareBox>
       </PopoverTrigger>

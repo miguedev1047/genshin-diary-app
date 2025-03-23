@@ -1,28 +1,28 @@
 'use client'
 
-import { useGetCharacter } from '@/features/queries/index/use-characters'
-import { CharacterItemProps } from '@/app/(index)/(dynamic-routes)/character/[id]/teams/_components/character-item/character-item.type'
-import { cn } from '@/lib/utils'
-import { getBorderColorByRarityHover } from '@/features/utils/rarity-color'
-import { SpinLoaderSquareCard } from '@/components/spin-loaders'
-import { Badge } from '@/components/ui/badge'
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
 } from '@/components/ui/tooltip'
+import { CharacterItemProps } from '@/app/(index)/(dynamic-routes)/character/[id]/teams/_components/character-item/character-item.type'
+import { getBorderColorByRarityHover } from '@/features/utils/rarity-color'
+import { Badge } from '@/components/ui/badge'
 import { SquareBox } from '@/components/square-box'
 import { DEFAULT_IMAGE } from '@/consts/misc'
+import { useGetData } from '@/features/providers/data-provider'
+import { cn } from '@/lib/utils'
 import Link from 'next/link'
 import Image from 'next/image'
 
 export function CharacterItem(props: CharacterItemProps) {
   const { character_id, constellation } = props
-  const { data: CHARACTER, status } = useGetCharacter(character_id)
+  const { data } = useGetData()
 
-  if (status === 'pending') return <SpinLoaderSquareCard fullSize />
-  if (status === 'error') return <SpinLoaderSquareCard fullSize />
+  const { characters } = data
+  const CHARACTER = characters?.find((material) => material.id === character_id)
+  const { name } = CHARACTER!
 
   if (!CHARACTER) return null
 
@@ -45,7 +45,7 @@ export function CharacterItem(props: CharacterItemProps) {
               <Image
                 priority
                 src={PROFILE_IMG_URL ?? DEFAULT_IMAGE}
-                alt={CHARACTER.name}
+                alt={name}
                 width={720}
                 height={1080}
                 className='object-cover size-full'
@@ -53,7 +53,7 @@ export function CharacterItem(props: CharacterItemProps) {
             </SquareBox>
           </TooltipTrigger>
           <TooltipContent side='bottom'>
-            <p>{CHARACTER.name}</p>
+            <p>{name}</p>
           </TooltipContent>
         </Tooltip>
       </TooltipProvider>

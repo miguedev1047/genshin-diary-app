@@ -35,22 +35,22 @@ export const CharacterSchema = z.object({
   description: z.string().min(3, {
     message: 'La descripción del personaje es requerida.',
   }),
-  role: z.string().min(1, {
+  role: z.string({ message: 'El rol es requerido.' }).min(1, {
     message: 'El rol es requerido.',
   }),
-  element: z.string().min(1, {
+  element: z.string({ message: 'El elemento es requerido.' }).min(1, {
     message: 'El elemento es requerido.',
   }),
-  rarity: z.string().min(1, {
+  rarity: z.string({ message: 'La rareza es requerida.' }).min(1, {
     message: 'La rareza es requerida.',
   }),
-  region: z.string().min(1, {
+  region: z.string({ message: 'La region es requerida.' }).min(1, {
     message: 'La region es requerida.',
   }),
-  weapon: z.string().min(1, {
+  weapon: z.string({ message: 'El tipo de arma es requerida' }).min(1, {
     message: 'El tipo de arma es requerida.',
   }),
-  attribute: z.string().min(1, {
+  attribute: z.string({ message: 'El atributo es requerido.' }).min(1, {
     message: 'El atributo es requerido.',
   }),
   is_public: z.boolean().optional(),
@@ -67,27 +67,39 @@ export const WeaponSchema = z.object({
   passive_description: z.string().min(3, {
     message: 'La descripción de la arma es requerida.',
   }),
-  min_base_attack: z.string().min(2, {
-    message: 'El ataque maximo es requerido.',
-  }),
-  max_base_attack: z.string().min(2, {
-    message: 'El ataque maximo es requerido.',
-  }),
-  min_secondary_stat_base: z.string().min(1, {
-    message: 'El atributo secundario es requerido.',
-  }),
-  max_secondary_stat_base: z.string().min(1, {
-    message: 'El atributo base secundario es requerido.',
-  }),
-  secondary_stat: z.string().min(1, {
-    message: 'El atributo secundario es requerido.',
-  }),
-  type: z.string().min(1, {
+  min_base_attack: z
+    .string({ message: 'El ataque minimo es requerido.' })
+    .min(2, {
+      message: 'El ataque minimo es requerido.',
+    }),
+  max_base_attack: z
+    .string({ message: 'El ataque maximo es requerido.' })
+    .min(2, {
+      message: 'El ataque maximo es requerido.',
+    }),
+  min_secondary_stat_base: z
+    .string({ message: 'La substat secundaria minima es requerida.' })
+    .min(1, {
+      message: 'La substat secundaria minima es requerida.',
+    }),
+  max_secondary_stat_base: z
+    .string({ message: 'La substat base secundaria maxima es requerida.' })
+    .min(1, {
+      message: 'La substat base secundaria maxima es requerida.',
+    }),
+  secondary_stat: z
+    .string({ message: 'La substat secundaria es requerida.' })
+    .min(1, {
+      message: 'La substat secundaria es requerida.',
+    }),
+  type: z.string({ message: 'El tipo del arma es requerida.' }).min(1, {
     message: 'El tipo del arma es requerida.',
   }),
-  rarity: z.string().min(1, {
+  rarity: z.string({ message: 'La rareza es requerida.' }).min(1, {
     message: 'La rareza es requerida.',
   }),
+  is_public: z.boolean().optional(),
+  is_new: z.boolean().optional(),
 })
 
 export const CharacterSelectorSchema = z.object({
@@ -126,10 +138,10 @@ export const MaterialSchema = z.object({
   description: z.string().min(3, {
     message: 'La descripción del material es requerida.',
   }),
-  type: z.string().min(1, {
+  type: z.string({ message: 'El tipo de material es requerido.' }).min(1, {
     message: 'El tipo de material es requerido.',
   }),
-  rarity: z.string().min(1, {
+  rarity: z.string({ message: 'La rareza es requerida.' }).min(1, {
     message: 'La rareza es requerida.',
   }),
 })
@@ -141,7 +153,7 @@ export const ArtifactSchema = z.object({
   image_url: z.string().min(1, {
     message: 'La url de la imagen es requerida.',
   }),
-  rarity: z.string().min(1, {
+  rarity: z.string({ message: 'La rareza es requerida.' }).min(1, {
     message: 'La rareza es requerida.',
   }),
   bonus_description: z.string().min(3, {
@@ -159,7 +171,7 @@ export const ArtifactCharacterSchema = z.object({
 export const AscensionSchema = z.object({
   ascension_level: z.string().min(1, 'La ascensión requerida.'),
   materials: z
-    .array(z.string().min(1))
+    .array(z.string().min(4))
     .min(1)
     .nonempty('Seleccione al menos un material.'),
 })
@@ -204,15 +216,15 @@ export const TeamNameSchema = z.object({
 })
 
 export const SkillCharacterSchema = z.object({
-  title: z.string().min(3, { message: 'El nombre del talento es requerido.' }),
+  title: z.string().min(3, { message: 'El nombre de la habilidad es requerido.' }),
   description: z
     .string()
-    .min(3, { message: 'La descripción del talento es requerida.' }),
+    .min(3, { message: 'La descripción de la habilidad es requerida.' }),
   image_url: z
     .string()
     .min(1, { message: 'La url de la imagen es requerida.' }),
-  type: z.string().min(1, {
-    message: 'El tipo de talento es requerido.',
+  type: z.string({ message: 'El tipo de la habilidad es requerido.' }).min(1, {
+    message: 'El tipo de la habilidad es requerido.',
   }),
   character_id: z.string(),
 })

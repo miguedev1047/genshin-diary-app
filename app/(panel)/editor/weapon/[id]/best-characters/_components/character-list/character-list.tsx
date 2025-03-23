@@ -1,10 +1,8 @@
 'use client'
 
-import { Suspense } from 'react'
-import { SpinAspectRatio } from '@/components/spin-loaders'
-import { useGetWeapon } from '@/app/(panel)/editor/weapon/[id]/provider'
+import { useGetWeapon } from '@/features/providers/weapon-provider'
 import { CharacterItem } from '@/app/(panel)/editor/weapon/[id]/best-characters/_components/character-item/character-item'
-import { GRID_LIST } from '@/consts/classes'
+import { GENERAL_GRID_LIST } from '@/consts/classes'
 
 export function CharacterList() {
   const { data: WEAPON } = useGetWeapon()
@@ -25,11 +23,9 @@ export function CharacterList() {
       key={character.id}
       className='relative'
     >
-      <Suspense fallback={<SpinAspectRatio />}>
-        <CharacterItem {...character} />
-      </Suspense>
+      <CharacterItem {...character} />
     </li>
   ))
 
-  return <ul className={GRID_LIST}>{MAPPED_BEST_CHARACTERS}</ul>
+  return <ul className={GENERAL_GRID_LIST}>{MAPPED_BEST_CHARACTERS}</ul>
 }

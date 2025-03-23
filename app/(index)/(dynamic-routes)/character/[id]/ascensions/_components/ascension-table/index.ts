@@ -1,1 +1,1 @@
-export * from './ascensions.column'
+export * from './ascension.column'

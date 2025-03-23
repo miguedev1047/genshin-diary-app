@@ -1,18 +1,16 @@
 'use server'
 
 import { z } from 'zod'
-import { currentRole } from '@/data/auth'
+import { db } from '@/lib/db'
+import { isCurrentRole } from '@/data/auth'
 import { SkillCharacterSchema } from '@/schemas'
 import { ConstellationsCharacter } from '@prisma/client'
-import { db } from '@/lib/db'
 
 export async function updateConstellation(
   data: z.infer<typeof SkillCharacterSchema>,
   constellation_id: string
 ) {
-  const ROLE = await currentRole()
-
-  if (ROLE === 'USER') {
+  if (await isCurrentRole('USER')) {
     return { status: 403, message: 'No tienes permisos.' }
   }
 
@@ -35,7 +33,7 @@ export async function updateConstellation(
     })
 
     return { status: 201, message: 'Cambios guardados.' }
-  } catch (error) {
+  } catch {
     return { status: 500, message: 'Ocurrio un error.' }
   }
 }
@@ -43,9 +41,7 @@ export async function updateConstellation(
 export async function updateConstellationOrder(
   data: Array<ConstellationsCharacter>
 ) {
-  const ROLE = await currentRole()
-
-  if (ROLE === 'USER') {
+  if (await isCurrentRole('USER')) {
     return { status: 403, message: 'No tienes permisos.' }
   }
 
@@ -67,7 +63,7 @@ export async function updateConstellationOrder(
     })
 
     return { status: 201, message: 'Cambios guardados.' }
-  } catch (error) {
+  } catch {
     return { status: 500, message: 'Ocurrio un error.' }
   }
 }

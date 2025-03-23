@@ -9,30 +9,30 @@ import { EditorCard } from '@/app/(panel)/_components/editor-card'
 import { WeaponInfoForm } from '@/app/(panel)/editor/weapon/[id]/weapon-info/_components/weapon-info-form'
 import { Badge } from '@/components/ui/badge'
 import { Star } from 'lucide-react'
-import { DEFAULT_IMAGE, NONE, PARSE_OPTIONS } from '@/consts/misc'
-import { useGetWeapon } from '@/app/(panel)/editor/weapon/[id]/provider'
+import { DEFAULT_IMAGE, NONE } from '@/consts/misc'
+import { useGetWeapon } from '@/features/providers/weapon-provider'
 import { SquareBox } from '@/components/square-box'
-import { WeaponName } from './_components/weapon-name'
+import { WeaponName } from '@/app/(panel)/editor/weapon/[id]/weapon-info/_components/weapon-name'
+import { TiptapPreview } from '@/components/tiptap'
 import Image from 'next/image'
-import parse from 'html-react-parser'
 
 export function WeaponInfo() {
   const { data: WEAPON } = useGetWeapon()
 
   const STARS = getRarityStars(WEAPON?.rarity)
-  const MAIN_STAT = getAttributesText(WEAPON?.secondary_stat)
   const WEAPON_TYPE = getWeaponText(WEAPON?.type)
+  const SECONDARY_STAT = getAttributesText(WEAPON?.secondary_stat)
 
   return (
     <EditorCard
       title='Información del arma'
-      className='grid grid-cols-5 gap-4'
+      className='grid grid-cols-5 w-full gap-4'
       renderForm={<WeaponInfoForm />}
     >
       <div className='col-span-1 flex items-center flex-col gap-4'>
         <SquareBox
           size='full'
-          className='aspect-square bg-secondary'
+          className='aspect-square bg-secondary size-[200px]'
         >
           <Image
             priority
@@ -55,14 +55,14 @@ export function WeaponInfo() {
         <WeaponName />
 
         <div className='space-y-4'>
-          <div className='[&>p]:text-pretty text-sm opacity-70 tiptap'>
-            {parse(WEAPON?.passive_description ?? '', PARSE_OPTIONS)}
-          </div>
+          {WEAPON?.passive_description && (
+            <TiptapPreview content={WEAPON.passive_description} />
+          )}
 
-          <ul className='flex items-center gap-2 mb-4'>
-            <Badge>{MAIN_STAT}</Badge>
+          <div className='space-x-2'>
             <Badge>{WEAPON_TYPE}</Badge>
-          </ul>
+            <Badge>{SECONDARY_STAT}</Badge>
+          </div>
         </div>
       </div>
     </EditorCard>

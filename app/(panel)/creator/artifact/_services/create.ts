@@ -1,15 +1,14 @@
 'use server'
 
 import { z } from 'zod'
-import { ArtifactSchema } from '@/schemas'
-import { currentRole } from '@/data/auth'
 import { db } from '@/lib/db'
+import { ArtifactSchema } from '@/schemas'
+import { isCurrentRole } from '@/data/auth'
 import { getArtifact } from '@/app/(panel)/creator/artifact/_services/fetch'
+import { revalidatePath } from 'next/cache'
 
 export async function createArtifact(data: z.infer<typeof ArtifactSchema>) {
-  const ROLE = await currentRole()
-
-  if (ROLE === 'USER') {
+  if (await isCurrentRole('USER')) {
     return { status: 403, message: 'No tienes permisos.' }
   }
 
@@ -24,7 +23,7 @@ export async function createArtifact(data: z.infer<typeof ArtifactSchema>) {
   const ARTIFACT = await getArtifact(name)
 
   if (ARTIFACT) {
-    return { status: 403, message: 'Esta arma ya existe.' }
+    return { status: 403, message: 'Este artefacto ya existe.' }
   }
 
   try {
@@ -37,8 +36,9 @@ export async function createArtifact(data: z.infer<typeof ArtifactSchema>) {
       },
     })
 
+    revalidatePath('/artifacts')
     return { status: 201, message: 'Artefacto creado.' }
-  } catch (error) {
+  } catch {
     return { status: 500, message: 'Ocurrio un error.' }
   }
 }

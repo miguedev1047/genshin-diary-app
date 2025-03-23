@@ -9,3 +9,10 @@ export const currentRole = async () => {
   const session = await auth()
   return session?.user?.role
 }
+
+export const isCurrentRole = async (
+  value: 'USER' | 'ADMIN' | 'OWNER' | 'EDITOR'
+) => {
+  const role = await currentRole()
+  return role === value
+}

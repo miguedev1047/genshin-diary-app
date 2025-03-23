@@ -1,38 +1,29 @@
 import { PageProps } from '@/app/(index)/(routes)/characters/_types'
 import { Card, CardContent, CardHeader } from '@/components/ui/card'
 import { getCharacters } from '@/app/(index)/(routes)/characters/_services/fetch'
-import { CharacterItem } from '@/app/(index)/(routes)/characters/_components/character-item'
 import { BorderBeam } from '@/components/magicui/border-beam'
 import { CharacterHeader } from '@/components/headers/character-header'
 import { HeaderWrapper } from '@/components/header-wrapper'
+import { CharacterRoutes } from '@/app/(index)/(routes)/characters/_components/character-routes'
 import { redirect } from 'next/navigation'
-import { GRID_LIST } from '@/consts/classes'
 
 export default async function CharacterPage(props: PageProps) {
   const { searchParams: PARAMS } = props
   const CHARACTERS = await getCharacters(PARAMS)
-
-  if (!CHARACTERS) return redirect('/')
-
-  const MAPPED_CHARACTERS = CHARACTERS.map((character) => (
-    <li key={character.id}>
-      <CharacterItem {...character} />
-    </li>
-  ))
+  if (!CHARACTERS ) redirect('/characters')
 
   return (
-    <section className='relative'>
-      <Card className='overflow-hidden'>
-        <CardHeader className='space-y-4'>
+    <section className='relative  pb-24'>
+      <Card className='max-md:overflow-visible overflow-hidden max-md:border-0 max-md:border-none'>
+        <CardHeader className='space-y-4 max-md:p-0'>
           <HeaderWrapper>
             <CharacterHeader />
           </HeaderWrapper>
         </CardHeader>
-
-        <CardContent>
-          <ul className={GRID_LIST}>{MAPPED_CHARACTERS}</ul>
+        <CardContent className='max-md:p-0'>
+          <CharacterRoutes data={CHARACTERS ?? []} />
         </CardContent>
-        <BorderBeam />
+        <BorderBeam className='max-md:hidden' />
       </Card>
     </section>
   )

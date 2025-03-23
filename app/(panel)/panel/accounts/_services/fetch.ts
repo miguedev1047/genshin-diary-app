@@ -17,7 +17,7 @@ export async function getAccounts() {
     })
 
     return ACCOUNTS
-  } catch (error) {
+  } catch {
     return null
   }
 }

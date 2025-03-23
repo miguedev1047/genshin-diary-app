@@ -2,12 +2,18 @@
 
 import { Badge } from '@/components/ui/badge'
 import { getAccountRole } from '@/features/helpers/account-role'
-import { User } from '@prisma/client'
 import { ColumnDef } from '@tanstack/react-table'
 import { AccountActions } from '@/app/(panel)/panel/accounts/_components/account-actions'
 import { CopyField } from '@/components/copy-field'
 
-export const columns: ColumnDef<User>[] = [
+type userProps = {
+  name: string
+  id: string
+  role: string
+  email: string
+}
+
+export const accontColumns: ColumnDef<userProps>[] = [
   {
     accessorKey: 'name',
     header: 'Nombre',

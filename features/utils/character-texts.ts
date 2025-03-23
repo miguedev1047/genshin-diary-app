@@ -1,4 +1,8 @@
 import {
+  ARTIFACTS_STATS,
+  ASCENSION_WEAPON_FIVE_STARS,
+  ASCENSION_WEAPON_FOUR_STARS,
+  ASCENSION_WEAPON_THREE_STARS,
   ATTRIBUTES,
   ELEMENTS,
   MATERIAL_TYPES,
@@ -14,6 +18,13 @@ export function getWeaponText(weapon: string | undefined) {
   if (WEAPON) return WEAPON.label
 
   return 'Indefinido'
+}
+
+export function getWeaponIcon(weapon: string | undefined) {
+  const WEAPON = WEAPON_TYPE.find((item) => item.value === weapon)
+  if (WEAPON) return WEAPON.src
+
+  return null
 }
 
 export function getRegionText(region: string | undefined) {
@@ -37,6 +48,17 @@ export function getRarityText(rarity: string | undefined) {
   return 'Indefinido'
 }
 
+export function getRarityStars(rarity: string | undefined) {
+  const STAR = STARS.find((item) => item.value === rarity)
+
+  if (STAR) {
+    const STAR_NUMBER = STAR.value.split('_')[1]
+    return Array.from({ length: Number(STAR_NUMBER) }, (_, i) => i + 1)
+  }
+
+  return []
+}
+
 export function getAttributesText(attribute: string | undefined) {
   const ATTRIBUTE = ATTRIBUTES.find((item) => item.value === attribute)
   if (ATTRIBUTE) return ATTRIBUTE.label
@@ -44,20 +66,16 @@ export function getAttributesText(attribute: string | undefined) {
   return 'Indefinido'
 }
 
-export function getRarityStars(rarity: string | undefined) {
-  const STAR = STARS.find((item) => item.value === rarity)
-
-  if (STAR) {
-    const [_, STAR_NUMBER] = STAR.value.split('_')
-    return Array.from({ length: Number(STAR_NUMBER) }, (_, i) => i + 1)
-  }
-
-  return []
-}
-
 export function getElementIcon(element: string | undefined) {
   const ELEMENT = ELEMENTS.find((item) => item.value === element)
-  if (ELEMENT) return ELEMENT
+  if (ELEMENT) return ELEMENT.src
+
+  return null
+}
+
+export function getElementText(element: string | undefined) {
+  const ELEMENT = ELEMENTS.find((item) => item.value === element)
+  if (ELEMENT) return ELEMENT.label
 
   return null
 }
@@ -69,6 +87,18 @@ export function getSkillTypeText(skillType: string | undefined) {
   return 'Indefinido'
 }
 
+export function getStatPriorityText(
+  type: 'circlet' | 'globet' | 'sands',
+  statPriority?: string
+) {
+  const STAT_PRIORITY = ARTIFACTS_STATS[type].find(
+    (item) => item.value === statPriority
+  )
+  if (STAT_PRIORITY) return STAT_PRIORITY.label
+
+  return 'Indefinido'
+}
+
 export function getMaterialTypeText(materialType: string | undefined) {
   const MATERIAL = MATERIAL_TYPES.find((item) => item.value === materialType)
   if (MATERIAL) return MATERIAL.label
@@ -76,9 +106,17 @@ export function getMaterialTypeText(materialType: string | undefined) {
   return 'Indefinido'
 }
 
-export function getCharacterName(name: string) {
-  return name
-    .split('-')
-    .map((word) => word[0].toUpperCase() + word.slice(1))
-    .join(' ')
+export function getAscensionByRarity(rarity: string | undefined) {
+  const RARIRTY = parseInt(rarity?.split('_')[1] || '0')
+
+  switch (RARIRTY) {
+    case 5:
+      return ASCENSION_WEAPON_FIVE_STARS
+    case 4:
+      return ASCENSION_WEAPON_FOUR_STARS
+    case 3:
+      return ASCENSION_WEAPON_THREE_STARS
+    default:
+      return null
+  }
 }

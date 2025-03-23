@@ -19,8 +19,7 @@ import {
 } from '@/components/ui/sheet'
 import { z } from 'zod'
 import { useRouter } from 'next/navigation'
-import { SpinLoaderInput } from '@/components/spin-loaders'
-import { Suspense, useState, useTransition } from 'react'
+import { useState, useTransition } from 'react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { CharacterSelectorSchema } from '@/schemas'
@@ -58,7 +57,8 @@ export function CharacterForm(props: CharacterFormProps) {
 
         return
       }
-      toast.success(message)
+      
+      toast.error(message)
     })
   })
 
@@ -69,10 +69,10 @@ export function CharacterForm(props: CharacterFormProps) {
     >
       <SheetTrigger asChild>
         <Button
-          variant='ghost'
-          className='!size-full border-4 border-dashed col-span-1 aspect-[2/3] grid place-content-center'
+          variant='outline'
+          size='icon'
         >
-          <Plus className='size-8' />
+          <Plus />
         </Button>
       </SheetTrigger>
       <SheetContent className='sm:max-w-[640px]'>
@@ -95,13 +95,11 @@ export function CharacterForm(props: CharacterFormProps) {
                     <FormItem>
                       <FormLabel>Seleccionar personajes</FormLabel>
                       <FormControl>
-                        <Suspense fallback={<SpinLoaderInput />}>
-                          <CharacterSelector
-                            value={field.value}
-                            onChange={field.onChange}
-                            data={CHARACTERS}
-                          />
-                        </Suspense>
+                        <CharacterSelector
+                          value={field.value}
+                          onChange={field.onChange}
+                          data={CHARACTERS}
+                        />
                       </FormControl>
                       <FormMessage />
                     </FormItem>

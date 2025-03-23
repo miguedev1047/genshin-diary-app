@@ -5,6 +5,7 @@ import { TeamNameForm } from '@/app/(panel)/panel/teams/_components/team-name-fo
 import { SortableList } from '@/app/(panel)/_components/sortable-list'
 import { DeleteButton } from '@/app/(panel)/_components/delete-button'
 import { deleteTeam } from '@/app/(panel)/panel/teams/_services/delete'
+import { TeamForm as TeamEditor } from '@/app/(panel)/panel/teams/_components/team-form'
 import { Trash2 } from 'lucide-react'
 
 export function TeamItem(props: TeamItemProps) {
@@ -18,6 +19,8 @@ export function TeamItem(props: TeamItemProps) {
         </CardTitle>
         <div className='flex items-center gap-2'>
           <SortableList.DragHandle />
+
+          <TeamEditor id={id} />
 
           <DeleteButton
             itemId={id}

@@ -20,63 +20,50 @@ import { MaterialSchema } from '@/schemas'
 import { FormCard } from '@/app/(panel)/_components/form-card'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useParams, useRouter } from 'next/navigation'
-import { useEffect, useState, useTransition } from 'react'
+import { useTransition } from 'react'
 import { useForm } from 'react-hook-form'
 import { Input } from '@/components/ui/input'
 import { Star } from 'lucide-react'
 import { MATERIAL_TYPES, STARS } from '@/consts/general'
 import { createMaterial } from '@/app/(panel)/creator/material/_services/create'
 import { toast } from 'sonner'
-import { TextEditor } from '@/app/(panel)/_components/text-editor'
-import { useGetMaterial } from '@/features/queries/panel/use-materiales'
 import { updateMaterial } from '@/app/(panel)/creator/material/_services/update'
+import { ViewImageInput } from '@/app/(panel)/_components/view-image-input'
+import { useGetData } from '@/features/providers/data-provider'
+import { TiptapEditor } from '@/components/tiptap'
 
 export function MaterialForm() {
-  const [key, setKey] = useState(+new Date())
-  const [isPending, startTranstion] = useTransition()
-  const { refresh, push } = useRouter()
+  const [isPending, startTransition] = useTransition()
+  const { back } = useRouter()
 
   const params = useParams<{ id: string }>()
   const ITEM_ID = params?.id
   const IS_EDITING = !!ITEM_ID
 
-  const { data: MATERIAL } = useGetMaterial(ITEM_ID)
+  const { data } = useGetData()
+  const { materials } = data
+  const MATERIAL = materials?.find((i) => i.id === ITEM_ID)
 
   const form = useForm<z.infer<typeof MaterialSchema>>({
     resolver: zodResolver(MaterialSchema),
     defaultValues: {
-      name: '',
-      description: '',
-      image_url: '',
-      rarity: undefined,
-      type: undefined,
+      name:  MATERIAL?.name || '',
+      description: MATERIAL?.description || '',
+      image_url: MATERIAL?.image_url || '',
+      rarity: MATERIAL?.rarity || undefined,
+      type: MATERIAL?.type || undefined,
     },
   })
 
-  useEffect(() => {
-    if (MATERIAL) {
-      startTranstion(() => {
-        setKey(+new Date())
-
-        form.setValue('name', MATERIAL.name)
-        form.setValue('description', MATERIAL.description)
-        form.setValue('image_url', MATERIAL.image_url ?? '')
-        form.setValue('rarity', MATERIAL.rarity)
-        form.setValue('type', MATERIAL.type)
-      })
-    }
-  }, [MATERIAL, form])
-
   const handleSubmit = form.handleSubmit((values) => {
-    startTranstion(async () => {
+    startTransition(async () => {
       if (IS_EDITING) {
         const { status, message } = await updateMaterial(values, ITEM_ID)
 
         if (status === 201) {
           toast.success(message)
+          back()
 
-          push('/panel/materials')
-          refresh()
           return
         }
 
@@ -88,9 +75,8 @@ export function MaterialForm() {
 
       if (status === 201) {
         toast.success(message)
+        back()
 
-        push('/panel/materials')
-        refresh()
         return
       }
 
@@ -130,6 +116,7 @@ export function MaterialForm() {
                   <FormControl>
                     <Input
                       placeholder='Nombre del material'
+                      disabled={isPending}
                       {...field}
                     />
                   </FormControl>
@@ -145,8 +132,9 @@ export function MaterialForm() {
                 <FormItem>
                   <FormLabel>URL de la imagen</FormLabel>
                   <FormControl>
-                    <Input
+                    <ViewImageInput
                       placeholder='URL de la imagen'
+                      disabled={isPending}
                       {...field}
                     />
                   </FormControl>
@@ -234,11 +222,11 @@ export function MaterialForm() {
               <FormItem>
                 <FormLabel>Descripción</FormLabel>
                 <FormControl>
-                  <TextEditor
-                    key={key}
-                    initialValue={field.value}
+                  <TiptapEditor
+                    content={field.value}
                     onChange={field.onChange}
-                    isLoading={isPending}
+                    disabled={isPending}
+                    placeholder='Descripción del material'
                   />
                 </FormControl>
                 <FormMessage />

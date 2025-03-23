@@ -5,19 +5,7 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'enka.network',
-        port: '',
-        pathname: '/**',
-      },
-      {
-        protocol: 'https',
-        hostname: 'homdgcat.wiki',
-        port: '',
-        pathname: '/**',
-      },
-      {
-        protocol: 'https',
-        hostname: 'gensh.honeyhunterworld.com',
+        hostname: '/**',
         port: '',
         pathname: '/**',
       },

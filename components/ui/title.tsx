@@ -11,8 +11,8 @@ const titleVariants = cva('text-balance', {
       default: 'text-base font-normal',
       lg: 'text-lg font-medium',
       xl: 'text-xl font-semibold',
-      '2xl': '!text-2xl font-bold',
-      '3xl': '!text-3xl font-bold',
+      '2xl': 'text-2xl! font-bold',
+      '3xl': 'text-3xl! font-bold',
     },
     type: {
       default: '',

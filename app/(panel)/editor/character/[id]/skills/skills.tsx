@@ -6,41 +6,43 @@ import { Constellations } from '@/app/(panel)/editor/character/[id]/skills/const
 
 export function Skills() {
   return (
-    <EditorCard title='Habilidades'>
-      <Tabs
-        defaultValue='talents'
-        className='space-y-4'
-      >
-        <TabsList className='grid grid-cols-3 gap-4 h-auto rounded-none border-b border-border bg-transparent p-0'>
-          <TabsTrigger
-            value='talents'
-            className='relative rounded-none py-2 after:absolute after:inset-x-0 after:bottom-0 after:h-0.5 data-[state=active]:bg-transparent data-[state=active]:shadow-none data-[state=active]:after:bg-primary'
-          >
-            Talentos
-          </TabsTrigger>
-          <TabsTrigger
-            value='passives'
-            className='relative rounded-none py-2 after:absolute after:inset-x-0 after:bottom-0 after:h-0.5 data-[state=active]:bg-transparent data-[state=active]:shadow-none data-[state=active]:after:bg-primary'
-          >
-            Pasivas
-          </TabsTrigger>
-          <TabsTrigger
-            value='constellations'
-            className='relative rounded-none py-2 after:absolute after:inset-x-0 after:bottom-0 after:h-0.5 data-[state=active]:bg-transparent data-[state=active]:shadow-none data-[state=active]:after:bg-primary'
-          >
-            Constelaciones
-          </TabsTrigger>
-        </TabsList>
-        <TabsContent value='talents'>
-          <Talents />
-        </TabsContent>
-        <TabsContent value='passives'>
-          <Passives />
-        </TabsContent>
-        <TabsContent value='constellations'>
-          <Constellations />
-        </TabsContent>
-      </Tabs>
-    </EditorCard>
+    <div className='col-span-2'>
+      <EditorCard title='Habilidades'>
+        <Tabs
+          defaultValue='talents'
+          className='space-y-4'
+        >
+          <TabsList className='grid grid-cols-3 gap-4 h-auto rounded-none border-b border-border bg-transparent p-0'>
+            <TabsTrigger
+              value='talents'
+              className='relative rounded-none py-2 after:absolute after:inset-x-0 after:bottom-0 after:h-0.5 data-[state=active]:bg-transparent data-[state=active]:shadow-none data-[state=active]:after:bg-primary'
+            >
+              Talentos
+            </TabsTrigger>
+            <TabsTrigger
+              value='passives'
+              className='relative rounded-none py-2 after:absolute after:inset-x-0 after:bottom-0 after:h-0.5 data-[state=active]:bg-transparent data-[state=active]:shadow-none data-[state=active]:after:bg-primary'
+            >
+              Pasivas
+            </TabsTrigger>
+            <TabsTrigger
+              value='constellations'
+              className='relative rounded-none py-2 after:absolute after:inset-x-0 after:bottom-0 after:h-0.5 data-[state=active]:bg-transparent data-[state=active]:shadow-none data-[state=active]:after:bg-primary'
+            >
+              Constelaciones
+            </TabsTrigger>
+          </TabsList>
+          <TabsContent value='talents'>
+            <Talents />
+          </TabsContent>
+          <TabsContent value='passives'>
+            <Passives />
+          </TabsContent>
+          <TabsContent value='constellations'>
+            <Constellations />
+          </TabsContent>
+        </Tabs>
+      </EditorCard>
+    </div>
   )
 }

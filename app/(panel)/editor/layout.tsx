@@ -4,6 +4,8 @@ export default function EditorLayout({
   children,
 }: {
   children: React.ReactNode
-}) {
-  return <PanelLayout>{children}</PanelLayout>
+}) {  
+  return (
+    <PanelLayout>{children}</PanelLayout>
+  )
 }

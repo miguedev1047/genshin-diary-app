@@ -16,13 +16,11 @@ export function TeamItem(props: TeamItemProps) {
 
   return (
     <Card>
-      <CardHeader>
-        <CardTitle className='text-lg'>{name}</CardTitle>
+      <CardHeader className='max-md:p-3'>
+        <CardTitle className='text-base md:text-lg'>{name}</CardTitle>
       </CardHeader>
-      <CardContent>
-        <ul className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4'>
-          {MAPPED_CHARACTERS}
-        </ul>
+      <CardContent className='max-md:px-3 max-md:pb-3'>
+        <ul className='grid grid-cols-4 gap-2 md:gap-4'>{MAPPED_CHARACTERS}</ul>
       </CardContent>
     </Card>
   )

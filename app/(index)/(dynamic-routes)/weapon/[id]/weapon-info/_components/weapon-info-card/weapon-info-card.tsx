@@ -5,23 +5,23 @@ import {
 } from '@/features/utils/character-texts'
 import { WeaponInfoCardProps } from '@/app/(index)/(dynamic-routes)/weapon/[id]/weapon-info/_components/weapon-info-card/weapon-info-card.type'
 import { SquareBox } from '@/components/square-box'
-import { DEFAULT_IMAGE, NONE, PARSE_OPTIONS } from '@/consts/misc'
+import { DEFAULT_IMAGE, NONE } from '@/consts/misc'
+import { WeaponStats } from '@/app/(index)/(dynamic-routes)/weapon/[id]/weapon-info/_components/weapon-name'
 import { Badge } from '@/components/ui/badge'
 import { Star } from 'lucide-react'
-import { WeaponName } from '../weapon-name'
+import { TiptapPreview } from '@/components/tiptap'
 import Image from 'next/image'
-import parse from 'html-react-parser'
 
 export function WeaponInfoCard(props: WeaponInfoCardProps) {
   const { image_url, name, rarity, passive_description, secondary_stat, type } =
     props
 
   const STARS = getRarityStars(rarity)
-  const MAIN_STAT = getAttributesText(secondary_stat)
   const WEAPON_TYPE = getWeaponText(type)
+  const SECONDARY_STAT = getAttributesText(secondary_stat)
 
   return (
-    <div className='w-full flex gap-4'>
+    <div className='grid grid-cols-5 w-full gap-4'>
       <div className='col-span-1 flex items-center flex-col gap-4'>
         <SquareBox
           size='full'
@@ -45,17 +45,17 @@ export function WeaponInfoCard(props: WeaponInfoCardProps) {
         </ul>
       </div>
       <div className='col-span-4 space-y-5'>
-        <WeaponName data={props} />
+        <WeaponStats data={props} />
 
         <div className='space-y-4'>
-          <div className='[&>p]:text-pretty text-sm opacity-70 tiptap'>
-            {parse(passive_description ?? '', PARSE_OPTIONS)}
-          </div>
+          {passive_description && (
+            <TiptapPreview content={passive_description} />
+          )}
 
-          <ul className='flex items-center gap-2 mb-4'>
-            <Badge>{MAIN_STAT}</Badge>
+          <div className='space-x-2'>
             <Badge>{WEAPON_TYPE}</Badge>
-          </ul>
+            <Badge>{SECONDARY_STAT}</Badge>
+          </div>
         </div>
       </div>
     </div>

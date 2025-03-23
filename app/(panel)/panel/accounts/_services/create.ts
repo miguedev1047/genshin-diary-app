@@ -1,16 +1,14 @@
 'use server'
 
-import { currentRole } from '@/data/auth'
-import { db } from '@/lib/db'
-import { AccountSchema } from '@/schemas'
 import { z } from 'zod'
-import bcrypt from 'bcryptjs'
+import { db } from '@/lib/db'
+import { isCurrentRole } from '@/data/auth'
+import { AccountSchema } from '@/schemas'
+import bcrypt from 'bcrypt-edge'
 
 export async function createAccount(data: z.infer<typeof AccountSchema>) {
-  const ROLE = await currentRole()
-
-  if (ROLE === 'USER') {
-    return { status: 403, message: 'No tiener permisos!' }
+  if (await isCurrentRole('USER')) {
+    return { status: 403, message: 'No tienes permisos.' }
   }
 
   const VALIDATE_FIELDS = AccountSchema.safeParse(data)
@@ -20,7 +18,7 @@ export async function createAccount(data: z.infer<typeof AccountSchema>) {
   }
 
   const { email, name, password, role } = VALIDATE_FIELDS.data
-  const HASH_PASSWORD = await bcrypt.hash(password!, 10)
+  const HASH_PASSWORD = bcrypt.hashSync(password!, 10)
 
   try {
     await db.user.create({
@@ -33,7 +31,7 @@ export async function createAccount(data: z.infer<typeof AccountSchema>) {
     })
 
     return { status: 201, message: 'Cuenta creada!' }
-  } catch (error) {
+  } catch {
     return { status: 500, message: 'Ha ocurrido un errro!' }
   }
 }

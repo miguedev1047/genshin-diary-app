@@ -1,15 +1,55 @@
 'use server'
 
 import { z } from 'zod'
-import { currentRole } from '@/data/auth'
-import { TeamCharacters, TeamsCharacters } from '@prisma/client'
-import { TeamNameSchema } from '@/schemas'
 import { db } from '@/lib/db'
+import { isCurrentRole } from '@/data/auth'
+import { TeamCharacters, TeamsCharacters } from '@prisma/client'
+import { TeamNameSchema, TeamsCharacterSchema } from '@/schemas'
+
+export async function updateTeam(
+  data: z.infer<typeof TeamsCharacterSchema>,
+  team_id: string
+) {
+  if (await isCurrentRole('USER')) {
+    return { status: 403, message: 'No tienes permisos.' }
+  }
+
+  const VALIDATE_FIELDS = TeamsCharacterSchema.safeParse(data)
+
+  if (!VALIDATE_FIELDS.success) {
+    return { status: 403, message: 'Datos invalidos.' }
+  }
+
+  const { name, characters } = VALIDATE_FIELDS.data
+
+  const TEAMS_CHARACTERS = characters.map((character, index) => ({
+    team_id,
+    character_id: character,
+    order: index + 1,
+  }))
+
+  try {
+    await db.teamCharacters.deleteMany({
+      where: { team_id },
+    })
+
+    await db.teamCharacters.createMany({
+      data: TEAMS_CHARACTERS,
+    })
+
+    await db.team.update({
+      where: { id: team_id },
+      data: { name },
+    })
+
+    return { status: 201, message: 'Cambios guardados.' }
+  } catch {
+    return { status: 500, message: 'Ocurrio un error.' }
+  }
+}
 
 export async function updateOrderTeams(data: Array<TeamsCharacters>) {
-  const ROLE = await currentRole()
-
-  if (ROLE === 'USER') {
+  if (await isCurrentRole('USER')) {
     return { status: 403, message: 'No tienes permisos.' }
   }
 
@@ -31,15 +71,13 @@ export async function updateOrderTeams(data: Array<TeamsCharacters>) {
     })
 
     return { status: 201, message: 'Cambios guardados.' }
-  } catch (error) {
+  } catch {
     return { status: 500, message: 'Ocurrio un error.' }
   }
 }
 
 export async function updateOrderCharacters(data: Array<TeamCharacters>) {
-  const ROLE = await currentRole()
-
-  if (ROLE === 'USER') {
+  if (await isCurrentRole('USER')) {
     return { status: 403, message: 'No tienes permisos.' }
   }
 
@@ -61,7 +99,7 @@ export async function updateOrderCharacters(data: Array<TeamCharacters>) {
     })
 
     return { status: 201, message: 'Cambios guardados.' }
-  } catch (error) {
+  } catch {
     return { status: 500, message: 'Ocurrio un error.' }
   }
 }
@@ -71,9 +109,7 @@ export async function updateTeamName(
   id: string | undefined
 ) {
   if (!id) return { status: 403, message: 'Este equipo no existe.' }
-  const ROLE = await currentRole()
-
-  if (ROLE === 'USER') {
+  if (await isCurrentRole('USER')) {
     return { status: 403, message: 'No tienes permisos.' }
   }
 
@@ -88,9 +124,8 @@ export async function updateTeamName(
   try {
     await db.team.update({ where: { id }, data: { name } })
 
-
     return { status: 201, message: 'Cambios guardados.' }
-  } catch (error) {
+  } catch {
     return { status: 500, message: 'Ocurrio un error.' }
   }
 }
@@ -99,9 +134,7 @@ export async function updateCharacterConstellation(
   constellation: number,
   id: string | undefined
 ) {
-  const ROLE = await currentRole()
-
-  if (ROLE === 'USER') {
+  if (await isCurrentRole('USER')) {
     return { status: 403, message: 'No tienes permisos.' }
   }
 
@@ -112,7 +145,7 @@ export async function updateCharacterConstellation(
     })
 
     return { status: 201, message: 'Cambios guardados.' }
-  } catch (error) {
+  } catch {
     return { status: 500, message: 'Ocurrio un error.' }
   }
 }

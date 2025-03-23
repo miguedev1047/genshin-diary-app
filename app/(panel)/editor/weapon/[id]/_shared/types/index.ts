@@ -5,5 +5,8 @@ export type PageProps = {
 }
 
 export type WeaponProps = Prisma.WeaponsGetPayload<{
-  include: { bests_characters: true; ascensions: true }
+  include: {
+    bests_characters: true
+    ascensions: { include: { materials: true } }
+  }
 }>

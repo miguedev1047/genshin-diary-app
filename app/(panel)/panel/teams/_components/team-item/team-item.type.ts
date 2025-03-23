@@ -1,4 +1,4 @@
-import { Prisma, Team } from '@prisma/client'
+import { Prisma } from '@prisma/client'
 
 export type TeamItemProps = Prisma.TeamGetPayload<{
   include: {

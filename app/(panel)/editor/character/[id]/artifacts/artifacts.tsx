@@ -4,11 +4,13 @@ import { ArtifactList } from '@/app/(panel)/editor/character/[id]/artifacts/_com
 
 export function Artifacts() {
   return (
-    <EditorCard
-      title='Mejores artefactos'
-      renderForm={<ArtifactForm />}
-    >
-      <ArtifactList />
-    </EditorCard>
+    <div className='col-span-1'>
+      <EditorCard
+        title='Mejores artefactos'
+        renderForm={<ArtifactForm />}
+      >
+        <ArtifactList />
+      </EditorCard>
+    </div>
   )
 }

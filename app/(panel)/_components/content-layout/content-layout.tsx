@@ -1,53 +1,44 @@
-'use client'
-
-import {
-  SidebarInset,
-  SidebarTrigger,
-  useSidebar,
-} from '@/components/ui/sidebar'
 import {
   Breadcrumb,
   BreadcrumbItem,
   BreadcrumbList,
   BreadcrumbPage,
-  BreadcrumbSeparator,
 } from '@/components/ui/breadcrumb'
+import { SidebarInset, SidebarTrigger } from '@/components/ui/sidebar'
 import { Separator } from '@/components/ui/separator'
 import { ContentLayoutProps } from '@/app/(panel)/_components/content-layout/content-layout.type'
 import { PAGE_NAME } from '@/consts/misc'
-import { cn } from '@/lib/utils'
+import { GridBackground } from '@/components/grid-background'
+import { ThemeToggle } from '@/components/ui/theme-toggle'
 
 export function ContentLayout(props: ContentLayoutProps) {
   const { title, children } = props
-  const { open, isMobile } = useSidebar()
-
   const CURRENT_YEAR = new Date().getFullYear()
 
   return (
-    <SidebarInset
-      className={cn(
-        'transition-[margin-left] ease-linear duration-200 bg-transparent',
-        open ? 'ml-[--sidebar-width]' : 'ml-[47px]',
-        isMobile && 'ml-0'
-      )}
-    >
-      <header className='flex flex-1 z-50 items-center sticky top-0 border-b py-5 px-5 bg-background/70 backdrop-blur-2xl'>
-        <SidebarTrigger />
-        <Separator
-          orientation='vertical'
-          className='mx-2 h-4'
-        />
-        <Breadcrumb>
-          <BreadcrumbList>
-            <BreadcrumbSeparator />
-            <BreadcrumbItem>
-              <BreadcrumbPage>{title}</BreadcrumbPage>
-            </BreadcrumbItem>
-          </BreadcrumbList>
-        </Breadcrumb>
+    <SidebarInset className='rounded-2xl overflow-hidden'>
+      <GridBackground />
+
+      <header className='flex flex-1 justify-between z-50 items-center sticky top-0 border-b py-4 px-5 bg-background/70 backdrop-blur-2xl'>
+        <nav className='flex items-center gap-2'>
+          <SidebarTrigger />
+          <Separator
+            orientation='vertical'
+            className='mx-2 h-4'
+          />
+          <Breadcrumb>
+            <BreadcrumbList>
+              <BreadcrumbItem>
+                <BreadcrumbPage>{title}</BreadcrumbPage>
+              </BreadcrumbItem>
+            </BreadcrumbList>
+          </Breadcrumb>
+        </nav>
+
+        <ThemeToggle/>
       </header>
 
-      <div className='min-h-[calc(100svh_-_8rem)] p-8 container mx-auto space-y-5'>
+      <div className='min-h-[calc(100dvh_-_8rem)] p-8 container max-w-[1240px] mx-auto space-y-5'>
         {children}
       </div>
 

@@ -1,9 +1,9 @@
 'use server'
 
 import { z } from 'zod'
-import { currentRole } from '@/data/auth'
-import { TeamsCharacterSchema } from '@/schemas'
 import { db } from '@/lib/db'
+import { isCurrentRole } from '@/data/auth'
+import { TeamsCharacterSchema } from '@/schemas'
 
 export async function createTeams(
   data: z.infer<typeof TeamsCharacterSchema>,
@@ -13,9 +13,7 @@ export async function createTeams(
     return { status: 403, message: 'Este personaje no existe.' }
   }
 
-  const ROLE = await currentRole()
-
-  if (ROLE === 'USER') {
+  if (await isCurrentRole('USER')) {
     return { status: 403, message: 'No tienes permisos.' }
   }
 
@@ -27,24 +25,22 @@ export async function createTeams(
 
   const { name, characters } = VALIDATE_FIELDS.data
 
+  const CHARACTERS = characters.map((character, index) => ({
+    character_id: character,
+    order: index + +1,
+  }))
+
   try {
-    const TEAMS = await db.teamsCharacter.create({
-      data: { name, character_id },
-    })
-
-    const CHARACTERS = characters.map((character, index) => ({
-      character_id: character,
-      team_id: TEAMS.id,
-      order: index++ + 1,
-      id: crypto.randomUUID()
-    }))
-
-    await db.teamsCharacters.createMany({
-      data: CHARACTERS,
+    await db.teamsCharacter.create({
+      data: {
+        name,
+        character_id,
+        characters: { createMany: { data: CHARACTERS } },
+      },
     })
 
     return { status: 201, message: 'Equipo creado.' }
-  } catch (error) {
+  } catch {
     return { status: 500, message: 'Ocurrio un error.' }
   }
 }

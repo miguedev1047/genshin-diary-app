@@ -5,7 +5,7 @@ import {
   TooltipTrigger,
 } from '@/components/ui/tooltip'
 import { TeamForm } from '@/app/(panel)/panel/teams/_components/team-form'
-import { SearchBar } from '@/components/search-bar'
+import { QuerySearch } from '@/components/query-search'
 import { Title } from '@/components/ui/title'
 import { HeaderProps } from '@/components/headers/_types'
 
@@ -13,7 +13,7 @@ export function TeamHeader(props: HeaderProps) {
   const { isCreator = false } = props
 
   return (
-    <div className='flex items-center justify-between gap-4 flex-wrap'>
+    <div className='flex flex-wrap items-center justify-between w-full gap-2'>
       <Title
         size='2xl'
         className='font-extrabold uppercase'
@@ -21,15 +21,14 @@ export function TeamHeader(props: HeaderProps) {
         Equipos
       </Title>
 
-      <div className='flex items-center gap-2'>
-        <SearchBar
-          queryParam='name'
-          placeholder='Buscar equipo'
-          className='w-[350px]'
-        />
+      <TooltipProvider>
+        <div className='flex items-center gap-2 max-md:hidden'>
+          <QuerySearch
+            queryParam='name'
+            placeholder='Buscar equipo'
+          />
 
-        {isCreator && (
-          <TooltipProvider>
+          {isCreator && (
             <Tooltip>
               <TooltipTrigger asChild>
                 <TeamForm />
@@ -38,9 +37,27 @@ export function TeamHeader(props: HeaderProps) {
                 <p>Crear equipo</p>
               </TooltipContent>
             </Tooltip>
-          </TooltipProvider>
-        )}
-      </div>
+          )}
+        </div>
+
+        <div className='flex items-center gap-2 md:hidden w-full'>
+          <QuerySearch
+            queryParam='name'
+            placeholder='Buscar equipo'
+          />
+
+          {isCreator && (
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <TeamForm />
+              </TooltipTrigger>
+              <TooltipContent side='bottom'>
+                <p>Crear equipo</p>
+              </TooltipContent>
+            </Tooltip>
+          )}
+        </div>
+      </TooltipProvider>
     </div>
   )
 }

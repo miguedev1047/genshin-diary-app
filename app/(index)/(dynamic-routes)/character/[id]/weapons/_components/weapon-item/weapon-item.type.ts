@@ -1,3 +1,6 @@
-import { ArtifactCharacter } from '@prisma/client'
+import { ArtifactCharacterSet } from '@prisma/client'
 
-export type ArtifactItemProps = ArtifactCharacter
+export type ArtifactItemProps = {
+  data: ArtifactCharacterSet
+  requiredPieces : string
+}

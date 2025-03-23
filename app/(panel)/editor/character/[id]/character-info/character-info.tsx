@@ -3,6 +3,7 @@
 import {
   getAttributesText,
   getElementIcon,
+  getElementText,
   getRarityStars,
   getRoleText,
   getWeaponText,
@@ -10,11 +11,11 @@ import {
 import { EditorCard } from '@/app/(panel)/_components/editor-card'
 import { Badge } from '@/components/ui/badge'
 import { Star } from 'lucide-react'
-import { DEFAULT_IMAGE, PARSE_OPTIONS } from '@/consts/misc'
-import { useGetCharacter } from '@/app/(panel)/editor/character/[id]/provider'
+import { DEFAULT_IMAGE } from '@/consts/misc'
+import { useGetCharacter } from '@/features/providers/character-provider'
 import { CharacterInfoForm } from '@/app/(panel)/editor/character/[id]/character-info/_components/character-info-form'
 import { SquareBox } from '@/components/square-box'
-import parse from 'html-react-parser'
+import { TiptapPreview } from '@/components/tiptap'
 import Image from 'next/image'
 
 export function CharacterInfo() {
@@ -24,15 +25,17 @@ export function CharacterInfo() {
   const ATTRIBUTE = getAttributesText(CHARACTER?.attribute)
   const ROLE = getRoleText(CHARACTER?.role)
   const WEAPON = getWeaponText(CHARACTER?.weapon)
-  const ELEMENT = getElementIcon(CHARACTER?.element)
+  const ELEMENT_ICON = getElementIcon(CHARACTER?.element)
+  const ELEMENT_TEXT = getElementText(CHARACTER?.element)
 
   return (
-    <EditorCard
-      title='Informacion del personaje'
-      renderForm={<CharacterInfoForm />}
-    >
-      <div className='grid grid-cols-5 gap-4'>
-        <div className='col-span-1'>
+    <div className='col-span-2'>
+      <EditorCard
+        title='Informacion del personaje'
+        className='grid grid-cols-5 gap-4'
+        renderForm={<CharacterInfoForm />}
+      >
+        <div className='col-span-1 flex items-center flex-col gap-4'>
           <SquareBox
             size='full'
             className='aspect-square bg-secondary'
@@ -46,51 +49,45 @@ export function CharacterInfo() {
               className='object-cover size-full'
             />
           </SquareBox>
+          <ul className='flex items-center gap-1'>
+            {STARS.map((_, index) => (
+              <li key={index}>
+                <Star className='text-amber-500' />
+              </li>
+            ))}
+          </ul>
         </div>
 
         <div className='col-span-4 space-y-5'>
-          <div className='space-y-2'>
+          <div className='flex items-center justify-between gap-4'>
             <h2 className='text-6xl font-bold uppercase leading-none'>
               {CHARACTER?.name}
             </h2>
 
-            <Badge
-              variant='secondary'
-              className='rounded-lg p-3 flex justify-between items-center gap-2'
-            >
-              <ul className='flex items-center gap-1'>
-                {STARS.map((_, index) => (
-                  <li key={index}>
-                    <Star className='text-amber-500' />
-                  </li>
-                ))}
-              </ul>
-
-              <div className='size-12'>
-                <Image
-                  src={ELEMENT?.src ?? DEFAULT_IMAGE}
-                  alt={ELEMENT?.label ?? 'Elemento'}
-                  width={128}
-                  height={128}
-                  className='object-cover size-full'
-                />
-              </div>
-            </Badge>
+            <div className='size-12'>
+              <Image
+                src={ELEMENT_ICON ?? DEFAULT_IMAGE}
+                alt={ELEMENT_TEXT ?? ''}
+                width={128}
+                height={128}
+                className='object-cover size-full'
+              />
+            </div>
           </div>
 
-          <div className='space-y-2'>
-            <ul className='flex items-center gap-2 mb-4'>
+          <div className='space-y-4'>
+            {CHARACTER?.description && (
+              <TiptapPreview content={CHARACTER.description} />
+            )}
+
+            <div className='space-x-2'>
               <Badge>{ROLE}</Badge>
               <Badge>{ATTRIBUTE}</Badge>
               <Badge>{WEAPON}</Badge>
-            </ul>
-
-            <div className='tiptap text-sm md:text-base opacity-70'>
-              {parse(CHARACTER?.description ?? '', PARSE_OPTIONS)}
             </div>
           </div>
         </div>
-      </div>
-    </EditorCard>
+      </EditorCard>
+    </div>
   )
 }

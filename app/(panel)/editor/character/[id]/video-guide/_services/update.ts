@@ -1,17 +1,15 @@
 'use server'
 
 import { z } from 'zod'
-import { currentRole } from '@/data/auth'
-import { VideoGuideSchema } from '@/schemas'
 import { db } from '@/lib/db'
+import { isCurrentRole } from '@/data/auth'
+import { VideoGuideSchema } from '@/schemas'
 
 export async function updateVideoGuide(
   data: z.infer<typeof VideoGuideSchema>,
   id: string | undefined
 ) {
-  const ROLE = await currentRole()
-
-  if (ROLE === 'USER') {
+  if (await isCurrentRole('USER')) {
     return { status: 403, message: 'No tienes permisos.' }
   }
 
@@ -35,7 +33,7 @@ export async function updateVideoGuide(
     })
 
     return { status: 201, message: 'Cambios guardados.' }
-  } catch (error) {
+  } catch {
     return { status: 500, message: 'Ocurrió un error.' }
   }
 }

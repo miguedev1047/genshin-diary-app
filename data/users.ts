@@ -10,7 +10,7 @@ export const getUserByEmail = async (email: string) => {
       },
     })
     return user
-  } catch (error) {
+  } catch {
     return null
   }
 }
@@ -24,7 +24,7 @@ export const getUserById = async (id: string) => {
     })
 
     return user
-  } catch (error) {
+  } catch {
     return null
   }
 }
@@ -34,7 +34,7 @@ export const getUsers = async () => {
     const user = await db.user.findMany()
 
     return user
-  } catch (error) {
+  } catch {
     return null
   }
 }

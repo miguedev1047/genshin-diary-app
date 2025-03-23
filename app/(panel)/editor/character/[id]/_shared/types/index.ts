@@ -8,9 +8,9 @@ export type CharacterProps = Prisma.CharactersGetPayload<{
   include: {
     artifacts: true
     ascensions: true
+    double_artifact_character: { include: { double_artifact: true } }
     teams: true
     images: true
-    materials: true
     stats_priority: true
     talents_ascension: true
     video_guide: true

@@ -1,4 +1,3 @@
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { ViewCard } from '@/app/(index)/_components/view-card'
 import { TeamsProps } from '@/app/(index)/(dynamic-routes)/character/[id]/teams/teams.types'
 import { TeamItem } from '@/app/(index)/(dynamic-routes)/character/[id]/teams/_components/team-item'
@@ -7,8 +6,6 @@ import { Title } from '@/components/ui/title'
 export function Teams(props: TeamsProps) {
   const { data } = props
   const TEAMS = data.teams ?? []
-
-  const [DEFAULT_TEAM] = TEAMS
 
   if (!TEAMS?.length) {
     return (
@@ -24,7 +21,7 @@ export function Teams(props: TeamsProps) {
 
   const MAPPED_CONTENT = TEAMS.map((team) => (
     <li key={team.id}>
-      <TeamItem {...team} />
+       <TeamItem {...team} />
     </li>
   ))
 

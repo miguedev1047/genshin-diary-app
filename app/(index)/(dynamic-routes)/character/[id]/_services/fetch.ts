@@ -1,16 +1,18 @@
 import { db } from '@/lib/db'
 
-export async function getCharacters(character_id: string) {
+export async function getCharacterById(character_id: string) {
   try {
     const CHARACTERS = await db.characters.findUnique({
       where: { id: character_id },
       include: {
-        artifacts: { orderBy: { order: 'asc' } },
+        artifacts: {
+          orderBy: { order: 'asc' },
+          include: { artifact_set: { orderBy: { order: 'asc' } } },
+        },
         ascensions: { orderBy: { level: 'asc' }, include: { materials: true } },
-        images: true,
-        materials: true,
         stats_priority: true,
         video_guide: true,
+        images: true,
         weapons: { orderBy: { order: 'asc' } },
         teams: {
           orderBy: { order: 'asc' },
@@ -27,7 +29,45 @@ export async function getCharacters(character_id: string) {
     })
 
     return CHARACTERS
-  } catch (error) {
+  } catch {
+    return null
+  }
+}
+
+export async function getCharacters() {
+  try {
+    const CHARACTERS = await db.characters.findMany({
+      include: { images: true },
+    })
+    return CHARACTERS
+  } catch {
+    return null
+  }
+}
+
+export async function getWeapons() {
+  try {
+    const WEAPONS = await db.weapons.findMany()
+    return WEAPONS
+  } catch {
+    return null
+  }
+}
+
+export async function getArtifacts() {
+  try {
+    const ARTIFACTS = await db.artifacts.findMany()
+    return ARTIFACTS
+  } catch {
+    return null
+  }
+}
+
+export async function getMaterials() {
+  try {
+    const MATERIALS = await db.materials.findMany()
+    return MATERIALS
+  } catch {
     return null
   }
 }

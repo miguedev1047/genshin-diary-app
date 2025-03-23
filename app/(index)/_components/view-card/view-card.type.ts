@@ -3,4 +3,5 @@ export type ViewCardProps = {
   description?: string
   children: React.ReactNode
   className?: string
+  helper?: boolean
 }

@@ -4,10 +4,14 @@ import {
   Tooltip,
   TooltipContent,
 } from '@/components/ui/tooltip'
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from '@/components/ui/accordion'
 import { ITEM_FILTERS } from '@/consts/general'
-import { Card } from '@/components/ui/card'
-import { Separator } from '@/components/ui/separator'
-import { SearchBar } from '@/components/search-bar'
+import { QuerySearch } from '@/components/query-search'
 import { QueryToggle } from '@/components/query-toggle'
 import { Title } from '@/components/ui/title'
 import { Button } from '@/components/ui/button'
@@ -21,7 +25,7 @@ export function CharacterHeader(props: HeaderProps) {
 
   return (
     <>
-      <div className='flex items-center justify-between gap-4 flex-wrap'>
+      <div className='flex flex-wrap items-center justify-between w-full gap-2'>
         <Title
           size='2xl'
           className='font-extrabold uppercase'
@@ -29,15 +33,14 @@ export function CharacterHeader(props: HeaderProps) {
           Personajes
         </Title>
 
-        <div className='flex items-center gap-2'>
-          <SearchBar
-            queryParam='name'
-            placeholder='Buscar personaje'
-            className='w-[350px]'
-          />
+        <TooltipProvider>
+          <div className='flex items-center gap-2 max-md:hidden'>
+            <QuerySearch
+              queryParam='name'
+              placeholder='Buscar personaje'
+            />
 
-          {isCreator && (
-            <TooltipProvider>
+            {isCreator && (
               <Tooltip>
                 <TooltipTrigger>
                   <Button
@@ -53,73 +56,128 @@ export function CharacterHeader(props: HeaderProps) {
                   <p>Crear personaje</p>
                 </TooltipContent>
               </Tooltip>
-            </TooltipProvider>
-          )}
-        </div>
+            )}
+          </div>
+
+          <div className='flex items-center gap-2 md:hidden w-full'>
+            <QuerySearch
+              queryParam='name'
+              placeholder='Buscar personaje'
+            />
+            
+            {isCreator && (
+              <Tooltip>
+                <TooltipTrigger>
+                  <Button
+                    size='icon'
+                    asChild
+                  >
+                    <Link href='/creator/character'>
+                      <Plus />
+                    </Link>
+                  </Button>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>Crear personaje</p>
+                </TooltipContent>
+              </Tooltip>
+            )}
+          </div>
+        </TooltipProvider>
       </div>
 
-      <Card className='p-4 flex flex-wrap max-xl:flex-col justify-center items-center gap-6'>
-        <ul className='flex space-x-2'>
-          {ITEM_FILTERS.star_filters.slice(0, 2).map((filter) => (
-            <QueryToggle
-              key={filter.value}
-              queryKey='stars'
-              queryValue={filter.value.at(-1)!}
-            >
-              <Image
-                src={filter.src}
-                alt={filter.label}
-                width={128}
-                height={128}
-              />
-            </QueryToggle>
-          ))}
-        </ul>
+      <Accordion
+        type='single'
+        collapsible
+        className='w-full space-y-2'
+      >
+        <AccordionItem
+          value='1'
+          className='bg-background has-focus-visible:border-ring has-focus-visible:ring-ring/50 rounded-md border px-4 py-1 outline-none last:border-b has-focus-visible:ring-[3px]'
+        >
+          <AccordionTrigger className='py-2 font-bold leading-6 hover:no-underline focus-visible:ring-0'>
+            Ver filtros
+          </AccordionTrigger>
+          <AccordionContent>
+            <div className='mt-4 flex flex-col space-y-3'>
+              <div className='space-y-3'>
+                <Title
+                  size='sm'
+                  className='font-bold'
+                >
+                  Filtro de rareza
+                </Title>
+                <ul className='flex flex-wrap gap-2'>
+                  {ITEM_FILTERS.star_filters.slice(0, 2).map((filter) => (
+                    <QueryToggle
+                      key={filter.value}
+                      queryKey='stars'
+                      queryValue={filter.value.at(-1)!}
+                    >
+                      <Image
+                        src={filter.src}
+                        alt={filter.label}
+                        width={128}
+                        height={128}
+                      />
+                    </QueryToggle>
+                  ))}
+                </ul>
+              </div>
 
-        <Separator
-          className='h-8 max-xl:hidden'
-          orientation='vertical'
-        />
+              <div className='space-y-3'>
+                <Title
+                  size='sm'
+                  className='font-bold'
+                >
+                  Filtro de arma
+                </Title>
+                <ul className='flex flex-wrap gap-2'>
+                  {ITEM_FILTERS.weapon_filters.map((filter) => (
+                    <QueryToggle
+                      key={filter.value}
+                      queryKey='weapon'
+                      queryValue={filter.value}
+                    >
+                      <Image
+                        src={filter.src}
+                        alt={filter.label}
+                        width={128}
+                        height={128}
+                      />
+                    </QueryToggle>
+                  ))}
+                </ul>
+              </div>
 
-        <ul className='flex space-x-3'>
-          {ITEM_FILTERS.element_filters.map((filter) => (
-            <QueryToggle
-              key={filter.value}
-              queryKey='element'
-              queryValue={filter.value}
-            >
-              <Image
-                src={filter.src}
-                alt={filter.label}
-                width={128}
-                height={128}
-              />
-            </QueryToggle>
-          ))}
-        </ul>
-
-        <Separator
-          className='h-8 max-xl:hidden'
-          orientation='vertical'
-        />
-
-        <ul className='flex space-x-3'>
-          {ITEM_FILTERS.weapon_filters.map((filter) => (
-            <QueryToggle
-              key={filter.value}
-              queryKey='weapon'
-              queryValue={filter.value}
-            >
-              <Image
-                src={filter.src}
-                alt={filter.label}
-                width={128}
-                height={128}
-              />
-            </QueryToggle>
-          ))}
-        </ul>
-      </Card>
+              <div className='space-y-3'>
+                <Title
+                  size='sm'
+                  className='font-bold'
+                >
+                  Filtro de elemento
+                </Title>
+                <ul className='flex flex-wrap gap-2'>
+                  {ITEM_FILTERS.element_filters.map((filter) => (
+                    <QueryToggle
+                      key={filter.value}
+                      queryKey='element'
+                      queryValue={filter.value}
+                    >
+                      <Image
+                        src={filter.src}
+                        alt={filter.label}
+                        width={128}
+                        height={128}
+                      />
+                    </QueryToggle>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </AccordionContent>
+        </AccordionItem>
+      </Accordion>
     </>
   )
 }

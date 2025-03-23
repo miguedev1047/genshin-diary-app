@@ -1,17 +1,15 @@
 'use server'
 
 import { z } from 'zod'
-import { currentRole } from '@/data/auth'
-import { WeaponSchema } from '@/schemas'
 import { db } from '@/lib/db'
+import { isCurrentRole } from '@/data/auth'
+import { WeaponSchema } from '@/schemas'
 
 export async function updateWeapon(
   data: z.infer<typeof WeaponSchema>,
   weapon_id: string | undefined
 ) {
-  const ROLE = await currentRole()
-
-  if (ROLE === 'USER') {
+  if (await isCurrentRole('USER')) {
     return { status: 403, message: 'No tienes permisos.' }
   }
 
@@ -32,9 +30,9 @@ export async function updateWeapon(
     passive_description,
     type,
     rarity,
+    is_new,
+    is_public,
   } = data
-
-  console.log(data)
 
   try {
     await db.weapons.update({
@@ -52,11 +50,13 @@ export async function updateWeapon(
         secondary_stat,
         type,
         rarity,
+        is_new,
+        is_public,
       },
     })
 
     return { status: 201, message: 'Cambios guardados.' }
-  } catch (error) {
+  } catch {
     return { status: 500, message: 'Ocurrió un error.' }
   }
 }

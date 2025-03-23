@@ -5,8 +5,12 @@ import { Toaster } from '@/components/ui/sonner'
 import { cn } from '@/lib/utils'
 import { PAGE_NAME, REACT_SCAN } from '@/consts/misc'
 import { DEV_MODE } from '@/consts/misc'
+import { AuthWrapper } from '@/features/providers/auth-provider/auth.wrapper'
+import { DataWrapper } from '@/features/providers/data-provider/data.wrapper'
 import NextTopLoader from 'nextjs-toploader'
+
 import '@/styles/styles.css'
+import { ScrollToTopButton } from '@/components/scroll-to-top-button/scroll-to-top-button'
 
 const onest = Onest({ subsets: ['latin'] })
 
@@ -36,14 +40,19 @@ export default function RootLayout({
           onest.className
         )}
       >
-        <Providers>
-          <NextTopLoader
-            color='#FABC3F'
-            showSpinner={false}
-          />
-          <Toaster />
-          {children}
-        </Providers>
+        <AuthWrapper>
+          <DataWrapper>
+            <Providers>
+              <NextTopLoader
+                color='#FABC3F'
+                showSpinner={false}
+              />
+              <Toaster />
+              {children}
+              <ScrollToTopButton />
+            </Providers>
+          </DataWrapper>
+        </AuthWrapper>
       </body>
     </html>
   )

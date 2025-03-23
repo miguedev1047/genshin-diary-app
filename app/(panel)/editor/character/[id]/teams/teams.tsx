@@ -4,11 +4,13 @@ import { TeamForm } from '@/app/(panel)/editor/character/[id]/teams/_components/
 
 export function Teams() {
   return (
-    <EditorCard
-      title='Mejores equipos'
-      renderForm={<TeamForm />}
-    >
-      <TeamSortableList />
-    </EditorCard>
+    <div className='col-span-2'>
+      <EditorCard
+        title='Mejores equipos'
+        renderForm={<TeamForm />}
+      >
+        <TeamSortableList />
+      </EditorCard>
+    </div>
   )
 }

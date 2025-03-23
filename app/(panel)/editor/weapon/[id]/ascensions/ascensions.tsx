@@ -1,10 +1,10 @@
 'use client'
 
-import { useGetWeapon } from '@/app/(panel)/editor/weapon/[id]/provider'
+import { useGetWeapon } from '@/features/providers/weapon-provider'
 import { EditorCard } from '@/app/(panel)/_components/editor-card'
-import { columns } from '@/app/(panel)/editor/weapon/[id]/ascensions/_components/weapon-ascension-table/ascension-table-columns'
-import { WeaponAscensionTable } from '@/app/(panel)/editor/weapon/[id]/ascensions/_components/weapon-ascension-table'
+import { ascensionWeaponColumns } from '@/app/(panel)/editor/weapon/[id]/ascensions/_components/weapon-ascension-table/ascension-table.columns'
 import { WeaponAscensionsProps } from '@/app/(panel)/editor/weapon/[id]/ascensions/ascensions.type'
+import { DataTable } from '@/components/data-table'
 import { WeaponAscensionForm } from '@/app/(panel)/editor/weapon/[id]/ascensions/_components/weapon-ascension-form'
 
 export function Ascensions() {
@@ -16,9 +16,9 @@ export function Ascensions() {
       title='Materiales de ascensión'
       renderForm={<WeaponAscensionForm />}
     >
-      <WeaponAscensionTable
+      <DataTable
         data={ASCENSIONS}
-        columns={columns}
+        columns={ascensionWeaponColumns}
       />
     </EditorCard>
   )

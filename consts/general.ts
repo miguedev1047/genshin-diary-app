@@ -10,6 +10,14 @@ import {
 import { Star1, Star2, Star3, Star4, Star5 } from '@/assets/stars'
 import { Sword, Bow, Catalyst, Claymore, Polearm } from '@/assets/weapon-types'
 
+export const ROLE = [
+  { value: 'DPS', label: 'Main DPS' },
+  { value: 'SUBDPS', label: 'Sub DPS' },
+  { value: 'ENABLER', label: 'Habilitador' },
+  { value: 'SUPPORT', label: 'Soporte' },
+  { value: 'NOT_DETERMINED', label: 'Sin determinar' },
+]
+
 export const ELEMENTS = [
   {
     label: 'Anemo',
@@ -209,14 +217,9 @@ export const ARTIFACTS_STATS = {
     { value: 'HEAL_BONUS', label: 'Bono de Curación' },
     { value: 'DMG_CRIT', label: 'Daño Crit.' },
     { value: 'CRIT_RATE', label: 'Prob. Crit.' },
+    { value: 'CRIT_RATE/DMG_CRIT', label: 'Prob. Crit. / Daño Crit.' },
   ],
 }
-
-export const ROLE = [
-  { value: 'DPS', label: 'Main DPS' },
-  { value: 'SUBDPS', label: 'Sub DPS' },
-  { value: 'SUPPORT', label: 'Soporte' },
-]
 
 export const ACCOUNT_ROLE = [
   { value: 'OWNER', label: 'Owner' },
@@ -237,33 +240,249 @@ export const ASCENSION_LEVEL = [
 ]
 
 export const ASCENSION_CHARACTER = [
-  { ascension: 'ASCENSION_1', cost: 20000, level: '20-40', order: 1 },
-  { ascension: 'ASCENSION_2', cost: 40000, level: '40-50', order: 2 },
-  { ascension: 'ASCENSION_3', cost: 60000, level: '50-60', order: 3 },
-  { ascension: 'ASCENSION_4', cost: 80000, level: '60-70', order: 4 },
-  { ascension: 'ASCENSION_5', cost: 100000, level: '70-80', order: 5 },
-  { ascension: 'ASCENSION_6', cost: 120000, level: '80-90', order: 6 },
+  {
+    ascension: 'ASCENSION_1',
+    cost: 20000,
+    level: '20-40',
+    order: 1,
+    materialQuatities: [1, 3, 3],
+  },
+  {
+    ascension: 'ASCENSION_2',
+    cost: 40000,
+    level: '40-50',
+    order: 2,
+    materialQuatities: [3, 2, 10, 15],
+  },
+  {
+    ascension: 'ASCENSION_3',
+    cost: 60000,
+    level: '50-60',
+    order: 3,
+    materialQuatities: [6, 4, 20, 12],
+  },
+  {
+    ascension: 'ASCENSION_4',
+    cost: 80000,
+    level: '60-70',
+    order: 4,
+    materialQuatities: [3, 8, 30, 18],
+  },
+  {
+    ascension: 'ASCENSION_5',
+    cost: 100000,
+    level: '70-80',
+    order: 5,
+    materialQuatities: [6, 12, 45, 12],
+  },
+  {
+    ascension: 'ASCENSION_6',
+    cost: 120000,
+    level: '80-90',
+    order: 6,
+    materialQuatities: [6, 20, 60, 24],
+  },
 ]
 
 export const ASCENSION_TALENT = [
-  { ascension: 'ASCENSION_1', cost: 12500, level: '1-2', order: 1 },
-  { ascension: 'ASCENSION_2', cost: 17500, level: '2-3', order: 2 },
-  { ascension: 'ASCENSION_3', cost: 25000, level: '3-4', order: 3 },
-  { ascension: 'ASCENSION_4', cost: 30000, level: '4-5', order: 4 },
-  { ascension: 'ASCENSION_5', cost: 37500, level: '5-6', order: 5 },
-  { ascension: 'ASCENSION_6', cost: 120000, level: '6-7', order: 6 },
-  { ascension: 'ASCENSION_7', cost: 260000, level: '7-8', order: 7 },
-  { ascension: 'ASCENSION_8', cost: 450000, level: '8-9', order: 8 },
-  { ascension: 'ASCENSION_9', cost: 700000, level: '9-10', order: 9 },
+  {
+    ascension: 'ASCENSION_1',
+    cost: 12500,
+    level: '1-2',
+    order: 1,
+    materialQuatities: [3, 6],
+  },
+  {
+    ascension: 'ASCENSION_2',
+    cost: 17500,
+    level: '2-3',
+    order: 2,
+    materialQuatities: [2, 3],
+  },
+  {
+    ascension: 'ASCENSION_3',
+    cost: 25000,
+    level: '3-4',
+    order: 3,
+    materialQuatities: [4, 4],
+  },
+  {
+    ascension: 'ASCENSION_4',
+    cost: 30000,
+    level: '4-5',
+    order: 4,
+    materialQuatities: [6, 6],
+  },
+  {
+    ascension: 'ASCENSION_5',
+    cost: 37500,
+    level: '5-6',
+    order: 5,
+    materialQuatities: [9, 9],
+  },
+  {
+    ascension: 'ASCENSION_6',
+    cost: 120000,
+    level: '6-7',
+    order: 6,
+    materialQuatities: [4, 4, 1],
+  },
+  {
+    ascension: 'ASCENSION_7',
+    cost: 260000,
+    level: '7-8',
+    order: 7,
+    materialQuatities: [6, 6, 1],
+  },
+  {
+    ascension: 'ASCENSION_8',
+    cost: 450000,
+    level: '8-9',
+    order: 8,
+    materialQuatities: [12, 9, 2],
+  },
+  {
+    ascension: 'ASCENSION_9',
+    cost: 700000,
+    level: '9-10',
+    order: 9,
+    materialQuatities: [16, 12, 2, 1],
+  },
 ]
 
-export const ASCENSION_WEAPON = [
-  { ascension_level: 'ASCENSION_1', cost: 20000, level: '20-40', order: 1 },
-  { ascension_level: 'ASCENSION_2', cost: 40000, level: '40-50', order: 2 },
-  { ascension_level: 'ASCENSION_3', cost: 60000, level: '50-60', order: 3 },
-  { ascension_level: 'ASCENSION_4', cost: 80000, level: '60-70', order: 4 },
-  { ascension_level: 'ASCENSION_5', cost: 100000, level: '70-80', order: 5 },
-  { ascension_level: 'ASCENSION_6', cost: 120000, level: '80-90', order: 6 },
+export const ASCENSION_WEAPON_FIVE_STARS = [
+  {
+    ascension_level: 'ASCENSION_1',
+    cost: 10000,
+    level: '20-40',
+    order: 1,
+    materialQuantities: [5, 5, 3],
+  },
+  {
+    ascension_level: 'ASCENSION_2',
+    cost: 20000,
+    level: '40-50',
+    order: 2,
+    materialQuantities: [5, 18, 12],
+  },
+  {
+    ascension_level: 'ASCENSION_3',
+    cost: 30000,
+    level: '50-60',
+    order: 3,
+    materialQuantities: [9, 9, 9],
+  },
+  {
+    ascension_level: 'ASCENSION_4',
+    cost: 45000,
+    level: '60-70',
+    order: 4,
+    materialQuantities: [5, 18, 14],
+  },
+  {
+    ascension_level: 'ASCENSION_5',
+    cost: 55000,
+    level: '70-80',
+    order: 5,
+    materialQuantities: [9, 14, 9],
+  },
+  {
+    ascension_level: 'ASCENSION_6',
+    cost: 65000,
+    level: '80-90',
+    order: 6,
+    materialQuantities: [6, 27, 18],
+  },
+]
+
+export const ASCENSION_WEAPON_FOUR_STARS = [
+  {
+    ascension_level: 'ASCENSION_1',
+    cost: 5000,
+    level: '20-40',
+    order: 1,
+    materialQuantities: [3, 3, 2],
+  },
+  {
+    ascension_level: 'ASCENSION_2',
+    cost: 15000,
+    level: '40-50',
+    order: 2,
+    materialQuantities: [3, 12, 8],
+  },
+  {
+    ascension_level: 'ASCENSION_3',
+    cost: 20000,
+    level: '50-60',
+    order: 3,
+    materialQuantities: [6, 6, 6],
+  },
+  {
+    ascension_level: 'ASCENSION_4',
+    cost: 30000,
+    level: '60-70',
+    order: 4,
+    materialQuantities: [3, 12, 9],
+  },
+  {
+    ascension_level: 'ASCENSION_5',
+    cost: 35000,
+    level: '70-80',
+    order: 5,
+    materialQuantities: [6, 9, 6],
+  },
+  {
+    ascension_level: 'ASCENSION_6',
+    cost: 45000,
+    level: '80-90',
+    order: 6,
+    materialQuantities: [4, 18, 12],
+  },
+]
+
+export const ASCENSION_WEAPON_THREE_STARS = [
+  {
+    ascension_level: 'ASCENSION_1',
+    cost: 5000,
+    level: '20-40',
+    order: 1,
+    materialQuantities: [2, 2, 1],
+  },
+  {
+    ascension_level: 'ASCENSION_2',
+    cost: 10000,
+    level: '40-50',
+    order: 2,
+    materialQuantities: [2, 8, 3],
+  },
+  {
+    ascension_level: 'ASCENSION_3',
+    cost: 15000,
+    level: '50-60',
+    order: 3,
+    materialQuantities: [4, 4, 4],
+  },
+  {
+    ascension_level: 'ASCENSION_4',
+    cost: 20000,
+    level: '60-70',
+    order: 4,
+    materialQuantities: [2, 8, 6],
+  },
+  {
+    ascension_level: 'ASCENSION_5',
+    cost: 25000,
+    level: '70-80',
+    order: 5,
+    materialQuantities: [4, 6, 4],
+  },
+  {
+    ascension_level: 'ASCENSION_6',
+    cost: 30000,
+    level: '80-90',
+    order: 6,
+    materialQuantities: [34, 12, 8],
+  },
 ]
 
 export const MATERIAL_TYPES = [
@@ -298,14 +517,14 @@ export const MATERIAL_TYPES = [
     name: 'material_talent',
   },
   {
-    value: 'MATERIAL_UPGRADE_WEAPON',
-    label: 'Mejora de arma',
-    name: 'material_upgrade_weapon',
+    value: 'WEAPON_MATERIAL',
+    label: 'Material de arma',
+    name: 'weapon_material',
   },
   {
-    value: 'MATERIAL_UPGRADE_CHARACTER',
-    label: 'Mejora de personaje',
-    name: 'material_upgrade_character',
+    value: 'UPGRADE_MATERIAL',
+    label: 'Material de mejora',
+    name: 'upgrade_material',
   },
 ]
 

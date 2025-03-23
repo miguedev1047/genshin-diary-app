@@ -6,11 +6,13 @@ import { WeaponList } from '@/app/(panel)/editor/character/[id]/weapons/_compone
 
 export function Weapons() {
   return (
-    <EditorCard
-      title='Mejores armas'
-      renderForm={<WeaponForm />}
-    >
-      <WeaponList />
-    </EditorCard>
+    <div className='col-span-1'>
+      <EditorCard
+        title='Mejores armas'
+        renderForm={<WeaponForm />}
+      >
+        <WeaponList />
+      </EditorCard>
+    </div>
   )
 }
