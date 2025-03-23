@@ -21,9 +21,11 @@ export function ViewCard(props: ViewCardProps) {
 
   return (
     <Card className='relative overflow-clip'>
-      <CardHeader>
+      <CardHeader className='max-md:p-4'>
         <div className='flex items-center justify-between gap-3'>
-          <CardTitle className='h-10 flex items-center'>{title}</CardTitle>
+          <CardTitle className='h-8 md:h-10 flex items-center text-[17.5px] md:text-lg uppercase'>
+            {title}
+          </CardTitle>
           {helper && (
             <Popover>
               <PopoverTrigger asChild>
@@ -46,7 +48,9 @@ export function ViewCard(props: ViewCardProps) {
         {description && <CardDescription>{description}</CardDescription>}
       </CardHeader>
       <Separator />
-      <CardContent className={cn('p-6', className)}>{children}</CardContent>
+      <CardContent className={cn('p-4 md:p-6', className)}>
+        {children}
+      </CardContent>
     </Card>
   )
 }

@@ -9,7 +9,7 @@ export function Skills(props: SkillsProps) {
   const TALENTS = SKILLS.talents ?? []
   const PASSIVES = SKILLS.passives ?? []
   const CONSTELLATIONS = SKILLS.constellations ?? []
-  
+
   return (
     <div className='col-span-2'>
       <ViewCard title='Habilidades'>

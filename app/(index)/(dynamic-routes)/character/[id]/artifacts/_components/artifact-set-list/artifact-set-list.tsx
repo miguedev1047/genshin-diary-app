@@ -22,13 +22,13 @@ export function ArtifactSetList(props: ArtifactSetItemProps) {
 
   if (HAS_MULTIPLE_SETS) {
     return (
-      <Card className='p-5 flex items-center'>
+      <Card className='p-3 md:p-5 flex flex-col space-y-4'>
         {HAS_MORE_THAN_TWO_SETS && <Badge>Elige 2</Badge>}
         <ul
           className={cn(
             'w-full grid gap-4',
             HAS_MULTIPLE_SETS && 'grid-cols-2',
-            HAS_MORE_THAN_TWO_SETS && 'w-[calc(100%_-_80px)] ml-4 grid-cols-1'
+            HAS_MORE_THAN_TWO_SETS && 'w-full grid-cols-1'
           )}
         >
           {MAPPED_SETS}

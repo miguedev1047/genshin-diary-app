@@ -40,11 +40,11 @@ export function WeaponItem(props: WeaponItemProps) {
       <HoverCardTrigger asChild>
         <Card
           className={cn(
-            'flex items-center gap-4 p-4 border transition duration-200 ease-in-out',
+            'flex items-center gap-2 md:gap-4 p-2 md:p-4 border transition duration-200 ease-in-out',
             RARITY_COLOR_BORDER_HOVER
           )}
         >
-          <SquareBox>
+          <SquareBox className='w-12 h-12 md:w-20 md:h-20'>
             <Image
               src={WEAPON.image_url ?? DEFAULT_IMAGE}
               alt={WEAPON.name}
@@ -54,8 +54,8 @@ export function WeaponItem(props: WeaponItemProps) {
             />
           </SquareBox>
           <article>
-            <Title>{WEAPON.name}</Title>
-            <Title size='sm'>
+            <Title className='text-sm md:text-base'>{WEAPON.name}</Title>
+            <Title className='text-xs md:text-sm'>
               <span className='opacity-70'>{SECONDARY_STAT}</span>
             </Title>
           </article>

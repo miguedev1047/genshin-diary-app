@@ -58,7 +58,7 @@ export default async function CharacterPage(props: PageProps) {
 
   return (
     <BlurFade delay={0.2}>
-      <section className='space-y-16 gap-x-4 grid grid-cols-2 relative'>
+      <section className='space-y-8 md:space-y-16 gap-2 md:gap-x-4 grid grid-cols-2 relative'>
         <ScrollToTop />
         <CharacterInfo data={CHARACTER} />
         <Ascensions data={CHARACTER} />

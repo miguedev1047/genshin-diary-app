@@ -13,7 +13,7 @@ export function SkillItem(props: SkillItemProps) {
 
   return (
     <Card>
-      <CardHeader>
+      <CardHeader className='max-md:p-3'>
         <div className='flex items-center gap-4'>
           <div className='flex items-center gap-2'>
             <SquareBox className='bg-accent-foreground dark:bg-accent p-3'>
@@ -28,13 +28,13 @@ export function SkillItem(props: SkillItemProps) {
           </div>
 
           <div className='w-full space-y-2'>
-            <CardTitle>{title}</CardTitle>
+            <CardTitle className='text-base md:text-lg'>{title}</CardTitle>
             <Badge>{SKILL_TYPE}</Badge>
           </div>
         </div>
       </CardHeader>
       <Separator />
-      <CardContent className='p-6'>
+      <CardContent className='p-3 md:p-6'>
         <TiptapPreview content={description} />
       </CardContent>
     </Card>

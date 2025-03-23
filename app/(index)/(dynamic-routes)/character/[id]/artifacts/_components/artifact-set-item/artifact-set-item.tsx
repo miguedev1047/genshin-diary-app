@@ -38,11 +38,11 @@ export function ArtifactSetItem(props: ArtifactItemProps) {
       <HoverCardTrigger asChild>
         <Card
           className={cn(
-            'flex items-center gap-4 p-4 border transition duration-200 ease-in-out',
+            'flex items-center gap-2 md:gap-4 p-2 md:p-4 border transition duration-200 ease-in-out',
             RARITY_COLOR_BORDER_HOVER
           )}
         >
-          <SquareBox>
+          <SquareBox className='w-12 h-12 md:w-20 md:h-20'>
             <Image
               src={ARTIFACT.image_url ?? DEFAULT_IMAGE}
               alt={ARTIFACT.name}
@@ -51,7 +51,7 @@ export function ArtifactSetItem(props: ArtifactItemProps) {
               className='object-contain size-full'
             />
           </SquareBox>
-          <Title>{ARTIFACT.name}</Title>
+          <Title className='text-sm md:text-base'>{ARTIFACT.name}</Title>
           <Badge>{requiredPieces}</Badge>
         </Card>
       </HoverCardTrigger>

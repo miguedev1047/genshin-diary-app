@@ -27,15 +27,8 @@ import Image from 'next/image'
 
 export function CharacterInfo(props: CharacterInfoProps) {
   const { data: CHARACTER } = props
-  const {
-    rarity,
-    attribute,
-    role,
-    weapon,
-    element,
-    region,
-    description,
-  } = CHARACTER
+  const { rarity, attribute, role, weapon, element, region, description } =
+    CHARACTER
 
   const STARS = getRarityStars(rarity)
   const ATTRIBUTE = getAttributesText(attribute)
@@ -47,8 +40,8 @@ export function CharacterInfo(props: CharacterInfoProps) {
 
   return (
     <div className='flex items-start justify-between col-span-2'>
-      <div className='space-y-4 w-[640px]'>
-        <Breadcrumb className='mb-10'>
+      <div className='space-y-4 w-full max-w-[640px]'>
+        <Breadcrumb className='mb-5 md:mb-10'>
           <BreadcrumbList>
             <BreadcrumbItem>
               <BreadcrumbLink href='/'>Inicio</BreadcrumbLink>
@@ -81,7 +74,7 @@ export function CharacterInfo(props: CharacterInfoProps) {
 
           <div className='space-y-3'>
             <div className='flex items-center gap-4'>
-              <Title size='3xl'>{CHARACTER.name}</Title>
+              <Title size='2xl'>{CHARACTER.name}</Title>
 
               <figure className='size-8'>
                 <BlurImage
@@ -94,26 +87,27 @@ export function CharacterInfo(props: CharacterInfoProps) {
               </figure>
             </div>
 
-            <ul className='flex items-center gap-1'>
+            <ul className='flex items-center md:gap-1'>
               {STARS.map((_, index) => (
                 <li key={index}>
-                  <Star className='text-amber-500 size-5' />
+                  <Star className='text-amber-500 size-4 md:size-5' />
                 </li>
               ))}
             </ul>
           </div>
         </div>
 
-        <div className='space-x-2'>
+        <div className='flex flex-wrap items-center gap-1 md:gap-2'>
           <Badge>{REGION}</Badge>
           <Badge>{ATTRIBUTE}</Badge>
           <Badge>{WEAPON}</Badge>
           <Badge>{ROLE}</Badge>
         </div>
 
-        <div className='tiptap opacity-70'>
-          <TiptapPreview content={description} />
-        </div>
+        <TiptapPreview
+          content={description}
+          className='w-full max-w-[720px]'
+        />
       </div>
     </div>
   )

@@ -6,7 +6,7 @@ import {
 import { WeaponInfoCardProps } from '@/app/(index)/(dynamic-routes)/weapon/[id]/weapon-info/_components/weapon-info-card/weapon-info-card.type'
 import { SquareBox } from '@/components/square-box'
 import { DEFAULT_IMAGE, NONE } from '@/consts/misc'
-import { WeaponName } from '@/app/(index)/(dynamic-routes)/weapon/[id]/weapon-info/_components/weapon-name'
+import { WeaponStats } from '@/app/(index)/(dynamic-routes)/weapon/[id]/weapon-info/_components/weapon-name'
 import { Badge } from '@/components/ui/badge'
 import { Star } from 'lucide-react'
 import { TiptapPreview } from '@/components/tiptap'
@@ -45,7 +45,7 @@ export function WeaponInfoCard(props: WeaponInfoCardProps) {
         </ul>
       </div>
       <div className='col-span-4 space-y-5'>
-        <WeaponName data={props} />
+        <WeaponStats data={props} />
 
         <div className='space-y-4'>
           {passive_description && (

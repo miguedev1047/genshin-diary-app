@@ -23,7 +23,7 @@ export const ascensionColumns: ColumnDef<AscensionProps>[] = [
     header: 'Nivel',
     cell: ({ row }) => {
       const { level } = row.original
-      return <p>{level}</p>
+      return <p className='w-[80px]'>{level}</p>
     },
   },
   {

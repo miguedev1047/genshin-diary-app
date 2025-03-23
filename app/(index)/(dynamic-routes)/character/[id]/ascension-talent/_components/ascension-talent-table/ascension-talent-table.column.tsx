@@ -13,7 +13,7 @@ export const ascensionTalentsColumns: ColumnDef<AscensionTalentProps>[] = [
     header: 'Ascensiones',
     cell: ({ row }) => {
       const { ascension_level } = row.original
-      const LEVEL_NUMBER= ascension_level.split('_')[1]
+      const LEVEL_NUMBER = ascension_level.split('_')[1]
 
       return <p>Ascensión {LEVEL_NUMBER}</p>
     },
@@ -23,7 +23,7 @@ export const ascensionTalentsColumns: ColumnDef<AscensionTalentProps>[] = [
     header: 'Nivel',
     cell: ({ row }) => {
       const { level } = row.original
-      return <p>{level}</p>
+      return <p className='w-[80px]'>{level}</p>
     },
   },
   {

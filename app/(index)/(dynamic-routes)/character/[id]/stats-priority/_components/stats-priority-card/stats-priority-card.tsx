@@ -14,11 +14,11 @@ export function StatePriorityCard(props: StatsPriorityCardProps) {
 
   return (
     <ViewCard title='Mejores estadisticas'>
-      <article className='grid grid-cols-1 lg:grid-cols-3 gap-5'>
+      <article className='grid grid-cols-1 lg:grid-cols-3 gap-3 md:p-5 '>
         <Card>
-          <CardContent className='p-5'>
+          <CardContent className='p-3 md:p-5'>
             <Title className='flex items-center justify-between gap-2'>
-              <article>
+              <article className='text-sm md:text-base'>
                 <span>Reloj: </span>
                 <span className='font-extrabold'>{SANDS}</span>
               </article>
@@ -28,9 +28,9 @@ export function StatePriorityCard(props: StatsPriorityCardProps) {
         </Card>
 
         <Card>
-          <CardContent className='p-5'>
+          <CardContent className='p-3 md:p-5'>
             <Title className='flex items-center justify-between gap-2'>
-              <article>
+              <article className='text-sm md:text-base'>
                 <span>Copa: </span>
                 <span className='font-extrabold'>{GLOBET}</span>
               </article>
@@ -40,9 +40,9 @@ export function StatePriorityCard(props: StatsPriorityCardProps) {
         </Card>
 
         <Card>
-          <CardContent className='p-5'>
+          <CardContent className='p-3 md:p-5'>
             <Title className='flex items-center justify-between gap-2'>
-              <article>
+              <article className='text-sm md:text-base'>
                 <span>Corona: </span>
                 <span className='font-extrabold'>{CIRCLET}</span>
               </article>
@@ -52,10 +52,12 @@ export function StatePriorityCard(props: StatsPriorityCardProps) {
         </Card>
 
         <Card className='col-span-1 lg:col-span-3'>
-          <CardContent className='p-5 text-center'>
+          <CardContent className='p-3 md:p-5 text-start'>
             <Title>
-              Estadisticas secundarias:{' '}
-              <span className='font-extrabold'>{order_priority}</span>
+              <article className='text-sm md:text-base'>
+                <span>Orden de prioridad: </span>
+                <span className='font-extrabold'>{order_priority}</span>
+              </article>
             </Title>
           </CardContent>
         </Card>

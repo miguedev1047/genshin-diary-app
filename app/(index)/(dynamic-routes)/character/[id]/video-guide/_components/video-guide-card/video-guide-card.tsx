@@ -17,7 +17,7 @@ export function VideoGuideCard(props: VideoGuideCardProps) {
 
   return (
     <ViewCard title='Video guia'>
-      <article className='space-y-8'>
+      <article className='space-y-4 md:space-y-8'>
         <Title>
           Video Guía por{' '}
           <Link
