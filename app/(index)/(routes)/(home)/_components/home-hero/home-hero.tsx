@@ -83,7 +83,7 @@ export function HomeHero() {
             />
 
             <Safari
-              url='https://genshin-impact-guide.vercel.app/characters'
+              url='https://genshin-diary.vercel.app/characters'
               className='size-full hidden xs:block'
               imageSrc={DesktopThumbnail.src}
             />
