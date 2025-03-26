@@ -4,6 +4,7 @@ import ArtifactImg from '@/assets/images/artifact.webp'
 import MaterialImg from '@/assets/images/material.webp'
 import DesktopThumbnail from '@/assets/images/desktop-thumbnail.png'
 import MobileThumbnail from '@/assets/images/mobile-thumbnail.png'
+import CharacterCardDemoImg from '@/assets/images/character-card-demo-img.png'
 
 export {
   CharacterImg,
@@ -12,4 +13,5 @@ export {
   MaterialImg,
   DesktopThumbnail,
   MobileThumbnail,
+  CharacterCardDemoImg,
 }
