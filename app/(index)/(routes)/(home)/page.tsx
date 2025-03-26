@@ -1,10 +1,12 @@
 import { ContentLayout } from '@/app/(index)/_components/content-layout'
-import { HomeHero } from '@/app/(index)/(routes)/(home)/_components/home-hero'
+import { HomeSection } from '@/app/(index)/(routes)/(home)/_sections/home-section/home-section'
+import { PlayerSection } from '@/app/(index)/(routes)/(home)/_sections/player-section'
 
 export default function Home() {
   return (
     <ContentLayout particles>
-      <HomeHero />
+      <HomeSection />
+      <PlayerSection />
     </ContentLayout>
   )
 }
