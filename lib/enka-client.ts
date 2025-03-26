@@ -7,7 +7,6 @@ export function getEnkaClient() {
   if (!enkaClientInstance) {
     // Initialize the client with cache directory under the project
     enkaClientInstance = new EnkaClient({
-      cacheDirectory: './public/genshin_cache',
       showFetchCacheLog: true,
       defaultLanguage: 'es',
     })
