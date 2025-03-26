@@ -1,10 +1,4 @@
-import { fileURLToPath } from 'url'
-import { dirname, join } from 'path'
 import { EnkaClient } from 'enka-network-api'
-
-// Get current file's directory to set up relative paths
-const __filename = fileURLToPath(import.meta.url)
-const __dirname = dirname(__filename)
 
 // Create a singleton instance
 let enkaClientInstance: EnkaClient | null = null
@@ -13,7 +7,7 @@ export function getEnkaClient() {
   if (!enkaClientInstance) {
     // Initialize the client with cache directory under the project
     enkaClientInstance = new EnkaClient({
-      cacheDirectory: join(__dirname, '../genshin_cache'),
+      cacheDirectory: './genshin_cache',
       showFetchCacheLog: true,
       defaultLanguage: 'es',
     })
