@@ -27,7 +27,7 @@ export function PlayerCard() {
       <Breadcrumb>
         <BreadcrumbList>
           <BreadcrumbItem>
-            <BreadcrumbLink href='/player/search'>Volver</BreadcrumbLink>
+            <BreadcrumbLink href='/#search-player'>Volver</BreadcrumbLink>
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbItem>
