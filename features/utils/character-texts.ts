@@ -12,6 +12,7 @@ import {
   STARS,
   WEAPON_TYPE,
 } from '@/consts/general'
+import { StatsList } from '@/types/player-data.type'
 
 export function getWeaponText(weapon: string | undefined) {
   const WEAPON = WEAPON_TYPE.find((item) => item.value === weapon)
@@ -118,5 +119,25 @@ export function getAscensionByRarity(rarity: string | undefined) {
       return ASCENSION_WEAPON_THREE_STARS
     default:
       return null
+  }
+}
+
+export function getCharacterStats (data: StatsList[]) {
+  return {
+    baseHealth: { ...data[0] },
+    health: { ...data[1] },
+    totalHealth: { ...data[36] },
+    baseAtk: { ...data[3] },
+    atk: { ...data[4] },
+    totalAtk: { ...data[38] },
+    baseDef: { ...data[6] },
+    totalDef: { ...data[39] },
+    elementalMastery: { ...data[16] },
+    elementBonus: { ...data[33] },
+    critRate: { ...data[11] },
+    dmgCrit: { ...data[12] },
+    healingBonus: { ...data[14] },
+    incomingHealingBonus: { ...data[15] },
+    energyRecharge: { ...data[13] },
   }
 }

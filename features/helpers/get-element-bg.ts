@@ -1,4 +1,5 @@
-import { BG_ELEMENT, ElementProps } from "@/consts/classes";
+import { BG_ELEMENT } from '@/consts/classes'
+import { ElementProps } from '@/types/classes.type'
 
 export function getElementBg(elementType: string) {
   const BG_STYLES = {
