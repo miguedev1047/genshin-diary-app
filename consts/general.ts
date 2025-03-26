@@ -6,7 +6,7 @@ import {
   Geo,
   Hydro,
   Pyro,
-} from '@/assets/elements'
+} from '@/assets/elements/_index'
 import { Star1, Star2, Star3, Star4, Star5 } from '@/assets/stars'
 import { Sword, Bow, Catalyst, Claymore, Polearm } from '@/assets/weapon-types'
 

@@ -6,38 +6,29 @@ import {
   GeoBg,
   HydroBg,
   PyroBg,
-} from '@/assets/elements'
-
-export type ElementProps =
-  | 'PYRO'
-  | 'HYDRO'
-  | 'ANEMO'
-  | 'ELECTRO'
-  | 'DENDRO'
-  | 'CRYO'
-  | 'GEO'
+} from '@/assets/elements/_index'
 
 export const COL_SPAN = 'col-span-1 sm:col-span-2 md:col-span-4 xl:col-span-6'
 
-export const ELEMENT_COLOR = {
-  PYRO: 'bg-red-500/30',
-  HYDRO: 'bg-blue-500/30',
-  ANEMO: 'bg-green-400/30',
-  ELECTRO: 'bg-purple-500/30',
-  DENDRO: 'bg-green-600/30',
-  CRYO: 'bg-teal-400/30',
-  GEO: 'bg-yellow-500/30',
-  NONE: 'bg-gray-400/30',
+export const BG_ELEMENT_COLOR = {
+  PYRO: 'bg-red-500/40',
+  HYDRO: 'bg-blue-500/40',
+  ANEMO: 'bg-green-400/40',
+  ELECTRO: 'bg-purple-500/40',
+  DENDRO: 'bg-green-600/40',
+  CRYO: 'bg-teal-400/40',
+  GEO: 'bg-yellow-500/40',
+  NONE: 'bg-gray-400/40',
 }
 
 export const BORDER_ELEMENT_COLOR = {
-  PYRO: 'border-red-500',
-  HYDRO: 'border-blue-500',
-  ANEMO: 'border-green-400',
-  ELECTRO: 'border-purple-500',
-  DENDRO: 'border-green-600',
-  CRYO: 'border-teal-400',
-  GEO: 'border-yellow-500',
+  PYRO: 'border-red-500/20',
+  HYDRO: 'border-blue-500/20',
+  ANEMO: 'border-green-400/20',
+  ELECTRO: 'border-purple-500/20',
+  DENDRO: 'border-green-600/20',
+  CRYO: 'border-teal-400/20',
+  GEO: 'border-yellow-500/20',
 }
 
 export const SHADOW_ELEMENT_COLOR = {

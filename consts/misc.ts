@@ -8,6 +8,7 @@ export const API_PREFIX = '/api/v0/genshin-diary'
 
 export const NONE = ''
 export const DEFAULT_IMAGE = 'https://placehold.co/600?text=Genshin+Diary'
+export const ENKA_NETWORK_LINK = 'https://enka.network/'
 
 export const STALE_MS = 60 * 60 * 3600
 export const GC_MS = 60 * 60 * 3600
