@@ -1,3 +1,5 @@
+'use client'
+
 import { AnimatedShinyText } from "@/components/ui/animated-shiny-text"
 import { DesktopThumbnail, MobileThumbnail } from '@/assets/images/_index'
 import { FocalLight } from '@/components/focal-light'

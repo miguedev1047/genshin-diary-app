@@ -1,5 +1,3 @@
-'use client'
-
 import { Logo } from '@/app/(index)/_components/logo'
 import { HomeHero } from '@/app/(index)/(routes)/(home)/_components/home-hero'
 
